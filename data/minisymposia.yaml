@@ -1,0 +1,28 @@
+---
+Architecture and Performance of Hardware-Independent Frameworks for Particle-In-Cell Methods:
+  part: 1
+  authors:
+  - Cameron Smith
+  - Stephan Schulz
+  - Andreas Adelmann
+  - Sriramkrishnan Muralikrishnan
+  keywords:
+  - pic
+Progress and Challenges in Extreme Scale Computing and Big Data:
+  authors:
+  - Michael Heroux
+  - Kengo Nakajima
+  - Serge Petiton
+  - Takeshi Iwashita
+  keywords:
+  - exascale
+  - big data
+Scalable Solvers for Large-Scale Multiphysics Problems:
+  part: 1
+  authors:
+  - Christopher Siefert
+  - Victor Magri
+  - Paul Mullowney
+  - Graham Harper
+  keywords:
+  - multiphysics
