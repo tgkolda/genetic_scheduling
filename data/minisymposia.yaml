@@ -1,28 +1,3048 @@
----
-Architecture and Performance of Hardware-Independent Frameworks for Particle-In-Cell Methods:
+A Posteriori Error Estimation for Various Adaptive Finite Element Methods:
+  organizer: Xu Zhang
+  speakers:
+  - Shun Zhang
+  - Difeng Cai
+  - Shuhao Cao
+  - Xu Zhang
+'AWM Workshop Panel: Perspectives and Advice from Women in Applied Mathematics':
+  organizer: Malena Espanol
+  speakers: []
+'AWM Workshop:  Data Science and Mathematics - Part I of II':
+  organizer: Deanna Needell
   part: 1
-  authors:
-  - Cameron Smith
-  - Stephan Schulz
-  - Andreas Adelmann
+  speakers:
+  - Anna Ma
+  - Natalie Durgin
+  - Karamatou Yacoubou Djima
+  - Anna Little
+'AWM Workshop:  Data Science and Mathematics - Part II of II':
+  organizer: Deanna Needell
+  part: 2
+  speakers:
+  - Gauri Joshi
+  - Sarah Anderson
+  - Kathryn Leonard
+  - Xu Wang
+Accelerating Electronic Structure Calculations with GPUs - Part I of II:
+  organizer: Jean-Luc Fattebert
+  part: 1
+  speakers:
+  - Jean-Luc Fattebert
+  - Josh Romero
+  - Laura Radcliff
+  - Paul Kent
+Accelerating Electronic Structure Calculations with GPUs - Part II of II:
+  organizer: Jean-Luc Fattebert
+  part: 2
+  speakers:
+  - Emil Briggs
+  - William P. Huhn
+  - Eric J. Bylaska
+  - Weile Jia
+Adjoints of Nonlinear Dynamics in CFD Applications:
+  organizer: Oana Marin
+  speakers:
+  - Barry F. Smith
+  - Nicolas R. Gauger
+  - Markus Towara
+Advanced HPC Trends for Oil and Gas Applications - Part I of II:
+  organizer: Rached Abdelkhalak
+  part: 1
+  speakers:
+  - Rached Abdelkhalak
+  - Sunny Gogar
+  - Amani Alonazi
+  - Fabrice Dupros
+Advanced HPC Trends for Oil and Gas Applications - Part II of II:
+  organizer: Rached Abdelkhalak
+  part: 2
+  speakers:
+  - Tariq Alturkestani
+  - Gabriel Fabien-Ouellet
+  - Issam Said
+  - Amine Kerkeni
+Advances In Nonlinearly Stable Methods:
+  organizer: Nail Yamaleev
+  speakers:
+  - Nail Yamaleev
+  - Siavosh Shadpey
+  - Mark H. Carpenter
+  - Magnus Svard
+Advances and Applications in Numerical Methods for Interfacial Flows -  Part I of II:
+  organizer: Pengtao Yue
+  speakers:
+  - Xiaolin Li
+  - Yang Liu
+  - Xueping Zhao
+  - Jean-Christophe Loudet
+  - Shahriar Afkhami
+Advances and Applications in Numerical Methods for Interfacial Flows - Part II of II:
+  organizer: Pengtao Yue
+  part: 2
+  speakers:
+  - Xiaofeng Yang
+  - Weiqing Ren
+  - Jiaqi Zhang
+  - Steven Ruuth
+Advances and Applications of Numerical Methods for Free Boundaries:
+  organizer: Frederic Gibou
+  speakers:
+  - Frederic Gibou
+  - Sebastien Tanguy
+  - Fernando Temprano-Coleto
+  - Pouria Mistani
+Advances in Analyzing Floating-point Errors in Computational Science - Part I of II:
+  organizer: Pierre Blanchard
+  part: 1
+  speakers:
+  - Theo Mary
+  - Ilse Ipsen
+  - Oliver Sheridan-Methven
+  - Jon Cockayne
+Advances in Analyzing Floating-point Errors in Computational Science - Part II of II:
+  organizer: Pierre Blanchard
+  part: 2
+  speakers:
+  - Pierre Blanchard
+  - George A. Constantinides
+  - Zhoulai Fu
+  - Daniela Calvetti
+Advances in Computational Methods for Data Assimilation - Part I of II:
+  organizer: Feng Bao
+  part: 1
+  speakers:
+  - Henry Huang
+  - Xuping Xie
+  - Tao Zhou
+  - Kai Kang
+Advances in Computational Methods for Data Assimilation - Part II of II:
+  organizer: Feng Bao
+  part: 2
+  speakers:
+  - Panos Stinis
+  - Xuemin Tu
+  - Xin T. Tong
+  - Birgul Koc
+  - Jialin Hong
+Advances in Global Sensitivity Analysis with Applications to Complex Systems -  Part I of II:
+  organizer: Alen Alexanderian
+  speakers:
+  - Helen Cleaves
+  - Cosmin Safta
+  - Xun Huan
+  - Sankaran Mahadevan
+Advances in Global Sensitivity Analysis with Applications to Complex Systems - Part II of II:
+  organizer: Alen Alexanderian
+  part: 2
+  speakers:
+  - Joseph Lee Hart
+  - Sergei S. Kucherenko
+  - Thierry Klein
+  - Matieyendou Lamboni
+Advances in Multi-method Time Discretizations of Evolutionary PDEs - Part I of II:
+  organizer: Adrian Sandu
+  part: 1
+  speakers:
+  - Adrian Sandu
+  - Raymond J. Spiteri
+  - Tommaso Buvoli
+  - Mahesh Narayanamurthi
+Advances in Multi-method Time Discretizations of Evolutionary PDEs - Part II of II:
+  organizer: Emil M. Constantinescu
+  part: 2
+  speakers:
+  - Vu Thai Luan
+  - Hong Zhang
+  - Steven Roberts
+  - John Loffeld
+'Advances in Phase Retrieval: Theory and Applications - Part I of II':
+  organizer: Selin Aslan
+  part: 1
+  speakers:
+  - Selin Aslan
+  - Yudong Yao
+  - Stefano Marchesini
+  - Aleksandr Aravkin
+'Advances in Phase Retrieval: Theory and Applications - Part II of II':
+  organizer: Selin Aslan
+  part: 2
+  speakers:
+  - Pablo Enfedaque
+  - Andrew M. Maiden
+  - Ashish Tripathi
+  - Saugat Kandel
+Advances in Quasi-Monte Carlo Methods - Part I of II:
+  organizer: Fred J. Hickernell
+  part: 1
+  speakers:
+  - Fred J. Hickernell
+  - Matteo Croci
+  - Erik Hintz
+  - Yiran Chen
+Advances in Quasi-Monte Carlo Methods - Part II of II:
+  organizer: Fred J. Hickernell
+  part: 2
+  speakers:
+  - Nima Salehy
+  - Kan Zhang
+  - Jagadeeswaran R
+Advances in Rare Event Simulation for Complex Dynamical Systems - Part I of II:
+  organizer: Benjamin J. Zhang
+  part: 1
+  speakers:
+  - Benjamin J. Zhang
+  - Mohammad Farazmand
+  - Konstantinos Spiliopoulos
+  - Shuting Gu
+Advances in Rare Event Simulation for Complex Dynamical Systems - Part II of II:
+  organizer: Benjamin J. Zhang
+  part: 2
+  speakers:
+  - Chang-Han Rhee
+  - Iason Papaioannou
+  - Robert Webber
+  - "Kenan \u0160ehi\u0107"
+Advances in Scalable Iterative, Multigrid and Direct Sparse Linear Solvers:
+  organizer: Katarzyna Swirydowicz
+  speakers:
+  - Edmond Chow
+  - Mark Hoemmen
+  - Esmond G. Ng
+  - Stephen Thomas
+Advances in Unstructured Mesh Algorithms and their Applications - Part I of II:
+  organizer: Mike Stees
+  part: 1
+  speakers:
+  - Suzanne M. Shontz
+  - Navamita Ray
+  - John P. Steinbrenner
+  - Peter K. Jimack
+Advances in Unstructured Mesh Algorithms and their Applications - Part II of II:
+  organizer: Mike Stees
+  part: 2
+  speakers:
+  - Mike Stees
+  - Vladimir Z. Tomov
+  - Andrew Shi
+  - Fande Kong
+Algorithms and Software for Nonlinear Eigenvalue Problems - Part I of II:
+  organizer: Roel Van Beeumen
+  part: 1
+  speakers:
+  - Francoise Tisseur
+  - Elias Jarlebring
+  - Steven Elsworth
+  - Roel Van Beeumen
+Algorithms and Software for Nonlinear Eigenvalue Problems - Part II of II:
+  organizer: Roel Van Beeumen
+  part: 2
+  speakers:
+  - David Bindel
+  - Fei Xue
+  - Javier Perez-Alvaro
+  - Agnieszka Miedlar
+Application of Fractional Calculus in Material Science and Engineering - Part I of II:
+  organizer: Somayeh Mashayekhi
+  part: 1
+  speakers:
+  - Richard L. Magin
+  - Elias Aifantis
+  - Somayeh Mashayekhi
+  - Eugenia Stanisauskis
+  - Diego Del-Castillo-Negrete
+Application of Fractional Calculus in Material Science and Engineering - Part II of II:
+  organizer: Somayeh Mashayekhi
+  part: 2
+  speakers:
+  - Ralph Smith
+  - Jorge L. Suzuki
+  - Arman Dabiri
+  - James F. Kelly
+Applications of Data Assimilation in Science, Engineering, and Industry - Part I of II:
+  organizer: Amr El-Bakry
+  part: 1
+  speakers:
+  - Aaron B. Luttman
+  - Juan Pablo Madrigal Cianci
+  - Spencer C. Lunderman
+  - Mark Cianciosa
+Applications of Data Assimilation in Science, Engineering, and Industry - Part II of II:
+  organizer: Amr El-Bakry
+  part: 2
+  speakers:
+  - Byung Hoon Park
+  - Thomas A. Frewen
+  - Hakon Hoel
+  - Yinhao Zhu
+Applications of Machine Learning in Fluid Mechanics:
+  organizer: Jonathan H. Tu
+  speakers:
+  - Jonathan H. Tu
+  - Eva Kanso
+  - Mengying Wang
+  - Jeff D. Eldredge
+Applications of Tensor Decompositions:
+  organizer: Richard Vuduc
+  speakers:
+  - Ioakeim Perros
+  - Ivan Oseledets
+  - Evangelos Papalexakis
+  - Charles Nicholas
+  - Anima Anandkumar
+Applications of the AMReX Block Structured Adaptive Mesh Refinement Framework - Part I of II:
+  organizer: Andy J. Nonaka
+  part: 1
+  speakers:
+  - Andy J. Nonaka
+  - Brandon S. Runnels
+  - Jordan Musser
+  - Ray W. Grout
+Applications of the AMReX Block Structured Adaptive Mesh Refinement Framework - Part II of II:
+  organizer: Andy J. Nonaka
+  part: 2
+  speakers:
+  - Maria G. Barrios Sazo
+  - Duoming Fan
+  - Maxence Thevenet
+  - Changho Kim
+Asynchronous Iterative Methods:
+  organizer: Christian Glusa
+  speakers:
+  - Daniel B. Szyld
+  - Mike Rabbat
+  - Paritosh P. Ramanan
+  - Christian Glusa
+'Avoiding Big-data: In-situ Visualisation and Analysis for Large-scale CFD Simulations - Part I of II':
+  organizer: Marius K. Koch
+  part: 1
+  speakers:
+  - Marius K. Koch
+  - Patrick O'Leary
+  - James Ahrens
+  - Steve Legensky
+'Avoiding Big-data: In-situ Visualisation and Analysis for Large-scale CFD Simulations - Part II of II':
+  organizer: Marius K. Koch
+  part: 2
+  speakers:
+  - Freddie Witherden
+  - Scott Imlay
+  - Mike Kirby
+  - Michel Rasquin
+'BE:  Parallel Algorithm Design':
+  organizer: Mary Ann E. Leung
+  speakers:
+  - Mary Ann E. Leung
+'BE:  Wrap-up Session':
+  organizer: Mary Ann E. Leung
+  speakers:
+  - Mary Ann E. Leung
+'BE: Advances in Computational Drug Discovery -  Part II of II':
+  organizer: Sally R. Ellingson
+  speakers:
+  - Benjamin Samudio
+  - Bryce Kroencke
+  - Nicholas Pavini
+'BE: Advances in Computational Drug Discovery - Part I of II':
+  organizer: Sally R. Ellingson
+  part: 1
+  speakers:
+  - Sally R. Ellingson
+  - Jonathan Allen
+  - Julie Mitchell
+  - William D. Jones
+'BE: Best Practices for CSE Diversity and Inclusion':
+  organizer: Mary Ann E. Leung
+  speakers:
+  - Mary Ann E. Leung
+  - Malena Espanol
+  - Rebecca J. Hartman-Baker
+  - Tony Baylis
+'BE: Broader Engagement Technical Research - Part I of II':
+  organizer: Mary Ann E. Leung
+  part: 1
+  speakers:
+  - Alina Lazar
+  - Yury Grazin
+  - Ronald L. Gonzales
+  - Yun Teck Lee
+'BE: Broader Engagement Technical Research - Part II of II':
+  organizer: Mary Ann E. Leung
+  part: 2
+  speakers:
+  - Masa Watanabe
+  - Wilson Rivera
+  - Xinlian Liu
+  - Rafael Zamora-Resendiz
+'BE: GPU Accelerated Computing on Summit ':
+  organizer: Mary Ann E. Leung
+  speakers:
+  - Mary Ann E. Leung
+'BE: Lightning Talks':
+  organizer: Mary Ann E. Leung
+  speakers:
+  - Mary Ann E. Leung
+"BE: Mentor Prot\xE9g\xE9 session CANCELLED":
+  organizer: Mary Ann E. Leung
+  speakers:
+  - Mary Ann E. Leung
+'BE: Overcoming Workplace Challenges Panel: Trials, Tribulations, and Triumphs':
+  organizer: Melissa Abdelbaky
+  speakers: []
+'BE: Securing Extreme-Scale Scientific Computing':
+  organizer: Nitin Sukhija
+  speakers:
+  - Von Welch
+  - Blair William
+  - David Dampier
+  - Nitin Sukhija
+'BE: Social Modeling through Game Design, A STEAM Workshop':
+  organizer: Mary Ann E. Leung
+  speakers:
+  - Mary Ann E. Leung
+'Batched BLAS: API Standardization, Libraries, and Applications - Part I of II':
+  organizer: Ahmad Abdelfattah
+  part: 1
+  speakers:
+  - Sven J. Hammarling
+  - Cris Cecka
+  - Ahmad Abdelfattah
+  - Hatem Ltaief
+'Batched BLAS: API Standardization, Libraries, and Applications - Part II of II':
+  organizer: Ahmad Abdelfattah
+  part: 2
+  speakers:
+  - Mark Gates
+  - Sarah Knepper
+  - Siva Rajamanickam
+  - Aaron Fisher
+Black-box Optimization for Autotuning:
+  organizer: Wissam Sid-Lakhdar
+  speakers:
+  - David B. Williams-Young
+  - Yaohung M. Tsai
+  - Paul D. Hovland
+  - Wissam Sid-Lakhdar
+Boundary Integral Methods for Particulate Flows - Part I of II:
+  organizer: Lukas Bystricky
+  part: 1
+  speakers:
+  - Chiara Sorgentone
+  - Bryan D. Quaife
+  - Gokberk Kabacaoglu
+  - Michael Siegel
+Boundary Integral Methods for Particulate Flows - Part II of II:
+  organizer: Lukas Bystricky
+  part: 2
+  speakers:
+  - Lukas Bystricky
+  - "Sara P\xE5lsson"
+  - William H. Mitchell
+Bringing Algorithms and New Applications to Novel Architectures - Part I of II:
+  organizer: Jason Riedy
+  part: 1
+  speakers:
+  - Jason Riedy
+  - John Shalf
+  - Catherine Schuman
+  - Patrick Lavin
+Bringing Algorithms and New Applications to Novel Architectures - Part II of II:
+  organizer: Jason Riedy
+  part: 2
+  speakers:
+  - Mehmet E. Belviranli
+  - Steve P. Reinhardt
+  - Mohammed A. Al Farhan
+  - Moslem Noori
+CSE Education and Workforce - Part I of II:
+  organizer: Serkan Gugercin
+  part: 1
+  speakers:
+  - Serkan Gugercin
+  - Clint Dawson
+  - Jeffrey Humpherys
+  - Karen Veroy
+CSE Education and Workforce - Part II of II:
+  organizer: Serkan Gugercin
+  part: 2
+  speakers:
+  - Karen E. Willcox
+  - Thomas A. Grandine
+  - Tamara Kolda
+  - Keith Gray
+'Close Evaluation of Layer Potentials: Advanced Numerical Methods and Applications':
+  organizer: Camille Carvalho
+  speakers:
+  - Arnold D. Kim
+  - Ludvig af Klinteberg
+  - Anna-Karin Tornberg
+  - Travis Askham
+Computational Advances and Challenges in Data-enabled Life Sciences:
+  organizer: Bala Krishnamoorthy
+  speakers:
+  - Ananth Kalyanaraman
+  - Patrick Schnable
+  - Laxmi Parida
+  - Eric Lofgren
+  - Zerina Kapetanovic
+Computational Advances for Large-scale Geophysical Data:
+  organizer: Eileen R. Martin
+  speakers:
+  - Eileen R. Martin
+  - Rami Nammour
+  - Hadi Jamali-Rad
+  - Philipp A. Witte
+  - Qingkai Kong
+Computational Challenges at the Frontiers of Numerical Relativity - Part I of II:
+  organizer: Hari Sundar
+  part: 1
+  speakers:
+  - David Neilsen
+  - Zachariah B. Etienne
+  - Lawrence Kidder
+  - Matthew Duez
+  - Erik Schnetter
+Computational Challenges at the Frontiers of Numerical Relativity - Part II of II:
+  organizer: Hari Sundar
+  part: 2
+  speakers:
+  - Deirdre Shoemaker
+  - Luciano Rezzolla
+  - Elliu Huerta
+  - Yosef Zlochower
+Computational Challenges in the ECP Energy Applications:
+  organizer: Steven Hamilton
+  speakers:
+  - Steven Hamilton
+  - Olga Shapoval
+  - Michele Rosso
+  - Michael Sprague
+Computational Engineering (BGCE) Student Paper Prize - Part I of II:
+  organizer: Tobias Neckel
+  part: 1
+  speakers:
+  - Joseph Lee Hart
+  - Kenneth Sockwell
+  - Elizabeth Qian
+  - Zakia Zainib
+Computational Engineering (BGCE) Student Paper Prize - Part II of II:
+  organizer: Tobias Neckel
+  part: 2
+  speakers:
+  - Sean Hon
+  - Kjetil Olsen Lye
+  - Lin Bo
+  - "\xC1lvaro P\xE9 de la Riva"
+Computational Methods for Data Assimilation and Uncertainty Quantification - Part I of II:
+  organizer: Ahmed Attia
+  part: 1
+  speakers:
+  - Ahmed Attia
+  - Alen Alexanderian
+  - Andrey A. Popov
+  - Emil M. Constantinescu
+  - Roland Potthast
+Computational Methods for Data Assimilation and Uncertainty Quantification - Part II of II:
+  organizer: Emil M. Constantinescu
+  part: 2
+  speakers:
+  - Vishwas Rao
+  - Mohamad El-Gharamti
+  - Dacian N. Daescu
+Computational Methods for Kinetic Models of Plasma - Part I of II:
+  organizer: James A. Rossmanith
+  part: 1
+  speakers:
+  - Pierson T. Guthrey
+  - Bhuvana Srinivasan
+  - Jeffrey Haack
+  - Ken Hara
+Computational Methods for Kinetic Models of Plasma - Part II of II:
+  organizer: James A. Rossmanith
+  part: 2
+  speakers:
+  - Luis Chacon
+  - Li Wang
+  - David C. Seal
+  - Jeffrey W. Banks
+Computational Methods for Linear Kinetic Transport Equations - Part I of II:
+  organizer: Andrew J. Christlieb
+  part: 1
+  speakers:
+  - Andrew J. Christlieb
+  - Kelly L. Rowland
+  - Minwoo Shin
+  - Kathryn Huff
+Computational Methods for Linear Kinetic Transport Equations - Part II of II:
+  organizer: Andrew J. Christlieb
+  part: 2
+  speakers:
+  - Christiane Helzel
+  - Xiaodong Huang
+  - Paul Laiu
+  - Jingmei Qiu
+Computational Scalability and Complex Geometry in Integral Equation Methods - Part I of II:
+  organizer: Andreas Kloeckner
+  part: 1
+  speakers:
+  - Manas N. Rachh
+  - Dhairya Malhotra
+  - Olaf Steinbach
+  - Matt Wala
+Computational Scalability and Complex Geometry in Integral Equation Methods - Part II of II:
+  organizer: Andreas Kloeckner
+  part: 2
+  speakers:
+  - Adrianna Gillman
+  - Stefan Schimanko
+  - Xiaoyu Wei
+  - Andreas Kloeckner
+Computational Strategies for High-dimensional Data Assimilation and Bayesian Inverse Problems - Part I of II:
+  organizer: Matthias Morzfeld
+  part: 1
+  speakers:
+  - Shixiao W. Jiang
+  - Chris Snyder
+  - Feng Bao
+  - Peter Jan van Leeuwen
+Computational Strategies for High-dimensional Data Assimilation and Bayesian Inverse Problems - Part II of II:
+  organizer: Matthias Morzfeld
+  part: 2
+  speakers:
+  - Kody Law
+  - Matthias Morzfeld
+  - Wei Pan
+  - Youssef M. Marzouk
+Computational Tools and Precision Medicine:
+  organizer: Sunita Chandrasekaran
+  speakers:
+  - Sunita Chandrasekaran
+  - Michela Taufer
+  - John E. Stone
+  - George Zaki
+Computational and Numerical Methods in Electronics - Part I of II:
+  organizer: Karl Rupp
+  part: 1
+  speakers:
+  - Daniel Brinkman
+  - Yingda Cheng
+  - Patricio Farrell
+  - Evelyne Knapp
+Computational and Numerical Methods in Electronics - Part II of II:
+  organizer: Karl Rupp
+  part: 2
+  speakers:
+  - Vihar Georgiev
+  - Karl Rupp
+  - Mathieu Luisier
+  - Josef Weinbub
+Computationally Efficient Derivative-Free Local and Global Optimization:
+  organizer: Nikolaos Sahinidis
+  speakers:
+  - Christine Shoemaker
+  - Kaiwen Ma
+  - Aekaansh Verma
+  - Steven Gardner
+Data Assimilation and Optimization in Physiologic Modeling - Part I of II:
+  organizer: Shawn Shadden
+  part: 1
+  speakers:
+  - Jian-Xun Wang
+  - Rodrigo Mendez
+  - Alessandro Veneziani
+  - Leif Hellevik
+Data Assimilation and Optimization in Physiologic Modeling - Part II of II:
+  organizer: Jian-Xun Wang
+  part: 2
+  speakers:
+  - Jiacheng Wu
+  - Karlyn Harrod
+  - Casey M. Fleeter
+  - Philippe Moireau
+Data Assimilation in Fluid Models:
+  organizer: Jaime A. Lopez-Merizalde
+  speakers:
+  - Jaime A. Lopez-Merizalde
+  - Humberto C. Godinez
+  - Elizabeth Carlson
+  - Tong Wu
+Data Enabled Modeling and Discovery in Science and Engineering - Part I of II:
+  organizer: Eric C. Cyr
+  part: 1
+  speakers:
+  - Tobias Hagge
+  - Sharmila Karumuri
+  - Eric C. Cyr
+  - Tenavi Nakamura-Zimmerer
+Data Enabled Modeling and Discovery in Science and Engineering - Part II of II:
+  organizer: Prasanna Balaprakash
+  part: 2
+  speakers:
+  - Prasanna Balaprakash
+  - Daniel Dylewsky
+  - Lars Ruthotto
+  - Kazuki Maeda
+Data Science and Analytics in Industry:
+  organizer: Malena Espanol
+  speakers:
+  - Mario R. Garzia
+  - Catherine Micek
+  - Veronica Bloom
+  - Youssef Nashed
+'Data-augmented Reduced-order Modeling: Operator Learning and Closure/error Modeling - Part I of II':
+  organizer: Kevin T. Carlberg
+  part: 1
+  speakers:
+  - Serkan Gugercin
+  - Nihar Sawant
+  - Jennifer Annoni
+  - Zhe Bai
+'Data-augmented Reduced-order Modeling: Operator Learning and Closure/error Modeling - Part II of II':
+  organizer: Kevin T. Carlberg
+  part: 2
+  speakers:
+  - Sk. Mashfiqur Rahman
+  - Eric Parish
+  - Stefano Pagani
+  - Traian Iliescu
+Data-driven Methods in Fluid Dynamics - Part I of II:
+  organizer: Kazuki Maeda
+  part: 1
+  speakers:
+  - Lionel Mathelin
+  - Maziar S. Hemati
+  - Shaowu Pan
+  - Elia Merzari
+  - Gretar Tryggvason
+Data-driven Methods in Fluid Dynamics - Part II of II:
+  organizer: Eurika Kaiser
+  part: 2
+  speakers:
+  - Sebastian Peitz
+  - Aditya G. Nair
+  - Aaron Towne
+  - Andres Goza
+Data-driven and Mathematical Model Reductions for Combustion System Simulation and Design:
+  organizer: Nathan L. Mundis
+  speakers:
+  - Nathan L. Mundis
+  - Cheng Huang
+  - Alexandre Marques
+  - Matthias Ihme
+Derivative-free and Global Optimization - Part I of II:
+  organizer: Juliane Mueller
+  part: 1
+  speakers:
+  - Juliane Mueller
+  - Jeffrey Larson
+  - Zelda B. Zabinsky
+  - Francesco Rinaldi
+Derivative-free and Global Optimization - Part II of II:
+  organizer: Juliane Mueller
+  part: 2
+  speakers:
+  - Matt Menickelly
+  - Clement W. Royer
+  - Albert S. Berahas
+  - Sara Shashaani
+Design and Usability of High-performance PDE Software Engines and Frameworks - Part I of II:
+  organizer: Anne Reinarz
+  part: 1
+  speakers:
+  - Anshu Dubey
+  - Johannes Holke
+  - Tobias Weinzierl
+  - David Ham
+Design and Usability of High-performance PDE Software Engines and Frameworks - Part II of II:
+  organizer: Anne Reinarz
+  part: 2
+  speakers:
+  - Wolfgang Bangerth
+  - David J. Gardner
+  - Xing Cai
+  - Christoph Rettinger
+Developments in Algebraic Multigrid for Nonsymmetric and Hyperbolic Problems:
+  organizer: Ben S. Southworth
+  speakers:
+  - Ben S. Southworth
+  - Hans De Sterck
+  - Luc Berger-Vergiat
+  - Thomas Manteuffel
+Discovering and Exploiting Low-dimensional Structures in Computational Models - Part I of II:
+  organizer: Steven A. Mattis
+  part: 1
+  speakers:
+  - Steven A. Mattis
+  - Tan Bui-Thanh
+  - Brad Marvin
+  - D. O'Malley
+Discovering and Exploiting Low-dimensional Structures in Computational Models - Part II of II:
+  organizer: Steven A. Mattis
+  part: 2
+  speakers:
+  - Tim Wildey
+  - Boris Kramer
+  - Harriet Li
+  - Akil Narayan
+'Distributed-Memory Graph Analytics: Programming Models, Algorithms and Applications':
+  organizer: Assefaw Gebremedhin
+  speakers:
+  - Pavan Balaji
+  - Geoff Sanders
+  - Kamesh Madduri
+  - Sayan Ghosh
+Divide and Conquer Strategies for Large-scale Eigenvalue Problems - Part I of II:
+  organizer: Ruipeng Li
+  part: 1
+  speakers:
+  - Ruipeng Li
+  - Yasunori Futamura
+  - Vasileios Kalantzis
+  - Anthony P. Austin
+Divide and Conquer Strategies for Large-scale Eigenvalue Problems - Part II of II:
+  organizer: Ruipeng Li
+  part: 2
+  speakers:
+  - Edoardo A. Di Napoli
+  - Andreas Stathopoulos
+  - Jia Shi
+  - Kookjin Lee
+'Dynamics with Inherent Noise: Stochastic Modelling and Simulation - Part I of II':
+  organizer: Huan Lei
+  part: 1
+  speakers:
+  - Xiaoliang Wan
+  - Matthias Sachs
+  - Wanrong Cao
+  - Yi Zhang
+'Dynamics with Inherent Noise: Stochastic Modelling and Simulation - Part II of II':
+  organizer: Huan Lei
+  part: 2
+  speakers:
+  - Jiayu Zhai
+  - Soon Hoe Lim
+  - Xiaoli Chen
+  - Jinchao Feng
+Efficient Computational Methods for Molecular Dynamics:
+  organizer: Philipp Neumann
+  speakers:
+  - Mark Abraham
+  - H. Metin Aktulga
+  - Fabio A. Gratl
+  - Steffen Hirschmann
+Efficient Solvers for Coupled Multiphysics Problems - Part I of II:
+  organizer: Massimiliano Ferronato
+  part: 1
+  speakers:
+  - Matteo Frigo
+  - Xiaozhe Hu
+  - Nicola Castelletto
+  - Uwe Koecher
+Efficient Solvers for Coupled Multiphysics Problems - Part II of II:
+  organizer: Massimiliano Ferronato
+  part: 2
+  speakers:
+  - Andrea Franceschini
+  - Quan M. Bui
+  - Chen Greif
+  - Richard T. Mills
+Emerging Trends for Structure Preserving Model Order Reduction - Part I of II:
+  organizer: Harshit Bansal
+  part: 1
+  speakers:
+  - Wil Schilders
+  - Cecilia Pagliantini
+  - Igor Pontes Duff
+  - Bjoern Liljegren-Sailer
+Emerging Trends for Structure Preserving Model Order Reduction - Part II of II:
+  organizer: Harshit Bansal
+  part: 2
+  speakers:
+  - Kathrin Smetana
+  - Benjamin Unger
+  - Klajdi Sinani
+  - Jacquelien M. Scherpen
+Entropy-stable Formulations for Numerical Solution of Conservation Laws - Part I of II:
+  organizer: Scott Murman
+  part: 1
+  speakers:
+  - Eitan Tadmor
+  - Deep Ray
+  - Ayoub Gouasmi
+  - Michael Hansen
+Entropy-stable Formulations for Numerical Solution of Conservation Laws - Part II of II:
+  organizer: Scott Murman
+  part: 2
+  speakers:
+  - Siddhartha Mishra
+  - Bojan Popov
+  - Andrew R. Winters
+  - Jason E. Hicken
+Exascale Applications with High-Order Methods - Part I of II:
+  organizer: MiSun Min
+  part: 1
+  speakers:
+  - Mark Ainsworth
+  - Robert Knaus
+  - Luca Bertagna
+  - Li Lu
+Exascale Applications with High-Order Methods - Part II of II:
+  organizer: MiSun Min
+  part: 2
+  speakers:
+  - Paul Fischer
+  - Mark S. Shephard
+  - Will Pazner
+  - MiSun Min
+Exascale Software for High-order Methods - Part I of II:
+  organizer: Tzanio V. Kolev
+  part: 1
+  speakers:
+  - Tzanio V. Kolev
+  - "Steffen M\xFCthing"
+  - Martin Kronbichler
+  - Joachim Schoeberl
+Exascale Software for High-order Methods - Part II of II:
+  organizer: Tzanio V. Kolev
+  part: 2
+  speakers:
+  - Veselin Dobrev
+  - Stanimire Tomov
+  - Thilina Rathnayake
+  - Ali Karakus
+Exciting Work by Early Career Underrepresented Minority Researchers:
+  organizer: Talea Mayo
+  speakers:
+  - Jamol Pender
+  - Alba Rojas-Cordova
+  - Edward McFowland
+Exploiting Model Hierarchies, Sparsity and Low-Rank Structure of Large-scale Bayesian Computation - Part I of II:
+  organizer: Tiangang Cui
+  part: 1
+  speakers:
+  - Robert Scheichl
+  - Daniele Bigoni
+  - Linus Seelinger
+  - Ruanui Nicholson
+FASTMath Tools and Technologies - Part I of II:
+  organizer: Esmond G. Ng
+  part: 1
+  speakers:
+  - Ann S. Almgren
+  - Mark S. Shephard
+  - Xiaoye S. Li
+  - Osni A. Marques
+FASTMath Tools and Technologies - Part II of II:
+  organizer: Esmond G. Ng
+  part: 2
+  speakers:
+  - Todd Munson
+  - Habib N. Najm
+  - Bert Debussschere
+  - Richard Archibald
+Fast Algorithms for Integral Equations and Their Applications:
+  organizer: Min Hyung Cho
+  speakers:
+  - Carlos Borges
+  - Yuanxun Bao
+  - Bo Wang
+  - Eduardo Corona
+  - Shidong Jiang
+Fast Methods for High-Frequency Wave Propagation - Part I of II:
+  organizer: Leonardo Zepeda-Nunez
+  part: 1
+  speakers:
+  - Laurent Demanet
+  - Jianliang Qian
+  - Xu Yang
+  - Shingyu Leung
+Fast Methods for High-Frequency Wave Propagation - Part II of II:
+  organizer: Leonardo Zepeda-Nunez
+  part: 2
+  speakers:
+  - Zhen Peng
+  - Hieu Nguyen
+  - Hongkai Zhao
+  - "Jos\xE9 Pinto"
+  - Lexing Ying
+Fast Solvers for Inverse Problems with PDEs - Part I of II:
+  organizer: James L. Herring
+  part: 1
+  speakers:
+  - Nicholas Alger
+  - Wim I. Vanroose
+  - Matthias Schlottbom
+  - Matthias Heinkenschloss
+Fast Solvers for Inverse Problems with PDEs - Part II of II:
+  organizer: James L. Herring
+  part: 2
+  speakers:
+  - Arvind Saibaba
+  - James G. Nagy
+  - Georg Stadler
+  - James L. Herring
+Fast and Accurate Integral Methods for Highly Oscillatory Phenomena - Part I of II:
+  organizer: Haizhao Yang
+  part: 1
+  speakers:
+  - Timo Betcke
+  - Oscar P. Bruno
+  - Gregory Beylkin
+  - Lise-Marie Imbert-Gerard
+Fast and Accurate Integral Methods for Highly Oscillatory Phenomena - Part II of II:
+  organizer: Haizhao Yang
+  part: 2
+  speakers:
+  - Yang Liu
+  - Michael O'Neil
+  - James Bremer
+  - Haizhao Yang
+Finite Element Methods on Unfitted Meshes - Part I of II:
+  organizer: Cuiyu He
+  part: 1
+  speakers:
+  - Cuiyu He
+  - Maxim A. Olshanskii
+  - Ruchi Guo
+  - Guillaume Delay
+  - Xiaoping Xie
+Finite Element Methods on Unfitted Meshes - Part II of II:
+  organizer: Cuiyu He
+  part: 2
+  speakers:
+  - Peiqi Huang
+  - Jinru Chen
+  - Sarkis Marcus
+  - Vladimir Yushutin
+'Flat Low-rank Matrix Formats: Potential and Limitations':
+  organizer: Theo Mary
+  speakers:
+  - Cleve Ashcraft
+  - Gregoire Pichon
+  - Ichitaro Yamazaki
+  - Patrick R. Amestoy
+'Generalizable Machine Learning and Clustering Methods: Applications in Bias, Biology, and Imaging':
+  organizer: Mario Banuelos
+  speakers:
+  - Mario Banuelos
+  - Lara Reichmann
+  - David T. Uminsky
+  - Marilyn Vazquez
+Graph and Combinatorial Algorithms for Enabling Exascale Applications - Part I of II:
+  organizer: Alex Pothen
+  part: 1
+  speakers:
+  - Cynthia Phillips
+  - Arif Khan
+  - S M Ferdous
+  - Saliya P. Ekanayake
+Graph and Combinatorial Algorithms for Enabling Exascale Applications - Part II of II:
+  organizer: Alex Pothen
+  part: 2
+  speakers:
+  - Erik G. Boman
+  - Sriram Krishnamoorthy
+  - Oguz Selvitopi
+  - Yu-Hong Yeung
+Guidance from Early Applications of Quantum Computers:
+  organizer: Jesse Berwald
+  speakers:
+  - Steve P. Reinhardt
+  - Masayuki Ohzeki
+  - Scott N. Genin
+  - Florian Neukart
+  - Scott Pakin
+Hardware-aware Algorithms and Numerics for Heterogeneous Supercomputers:
+  organizer: Tony Saad
+  speakers:
+  - Tony Saad
+  - Kyle E. Niemeyer
+  - Roger Pawlowski
+  - Andi Wang
+High Performance Sparse Matrix, Tensor, and Graph Kernels - Part I of II:
+  organizer: Jiajia Li
+  part: 1
+  speakers:
+  - Roshan Dathathri
+  - Xin He
+  - Weijie Zhou
+  - Xu Liu
+High Performance Sparse Matrix, Tensor, and Graph Kernels - Part II of II:
+  organizer: Xu Liu
+  part: 2
+  speakers:
+  - Aydin Buluc
+  - Ioakeim Perros
+  - Jieyang Chen
+  - Jiajia Li
+High-order Accurate Numerical Methods for Fluid-structure Interaction Problems:
+  organizer: Longfei Li
+  speakers:
+  - Qi Tang
+  - Daniel A. Serino
+  - Donald W. Schwendeman
+  - Longfei Li
+High-order Discontinuous Galerkin and Finite Element Methods for CFD - Part I of II:
+  organizer: Will Pazner
+  part: 1
+  speakers:
+  - Marzieh Alireza Mirhoseini
+  - Scott Murman
+  - Geoff Donoghue
+  - Niklas Fehn
+High-order Discontinuous Galerkin and Finite Element Methods for CFD - Part II of II:
+  organizer: Will Pazner
+  part: 2
+  speakers:
+  - Jesse Chan
+  - Andrew Kercher
+  - Marian Piatkowski
+  - Yohann Dudouit
+High-order Discretizations and Quadrature for Integral Equation Methods - Part I of II:
+  organizer: Manas N. Rachh
+  part: 1
+  speakers:
+  - Alex H. Barnett
+  - Jun Wang
+  - Yabin Zhang
+  - Natalie N. Beams
+High-order Discretizations and Quadrature for Integral Equation Methods - Part II of II:
+  organizer: Manas N. Rachh
+  part: 2
+  speakers:
+  - Felipe Vico
+  - Kirill Serkh
+  - Jeremy Hoskins
+  - Zydrunas Gimbutas
+High-order Finite Element Methods for Complex and Multiphysics Applications - Part I of II:
+  organizer: Sriramkrishnan Muralikrishnan
+  part: 1
+  speakers:
   - Sriramkrishnan Muralikrishnan
-  keywords:
-  - pic
-Progress and Challenges in Extreme Scale Computing and Big Data:
-  authors:
-  - Michael Heroux
-  - Kengo Nakajima
-  - Serge Petiton
-  - Takeshi Iwashita
-  keywords:
-  - exascale
-  - big data
-Scalable Solvers for Large-Scale Multiphysics Problems:
+  - Petr Cagas
+  - Krzysztof Fidkowski
+  - Benedict Dingfelder
+High-order Finite Element Methods for Complex and Multiphysics Applications - Part II of II:
+  organizer: Sriramkrishnan Muralikrishnan
+  part: 2
+  speakers:
+  - Shinhoo Kang
+  - Michael Brazell
+  - Behzad Ahrabi
+  - Jeremy E. Kozdon
+High-order PDE Methods on CPU Architectures with Wide SIMD Units - Part I of II:
+  organizer: Alexander Heinecke
   part: 1
-  authors:
-  - Christopher Siefert
-  - Victor Magri
-  - Paul Mullowney
-  - Graham Harper
-  keywords:
-  - multiphysics
+  speakers:
+  - David Moxey
+  - Florian Hindenlang
+  - Dominic Kempf
+  - Peter Munch
+High-order PDE Methods on CPU Architectures with Wide SIMD Units - Part II of II:
+  organizer: Alexander Heinecke
+  part: 2
+  speakers:
+  - Alexander Breuer
+  - Carsten Uphoff
+  - Francesco Fambri
+  - Jeremy Thompson
+High-order Solvers for Wave Problems - Part I of II:
+  organizer: Oscar P. Bruno
+  part: 1
+  speakers:
+  - Thomas G. Anderson
+  - Max Cubillos
+  - Jay Gopalikrishnan
+  - William Henshaw
+High-order Solvers for Wave Problems - Part II of II:
+  organizer: Oscar P. Bruno
+  part: 2
+  speakers:
+  - John Jacangelo
+  - Ambuj Pandey
+  - N. Anders Petersson
+  - Bjorn Sjogreen
+High-performance Graph Algorithms:
+  organizer: Cameron W. Smith
+  speakers:
+  - Gerrett Diamond
+  - Chunxing Yin
+  - A. Erdem Sariyuce
+  - Abdurrahman Yasar
+Homogenization and Reduced Order Modelling for Wave Equations - Part I of II:
+  organizer: Thomas M. Hagstrom
+  part: 1
+  speakers:
+  - Daniel Appelo
+  - "Timoth\xE9e Pouchon"
+  - Olivier Pinaud
+  - Vladimir L. Druskin
+Homogenization and Reduced Order Modelling for Wave Equations - Part II of II:
+  organizer: Thomas M. Hagstrom
+  part: 2
+  speakers:
+  - Amir Sagiv
+  - Eric Chung
+  - Jorn Zimmerling
+  - Thomas M. Hagstrom
+Hybrid Parallelization for Modern Architectures - Part I of II:
+  organizer: Stephen L. Wood
+  part: 1
+  speakers:
+  - Stephen L. Wood
+  - Hartwig Anzt
+  - Anthony Williams
+  - Timothy I. Mattox
+Hybrid Parallelization for Modern Architectures - Part II of II:
+  organizer: Stephen L. Wood
+  part: 2
+  speakers:
+  - Eric Nielsen
+  - Cameron W. Smith
+  - Bracy H. Elton
+  - Eduardo Ponce
+'Hydrodynamics at Small Scales: Fluctuating Hydrodynamics - Part I of II':
+  organizer: Aleksandar Donev
+  part: 1
+  speakers:
+  - John B. Bell
+  - Nikolaos Voulgarakis
+  - Jaime Arturo de la Torre
+  - Daniel R. Ladiges
+'Hydrodynamics at Small Scales: Fluctuating Hydrodynamics - Part II of II':
+  organizer: Aleksandar Donev
+  part: 2
+  speakers:
+  - Aleksandar Donev
+  - Yuan-Nan Young
+  - Katherine Klymko
+  - Joseph Bakarji
+'Industrial Eigensolution Technology: Advances and Challenges - Part I of II':
+  organizer: Zhaojun Bai
+  part: 1
+  speakers:
+  - Roger Grimes
+  - Tetsuya Sakurai
+  - Ben-Shan Liao
+  - Karl Meerbergen
+'Industrial Eigensolution Technology: Advances and Challenges - Part II of II':
+  organizer: Zhaojun Bai
+  part: 2
+  speakers:
+  - David Ehrlich
+  - Chao-Ping Lin
+  - Vladimir Belsky
+  - Zhaojun Bai
+Integrated Mathematical and Computational Approaches to Interface Models and Data in Systems Biomedicine:
+  organizer: Jeyashree Krishnan
+  speakers:
+  - Andreas Schuppert
+  - Himanshu Kaul
+  - Dimitris I. Kalogiros
+  - Jeyashree Krishnan
+Inverse Problems in Machine Learning - Part I of II:
+  organizer: Bamdad Hosseini
+  part: 1
+  speakers:
+  - Gerald Friedland
+  - Timur Takhtaganov
+  - Brian Spears
+  - Luigi Carratino
+Inverse Problems in Machine Learning - Part II of II:
+  organizer: Bamdad Hosseini
+  part: 2
+  speakers:
+  - N. Benjamin Erichson
+  - Eldad Haber
+  - Bamdad Hosseini
+  - Steven Atkinson
+Inverse Problems in Medical Imaging - Part I of II:
+  organizer: Melody Alsaker
+  part: 1
+  speakers:
+  - Melody Alsaker
+  - Christina Brandt
+  - Tatiana A. Bubba
+  - Andreas Hauptmann
+Inverse Problems in Medical Imaging - Part II of II:
+  organizer: Melody Alsaker
+  part: 2
+  speakers:
+  - Ville P. Kolehmainen
+  - Jennifer L. Mueller
+  - Samuli Siltanen
+  - Viktoria Taroudaki
+Large-scale PDE-Constrained Optimization Algorithms and Applications:
+  organizer: Alp Dener
+  speakers:
+  - Alp Dener
+  - Robert Baraldi
+  - Sven Leyffer
+  - Denis Ridzal
+"Large-scale Particulate Flows: Towards Multi-scale Modeling from \xB5m to km":
+  organizer: Johannes P. Blaschke
+  speakers:
+  - Christine Hrenya
+  - Timm Krueger
+  - Maytee Chantharayukhonthorn
+  - Marco G. Mazza
+Latest Advances in Topology and Shape Optimization - Part I of II:
+  organizer: Miguel Salazar de Troya
+  part: 1
+  speakers:
+  - Miguel Salazar de Troya
+  - "J\xF8rgen Dokken"
+  - H. Alicia Kim
+  - Kenneth Swartz
+Latest Advances in Topology and Shape Optimization - Part II of II:
+  organizer: Miguel Salazar de Troya
+  part: 2
+  speakers:
+  - Mathias Wallin
+  - Cunfu Wang
+  - Niels Aage
+  - Miguel Aguilo
+'Latest Advances in Viscoplastic CFD: Discretisation, Simulation and Applications':
+  organizer: Timm Treskatis
+  speakers:
+  - "Sergio Gonz\xE1lez-Andrade"
+  - "Sof\xEDa L\xF3pez-Ord\xF3\xF1ez"
+  - Timm Treskatis
+  - Paul Vigneaux
+Low Mach Number AMR Combustion Simulations with PeleLM -  Part I of II:
+  organizer: Marcus Day
+  speakers:
+  - Marcus Day
+  - Martin Rieth
+  - Debolina Dasgupta
+  - Lucas Esclapez
+Low Mach Number AMR Combustion Simulations with PeleLM - Part II of II:
+  organizer: Marcus Day
+  part: 2
+  speakers:
+  - Anne Felden
+  - Andrew Aspden
+  - Nicholas Wimer
+  - Evatt R. Hawkes
+'Machine Learning Approaches for the Sciences and Engineering: Recent Developments - Part I of II':
+  organizer: Ben J. Gross
+  part: 1
+  speakers:
+  - Ben J. Gross
+  - Panos Stinis
+  - Cho-Jui Hsieh
+  - Kathleen Champion
+'Machine Learning Approaches for the Sciences and Engineering: Recent Developments - Part II of II':
+  organizer: Ben J. Gross
+  part: 2
+  speakers:
+  - Garrett Goh
+  - Mauro Perego
+  - Eli Shlizerman
+  - Ben Whitney
+Machine Learning Methods in Computational Fluid Dynamics - Part I of II:
+  organizer: Andrea D. Beck
+  part: 1
+  speakers:
+  - Romit Maulik
+  - Andrea D. Beck
+  - Balaji Jayaraman
+  - Saakaar Bhatnagar
+Machine Learning Methods in Computational Fluid Dynamics - Part II of II:
+  organizer: Andrea D. Beck
+  part: 2
+  speakers:
+  - Corrado Sotgiu
+  - Jan S. Hesthaven
+  - J. Nathan Kutz
+  - Eurika Kaiser
+Machine Learning Strategies for Computer Simulation of Physical Systems - Part I of II:
+  organizer: Phaedon S. Koutsourelakis
+  part: 1
+  speakers:
+  - Nicholas Zabaras
+  - Steve Brunton
+  - Anuj Karpatne
+  - Lei Wu
+Machine Learning Strategies for Computer Simulation of Physical Systems - Part II of II:
+  organizer: Phaedon S. Koutsourelakis
+  part: 2
+  speakers:
+  - Markus Schoeberl
+  - Alex Gorodetsky
+  - Xiang Yang
+  - Sebastian Kaltenbach
+Machine Learning for Inverse Problems and its Applications:
+  organizer: Youzuo Lin
+  speakers:
+  - Cristina Garcia-Cardona
+  - Shusen Wang
+  - Youzuo Lin
+  - Weichang Li
+Mathematical Methods for Control and Optimization of Large-Scale Energy Networks - Part I of II:
+  organizer: Manuel Baumann
+  part: 1
+  speakers:
+  - Manuel Baumann
+  - Domenico Lahaye
+  - Riccardo Morandin
+  - Baljinnyam Sereeter
+Mathematical Methods for Control and Optimization of Large-scale Energy Networks - Part II of II:
+  organizer: Manuel Baumann
+  part: 2
+  speakers:
+  - Peter Benner
+  - Stephan Gerster
+  - Jennifer Uebbing
+  - Anne S. Markensteijn
+  - Renke Han
+Mathematics of Energy Materials - Part I of II:
+  organizer: Ilenia Battiato
+  part: 1
+  speakers:
+  - Ross M. Weber
+  - Edwin Garcia
+  - Eric J. Hall
+  - Daniel M. Tartakovsky
+Mathematics of Energy Materials - Part II of II:
+  organizer: Ilenia Battiato
+  part: 2
+  speakers:
+  - James Friend
+  - Katsuyo Thornton
+  - Prabhakar R. Bandaru
+  - John H. Cushman
+'Meshfree Methods: Computational Advances and Applications - Part I of II':
+  organizer: Grady B. Wright
+  part: 1
+  speakers:
+  - Scott Maclachlan
+  - Cecile M. Piret
+  - Paul J. Atzberger
+  - Varun Shankar
+'Meshfree Methods: Computational Advances and Applications - Part II of II':
+  organizer: Grady B. Wright
+  part: 2
+  speakers:
+  - Grady B. Wright
+  - Igor Tominec
+  - Anna Yurova
+  - Elisabeth Larsson
+Methods for Large-scale Risk-averse Optimization - Part I of II:
+  organizer: Drew P. Kouri
+  part: 1
+  speakers:
+  - Stan Uryasev
+  - Abebe Geletu
+  - Drew P. Kouri
+  - Harbir Antil
+Methods for Large-scale Risk-averse Optimization - Part II of II:
+  organizer: Drew P. Kouri
+  part: 2
+  speakers:
+  - Cosmin G. Petra
+  - Akwum Onwunta
+  - Wilkins Aquino
+  - Matthew Norton
+Mitigating Communication Costs Using Variable Precision Computing Techniques - Part I of II:
+  organizer: Alyson Fox
+  part: 1
+  speakers:
+  - James Diffenderfer
+  - Alyson Fox
+  - Avary Kolasinski
+  - Peter Lindstrom
+Mitigating Communication Costs Using Variable Precision Computing Techniques - Part II of II:
+  organizer: Alyson Fox
+  part: 2
+  speakers:
+  - Nicholas J. Higham
+  - Lucia Yang
+  - Jack J. Dongarra
+  - Dylan M. Copeland
+Model Reduction and Reduced-order Modeling of Dynamical Systems - Part I of II:
+  organizer: Peter Benner
+  part: 1
+  speakers:
+  - Peter Benner
+  - Steffen W. R. Werner
+  - Heike Fassbender
+  - Xingang Cao
+Model Reduction and Reduced-order Modeling of Dynamical Systems - Part II of II:
+  organizer: Peter Benner
+  part: 2
+  speakers:
+  - Athanasios C. Antoulas
+  - Ion Victor Gosea
+  - Elizabeth Qian
+  - Christopher A. Beattie
+Model Reduction for Problems with Strong Convection, Sharp Gradients, and Discontinuities - Part I of II:
+  organizer: Maciej Balajewicz
+  part: 1
+  speakers:
+  - Benjamin Peherstorfer
+  - Karsten Urban
+  - Julius Reiss
+  - Davide Torlo
+Model Reduction for Problems with Strong Convection, Sharp Gradients, and Discontinuities - Part II of II:
+  organizer: Maciej Balajewicz
+  part: 2
+  speakers:
+  - Donsub Rim
+  - Nirmal Nair
+  - Jiayang Xu
+  - Gerrit Welper
+Model Reduction, Adaptivity, and High Dimensionality in Uncertainty Quantification - Part I of II:
+  organizer: Akil Narayan
+  part: 1
+  speakers:
+  - Alireza Doostan
+  - Nick Dexter
+  - John D. Jakeman
+  - Lorenzo Tamellini
+  - Alireza Doostan
+Model Reduction, Adaptivity, and High Dimensionality in Uncertainty Quantification - Part II of II:
+  organizer: John D. Jakeman
+  part: 2
+  speakers:
+  - Laurent van den Bos
+  - Roland Pulch
+  - Chuntao Chen
+  - Mohammad Khalil
+Modeling Resource Utilization and Contention in HPC System-Application Interactions - Part I of II:
+  organizer: James Brandt
+  part: 1
+  speakers:
+  - James Brandt
+  - Karen L. Karavanic
+  - Philip C. Roth
+  - Martin Schulz
+Modeling Resource Utilization and Contention in HPC System-application Interactions - Part II of II:
+  organizer: James Brandt
+  part: 2
+  speakers:
+  - Saurabh Jha
+  - Emre Ates
+  - Greg Bauer
+  - Thomas Hastings Greer
+  - Zbigniew Kalbarczyk
+Modeling, Analyzing and Computing of Fractional Partial Differential Equations - Part I of II:
+  organizer: Abdul Khaliq
+  part: 1
+  speakers:
+  - Khaled Furati
+  - Jorge E. Macias-Diaz
+  - Viktor Reshniak
+  - Toheeb A. Biala
+Modeling, Analyzing and Computing of Fractional Partial Differential Equations - Part II of II:
+  organizer: Abdul Khaliq
+  part: 2
+  speakers:
+  - Changpin Li
+  - Andreas Kleefeld
+  - Ashlin P. Harris
+  - Salman A. Malik
+'Modelling with Fractional PDEs: Statistical and Numerical Analysis - Part I of II':
+  organizer: Zhongqiang Zhang
+  part: 1
+  speakers:
+  - Yong Zhang
+  - Mamikon Gulian
+  - Yuchen Dong
+  - Xiangcheng Zhen
+'Modelling with Fractional PDEs: Statistical and Numerical Analysis - Part II of II':
+  organizer: Hong Wang
+  part: 2
+  speakers:
+  - Hong Wang
+  - Rui Du
+  - Hong Sun
+  - Zhaopeng Hao
+Models with Superior Reasons for Complex Big Data - Part I of II:
+  organizer: Sou-Cheng T. Choi
+  part: 1
+  speakers:
+  - Shi Yu
+  - Teja Kanchinadam
+  - Victor Zhorin
+Models with Superior Reasons for Complex Big Data - Part II of II:
+  organizer: Sou-Cheng T. Choi
+  part: 2
+  speakers:
+  - Glenn Fung
+  - Anuradha Kodali
+  - Brandon Anderson
+  - Jeonghee Yi
+Molecular and Electronic Structure Theory Meets Data Science - Part I of II:
+  organizer: Chao Yang
+  part: 1
+  speakers:
+  - Chao Yang
+  - Linfeng Zhang
+  - Yu-Hang Tang
+  - Yingzhou Li
+Molecular and Electronic Structure Theory Meets Data Science - Part II of II:
+  organizer: Chao Yang
+  part: 2
+  speakers:
+  - Leonardo Zepeda-Nunez
+  - Kipton Barros
+  - Tess Smidt
+  - Leslie Vogt-Maranto
+Moment Methods in Kinetic Theory - Part I of II:
+  organizer: Julian Koellermeier
+  part: 1
+  speakers:
+  - Julian Koellermeier
+  - Yuwei Fan
+  - Manuel Torrilhon
+  - James A. Rossmanith
+Moment Methods in Kinetic Theory - Part II of II:
+  organizer: Julian Koellermeier
+  part: 2
+  speakers:
+  - James McDonald
+  - Ruo Li
+  - Weiming Li
+  - Zhenning Cai
+Mori-Zwanzig Formulation, Implementation and Applications - Part I of II:
+  organizer: Xiantao Li
+  part: 1
+  speakers:
+  - Aniruddhe Pradhan
+  - Thomas Hudson
+  - Weiqi Chu
+  - Huan Lei
+Mori-Zwanzig Formulation, Implementation and Applications - Part II of II:
+  organizer: Xiantao Li
+  part: 2
+  speakers:
+  - Yuanran Zhu
+  - Kevin K. Lin
+  - Jacob Price
+  - Wenxiao Pan
+Multi-scale Modeling and Computation of Complex and Active Fluids - Part I of II:
+  organizer: Enkeleida Lushi
+  part: 1
+  speakers:
+  - Enkeleida Lushi
+  - Brennan Sprinkle
+  - Adam Townsend
+  - Afsoun Rahnama Falavarjani
+Multi-scale Modeling and Computation of Complex and Active Fluids - Part II of II:
+  organizer: Enkeleida Lushi
+  part: 2
+  speakers:
+  - Aleksandar Donev
+  - David Stein
+  - Florencio Balboa Usabiaga
+Multigrid Solvers for Partially Structured Meshes and for Advanced Architectures:
+  organizer: Luc Berger-Vergiat
+  speakers:
+  - Ray S. Tuminaro
+  - J. David Moulton
+  - Ari Rappaport
+  - Dominik Thoennes
+Multiphysics Simulation with MOOSE - Part I of II:
+  organizer: John W. Peterson
+  part: 1
+  speakers:
+  - Alexander Lindsay
+  - April Novak
+  - James B. Tompkins
+  - Casey T. Icenhour
+Multiphysics Simulation with MOOSE - Part II of II:
+  organizer: John W. Peterson
+  part: 2
+  speakers:
+  - Deepak K. Behera
+  - Sebastian Schunert
+  - Daniel Schwen
+  - Andrei Rykhlevskii
+Multiphysics and Multiscale Problems in Computational Science and Engineering - Part I of II:
+  organizer: Xingjie Li
+  part: 1
+  speakers:
+  - Ming-Chen Hsu
+  - Padhu Seshaiyer
+  - David Kamensky
+  - David Littlewood
+Multiphysics and Multiscale Problems in Computational Science and Engineering - Part II of II:
+  organizer: Xingjie Li
+  part: 2
+  speakers:
+  - Yue Yu
+  - Teng Zhang
+  - Maciej Buze
+  - Xiaojie Wu
+'Multiphysics: Extensible, Composable Algorithms and Software - Part I of II':
+  organizer: Paul Bauman
+  part: 1
+  speakers:
+  - Paul Bauman
+  - Amanda Randles
+  - Miriam Mehl
+  - John N. Shadid
+'Multiphysics: Extensible, Composable Algorithms and Software - Part II of II':
+  organizer: Paul Bauman
+  part: 2
+  speakers:
+  - Valeria Barra
+  - Irina K. Tezaur
+  - Derek R. Gaston
+  - Sam Groth
+Multirate Time Stepping Methods:
+  organizer: "Michael G\xFCnther"
+  speakers:
+  - "Michael G\xFCnther"
+  - Cory Mikida
+  - Iryna Kulchytska-Ruchka
+  - Andreas Bartel
+Multiscale and Domain Decomposition Approaches for PDEs with Rough Coefficients - Part I of II:
+  organizer: Ulrich Hetmaniuk
+  part: 1
+  speakers:
+  - Srikara Pranesh
+  - Alejandro Mota
+  - Marcus Sarkis
+  - Edoardo Paganoni
+Multiscale and Domain Decomposition Approaches for PDEs with Rough Coefficients - Part II of II:
+  organizer: Ulrich Hetmaniuk
+  part: 2
+  speakers:
+  - Daniel Peterseim
+  - Wing Tat Leung
+  - Guanglian Li
+  - Frederic Legoll
+Neutrino Transport Methods in Astrophysics - Part I of II:
+  organizer: Eirik Endeve
+  part: 1
+  speakers:
+  - Eirik Endeve
+  - Hiroki Nagakura
+  - Sherwood Richers
+  - Reuben Budiardja
+  - Andrea Endrizzi
+Neutrino Transport Methods in Astrophysics - Part II of II:
+  organizer: Eirik Endeve
+  part: 2
+  speakers:
+  - Christian Cardall
+  - Michael Crockatt
+  - Martin Obergaulinger
+  - Aaron Skinner
+New Challenges and Opportunities for Model Order Reduction - Part I of II:
+  organizer: Laura Iapichino
+  part: 1
+  speakers:
+  - Angelo Iollo
+  - Oleg Balabanov
+  - Giulia Fabrini
+  - Samy Wu Fung
+New Challenges and Opportunities for Model Order Reduction - Part II of II:
+  organizer: Laura Iapichino
+  part: 2
+  speakers:
+  - Bernard Haasdonk
+  - Yvon Maday
+  - Kyle T. Mandli
+  - Karen Veroy
+? 'Next Generation FFT Algorithms in Theory and Practice: Parallel Implementations,
+  Sparse FFTs, and Applications - Part I of II'
+: organizer: Daisuke Takahashi
+  part: 1
+  speakers:
+  - Daisuke Takahashi
+  - Mark A. Iwen
+  - Alexander Kalinkin
+  - Sina Bittens
+? 'Next Generation FFT Algorithms in Theory and Practice: Parallel Implementations,
+  Sparse FFTs, and Applications - Part II of II'
+: organizer: Daisuke Takahashi
+  part: 2
+  speakers:
+  - Samar A. Aseeri
+  - Bosu Choi
+  - Toni Volkmer
+  - Henry A. Boateng
+Nonlinear Reduced Order Modeling of Realistic Engineering Fluid Flows:
+  organizer: Xuping Xie
+  speakers:
+  - Joseph Daws
+  - Zhu Wang
+  - Chi K. Hoang
+  - Lei Lei
+  - Mithu Debnath
+Nonlocal Models in Computational Science and Engineering - Part I of II:
+  organizer: Yue Yu
+  part: 1
+  speakers:
+  - Pablo Seleson
+  - Michael L. Parks
+  - Robert P. Lipton
+  - Nathaniel Trask
+Nonlocal Models in Computational Science and Engineering - Part II of II:
+  organizer: Yue Yu
+  part: 2
+  speakers:
+  - Marta D'Elia
+  - Juan Pablo Borthagaray
+  - Abner J. Salgado
+  - Mohsen Zayernouri
+Novel Adaptation, Decomposition and Expansion Algorithms for a Class of Large Scale Models:
+  organizer: Mahadevan Ganesh
+  speakers:
+  - Mahadevan Ganesh
+  - Matthew J. Morse
+  - Axel Modave
+  - Ramakrishna Tipireddy
+Novel Approaches for Design and Analysis of Chaotic Dynamical Systems - Part I of II:
+  organizer: Patrick J. Blonigan
+  part: 1
+  speakers:
+  - Patrick J. Blonigan
+  - Yukiko S. Shimizu
+  - Johan Larsson
+  - Angxiu Ni
+Novel Approaches for Design and Analysis of Chaotic Dynamical Systems - Part II of II:
+  organizer: Patrick J. Blonigan
+  part: 2
+  speakers:
+  - Nisha Chandramoorthy
+  - Francisco Huhn
+  - Peter Schmid
+  - Oliver T. Schmidt
+Novel Computational Algorithms for Future Computing Platforms - Part I of II:
+  organizer: Dimitar Trenev
+  part: 1
+  speakers:
+  - Laurent White
+  - John Stone
+  - Craig Vineyard
+  - Markus Levonyak
+Novel Computational Algorithms for Future Computing Platforms - Part II of II:
+  organizer: Dimitar Trenev
+  part: 2
+  speakers:
+  - Aaron Lott
+  - Peter McMahon
+  - Stuart Hadfield
+  - Dimitar Trenev
+Numerical Linear Algebra for Machine Learning - Part I of II:
+  organizer: Leopold Cambier
+  part: 1
+  speakers:
+  - Rio Yokota
+  - Ziyi Yang
+  - George M. Turkiyyah
+  - Gustavo Chavez
+Numerical Linear Algebra for Machine Learning - Part II of II:
+  organizer: Leopold Cambier
+  part: 2
+  speakers:
+  - Hongyuan Zhan
+  - Yuechao Lu
+  - N. Benjamin Erichson
+  - George Biros
+Numerical Methods and Regularization for Ill-posed and Ill-conditioned Problems:
+  organizer: Long Lee
+  speakers:
+  - Dinh-Liem Nguyen
+  - Peter A. Muller
+  - Man-Chung Yeung
+  - Jodi Mead
+Numerical Methods for Biological Fluid Dynamics - Part I of II:
+  organizer: Thomas Fai
+  part: 1
+  speakers:
+  - Thomas Fai
+  - Simone Rossi
+  - Prerna Gera
+  - Maxime Theillard
+  - Saverio E. Spagnolie
+Numerical Methods for Biological Fluid Dynamics - Part II of II:
+  organizer: Thomas Fai
+  part: 2
+  speakers:
+  - Robert D. Guy
+  - Mehdi Jabbarzadeh
+  - Jeremy Binagia
+  - Alexander P. Hoover
+Numerical Methods for Earth System Modeling - Part I of II:
+  organizer: Christopher J. Vogl
+  part: 1
+  speakers:
+  - Matthew R. Norman
+  - Thomas H. Gibson
+  - Christopher J. Vogl
+  - Jorge E. Guerra
+Numerical Methods for Earth System Modeling - Part II of II:
+  organizer: Christopher J. Vogl
+  part: 2
+  speakers:
+  - Phillip J. Wolfram
+  - Daniel Martin
+  - Nathan Collier
+Numerical Methods for Multi-Material Fluid Flows - Part I of II:
+  organizer: Mikhail Shashkov
+  part: 1
+  speakers:
+  - Mikhail Shashkov
+  - Jason Albright
+  - Mack Kenamond
+  - Alexander Zhiliakov
+  - Andrew J. Barlow
+  - Raphael Loubere
+Numerical Methods for Multi-Material Fluid Flows - Part II of II:
+  organizer: Mikhail Shashkov
+  part: 2
+  speakers:
+  - Nathaniel Morgan
+  - Dmitri Kuzmin
+  - Elena Gaburro
+  - Robert Rieben
+Numerical and Modeling Advances in Complex Systems:
+  organizer: Talea Mayo
+  speakers:
+  - Susan Massey
+  - Reagan Cronin
+  - Teresa Portone
+  - Nisha Chandramoorthy
+Optimal Experimental Design for Bayesian Inverse Problems:
+  organizer: Umberto Villa
+  speakers:
+  - Umberto Villa
+  - Quan Long
+  - Jing Yu
+  - Daniel Walter
+Optimal Experimental Design for Inverse Problems - Part I of II:
+  organizer: Jayanth Jagalur Mohan
+  part: 1
+  speakers:
+  - Omar Ghattas
+  - Jayanth Jagalur Mohan
+  - Elizabeth Herman
+  - Matthias Chung
+Optimal Experimental Design for Inverse Problems - Part II of II:
+  organizer: Jayanth Jagalur Mohan
+  part: 2
+  speakers:
+  - Bart G. Van Bloemen Waanders
+  - Fengyi Li
+  - Karina Koval
+  - Andrew D. Davis
+Optimization Under Uncertainty Using Multifidelity and Derivative-free Approaches:
+  organizer: Friedrich Menhorn
+  speakers:
+  - Friedrich Menhorn
+  - Stefan Wild
+  - Saul Toscano-Palmerin
+  - Matthias Poloczek
+Optimization with Coupled PDEs in Multiphysics Applications:
+  organizer: Nicolas R. Gauger
+  speakers:
+  - Maarten Blommaert
+  - Ole Burghardt
+  - Long Chen
+  - Beckett Zhou
+Parallel Numerical Linear Algebra for Future Extreme-scale Systems:
+  organizer: Iain Duff
+  speakers:
+  - Mawussi Zounon
+  - Stojce Nakov
+  - Sebastien Cayrols
+  - "Jan Pape\u017E"
+Parallel-in-Time Integration Techniques - Part I of II:
+  organizer: Stephanie Friedhoff
+  part: 1
+  speakers:
+  - Stephanie Friedhoff
+  - Benjamin W. Ong
+  - Robert D. Falgout
+  - Oliver A. Krzysik
+Parallel-in-Time Integration Techniques - Part II of II:
+  organizer: Stephanie Friedhoff
+  part: 2
+  speakers:
+  - Robert Speck
+  - Hannah Rittich
+  - Federico Danieli
+  - Pietro Benedusi
+  - Andrew T. Clarke
+Partitioned and Adaptive Methods for Initial Value Problems - Part I of II:
+  organizer: Andrew J. Steyer
+  part: 1
+  speakers:
+  - Andrew J. Steyer
+  - Daniel R. Reynolds
+  - David Shirokoff
+  - Paul Tranquilli
+Partitioned and Adaptive Methods for Initial Value Problems - Part II of II:
+  organizer: Andrew J. Steyer
+  part: 2
+  speakers:
+  - Leah Isherwood
+  - Paul Kuberry
+  - Sidafa Conde
+  - Yiannis Hadjimichael
+'Performance Portability and Numerical Libraries: Challenges and Opportunities for Sustainable Science - Part I of II':
+  organizer: Jed Brown
+  part: 1
+  speakers:
+  - Jed Brown
+  - Tianjiao Sun
+  - Bradford L. Chamberlain
+  - Amanda Bienz
+'Performance Portability and Numerical Libraries: Challenges and Opportunities for Sustainable Science - Part II of II':
+  organizer: Jed Brown
+  part: 2
+  speakers:
+  - Christian Trott
+  - Devangi N. Parikh
+  - Katarzyna Swirydowicz
+Performance Portability of Scientific HPC Applications:
+  organizer: Geoff Womeldorff
+  speakers:
+  - Paul Lin
+  - George Stelle
+  - David F. Richards
+  - Julien C. Jaeger
+Performance Portability through Source-to-source Code Transformations:
+  organizer: William D. Gropp
+  speakers:
+  - Tze Meng
+  - Mary Hall
+  - Kaushik Kulkarni
+  - Thiago Teixeira
+Physics Motivated Problems in Machine Learning - Part I of II:
+  organizer: Samuel Rudy
+  part: 1
+  speakers:
+  - Samuel Rudy
+  - George E. Karniadakis
+  - Themistoklis Sapsis
+  - Kailiang Wu
+Physics Motivated Problems in Machine Learning - Part II of II:
+  organizer: Samuel Rudy
+  part: 2
+  speakers:
+  - Karthik Duraisamy
+  - Emily Clark
+  - Kyongmin Yeo
+  - Paris Perdikaris
+  - Maziar Raissi
+Physics/Chemistry-aware Machine Learning - Part I of II:
+  organizer: Nicholas Zabaras
+  part: 1
+  speakers:
+  - Olexandr Isayev
+  - Jinlong Wu
+  - Chandrajit Bajaj
+  - Constantin Grigo
+Physics/Chemistry-aware Machine Learning - Part II of II:
+  organizer: Nicholas Zabaras
+  part: 2
+  speakers:
+  - Hannah Lu
+  - Ryan King
+  - Miles Stoudenmire
+  - Risi Kondor
+Preconditioning for High-order Matrix-free PDE Operators - Part I of II:
+  organizer: Andrew T. Barker
+  part: 1
+  speakers:
+  - Andrew T. Barker
+  - Pablo Brubeck
+  - Per-Olof Persson
+  - Tim Warburton
+Preconditioning for High-order Matrix-free PDE Operators - Part II of II:
+  organizer: Andrew T. Barker
+  part: 2
+  speakers:
+  - Clark R. Dohrmann
+  - Bruno Turcksin
+  - Shuai Jiang
+  - Shuai Jiang
+Progress and Challenges in Extreme Scale Computing and Data - Part I of II:
+  organizer: Serge G. Petiton
+  part: 1
+  speakers:
+  - Kesheng Wu
+  - Weichung Wang
+  - Michel Dayde
+  - Neil Lindquist
+Progress and Challenges in Extreme Scale Computing and Data - Part II of II:
+  organizer: Serge G. Petiton
+  part: 2
+  speakers:
+  - Michael A. Heroux
+  - Akihiro Fujii
+  - Christophe Calvin
+  - Tetsuya Hoshino
+Quantitative Image Analysis  - Part II of II:
+  organizer: Laramie Paxton
+  part: 2
+  speakers:
+  - Jesse Adams
+  - Christopher M. Brislawn
+  - Kevin Joyce
+  - Laramie Paxton
+Quantitative Image Analysis - Part I of II:
+  organizer: Laramie Paxton
+  part: 1
+  speakers:
+  - Matthew Sottile
+  - Anthony B. Davis
+  - Altansuren Tumurbaatar
+  - Jeff Simmons
+Quantum Computing for Computational Science Applications:
+  organizer: Marc Baboulin
+  speakers:
+  - Alexander McCaskey
+  - "Timoth\xE9e Goubault de Brugi\xE8re"
+  - "Timoth\xE9e Goubault de Brugi\xE8re"
+  - Neil J. Ross
+Rational Approximation and its Applications:
+  organizer: Jeffrey M. Hokanson
+  speakers:
+  - Caleb C. Magruder
+  - Zlatko Drmac
+  - Abinand Gopal
+  - Andrea Carracedo Rodriguez
+Recent Advances in Accurate and Verified Numerical Computations:
+  organizer: Takeshi Ogita
+  speakers:
+  - Takeshi Ogita
+  - Roman Iakymchuk
+  - Naoya Yamanaka
+  - Takeshi Terao
+Recent Advances in Computational Methods for High Dimensional Bayesian Inversion - Part I of II:
+  organizer: Qifeng Liao
+  part: 1
+  speakers:
+  - Khachik Sargsyan
+  - Jinglai Li
+  - Na Ou
+  - Xiang Zhou
+Recent Advances in Computational Methods for High Dimensional Bayesian Inversion - Part II of II:
+  organizer: Qifeng Liao
+  part: 2
+  speakers:
+  - Nick Winovich
+  - Qifeng Liao
+  - Zhiwen Zhang
+  - Zheng Zhang
+  - Guang Lin
+Recent Advances in Discontinuous Galerkin Methods for Partial Differential Equations:
+  organizer: Ziyao Xu
+  speakers:
+  - Ziyao Xu
+  - Caleb D. Logemann
+  - Zheng Sun
+  - Joshua Buli
+Recent Advances in Error Estimation for Complex Problems - Part I of II:
+  organizer: Jehanzeb H. Chaudhry
+  part: 1
+  speakers:
+  - Guodong Chen
+  - "Judit Mu\xF1oz-Matute"
+  - Jehanzeb H. Chaudhry
+  - Victor E. Ginting
+Recent Advances in Error Estimation for Complex Problems - Part II of II:
+  organizer: Jehanzeb H. Chaudhry
+  part: 2
+  speakers:
+  - Serge Prudhomme
+  - Simon Tavener
+  - Christopher D. Cooper
+  - Peter Sentz
+  - Cairn Overturf
+Recent Advances in High Order Lagrangian/ALE Methods - Part I of II:
+  organizer: Svetlana Tokareva
+  part: 1
+  speakers:
+  - Svetlana Tokareva
+  - Donald E. Burton
+  - Barbara Re
+  - Hennes Hajduk
+Recent Advances in High Order Lagrangian/ALE Methods - Part II of II:
+  organizer: Svetlana Tokareva
+  part: 2
+  speakers:
+  - Konstantin Lipnikov
+  - Laura Saavedra
+  - Milan Holec
+  - Xiaodong Liu
+  - Yibing Chen
+Recent Advances in Machine Learning and Data-driven Methods for Physical Sciences - Part I of II:
+  organizer: Jing Li
+  part: 1
+  speakers:
+  - David A. Barajas-Solano
+  - Carlos Ortiz-Marrero
+  - Tiernan Casey
+  - Chuan Lu
+  - Yijie Zhang
+Recent Advances in Machine Learning and Data-driven Methods for Physical Sciences - Part II of II:
+  organizer: Jing Li
+  part: 2
+  speakers:
+  - Jing Li
+  - Liu Yang
+  - Zhenying Zhang
+  - Tong Qin
+Recent Advances in Model Reduction and Uncertainty Quantification - Part I of II:
+  organizer: Jiahua Jiang
+  part: 1
+  speakers:
+  - Howard C. Elman
+  - Tengfei Su
+  - Yanlai Chen
+  - Kejun Tang
+  - Yanlai Chen
+Recent Advances in Model Reduction and Uncertainty Quantification - Part II of II:
+  organizer: Jiahua Jiang
+  part: 2
+  speakers:
+  - Xiu Yang
+  - Keyi Wu
+  - Zach Grey
+  - Sofia Guzzetti
+Recent Advances in Modeling and Numerical Analysis for Electronic Structure Calculations - Part I of II:
+  organizer: Paul Cazeaux
+  part: 1
+  speakers:
+  - Lin Lin
+  - "Genevi\xE8ve Dusson"
+  - Matthias Maier
+  - Daniel Massatt
+Recent Advances in Modeling and Numerical Analysis for Electronic Structure Calculations - Part II of II:
+  organizer: Paul Cazeaux
+  part: 2
+  speakers:
+  - Emil Prodan
+  - Simon Etter
+  - Paul Cazeaux
+  - Ross M. Weber
+Recent Advances in Models and Numerical Methods for Multiphase Problems - Part I of II:
+  organizer: Jia Zhao
+  part: 1
+  speakers:
+  - Qi Wang
+  - Chun Liu
+  - Xianmin Xu
+  - Yanxiang Zhao
+Recent Advances in Models and Numerical Methods for Multiphase Problems - Part II of II:
+  organizer: Jia Zhao
+  part: 2
+  speakers:
+  - Jie Shen
+  - Lili Ju
+  - Dong Wang
+  - Shuwang Li
+Recent Advances in Multilevel Solvers - Part I of II:
+  organizer: James H. Adler
+  part: 1
+  speakers:
+  - Peter Ohm
+  - Junyuan Lin
+  - Matthew G. Knepley
+  - Juan Batista
+  - Thai A. Nhan
+Recent Advances in Multilevel Solvers - Part II of II:
+  organizer: James H. Adler
+  part: 2
+  speakers:
+  - Yangqingxiang Wu
+  - John Urschel
+  - Daniel Fortunato
+  - Yunhui He
+  - Johannes Kraus
+Recent Advances in Multirate Time Integration for Multiphysics Problems:
+  organizer: Vu Thai Luan
+  speakers:
+  - Jean M. Sexton
+  - "Michael G\xFCnther"
+  - Arash Sarshar
+  - Rujeko Chinomona
+Recent Advances in Numerical Methods for Multiphase Flow Problems - Part I of II:
+  organizer: Xiaofeng Yang
+  part: 1
+  speakers:
+  - Pengtao Yue
+  - Emine Celiker
+  - Zhenlin Guo
+  - Jia Zhao
+  - Li Cai
+Recent Advances in Numerical Methods for Multiphase Flow Problems - Part II of II:
+  organizer: Xiaofeng Yang
+  part: 2
+  speakers:
+  - Xiaoming Wang
+  - Suchuan Dong
+  - Daozhi Han
+  - Maosheng Jiang
+Recent Advances in PDE-constrained Optimization under Uncertainty - Part I of II:
+  organizer: Peng Chen
+  part: 1
+  speakers:
+  - Peng Chen
+  - Anirban Chaudhuri
+  - Philip Kolvenbach
+  - Chen Li
+Recent Advances in PDE-constrained Optimization under Uncertainty- Part II of II:
+  organizer: Peng Chen
+  speakers:
+  - Matthew J. Zahr
+  - Zilong Zou
+  - Matthieu Martin
+  - Thomas O'Leary-Roseberry
+Recent Development of Numerical Methods for Optics and Plasmonics - Part I of II:
+  organizer: YoungJoon Hong
+  part: 1
+  speakers:
+  - David P. Nicholls
+  - Junshan Lin
+  - Min Hyung Cho
+  - Carlos Perez-Arancibia
+Recent Development of Numerical Methods for Optics and Plasmonics - Part II of II:
+  organizer: YoungJoon Hong
+  part: 2
+  speakers:
+  - Peter B. Monk
+  - Yu-Hsiang Lan
+  - Xin Tong
+  - Agustin Fernandez Lado
+Recent Developments in Model Order Reduction Methods - Part I of II:
+  organizer: Youngsoo Choi
+  part: 1
+  speakers:
+  - Simona Perotto
+  - Mengwu Guo
+  - Philipp Schulze
+  - Jeff Borggaard
+  - Youngsoo Choi
+Recent Developments in Model Order Reduction Methods - Part II of II:
+  organizer: Youngsoo Choi
+  part: 2
+  speakers:
+  - Zhaoyang Larry Jin
+  - Changhong Mou
+  - Sergey Klevtsov
+Recent Developments in Numerical Methods for PDEs and their Applications - Part I of II:
+  organizer: Chunmei Wang
+  part: 1
+  speakers:
+  - Junping Wang
+  - Yiqi Gu
+  - Chunmei Wang
+  - Michael J. Neilan
+  - Weiying Zheng
+Recent Developments in Numerical Methods for PDEs and their Applications - Part II of II:
+  organizer: Chunmei Wang
+  part: 2
+  speakers:
+  - Amnon J Meir
+  - Zhiqiang Cai
+  - Haijun Wu
+  - Jun Zou
+Recent Developments in Theory and Implementation of Subspace Correction Methods:
+  organizer: Florian Wechsung
+  speakers:
+  - Lawrence Mitchell
+  - Pierre Jolivet
+  - Stefano Zampini
+  - Florian Wechsung
+Recent Developments of Numerical Methods for Hyperbolic and Parabolic Equations - Part I of II:
+  organizer: Yang Yang
+  part: 1
+  speakers:
+  - Dinshaw Balsara
+  - Yang Yang
+  - Nattaporn Chuenjarern
+  - Wei Guo
+Recent Developments of Numerical Methods for Hyperbolic and Parabolic Equations - Part II of II:
+  organizer: Yang Yang
+  part: 2
+  speakers:
+  - Jiaxi Gu
+  - Yuan Liu
+  - Jennifer K. Ryan
+  - Jue Yan
+Recent Innovations in Restarting and Recycling Krylov Methods:
+  organizer: Ronald Morgan
+  speakers:
+  - Eric De Sturler
+  - Arielle K. Carr
+  - Jennifer A. Loe
+  - Ron Morgan
+Recent Progress in Coordinate-wise Descent Methods:
+  organizer: Zhe Wang
+  speakers:
+  - Zhe Wang
+  - Weiran Wang
+  - Yangyang Xu
+  - Qi Lei
+Recent Progresses in Data Analysis - Part I of II:
+  organizer: Jae-Hun Jung
+  part: 1
+  speakers:
+  - Jae-Hun Jung
+  - Nathaniel Saul
+  - Ashis G. Banerjee
+  - Jisu Kim
+Recent Progresses in Data Analysis - Part II of II:
+  organizer: Jae-Hun Jung
+  part: 2
+  speakers:
+  - Guohui Song
+  - Yiming Ying
+  - Yuyuan "Lance" Ouyang
+  - Kenneth Carr
+Reduced Order Modeling for Parametric CFD Problems - Part II of II:
+  organizer: Annalisa Quaini
+  part: 2
+  speakers:
+  - Masayuki Yano
+  - Ionut-Gabriel Farcas
+  - Michel Bergmann
+  - Antonio Huerta
+Reduced Order Modeling for Parametric CFD Problems-  Part I of II:
+  organizer: Annalisa Quaini
+  speakers:
+  - Gianluigi Rozza
+  - Tommaso Taddei
+  - Zakia Zainib
+  - Yves Barbosa
+'Reduced Order Models for Fluids: Achievements and Open Problems - Part I of II':
+  organizer: Traian Iliescu
+  part: 1
+  speakers:
+  - Kevin T. Carlberg
+  - Sebastien Riffaud
+  - Traian Iliescu
+  - Sorin Mitran
+  - Kevin T. Carlberg
+'Reduced Order Models for Fluids: Achievements and Open Problems - Part II of II':
+  organizer: Traian Iliescu
+  part: 2
+  speakers:
+  - Michael Schneier
+  - John Singler
+  - Philip Etter
+  - Honghu Liu
+  - Samuele Rubino
+Reproducibility in Network Algorithms - Part I of II:
+  organizer: Sanjukta Bhowmick
+  part: 1
+  speakers:
+  - Sanjukta Bhowmick
+  - Ricky Laishram
+  - Shad Kirmani
+  - Boyana Norris
+Reproducibility in Network Algorithms - Part II of II:
+  organizer: Sanjukta Bhowmick
+  part: 2
+  speakers:
+  - Timothy La Fond
+  - Sriram Srinivasan
+  - Samuel D. Pollard
+  - Sanjukta Bhowmick
+Resilience for Large Scale CSE Applications - Part I of II:
+  organizer: Keita Teranishi
+  part: 1
+  speakers:
+  - Emmanuel Agullo
+  - Laura Monroe
+  - Jackson Mayo
+  - Chris Cantwell
+Resilience for Large Scale CSE Applications - Part II of II:
+  organizer: Keita Teranishi
+  part: 2
+  speakers:
+  - Christian Engelmann
+  - Scott Levy
+  - Hemanth Kolla
+  - "Aur\xE9lien Bouteiller"
+Roundoff Error in High-Performance Implementations of CG/Lanczos-type Solvers - Part I of II:
+  organizer: Erin Claire C. Carson
+  part: 1
+  speakers:
+  - Anne Greenbaum
+  - Christopher Musco
+  - Kevin DeWeese
+  - Alexander V. Mamonov
+Roundoff Error in High-Performance Implementations of CG/Lanczos-type Solvers - Part II of II:
+  organizer: Anne Greenbaum
+  part: 2
+  speakers:
+  - Siegfried Cools
+  - Erin Claire C. Carson
+  - Hexuan Liu
+  - David Titley-Peloquin
+SIMD Approaches for Achieving Performance and Portability on Emerging Computational Architectures:
+  organizer: Eric Phipps
+  speakers:
+  - Kyungjoo Kim
+  - Kim Liegeois
+  - Damodar Sahasrabudhe
+  - Ahmet Akkas
+  - Laurent Plagne
+'Scalable Adaptive Applications: Recent Developments':
+  organizer: Carsten Burstedde
+  speakers:
+  - Carsten Burstedde
+  - Martin Berzins
+  - Donna Calhoun
+  - Maria Nestola
+'Scalable Optimization: Paradigms, Tools, and Applications - Part I of II':
+  organizer: Victor M. Zavala
+  part: 1
+  speakers:
+  - Line A. Roald
+  - Kibaek Kim
+  - Yankai Cao
+  - Michel Schanen
+Scalable Parallel Multigrid Solvers - Part I of II:
+  organizer: Amanda Bienz
+  part: 1
+  speakers:
+  - Luke Olson
+  - Andrew Reisner
+  - Ruipeng Li
+  - Jonathan J. Hu
+Scalable Parallel Multigrid Solvers - Part II of II:
+  organizer: Amanda Bienz
+  part: 2
+  speakers:
+  - Mark Adams
+  - Wayne Mitchell
+  - Andreas Hessenthaler
+  - Joshua Hanophy
+Scalable Solvers for the Helmholtz Problem - Part I of II:
+  organizer: Kees Vuik
+  part: 1
+  speakers:
+  - Luis Garcia Ramos
+  - Vandana Dwarka
+  - Eran Treister
+  - Yuanzhe Xi
+Scalable Solvers for the Helmholtz Problem - Part II of II:
+  organizer: Kees Vuik
+  part: 2
+  speakers:
+  - Russell J. Hewett
+  - Yogi Erlangga
+  - Ivan G. Graham
+  - Noha Al-Harthi
+Scientific Data Visualization Platforms Facilitating New Paradigms:
+  organizer: Margarete Jadamec
+  speakers:
+  - Margarete Jadamec
+  - Ebru Bozdag
+  - Maria Weber
+  - Karlen Chase
+Scientific Machine Learning:
+  organizer: Nathan Baker
+  speakers:
+  - Nathan Baker
+  - Alexander Tartakovsky
+  - Karen E. Willcox
+  - Brian A. Freno
+  - Yannis Kevrekidis
+'Scientific Software:  Practices, Concerns, and Solution Strategies - Part I of II':
+  organizer: Anshu Dubey
+  part: 1
+  speakers:
+  - Spencer Smith
+  - Alvaro Coutinho
+  - Roscoe A. Bartlett
+  - Sandra Gesing
+'Scientific Software:  Practices, Concerns, and Solution Strategies - Part II of II':
+  organizer: Anshu Dubey
+  part: 2
+  speakers:
+  - Carina S. Haupt
+  - Matthew J. Turk
+  - Jared O'Neal
+  - Kanika Sood
+Showcase of Research Supported by the DOE Computational Science Graduate Fellowship - Part I of II:
+  organizer: David I. Ketcheson
+  part: 1
+  speakers:
+  - Claire Ralph
+  - Ryan S. Elliott
+  - Max Bremer
+  - David I. Ketcheson
+Showcase of Research Supported by the DOE Computational Science Graduate Fellowship - Part II of II:
+  organizer: David I. Ketcheson
+  part: 2
+  speakers:
+  - Edward Hutter
+  - Jeff R. Hammond
+  - Brent Kirkpatrick
+  - Jordan Atlas
+Software Productivity and Sustainability for CSE and Data Science - Part I of II:
+  organizer: David E. Bernholdt
+  part: 1
+  speakers:
+  - Elaine M. Raybourn
+  - Daniel S. Katz
+  - Lorraine J. Hwang
+  - Michael Zentner
+Software Productivity and Sustainability for CSE and Data Science - Part II of II:
+  organizer: David E. Bernholdt
+  part: 2
+  speakers:
+  - C. Titus Brown
+  - Jeffrey C. Carver
+  - Daina Bouquin
+  - Todd Gamblin
+'Sparse Function Approximations: Theory and Applications - Part I of II':
+  organizer: Giang Tran
+  part: 1
+  speakers:
+  - Giang Tran
+  - Ben Adcock
+  - Wenjing Liao
+  - Hoang A. Tran
+'Sparse Function Approximations: Theory and Applications - Part II of II':
+  organizer: Giang Tran
+  part: 2
+  speakers:
+  - Somayeh Sojoudi
+  - Paul Constantine
+  - Sui Tang
+  - Dongbin Xiu
+Spectral Deferred Correction Methods for Temporal Integration:
+  organizer: Michael Minion
+  speakers:
+  - Michael Zingale
+  - Daniel Ruprecht
+  - Francois P. Hamon
+  - "Sebastian G\xF6tschel"
+'State-of-the-Art Auto-tuning: New Approaches and Algorithmic Innovations Towards Exascale Computing - Part I of II':
+  organizer: Takahiro Katagiri
+  part: 1
+  speakers:
+  - Takahiro Katagiri
+  - Jakub Kurzak
+  - Hiroyuki Takizawa
+  - Ponnuswamy Sadayappan
+'State-of-the-Art Auto-tuning: New Approaches and Algorithmic Innovations Towards Exascale Computing - Part II of II':
+  organizer: Takahiro Katagiri
+  part: 2
+  speakers:
+  - Toshiyuki Imamura
+  - Katsuhisa Ozaki
+  - Yuhsiang M. Tsai
+  - Franz Franchetti
+State-of-the-art High-order Numerical Methods and Complex Fluid Simulations - Part II of II:
+  organizer: Lin Fu
+  part: 2
+  speakers:
+  - Zuoli Xiao
+  - James D. Baeder
+  - Emmanuel Motheau
+  - Maxime Bassenne
+State-of-the-art high-order Numerical Methods and Complex Fluid Simulations - Part I of II:
+  organizer: Lin Fu
+  part: 1
+  speakers:
+  - Lin Fu
+  - Man Long Wong
+  - Kun Xu
+  - Debojyoti Ghosh
+Statistical Applications of Continuous and Discrete Transport - Part I of II:
+  organizer: Ricardo Baptista
+  part: 1
+  speakers:
+  - Matthew Parno
+  - Qiang Liu
+  - Jeremie Houssineau
+  - Gianluca Detommaso
+Statistical Applications of Continuous and Discrete Transport - Part II of II:
+  organizer: Ricardo Baptista
+  part: 2
+  speakers:
+  - Ricardo Baptista
+  - Justin Solomon
+  - Espen Bernton
+  - Giulio Trigila
+Stochastic Modeling and Algorithms for Complex Physical Systems - Part I of II:
+  organizer: Miroslav Stoyanov
+  part: 1
+  speakers:
+  - Shi Jin
+  - Lijian Jiang
+  - Haijun Yu
+  - Ling Guo
+Stochastic Modeling and Algorithms for Complex Physical Systems - Part II of II:
+  organizer: Miroslav Stoyanov
+  part: 2
+  speakers:
+  - Yanzhao Cao
+  - Miroslav Stoyanov
+  - Rohit Tripathy
+  - Giovanni Migliorati
+Structure Preserving Techniques for Hyperbolic Systems - Part I of II:
+  organizer: Jean-Luc Guermond
+  part: 1
+  speakers:
+  - Xiangxiong Zhang
+  - Yulong Xing
+  - Cory Hauck
+  - Ignacio Thomas
+Structure Preserving Techniques for Hyperbolic Systems - Part II of II:
+  organizer: Jean-Luc Guermond
+  part: 2
+  speakers:
+  - Jean-Luc Guermond
+  - Alexander Kurganov
+  - Alina Chertock
+  - Wumaier Maimaitiyiming
+Structure-exploiting Techniques for Approximation, Inference and Control of Complex Systems - Part I of II:
+  organizer: Alex Gorodetsky
+  part: 1
+  speakers:
+  - Yoshinobu Kawahara
+  - Mohamedreza Ahmadi
+  - Leonid Pogorelyuk
+  - Jared L. Callaham
+Structure-exploiting Techniques for Approximation, Inference and Control of Complex Systems - Part II of II:
+  organizer: Alex Gorodetsky
+  part: 2
+  speakers:
+  - Chi Feng
+  - Rebecca Morrison
+  - Cedric Herzet
+  - Paul Diaz
+Structured Matrix Methods - Part I of II:
+  organizer: Sabine Le Borne
+  part: 1
+  speakers:
+  - Sabine Le Borne
+  - "J\xFCrgen D\xF6lz"
+  - Per-Gunnar Martinsson
+  - Xin Xing
+Structured Matrix Methods - Part II of II:
+  organizer: Sabine Le Borne
+  part: 2
+  speakers:
+  - Jianlin Xia
+  - Shivkumar Chandrasekaran
+  - Daniel Kressner
+  - James Vogel
+'Student Days:  Student Chapter Presentations - Part I of II':
+  part: 1
+  speakers:
+  - Antoine Remond-Tiedrez
+  - Lopamudra Palodhi
+  - Pritpal Matharu
+  - Yi Sui
+  - Ramin Goudarzi
+  - Alex John Quijano
+'Student Days:  Student Chapter Presentations - Part II of II':
+  part: 2
+  speakers:
+  - Michael Franco
+  - Hannes Vandecasteele
+  - Russell Niven
+  - Kelsey Marcinko
+  - Ke Chen
+  - Abhishek Choudhary
+'Student Days: Undergraduate Presentations':
+  organizer: Katie Kavanagh
+  speakers:
+  - Joshua Abrams
+  - Ling Lan
+  - Evan Scope Crafts
+  - Jonathan Wittmer
+  - Myra Dotzel
+'Summation-by-Parts: A Framework for the Development and Analysis of Modern Numerical Methods  - Part I of II':
+  organizer: David C. Del Rey Fernandez
+  part: 1
+  speakers:
+  - David C. Del Rey Fernandez
+  - "Jan Nordstr\xF6m"
+  - Jonatan Werpers
+  - Kevin J. Mattalo
+'Summation-by-Parts: A Framework for the Development and Analysis of Modern Numerical Methods - Part II of II':
+  organizer: David C. Del Rey Fernandez
+  part: 2
+  speakers:
+  - Gero Schnuecke
+  - Magnus Svard
+  - Martin Almquist
+  - Andre Marchildon
+Surrogate Modeling and Data Compression for Exascale Applications - Part I of II:
+  organizer: Matthew J. Reynolds
+  part: 1
+  speakers:
+  - Matthew J. Reynolds
+  - Jeffrey M. Hokanson
+  - Oana Marin
+  - Osman Asif Malik
+Surrogate Modeling and Data Compression for Exascale Applications - Part II of II:
+  organizer: Matthew J. Reynolds
+  part: 2
+  speakers:
+  - Marc Henry de Frahan
+  - Lluis Jofre
+  - Alec M. Dunton
+  - Hillary Fairbanks
+'Task-based Programming for  Scientific Computing: Linear Algebra Applications - Part I of II':
+  organizer: Mathieu Faverge
+  part: 1
+  speakers:
+  - David E. Keyes
+  - "Rocio Carratal\xE1-S\xE1ez"
+  - Alfredo Buttari
+  - Mathieu Faverge
+'Task-based Programming for Scientific Computing: Linear Algebra Applications - Part II of II':
+  organizer: Mathieu Faverge
+  part: 2
+  speakers:
+  - Asim YarKhan
+  - Florent Lopez
+  - Pieter Ghysels
+  - Mathias Jacquelin
+'Task-based Programming for Scientific Computing: Runtime Support - Part I of II':
+  organizer: Alfredo Buttari
+  part: 1
+  speakers:
+  - Samuel Thibault
+  - Cristian Ramon-Cortes
+  - Thomas Sterling
+  - Rabab Alomairy
+'Task-based Programming for Scientific Computing: Runtime Support - Part II of II':
+  organizer: Alfredo Buttari
+  part: 2
+  speakers:
+  - Steven Hofmeyr
+  - George Bosilca
+  - Berenger Bramas
+  - Philippe Virouleau
+Technology Transfer Using the Open-source Platform SU2:
+  organizer: Tim Albring
+  speakers:
+  - Tim Albring
+  - Matteo Pini
+  - Thomas D. Economon
+  - Juan J. Alonso
+Tensor Based Methods in Scientific Computing and Data Science - Part I of II:
+  organizer: Arvind Saibaba
+  part: 1
+  speakers:
+  - Tamara Kolda
+  - Elizabeth Newman
+  - Eric Chi
+  - Francesca Arrigo
+Tensor Based Methods in Scientific Computing and Data Science - Part II of II:
+  organizer: Arvind Saibaba
+  part: 2
+  speakers:
+  - Grey Ballard
+  - Rachel Minster
+  - Misha E. Kilmer
+  - David F. Gleich
+Tensor Decomposition for High Performance Data Analytics - Part I of II:
+  organizer: Jee W. Choi
+  part: 1
+  speakers:
+  - Jee W. Choi
+  - Paolo Bientinesi
+  - Edgar Solomonik
+  - Shaden Smith
+Tensor-based Methods for Scientific and Engineering Computing:
+  organizer: Xiu Yang
+  speakers:
+  - Cole Hawkins
+  - Lek-Heng Lim
+  - Ariana Mendible
+  - Gennadij Heidel
+The Intersection of Graph Algorithms and Machine Learning:
+  organizer: Antonino Tumeo
+  speakers:
+  - Nesreen Ahmed
+  - Mostofa Patwary
+  - Ariful Azad
+  - Flavio Vella
+Theoretical and Computational Advancements in Ice-Sheet Modeling - Part I of II:
+  organizer: Luca Bertagna
+  part: 1
+  speakers:
+  - Jerry Watkins
+  - Douglas Brinkerhoff
+  - Ian Bogle
+  - Jake Downs
+Theoretical and Computational Advancements in Ice-Sheet Modeling - Part II of II:
+  organizer: Luca Bertagna
+  part: 2
+  speakers:
+  - Alexander Robel
+  - Tobin Isaac
+  - Jesse Johnson
+  - Elisa Mantelli
+Theoretical and Computational Aspects in Nonlocal and Material Science Modeling - Part I of II:
+  organizer: Marta D'Elia
+  part: 1
+  speakers:
+  - Petronela Radu
+  - Helen Li
+  - Cynthia Flores
+  - Yue Yu
+Theoretical and Computational Aspects in Nonlocal and Material Science Modeling - Part II of II:
+  organizer: Marta D'Elia
+  part: 2
+  speakers:
+  - Anna Lischke
+  - Yanzhi Zhang
+  - Xiaochuan Tian
+  - Anna Zemlyanova
+Theory and Algorithms for Improved Performance of Machine Learning in Scientific Applications - Part I of II:
+  organizer: Guannan Zhang
+  part: 1
+  speakers:
+  - Simon Foucart
+  - Deanna Needell
+  - Denali Molitor
+  - Clayton G. Webster
+Theory and Algorithms for Improved Performance of Machine Learning in Scientific Applications - Part II of II:
+  organizer: Guannan Zhang
+  part: 2
+  speakers:
+  - Richard Archibald
+  - Franca Hoffmann
+  - Guannan Zhang
+  - Guannan Zhang
+Theory and Application of Surrogate Models for Bayesian Inverse Problems - Part I of II:
+  organizer: Jonas Latz
+  part: 1
+  speakers:
+  - Jonas Latz
+  - Liang Yan
+  - Joshua Chen
+  - Andrew D. Davis
+Toward Software Ecosystems for Computational Science and Engineering:
+  organizer: Lois Curfman McInnes
+  speakers:
+  - Ulrike Meier Yang
+  - Christian Engwer
+  - Kengo Nakajima
+  - James Willenbring
+Towards Digital Twins for Industrial Applications - Part I of II:
+  organizer: Wil Schilders
+  part: 1
+  speakers:
+  - Lucia Mirabella
+  - Yous van Halder
+  - "Julio Gonz\xE1lez Diaz"
+  - Volker Mehrmann
+Towards Digital Twins for Industrial Applications - Part II of II:
+  organizer: Wil Schilders
+  part: 2
+  speakers:
+  - Caren Tischendorf
+  - "Tam\xE1s Budai"
+  - Kevin Elie dit Cosaque
+  - Barry Koren
+Transmission Eigenvalue Spectrum for Electromagnetic and Elastic Scatterers:
+  organizer: Andreas Kleefeld
+  speakers:
+  - Lukas Pieronek
+  - Isaac Harris
+  - Shixu Meng
+  - Shari Moskow
+'Tutorials for Students: Accessible Introductions to Active Research Areas':
+  organizer: Joseph Lee Hart
+  speakers:
+  - Georg Stadler
+  - Manav Vohra
+'Tutorials for Students: Accessible Introductions to Active Research Areas - Part II of II':
+  organizer: Joseph Lee Hart
+  part: 2
+  speakers:
+  - Ekkehard W. Sachs
+  - Jeff Humphreys
+Uncertainty Quantification and Data Assimilation - Part I of II:
+  organizer: Krithika Manohar
+  part: 1
+  speakers:
+  - Cheng Zhang
+  - Derek Bingham
+  - Jeonghun J. Lee
+  - Tiangang Cui
+Uncertainty Quantification and Data Assimilation - Part II of II:
+  organizer: Krithika Manohar
+  part: 2
+  speakers:
+  - Abhinav Gupta
+  - Tim Colonius
+  - Nikola Kovachki
+  - Krithika Manohar
+Underwater Sensing and Signal Processing - Part I of II:
+  organizer: Margaret Cheney
+  part: 1
+  speakers:
+  - Kevin P. Bongiovanni
+  - Eliza (Z.-H.) Michalopoulou
+  - Ivars Kirsteins
+  - Louis Scharf
+Underwater Sensing and Signal Processing - Part II of II:
+  organizer: Margaret Cheney
+  part: 2
+  speakers:
+  - Jamie Irza
+  - Timothy Daniel
+  - Ahmad Abawi
+  - Sean Reilly
+Unfitted Discretization Methods - Part I of II:
+  organizer: Guglielmo Scovazzi
+  part: 1
+  speakers:
+  - Xianyi Zeng
+  - Santiago Badia
+  - Chris Kees
+  - Mehdi Khalloufi
+Unfitted Discretization Methods - Part II of II:
+  organizer: Guglielmo Scovazzi
+  part: 2
+  speakers:
+  - Guglielmo Scovazzi
+  - Nabil Atallah
+  - Oriol Colomes
+  - Kangan Li
+Use of C++ in Computational Science Libraries and Applications - Part I of II:
+  organizer: Piotr Luszczek
+  part: 1
+  speakers:
+  - Piotr Luszczek
+  - David S. Hollman
+  - Andrew Lumsdaine
+  - Daniel Sunderland
+Use of C++ in Computational Science Libraries and Applications - Part II of II:
+  organizer: Piotr Luszczek
+  part: 2
+  speakers:
+  - Edward F. Valeev
+  - Ryan Richard
+  - Seth Johnson
+Using Structure for Scalable Optimization:
+  organizer: Yifan Sun
+  speakers:
+  - Yifan Sun
+  - Stephen Becker
+  - Lijun Ding
+  - Tom Goldstein
+WCD Workshop - Session 4 of 4 CANCELLED:
+  organizer: Talea Mayo
+  speakers:
+  - Talea Mayo
+Wave-based Imaging Meets Machine Learning:
+  organizer: Tristan Van Leeuwen
+  speakers:
+  - Felix Herrmann
+  - Hassan Mansour
+  - Gerard J Gorman
+  - Tristan Van Leeuwen
