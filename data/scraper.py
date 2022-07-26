@@ -15,7 +15,7 @@ for mini in minisymposia:
     # Get the name and URL for the minisymposium
     m = re.match(r'.*?\"(?P<url>.*)\">MS.*? (?P<name>.*)</a>', mini)
     url = "https://meetings.siam.org/" + m.group("url")
-    name = m.group("name")
+    name = m.group("name").strip(' \'"')
     print(name)
 
     # If the name includes "- Part X of Y", strip it out
