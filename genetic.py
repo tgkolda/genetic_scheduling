@@ -5,6 +5,7 @@ import numpy as np
 import operator
 import pandas as pd
 import random
+import re
 import yaml
 
 class Minisymposium:
@@ -21,7 +22,7 @@ class Room:
 class Schedule:
     minisymposia = []
     rooms = []
-    nslots = 11
+    nslots = 15
     rng = np.random.default_rng()
 
     def __init__(self, eventList, permute=False):
@@ -231,11 +232,17 @@ with open(r'data/rooms.yaml') as roomfile:
 with open(r'data/minisymposia.yaml') as minifile:
     mini_list = yaml.load(minifile, Loader=yaml.FullLoader)
     for k, v in mini_list.items():
+        # Strip the part out of the name
+        m = re.match(r'(?P<name>.*) - Part (?P<part>I*) of I*', k)
+        if m:
+            k = m.group("name")
+
         participants = []
         participants.append(v.get("organizer", []))
         participants.append(v.get("speakers", []))
         part = v.get("part", 1)
         Schedule.minisymposia.append(Minisymposium(k, participants, part))
 
+# Perform the scheduling
 schedule = geneticAlgorithm(100, 10, 0.01, 1000)
 print(schedule)
