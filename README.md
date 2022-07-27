@@ -9,6 +9,6 @@ A genetic scheduling code for SIAM CSE23
 * Minitutorials are being treated as minisymposia, but they may require additional equipment in the rooms (such as tables/desks). This is not currently captured by the input either.
 
 ## Next steps
-* Write a python script that generates a yaml input file from one of the previous SIAM conferences to use as input for this code.
+* Make sure speakers are not scheduled to be in two places at once.
+* Make sure multipart minisymposia are not scheduled at the same time.
 * Potentially try to strip keywords from the minisymposia titles so we don't have to manually assign them in the metadata.
-* Figure out what breeding looks like.
