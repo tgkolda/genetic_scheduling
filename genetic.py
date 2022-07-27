@@ -20,6 +20,11 @@ class Minisymposium:
     def overlaps_participants(self, mini):
         return self.participants & mini.participants
 
+    def goes_before(self, mini):
+        if self.title == mini.title:
+            return self.part < mini.part
+        return False
+
 class Minisymposia:
     def __init__(self, mini_list):
         self.mini_list = mini_list
@@ -27,12 +32,21 @@ class Minisymposia:
         # Determine the speaker conflicts
         nmini = len(mini_list)
         self.conflicts = np.zeros((nmini, nmini), dtype=np.bool8)
+        self.ordering = [ [] for _ in range(nmini) ]
+
+        # Determine the speaker conflicts and talks with a necessary ordering
         comb = combinations(range(nmini), 2)
         for m1, m2 in list(comb):
             self.conflicts[m1, m2] = mini_list[m1].overlaps_participants(mini_list[m2])
             self.conflicts[m2, m1] = self.conflicts[m1, m2]
 
+            if mini_list[m1].goes_before(mini_list[m2]):
+                self.ordering[m1].append(m2)
+            elif mini_list[m2].goes_before(mini_list[m1]):
+                self.ordering[m2].append(m1)
+
         self.nconflicts = np.count_nonzero(self.conflicts)/2
+        self.nprereqs = sum( [ len(listElem) for listElem in self.ordering])
 
     def __len__(self):
         return len(self.mini_list)
@@ -91,8 +105,27 @@ class Schedule:
                         break
         return noversubscribed
 
+    def comes_before(self, first, second):
+        pos1 = np.where(self.events == first+1)[0][0]
+        pos2 = np.where(self.events == second+1)[0][0]
+
+        # Make sure there's at least one delimiter between them
+        for i in range(pos1, pos2):
+            if self.events[i] <= 0:
+                return True
+
+        return False
+
+    def violates_order(self):
+        violations = 0
+        for i in range(len(minisymposia)):
+            for j in minisymposia.ordering[i]:
+                if not self.comes_before(i, j):
+                    violations += 1
+        return violations
+
     def is_possible(self):
-        return self.needs_more_rooms() == 0 and self.oversubscribes_participant() == 0
+        return self.needs_more_rooms() == 0 and self.oversubscribes_participant() == 0 and self.violates_order() == 0
 
     def __repr__(self):
         if not self.is_possible():
@@ -125,8 +158,9 @@ class Fitness:
             nrooms = len(Schedule.rooms)
             # Maximum penalty for needing more rooms is nmini - nrooms
             # Maximum penalty for oversubscribing participants is the total number of conflicts
-            max_penalty = (nmini - nrooms) + minisymposia.nconflicts
-            self.rating = 1 - (self.schedule.needs_more_rooms() + self.schedule.oversubscribes_participant()) / max_penalty
+            # Maximum penalty for order violations is the total number of prerequisites
+            max_penalty = (nmini - nrooms) + minisymposia.nconflicts + minisymposia.nprereqs
+            self.rating = 1 - (self.schedule.needs_more_rooms() + self.schedule.oversubscribes_participant() + self.schedule.violates_order()) / max_penalty
         return self.rating
 
 def makeEventList():
@@ -192,7 +226,7 @@ def breed(parent1, parent2):
         
     childP2 = [item for item in parent2 if item not in childP1]
 
-    child = childP1 + childP2
+    child = np.array(childP1 + childP2)
     return Schedule(child)
 
 def breedPopulation(matingpool, eliteSize):
@@ -295,5 +329,5 @@ with open(r'data/minisymposia.yaml') as minifile:
 minisymposia = Minisymposia(ms_list)
 
 # Perform the scheduling
-schedule = geneticAlgorithm(100, 20, 0.05, 1000)
+schedule = geneticAlgorithm(100, 20, 0.01, 10000)
 print(schedule)
