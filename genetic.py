@@ -155,10 +155,9 @@ def rankSchedules(population):
 def selection(popRanked, eliteSize):
     selectionResults = []
     df = pd.DataFrame(np.array(popRanked), columns=["Index","Fitness"])
+    df.Fitness -= df.Fitness[len(df.Fitness)-1]
     df['cum_sum'] = df.Fitness.cumsum()
     df['cum_perc'] = 100*df.cum_sum/df.Fitness.sum()
-    print(df.Fitness)
-    print(df['cum_perc'])
     
     for i in range(0, eliteSize):
         selectionResults.append(popRanked[i][0])
@@ -249,7 +248,7 @@ def geneticAlgorithm(popSize, eliteSize, mutationRate, generations):
         scores.append(rankSchedules(pop)[0][1])
 
         # Can't do better than perfect
-        if(scores[-1] == 0):
+        if(scores[-1] == 1):
             break
 
     # plotting the points  
@@ -296,5 +295,5 @@ with open(r'data/minisymposia.yaml') as minifile:
 minisymposia = Minisymposia(ms_list)
 
 # Perform the scheduling
-schedule = geneticAlgorithm(100, 20, 0.05, 100)
+schedule = geneticAlgorithm(100, 20, 0.05, 1000)
 print(schedule)
