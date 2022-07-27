@@ -8,11 +8,17 @@ import random
 import re
 import yaml
 
+from itertools import combinations
+
 class Minisymposium:
-    def __init__(self, title, participants, part):
+    def __init__(self, title, participants, part, parts):
         self.title = title
-        self.participants = participants
+        self.participants = set(participants)
         self.part = part
+        self.parts = parts
+
+    def overlaps_participants(self, mini):
+        return self.participants & mini.participants
 
 class Room:
     def __init__(self, name, capacity):
@@ -53,8 +59,26 @@ class Schedule:
                 rid = rid + 1
         return nextra
 
+    def oversubscribes_participant(self):
+        noversubscribed = 0
+        nevents = len(self.events)
+        for i in range(nevents):
+            id1 = self.events[i]
+            if  id1 > 0:
+                mini1 = self.minisymposia[id1-1]
+                for j in range(i+1, nevents):
+                    id2 = self.events[j]
+                    if id2 > 0:
+                        mini2 = self.minisymposia[id2-1]
+                        if(mini1.overlaps_participants(mini2)):
+                            noversubscribed += 1
+                    else:
+                        # We found a delimiter
+                        break
+        return noversubscribed
+
     def is_possible(self):
-        return self.needs_more_rooms() == 0
+        return self.needs_more_rooms() == 0 and self.oversubscribes_participant() == 0
 
     def __repr__(self):
         if not self.is_possible():
@@ -83,7 +107,7 @@ class Fitness:
     # Lower scores are better
     def schedFitness(self):
         if np.isnan(self.rating):
-            self.rating = self.schedule.needs_more_rooms()
+            self.rating = self.schedule.needs_more_rooms() + self.schedule.oversubscribes_participant()
         return self.rating
 
 def makeEventList():
@@ -198,6 +222,8 @@ def geneticAlgorithm(popSize, eliteSize, mutationRate, generations):
     scores = [rankSchedules(pop)[0][1]]
     
     for i in range(0, generations):
+        print(f'Iteration {i} score: {scores[-1]}')
+
         pop = nextGeneration(pop, eliteSize, mutationRate)
         scores.append(rankSchedules(pop)[0][1])
 
@@ -233,16 +259,18 @@ with open(r'data/minisymposia.yaml') as minifile:
     mini_list = yaml.load(minifile, Loader=yaml.FullLoader)
     for k, v in mini_list.items():
         # Strip the part out of the name
-        m = re.match(r'(?P<name>.*) - Part (?P<part>I*) of I*', k)
+        m = re.match(r'(?P<name>.*) - Part (?P<part>I*) of (?P<parts>I*)', k)
         if m:
             k = m.group("name")
+            part = len(m.group("part"))
+            parts = len(m.group("parts"))
+        else:
+            part = 1
+            parts = 1
 
-        participants = []
-        participants.append(v.get("organizer", []))
-        participants.append(v.get("speakers", []))
-        part = v.get("part", 1)
-        Schedule.minisymposia.append(Minisymposium(k, participants, part))
+        participants = [v.get("organizer", "")] + v.get("speakers", [])
+        Schedule.minisymposia.append(Minisymposium(k, participants, part, parts))
 
 # Perform the scheduling
-schedule = geneticAlgorithm(100, 10, 0.01, 1000)
+schedule = geneticAlgorithm(100, 20, 0.01, 1000)
 print(schedule)
