@@ -20,13 +20,29 @@ class Minisymposium:
     def overlaps_participants(self, mini):
         return self.participants & mini.participants
 
+class Minisymposia:
+    def __init__(self, mini_list):
+        self.mini_list = mini_list
+
+        # Determine the speaker conflicts
+        nmini = len(mini_list)
+        self.conflicts = np.zeros((nmini, nmini), dtype=np.bool8)
+        comb = combinations(range(nmini), 2)
+        for m1, m2 in list(comb):
+            self.conflicts[m1, m2] = mini_list[m1].overlaps_participants(mini_list[m2])
+            self.conflicts[m2, m1] = self.conflicts[m1, m2]
+
+        self.nconflicts = np.count_nonzero(self.conflicts)/2
+
+    def __len__(self):
+        return len(self.mini_list)
+
 class Room:
     def __init__(self, name, capacity):
         self.name = name
         self.capacity = capacity
 
 class Schedule:
-    minisymposia = []
     rooms = []
     nslots = 15
     rng = np.random.default_rng()
@@ -65,12 +81,10 @@ class Schedule:
         for i in range(nevents):
             id1 = self.events[i]
             if  id1 > 0:
-                mini1 = self.minisymposia[id1-1]
                 for j in range(i+1, nevents):
                     id2 = self.events[j]
                     if id2 > 0:
-                        mini2 = self.minisymposia[id2-1]
-                        if(mini1.overlaps_participants(mini2)):
+                        if(minisymposia.conflicts[id1-1, id2-1]):
                             noversubscribed += 1
                     else:
                         # We found a delimiter
@@ -95,7 +109,7 @@ class Schedule:
             else:
                 if rid >= len(Schedule.rooms):
                     return 'impossible'
-                str += f'{Schedule.minisymposia[s-1].title}: {Schedule.rooms[rid].name}\n'
+                str += f'{minisymposia[s-1].title}: {Schedule.rooms[rid].name}\n'
                 rid = rid + 1
         return str
 
@@ -104,14 +118,19 @@ class Fitness:
         self.schedule = schedule
         self.rating = np.nan
 
-    # Lower scores are better
+    # fitness is in the range [0, 1] with 1 being best
     def schedFitness(self):
         if np.isnan(self.rating):
-            self.rating = self.schedule.needs_more_rooms() + self.schedule.oversubscribes_participant()
+            nmini = len(minisymposia)
+            nrooms = len(Schedule.rooms)
+            # Maximum penalty for needing more rooms is nmini - nrooms
+            # Maximum penalty for oversubscribing participants is the total number of conflicts
+            max_penalty = (nmini - nrooms) + minisymposia.nconflicts
+            self.rating = 1 - (self.schedule.needs_more_rooms() + self.schedule.oversubscribes_participant()) / max_penalty
         return self.rating
 
 def makeEventList():
-    nmini = len(Schedule.minisymposia)
+    nmini = len(minisymposia)
     ngenes = nmini + Schedule.nslots - 1 
     eventList = np.zeros(ngenes, dtype=np.int32)
     for i in range(nmini):
@@ -131,13 +150,15 @@ def rankSchedules(population):
     fitnessResults = {}
     for i in range(0,len(population)):
         fitnessResults[i] = Fitness(population[i]).schedFitness()
-    return sorted(fitnessResults.items(), key = operator.itemgetter(1), reverse=False)
+    return sorted(fitnessResults.items(), key = operator.itemgetter(1), reverse=True)
 
 def selection(popRanked, eliteSize):
     selectionResults = []
     df = pd.DataFrame(np.array(popRanked), columns=["Index","Fitness"])
     df['cum_sum'] = df.Fitness.cumsum()
     df['cum_perc'] = 100*df.cum_sum/df.Fitness.sum()
+    print(df.Fitness)
+    print(df['cum_perc'])
     
     for i in range(0, eliteSize):
         selectionResults.append(popRanked[i][0])
@@ -240,7 +261,7 @@ def geneticAlgorithm(popSize, eliteSize, mutationRate, generations):
     plt.ylabel('score') 
         
     # giving a title to my graph 
-    plt.title('Schedule Quality Over Time') 
+    plt.title('Schedule Quality Over Time\n(higher is better)') 
         
     # function to show the plot 
     plt.show() 
@@ -257,6 +278,7 @@ with open(r'data/rooms.yaml') as roomfile:
     
 with open(r'data/minisymposia.yaml') as minifile:
     mini_list = yaml.load(minifile, Loader=yaml.FullLoader)
+    ms_list = []
     for k, v in mini_list.items():
         # Strip the part out of the name
         m = re.match(r'(?P<name>.*) - Part (?P<part>I*) of (?P<parts>I*)', k)
@@ -269,8 +291,10 @@ with open(r'data/minisymposia.yaml') as minifile:
             parts = 1
 
         participants = [v.get("organizer", "")] + v.get("speakers", [])
-        Schedule.minisymposia.append(Minisymposium(k, participants, part, parts))
+        ms_list.append(Minisymposium(k, participants, part, parts))
+
+minisymposia = Minisymposia(ms_list)
 
 # Perform the scheduling
-schedule = geneticAlgorithm(100, 20, 0.01, 1000)
+schedule = geneticAlgorithm(100, 20, 0.05, 100)
 print(schedule)
