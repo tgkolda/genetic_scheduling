@@ -242,22 +242,24 @@ def breedPopulation(matingpool, eliteSize):
     return children
 
 def mutate(individual, mutationRate):
-    ind = np.reshape(individual.events, -1)
-    for swapped in range(len(individual)):
-        event1 = ind[swapped]
-        if(random.random() < mutationRate):
-            # Don't swap two empty rooms
-            if event1 < 0:
-                event2 = -1
-                while event2 < 0:
-                    swapWith = int(random.random() * len(individual))
-                    event2 = ind[swapWith]
-            else:
-                swapWith = int(random.random() * len(individual))
-                event2 = ind[swapWith]
+    for slot in range(Schedule.nslots):
+        for room in range(len(Schedule.rooms)):
+            event1 = individual.events[slot, room]
+            if(random.random() < mutationRate):
+                # Don't swap two empty rooms
+                if event1 < 0:
+                    event2 = -1
+                    while event2 < 0:
+                        s2 = int(random.random() * Schedule.nslots)
+                        r2 = int(random.random() * len(Schedule.rooms))
+                        event2 = individual.events[s2, r2]
+                else:
+                    s2 = int(random.random() * Schedule.nslots)
+                    r2 = int(random.random() * len(Schedule.rooms))
+                    event2 = individual.events[s2, r2]
 
-            ind[swapped] = event2
-            ind[swapWith] = event1
+                individual.events[slot, room] = event2
+                individual.events[s2, r2] = event1
     return individual
 
 def mutatePopulation(population, mutationRate):
