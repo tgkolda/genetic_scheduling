@@ -27,6 +27,11 @@ for mini in minisymposia:
     page = urlopen(url)
     html = page.read().decode("utf-8")
 
+    # Get the abstract
+    m = re.match(r'.*<p>(?P<abstract>.*?)<P>.*?<b>Organizer:</b>.*', html, re.DOTALL)
+    if m:
+        dict["abstract"] = m.group("abstract").strip()
+
     # Get the organizer's name
     m = re.match(r'.*?<b>Organizer:</b>.*?<b>(?P<organizer>.*?)</b>.*', html, re.DOTALL)
     if m:
