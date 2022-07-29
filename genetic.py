@@ -51,6 +51,9 @@ class Minisymposia:
     def __len__(self):
         return len(self.mini_list)
 
+    def __getitem__(self, item):
+        return self.mini_list[item]
+
 class Room:
     def __init__(self, name, capacity):
         self.name = name
@@ -58,7 +61,7 @@ class Room:
 
 class Schedule:
     rooms = []
-    nslots = 15
+    nslots = 13
     rng = np.random.default_rng()
 
     def __init__(self, eventList, permute=False):
@@ -67,54 +70,36 @@ class Schedule:
         else:
             self.events = eventList
 
+        # Reshape the events as a 2D array
+        self.events = np.reshape(self.events, (self.nslots, len(Schedule.rooms)))
+
     def __len__(self):
-        return len(self.events)
-
-    def __getitem__(self, item):
-         return self.events[item]
-
-    def __setitem__(self, key, value):
-        self.events[key] = value
-
-    # if this schedule needs more rooms, return the number of extra rooms needed
-    def needs_more_rooms(self):
-        nextra = 0
-        rid = 0 # room index
-        for s in self.events:
-            if s <= 0:
-                rid = 0
-            else:
-                if rid >= len(Schedule.rooms):
-                    nextra += 1
-                rid = rid + 1
-        return nextra
+        return self.events.size
 
     def oversubscribes_participant(self):
         noversubscribed = 0
-        nevents = len(self.events)
-        for i in range(nevents):
-            id1 = self.events[i]
-            if  id1 > 0:
-                for j in range(i+1, nevents):
-                    id2 = self.events[j]
-                    if id2 > 0:
-                        if(minisymposia.conflicts[id1-1, id2-1]):
-                            noversubscribed += 1
-                    else:
-                        # We found a delimiter
-                        break
+        for slot in range(self.nslots):
+            comb = combinations(self.events[slot,:], 2)
+            for m1, m2 in list(comb):
+                if m1 < 0 or m2 < 0:
+                    continue
+                if(minisymposia.conflicts[m1, m2]):
+                    noversubscribed += 1
+
         return noversubscribed
 
     def comes_before(self, first, second):
-        pos1 = np.where(self.events == first+1)[0][0]
-        pos2 = np.where(self.events == second+1)[0][0]
+        t1= np.where(self.events == first)
+        slot1 = t1[0][0]
+        t2 = np.where(self.events == second)
+        slot2 = t2[0][0]
 
-        # Make sure there's at least one delimiter between them
-        for i in range(pos1, pos2):
-            if self.events[i] <= 0:
-                return True
+        # We're going to invisibly fix the problem if possible
+        if slot1 > slot2:
+            self.events[t1], self.events[t2] = self.events[t2], self.events[t1]
+            return True
 
-        return False
+        return slot1 < slot2
 
     def violates_order(self):
         violations = 0
@@ -125,25 +110,23 @@ class Schedule:
         return violations
 
     def is_possible(self):
-        return self.needs_more_rooms() == 0 and self.oversubscribes_participant() == 0 and self.violates_order() == 0
+        return self.oversubscribes_participant() == 0 and self.violates_order() == 0
 
     def __repr__(self):
         if not self.is_possible():
-            return 'impossible'
+            str = f'This schedule oversubscribes {self.oversubscribes_participant()} participants and has {self.violates_order()} talks in the wrong order\n'
+        else:
+            str = ''
 
-        slot = 1
-        rid = 0 # room index
-        str = f'Slot {slot}\n'
-        for s in self.events:
-            if s <= 0:
-                slot = slot + 1
-                str += f'Slot {slot}\n'
-                rid = 0
-            else:
-                if rid >= len(Schedule.rooms):
-                    return 'impossible'
-                str += f'{minisymposia[s-1].title}: {Schedule.rooms[rid].name}\n'
-                rid = rid + 1
+        return str
+
+        for slot in range(self.nslots):
+            str += f'Slot {slot}\n'
+            for room in range(len(self.rooms)):
+                e = self.events[slot, room]
+                if e >= 0:
+                    str += f'{minisymposia[e].title}: {Schedule.rooms[room].name}\n'
+
         return str
 
 class Fitness:
@@ -156,19 +139,20 @@ class Fitness:
         if np.isnan(self.rating):
             nmini = len(minisymposia)
             nrooms = len(Schedule.rooms)
-            # Maximum penalty for needing more rooms is nmini - nrooms
             # Maximum penalty for oversubscribing participants is the total number of conflicts
             # Maximum penalty for order violations is the total number of prerequisites
-            max_penalty = (nmini - nrooms) + minisymposia.nconflicts + minisymposia.nprereqs
-            self.rating = 1 - (self.schedule.needs_more_rooms() + self.schedule.oversubscribes_participant() + self.schedule.violates_order()) / max_penalty
+            max_penalty = minisymposia.nconflicts + minisymposia.nprereqs
+            noversubscribed = self.schedule.oversubscribes_participant()
+            nwrongorder = self.schedule.violates_order()
+            self.rating = 1 - (noversubscribed + nwrongorder) / max_penalty
         return self.rating
 
 def makeEventList():
     nmini = len(minisymposia)
-    ngenes = nmini + Schedule.nslots - 1 
+    ngenes = Schedule.nslots * len(Schedule.rooms)
     eventList = np.zeros(ngenes, dtype=np.int32)
     for i in range(nmini):
-        eventList[i] = i+1
+        eventList[i] = i
     for i in range(nmini, ngenes):
         eventList[i] = nmini - (i + 1)
     return eventList
@@ -210,6 +194,7 @@ def matingPool(population, selectionResults):
         matingpool.append(population[index])
     return matingpool
 
+# TODO: This is using lists, so we can probably improve the efficiency with numpy arrays
 def breed(parent1, parent2):
     child = []
     childP1 = []
@@ -221,10 +206,13 @@ def breed(parent1, parent2):
     startGene = min(geneA, geneB)
     endGene = max(geneA, geneB)
 
+    p1 = np.reshape(parent1.events, -1)
+    p2 = np.reshape(parent2.events, -1)
+
     for i in range(startGene, endGene):
-        childP1.append(parent1[i])
+        childP1.append(p1[i])
         
-    childP2 = [item for item in parent2 if item not in childP1]
+    childP2 = [item for item in p2 if item not in childP1]
 
     child = np.array(childP1 + childP2)
     return Schedule(child)
@@ -243,15 +231,22 @@ def breedPopulation(matingpool, eliteSize):
     return children
 
 def mutate(individual, mutationRate):
+    ind = np.reshape(individual.events, -1)
     for swapped in range(len(individual)):
+        event1 = ind[swapped]
         if(random.random() < mutationRate):
-            swapWith = int(random.random() * len(individual))
-            
-            event1 = individual[swapped]
-            event2 = individual[swapWith]
-            
-            individual[swapped] = event2
-            individual[swapWith] = event1
+            # Don't swap two empty rooms
+            if event1 < 0:
+                event2 = -1
+                while event2 < 0:
+                    swapWith = int(random.random() * len(individual))
+                    event2 = ind[swapWith]
+            else:
+                swapWith = int(random.random() * len(individual))
+                event2 = ind[swapWith]
+
+            ind[swapped] = event2
+            ind[swapWith] = event1
     return individual
 
 def mutatePopulation(population, mutationRate):
@@ -280,6 +275,10 @@ def geneticAlgorithm(popSize, eliteSize, mutationRate, generations):
 
         pop = nextGeneration(pop, eliteSize, mutationRate)
         scores.append(rankSchedules(pop)[0][1])
+
+        bestSchedIndex = rankSchedules(pop)[0][0]
+        bestSched = pop[bestSchedIndex]
+        print(bestSched)
 
         # Can't do better than perfect
         if(scores[-1] == 1):
@@ -329,5 +328,5 @@ with open(r'data/minisymposia.yaml') as minifile:
 minisymposia = Minisymposia(ms_list)
 
 # Perform the scheduling
-schedule = geneticAlgorithm(100, 20, 0.01, 10000)
+schedule = geneticAlgorithm(100, 20, 0.01, 1000)
 print(schedule)
