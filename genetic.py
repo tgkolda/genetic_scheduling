@@ -73,20 +73,27 @@ class Schedule:
         # Reshape the events as a 2D array
         self.events = np.reshape(self.events, (self.nslots, len(Schedule.rooms)))
 
+        # Store an array of how problematic a particular event assignment is
+        self.problems = np.zeros_like(self.events)
+        self.nproblems = 0
+
+        # Whether the problems array has been set
+        self.pset = False
+
     def __len__(self):
         return self.events.size
 
     def oversubscribes_participant(self):
-        noversubscribed = 0
         for slot in range(self.nslots):
-            comb = combinations(self.events[slot,:], 2)
-            for m1, m2 in list(comb):
+            comb = combinations(range(len(self.rooms)), 2)
+            for r1, r2 in list(comb):
+                m1 = self.events[slot,r1]
+                m2 = self.events[slot,r2]
                 if m1 < 0 or m2 < 0:
                     continue
                 if(minisymposia.conflicts[m1, m2]):
-                    noversubscribed += 1
-
-        return noversubscribed
+                    self.problems[slot, r1] += 1
+                    self.problems[slot, r2] += 1
 
     def comes_before(self, first, second):
         t1= np.where(self.events == first)
@@ -97,24 +104,29 @@ class Schedule:
         # We're going to invisibly fix the problem if possible
         if slot1 > slot2:
             self.events[t1], self.events[t2] = self.events[t2], self.events[t1]
-            return True
-
-        return slot1 < slot2
+        elif slot1 == slot2:
+            self.problems[t1] += 1
+            self.problems[t2] += 1
 
     def violates_order(self):
-        violations = 0
         for i in range(len(minisymposia)):
             for j in minisymposia.ordering[i]:
-                if not self.comes_before(i, j):
-                    violations += 1
-        return violations
+                self.comes_before(i, j)
+
+    def find_problems(self):
+        if not self.pset:
+            self.violates_order()
+            self.oversubscribes_participant()
+            self.nproblems = np.sum(self.problems)
+            self.pset = True
+        return self.nproblems
 
     def is_possible(self):
-        return self.oversubscribes_participant() == 0 and self.violates_order() == 0
+        return self.find_problems() == 0
 
     def __repr__(self):
         if not self.is_possible():
-            str = f'This schedule oversubscribes {self.oversubscribes_participant()} participants and has {self.violates_order()} talks in the wrong order\n'
+            str = f'This schedule has {self.find_problems()} problems\n'
         else:
             str = ''
 
@@ -142,9 +154,8 @@ class Fitness:
             # Maximum penalty for oversubscribing participants is the total number of conflicts
             # Maximum penalty for order violations is the total number of prerequisites
             max_penalty = minisymposia.nconflicts + minisymposia.nprereqs
-            noversubscribed = self.schedule.oversubscribes_participant()
-            nwrongorder = self.schedule.violates_order()
-            self.rating = 1 - (noversubscribed + nwrongorder) / max_penalty
+            nproblems = self.schedule.find_problems()
+            self.rating = 1 - nproblems / max_penalty
         return self.rating
 
 def makeEventList():
