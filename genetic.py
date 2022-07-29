@@ -83,6 +83,11 @@ class Schedule:
     def __len__(self):
         return self.events.size
 
+    def reset_problems(self):
+        self.problems.fill(0)
+        self.nproblems = 0
+        self.pset = False
+
     def oversubscribes_participant(self):
         for slot in range(self.nslots):
             comb = combinations(range(len(self.rooms)), 2)
@@ -121,16 +126,27 @@ class Schedule:
             self.pset = True
         return self.nproblems
 
+    def get_random_problem(self):
+        self.find_problems()
+        pids = np.nonzero(self.problems)
+        if len(pids) > 0:
+            slot = Schedule.rng.choice(pids[0])
+            room = Schedule.rng.choice(pids[1])
+        else:
+            room = Schedule.rng.choice(len(Schedule.rooms))
+            slot = Schedule.rng.choice(Schedule.nslots)
+        ind = (slot, room)
+        return ind
+
     def is_possible(self):
         return self.find_problems() == 0
 
     def __repr__(self):
         if not self.is_possible():
             str = f'This schedule has {self.find_problems()} problems\n'
+            return str
         else:
             str = ''
-
-        return str
 
         for slot in range(self.nslots):
             str += f'Slot {slot}\n'
@@ -246,28 +262,17 @@ def mutate(individual, mutationRate):
         for room in range(len(Schedule.rooms)):
             event1 = individual.events[slot, room]
             if(random.random() < mutationRate):
-                # Don't swap two empty rooms
-                if event1 < 0:
-                    event2 = -1
-                    while event2 < 0:
-                        s2 = int(random.random() * Schedule.nslots)
-                        r2 = int(random.random() * len(Schedule.rooms))
-                        event2 = individual.events[s2, r2]
-                else:
-                    s2 = int(random.random() * Schedule.nslots)
-                    r2 = int(random.random() * len(Schedule.rooms))
-                    event2 = individual.events[s2, r2]
-
-                individual.events[slot, room] = event2
-                individual.events[s2, r2] = event1
+                # Swap with something problematic
+                ind = individual.get_random_problem()
+                individual.events[slot, room], individual.events[ind] = individual.events[ind], individual.events[slot, room]
     return individual
 
 def mutatePopulation(population, mutationRate):
-    # Don't mutate the most promising schedule
-    mutatedPop = [population[0]]
+    mutatedPop = []
     
-    for ind in range(1, len(population)):
+    for ind in range(len(population)):
         mutatedInd = mutate(population[ind], mutationRate)
+        mutatedInd.reset_problems()
         mutatedPop.append(mutatedInd)
     return mutatedPop
 
