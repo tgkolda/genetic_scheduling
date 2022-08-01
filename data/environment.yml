@@ -1,0 +1,6 @@
+name: metadata_generator
+dependencies:
+  - python=3.9.*
+  - pip
+  - pip:
+    - farm-haystack
