@@ -3,12 +3,13 @@ from haystack.document_stores import InMemoryDocumentStore
 from haystack.nodes import TransformersDocumentClassifier
 
 # Scraped yaml file
-with open(r'./minisymposia.yaml') as minifile:  
+with open(r'./data/minisymposia.yaml') as minifile:  
     mini_list = yaml.load(minifile, Loader=yaml.FullLoader)
 
 # Text file with all possible themes to predict
-with open(r'./themes.txt') as file:  
+with open(r'./data/themes.txt') as file:  
     labels = file.readlines()
+labels = [label.replace('\n','') for label in labels]
 
 # This chunk creates a list of all of the talks in the format that Haystack needs
 docs = [] 
@@ -46,6 +47,6 @@ for document in classified_docs.get_all_documents():
     mini_list[name]['predicted_theme'] = label
 
 # Saves the new yaml
-with open(r'minisymposia_predicted_theme.yaml', 'w') as file:
+with open(r'./data/minisymposia_predicted_theme.yaml', 'w') as file:
     yaml.dump(mini_list, file)
 
