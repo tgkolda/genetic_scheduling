@@ -1,0 +1,20 @@
+Artificial intelligence
+Biological and biomedical computations
+Combinatorial scientific computing
+Fluid Mechanics
+education and training
+CSE software
+Data science
+Digital twins
+Graphs and networks 
+High-order methods and novel discretizations 
+High-performance computing 
+Inverse problems and data assimilation
+Multiscale, multiphysics, and multilevel methods
+Numerical control and optimization: methods and applications 
+Quantum algorithms for scientific computing
+Reduced order modelling
+Scalable linear and nonlinear solvers 
+machine learning
+Stochastic models and uncertainty quantification
+diversity and inclusion
