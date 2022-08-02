@@ -44,7 +44,7 @@ classified_docs = doc_classifier.predict(doc_store)
 for document in classified_docs.get_all_documents():
     label = document.meta['classification']['label']
     name = document.meta['name']
-    mini_list[name]['predicted_theme'] = label
+    mini_list[name]['predicted_theme'] = label.strip()
 
 # Saves the new yaml
 with open(r'./data/minisymposia_predicted_theme.yaml', 'w') as file:

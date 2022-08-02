@@ -11,15 +11,15 @@ import yaml
 from itertools import combinations
 
 class Minisymposium:
-    def __init__(self, title, participants, keyword, part=1, parts=1):
+    def __init__(self, title, participants, theme, part=1, parts=1):
         self.title = title
         self.participants = set(participants)
-        self.keyword = keyword
+        self.theme = theme.strip()
         self.part = part
         self.parts = parts
 
-    def same_topic(self, mini):
-        return self.keyword == mini.keyword
+    def same_theme(self, mini):
+        return self.theme == mini.theme
 
     def overlaps_participants(self, mini):
         return self.participants & mini.participants
@@ -30,13 +30,17 @@ class Minisymposium:
         return False
 
 class Minisymposia:
-    def __init__(self, mini_list):
+    def __init__(self, mini_list, themes):
         self.mini_list = mini_list
+
+        self.themes = {}
+        for i in range(len(themes)):
+            self.themes[themes[i].strip()] = i
 
         # Determine the speaker conflicts
         nmini = len(mini_list)
         self.conflicts = np.zeros((nmini, nmini), dtype=np.bool8)
-        self.topic_overlap = np.zeros((nmini, nmini), dtype=np.bool8)
+        self.theme_overlap = np.zeros((nmini, nmini), dtype=np.bool8)
         self.ordering = [ [] for _ in range(nmini) ]
 
         # Determine the speaker conflicts and talks with a necessary ordering
@@ -45,8 +49,8 @@ class Minisymposia:
             self.conflicts[m1, m2] = mini_list[m1].overlaps_participants(mini_list[m2])
             self.conflicts[m2, m1] = self.conflicts[m1, m2]
 
-            self.topic_overlap[m1, m2] = mini_list[m1].same_topic(mini_list[m2])
-            self.topic_overlap[m2, m1] = self.topic_overlap[m1, m2]
+            self.theme_overlap[m1, m2] = mini_list[m1].same_theme(mini_list[m2])
+            self.theme_overlap[m2, m1] = self.theme_overlap[m1, m2]
 
             if mini_list[m1].goes_before(mini_list[m2]):
                 self.ordering[m1].append(m2)
@@ -54,7 +58,7 @@ class Minisymposia:
                 self.ordering[m2].append(m1)
 
         self.nconflicts = np.count_nonzero(self.conflicts)/2
-        self.noverlaps = np.count_nonzero(self.topic_overlap)/2
+        self.overlap_penalty = self.compute_overlap_penalty()
         self.nprereqs = sum( [ len(listElem) for listElem in self.ordering])
 
     def __len__(self):
@@ -63,6 +67,17 @@ class Minisymposia:
     def __getitem__(self, item):
         return self.mini_list[item]
 
+    def compute_overlap_penalty(self):
+        nthemes = len(self.themes)
+        pen_per_topic = np.zeros((nthemes), dtype=np.int32)
+        for m in self.mini_list:
+            tid = self.themes[m.theme]
+            pen_per_topic[tid] += 1
+        for i in range(nthemes):
+            pen_per_topic[i] = pen_per_topic[i]**2
+        return np.sum(pen_per_topic)
+
+
 class Room:
     def __init__(self, name, capacity):
         self.name = name
@@ -70,7 +85,7 @@ class Room:
 
 class Schedule:
     rooms = []
-    nslots = 13
+    nslots = 35
     rng = np.random.default_rng()
 
     def __init__(self, eventList, permute=False):
@@ -84,7 +99,9 @@ class Schedule:
 
         # Store an array of how problematic a particular event assignment is
         self.problems = np.zeros_like(self.events)
-        self.overlaps = np.zeros(self.nslots, dtype=np.int32)
+        self.imperfections = np.zeros_like(self.events)
+        nthemes = len(minisymposia.themes)
+        self.overlaps = np.zeros((self.nslots, nthemes), dtype=np.int32)
         self.nproblems = 0
         self.noverlaps = 0
 
@@ -96,6 +113,7 @@ class Schedule:
 
     def reset_problems(self):
         self.problems.fill(0)
+        self.imperfections.fill(0)
         self.overlaps.fill(0)
         self.nproblems = 0
         self.noverlaps = 0
@@ -131,7 +149,11 @@ class Schedule:
             for j in minisymposia.ordering[i]:
                 self.comes_before(i, j)
 
-    def overlaps_topics(self):
+    def increment_overlap(self, slot, theme):
+        tid = minisymposia.themes[theme]
+        self.overlaps[slot, tid] += 1
+
+    def overlaps_themes(self):
         for slot in range(self.nslots):
             comb = combinations(range(len(self.rooms)), 2)
             for r1, r2 in list(comb):
@@ -139,16 +161,23 @@ class Schedule:
                 m2 = self.events[slot,r2]
                 if m1 < 0 or m2 < 0:
                     continue
-                if(minisymposia.topic_overlap[m1, m2]):
-                    self.overlaps[slot] += 1
-        # We should assign a higher penalty to putting all the topics in one slot vs multiple
-        self.overlaps[slot] = self.overlaps[slot]**2
+                if(minisymposia.theme_overlap[m1, m2]):
+                    self.imperfections[slot, r1] += 1
+                    self.imperfections[slot, r2] += 1
+                    self.increment_overlap(slot, minisymposia[m1].theme)
+
+    def get_theme_penalty(self):
+        penalty = 0
+        for slot in range(self.nslots):
+            for theme in range(len(minisymposia.themes)):
+                penalty += (self.overlaps[slot, theme]**2)
+        return penalty
 
     def find_problems(self):
         if not self.pset:
             self.violates_order()
             self.oversubscribes_participant()
-            self.overlaps_topics()
+            self.overlaps_themes()
             self.nproblems = np.sum(self.problems)
             self.noverlaps = np.sum(self.overlaps)
             self.pset = True
@@ -157,9 +186,17 @@ class Schedule:
     def get_random_problem(self):
         self.find_problems()
         pids = np.nonzero(self.problems)
-        if len(pids[0]) > 0:
-            slot = Schedule.rng.choice(pids[0])
-            room = Schedule.rng.choice(pids[1])
+        iids = np.nonzero(self.imperfections)
+        nproblems = len(pids[0])
+        nimperfections = len(iids[0])
+        if nproblems > 0:
+            index = Schedule.rng.choice(nproblems)
+            slot = pids[0][index]
+            room = pids[1][index]
+        elif nimperfections > 0:
+            index = Schedule.rng.choice(nimperfections)
+            slot = iids[0][index]
+            room = iids[1][index]
         else:
             room = Schedule.rng.choice(len(Schedule.rooms))
             slot = Schedule.rng.choice(Schedule.nslots)
@@ -167,7 +204,8 @@ class Schedule:
         return ind
 
     def is_possible(self):
-        return self.find_problems() == 0
+        nproblems, _ = self.find_problems()
+        return nproblems == 0
 
     def is_optimal(self):
         _, noverlaps = self.find_problems()
@@ -180,6 +218,7 @@ class Schedule:
         elif not self.is_optimal():
             _, noverlaps = self.find_problems()
             str = f'This schedule has {noverlaps} overlaps\n'
+            return str
         else:
             str = ''
 
@@ -188,7 +227,7 @@ class Schedule:
             for room in range(len(self.rooms)):
                 e = self.events[slot, room]
                 if e >= 0:
-                    str += f'{minisymposia[e].title}: {Schedule.rooms[room].name}\n'
+                    str += f'{minisymposia[e].title} ({minisymposia[e].theme}): {Schedule.rooms[room].name}\n'
 
         return str
 
@@ -204,11 +243,11 @@ class Fitness:
             nrooms = len(Schedule.rooms)
             # Maximum penalty for oversubscribing participants is the total number of conflicts
             # Maximum penalty for order violations is the total number of prerequisites
-            # Maximum penalty for overlap violations is 1 (so that multiple topics at the same 
+            # Maximum penalty for overlap violations is 1 (so that multiple themes at the same 
             # time is never worse than something that makes the schedule literally impossible)
             max_penalty = minisymposia.nconflicts + minisymposia.nprereqs + 1
             nproblems, noverlaps = self.schedule.find_problems()
-            cur_penalty = nproblems + noverlaps / (minisymposia.noverlaps**2)
+            cur_penalty = nproblems + self.schedule.get_theme_penalty() / minisymposia.overlap_penalty
             self.rating = 1 - cur_penalty / max_penalty
         return self.rating
 
@@ -306,9 +345,10 @@ def mutate(individual, mutationRate):
     return individual
 
 def mutatePopulation(population, mutationRate):
-    mutatedPop = []
+    # Keep the best schedule
+    mutatedPop = [population[0]]
     
-    for ind in range(len(population)):
+    for ind in range(1, len(population)):
         mutatedInd = mutate(population[ind], mutationRate)
         mutatedInd.reset_problems()
         mutatedPop.append(mutatedInd)
@@ -363,6 +403,9 @@ with open(r'data/rooms.yaml') as roomfile:
     room_list = yaml.load(roomfile, Loader=yaml.FullLoader)
     for k, v in room_list.items():
         Schedule.rooms.append(Room(k, v))
+
+with open('data/themes.txt') as f:
+    themes = f.readlines()
     
 with open(r'data/minisymposia_predicted_theme.yaml') as minifile:
     mini_list = yaml.load(minifile, Loader=yaml.FullLoader)
@@ -382,7 +425,7 @@ with open(r'data/minisymposia_predicted_theme.yaml') as minifile:
         theme = v.get("predicted_theme", "")
         ms_list.append(Minisymposium(k, participants, theme, part, parts))
 
-minisymposia = Minisymposia(ms_list)
+minisymposia = Minisymposia(ms_list, themes)
 
 # Perform the scheduling
 schedule = geneticAlgorithm(100, 20, 0.01, 1000)
