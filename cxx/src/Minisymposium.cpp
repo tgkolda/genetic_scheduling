@@ -9,6 +9,13 @@ Minisymposium::Minisymposium(const std::string& title,
   theme_(theme),
   part_(part)
 {
+  // Strip the part from the name
+  size_t found = title.find(" - Part");
+  if(found != std::string::npos) {
+    title_ = title.substr(0, found);
+  }
+
+  // Add the participants
   if(!organizer.empty())
     participants_.insert(organizer);
   for(const auto& speaker : speakers)
