@@ -1,4 +1,5 @@
 #include "Minisymposium.hpp"
+#include <algorithm>
 
 Minisymposium::Minisymposium(const std::string& title, 
                              const std::string& theme, 
@@ -20,6 +21,22 @@ Minisymposium::Minisymposium(const std::string& title,
     participants_.insert(organizer);
   for(const auto& speaker : speakers)
     participants_.insert(speaker);
+}
+
+bool Minisymposium::shares_participant(const Minisymposium& m) const {
+  std::vector<std::string> intersection(participants_.size());
+  auto it = std::set_intersection(participants_.begin(), participants_.end(),
+                                  m.participants_.begin(), m.participants_.end(),
+                                  intersection.begin());
+  return it != intersection.begin();
+}
+
+bool Minisymposium::comes_before(const Minisymposium& m) const {
+  return title_ == m.title_ && part_ < m.part_;
+}
+
+bool Minisymposium::shares_theme(const Minisymposium& m) const {
+  return theme_ == m.theme_;
 }
 
 std::ostream& operator<<(std::ostream& os, const Minisymposium& mini) {

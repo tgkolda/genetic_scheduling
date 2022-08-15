@@ -14,6 +14,10 @@ public:
                 const std::vector<std::string>& speakers,
                 unsigned part);
 
+  bool shares_participant(const Minisymposium& m) const;
+  bool comes_before(const Minisymposium& m) const;
+  bool shares_theme(const Minisymposium& m) const;
+
   friend std::ostream& operator<<(std::ostream& os, const Minisymposium& mini);
   
 private:
