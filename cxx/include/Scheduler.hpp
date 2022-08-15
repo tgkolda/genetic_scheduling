@@ -12,7 +12,7 @@ public:
   void run_genetic(unsigned popSize, unsigned eliteSize, double mutationRate, unsigned generations);
 private:
   void initialize_schedules(unsigned nschedules);
-  void rate_schedules();
+  void rate_schedules(std::vector<unsigned>& best_indices, unsigned eliteSize);
 
   std::vector<Room> rooms_;
   Minisymposia mini_;

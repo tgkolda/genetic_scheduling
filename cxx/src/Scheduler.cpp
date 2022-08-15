@@ -15,12 +15,16 @@ void Scheduler::run_genetic(unsigned popSize,
                             double mutationRate, 
                             unsigned generations)
 {
+  std::vector<unsigned> best_indices(popSize);
   initialize_schedules(popSize);
 
   for(unsigned g=0; g<generations; g++) {
-    rate_schedules();
+    rate_schedules(best_indices, eliteSize);
     for(int i=0; i<ratings_.extent(0); i++) {
       std::cout << i << " " << ratings_(i) << "\n";
+    }
+    for(int i=0; i<eliteSize; i++) {
+      std::cout << i << " " << best_indices[i] << " " << ratings_(best_indices[i]) << "\n";
     }
     break;
   }
@@ -51,7 +55,7 @@ void Scheduler::initialize_schedules(unsigned nschedules) {
   }
 }
 
-void Scheduler::rate_schedules() {
+void Scheduler::rate_schedules(std::vector<unsigned>& best_indices, unsigned eliteSize) {
   unsigned nmini = mini_.size();
   unsigned max_penalty = mini_.get_max_penalty();
   for(unsigned sc=0; sc<schedules_.extent(0); sc++) {
@@ -91,4 +95,9 @@ void Scheduler::rate_schedules() {
     }
     ratings_(sc) = 1 - (double)penalty / max_penalty;
   }
+
+  // Find the indices of the most promising schedules
+  std::iota(best_indices.begin(), best_indices.end(), 0); // fill with 0,1,2,...
+  std::nth_element(best_indices.begin(), best_indices.begin()+eliteSize, best_indices.end(),
+                  [=](int i,int j) {return ratings_(i)>ratings_(j);});
 }
