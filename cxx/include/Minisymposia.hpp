@@ -10,6 +10,11 @@ class Minisymposia {
 public:
   void add(const Minisymposium& mini);
   void fill_complete();
+  unsigned size() const;
+
+  bool overlaps_participants(unsigned m1, unsigned m2) const;
+  bool breaks_ordering(unsigned m1, unsigned m2) const;
+  unsigned get_max_penalty() const;
 
   friend std::ostream& operator<<(std::ostream& os, const Minisymposia& mini);
 private:
@@ -21,6 +26,7 @@ private:
   Kokkos::View<bool**> same_participants_;
   Kokkos::View<bool**> is_prereq_;
   Kokkos::View<bool**> same_themes_;
+  unsigned max_penalty_{0};
 };
 
 #endif /* MINISYMPOSIA_H */

@@ -1,6 +1,7 @@
 add_library(scheduler Minisymposia.cpp 
                       Minisymposium.cpp
-                      Room.cpp)
+                      Room.cpp
+                      Scheduler.cpp)
 target_link_libraries(scheduler ${YAML_CPP_LIBRARIES} Kokkos::kokkos)
 
 add_executable(driver driver.cpp)

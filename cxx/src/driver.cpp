@@ -1,5 +1,4 @@
-#include "Minisymposia.hpp"
-#include "Room.hpp"
+#include "Scheduler.hpp"
 #include "yaml-cpp/yaml.h"
 #include <iostream>
 
@@ -35,6 +34,10 @@ int main(int argc, char* argv[]) {
       unsigned capacity = node.second.as<unsigned>();
       rooms.push_back(Room(name, capacity));
     }
+
+    // Run the genetic algorithm
+    Scheduler s(mini, rooms, 13);
+    s.run_genetic(100, 20, 0.01, 1000);
   }
   Kokkos::finalize();
   return 0;
