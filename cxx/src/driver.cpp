@@ -1,14 +1,16 @@
 #include "Minisymposia.hpp"
+#include "Room.hpp"
 #include "yaml-cpp/yaml.h"
 #include <iostream>
 
 int main(int argc, char* argv[]) {
   Kokkos::initialize(argc, argv);
   {
-    YAML::Node nodes = YAML::LoadFile("../../data/minisymposia_predicted_theme.yaml");
+    // Read the minisymposia from yaml
+    YAML::Node mini_nodes = YAML::LoadFile("../../data/minisymposia_predicted_theme.yaml");
     Minisymposia mini;
 
-    for(auto node : nodes) {
+    for(auto node : mini_nodes) {
       std::string title = node.first.as<std::string>();
       std::string theme = node.second["predicted_theme"].as<std::string>();
       unsigned part = 1;
@@ -21,9 +23,18 @@ int main(int argc, char* argv[]) {
 
       mini.add(Minisymposium(title, theme, organizer, speakers, part));
     }
-
-    std::cout << mini << "\n";
     mini.fill_complete();
+
+    // Read the rooms from yaml
+    // Read the minisymposia from yaml
+    YAML::Node room_nodes = YAML::LoadFile("../../data/rooms.yaml");
+    std::vector<Room> rooms;
+
+    for(auto node : room_nodes) {
+      std::string name = node.first.as<std::string>();
+      unsigned capacity = node.second.as<unsigned>();
+      rooms.push_back(Room(name, capacity));
+    }
   }
   Kokkos::finalize();
   return 0;
