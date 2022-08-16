@@ -23,6 +23,7 @@ void Scheduler::run_genetic(unsigned popSize,
     rate_schedules(best_indices, eliteSize);
     compute_weights();
     breed_population(best_indices, eliteSize);
+    mutate_population(mutationRate);
     std::swap(current_schedules_, next_schedules_);
 
     std::cout << "generation " << g << ":\n";
@@ -182,6 +183,28 @@ void Scheduler::breed(unsigned mom_index, unsigned dad_index, unsigned child_ind
       if(ds >= dad.extent(1)) {
         ds = 0;
         dr++;
+      }
+    }
+  }
+}
+
+void Scheduler::mutate_population(double mutationRate) {
+  std::uniform_real_distribution<double> mutate_dist(0.0,1.0);
+  std::uniform_int_distribution<unsigned> room_dist(0,next_schedules_.extent(1));
+  std::uniform_int_distribution<int> slot_dist(0,next_schedules_.extent(2));
+
+  for(unsigned sc=0; sc<next_schedules_.extent(0); sc++) {
+    for(unsigned r=0; r<next_schedules_.extent(1); r++) {
+      for(unsigned sl=0; sl<next_schedules_.extent(2); sl++) {
+        if(mutate_dist(rng_) < mutationRate) {
+          // Swap the element with something else
+          unsigned r2 = r, sl2 = sl;
+          while(r2 == r && sl2 == sl) {
+            r2 = room_dist(rng_);
+            sl2 = slot_dist(rng_);
+          }
+          std::swap(next_schedules_(sc,r,sl), next_schedules_(sc,r2,sl2));
+        }
       }
     }
   }
