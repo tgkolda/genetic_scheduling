@@ -13,12 +13,17 @@ public:
 private:
   void initialize_schedules(unsigned nschedules);
   void rate_schedules(std::vector<unsigned>& best_indices, unsigned eliteSize);
+  void compute_weights();
+  void breed_population(std::vector<unsigned>& best_indices, unsigned eliteSize);
+  void breed(unsigned mom_index, unsigned dad_index, unsigned child_index);
 
   std::vector<Room> rooms_;
   Minisymposia mini_;
   unsigned ntimeslots_;
-  Kokkos::View<unsigned***> schedules_;
-  Kokkos::View<double*> ratings_;
+  Kokkos::View<unsigned***> current_schedules_;
+  Kokkos::View<unsigned***> next_schedules_;
+  std::vector<double> ratings_;
+  std::vector<double> weights_;
   std::default_random_engine rng_;
 };
 
