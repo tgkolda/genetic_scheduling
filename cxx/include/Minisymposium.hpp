@@ -9,7 +9,7 @@
 class Minisymposium {
 public:
   Minisymposium(const std::string& title, 
-                const std::string& theme, 
+                unsigned tid, 
                 const std::string& organizer, 
                 const std::vector<std::string>& speakers,
                 unsigned part);
@@ -17,12 +17,13 @@ public:
   bool shares_participant(const Minisymposium& m) const;
   bool comes_before(const Minisymposium& m) const;
   bool shares_theme(const Minisymposium& m) const;
+  unsigned tid() const;
 
   friend std::ostream& operator<<(std::ostream& os, const Minisymposium& mini);
   
 private:
   std::string title_;
-  std::string theme_;
+  unsigned tid_;
   std::unordered_set<std::string> participants_;
   unsigned part_;
 };

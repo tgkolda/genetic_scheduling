@@ -2,12 +2,12 @@
 #include <algorithm>
 
 Minisymposium::Minisymposium(const std::string& title, 
-                             const std::string& theme, 
+                             unsigned tid, 
                              const std::string& organizer, 
                              const std::vector<std::string>& speakers,
                              unsigned part) :
   title_(title),
-  theme_(theme),
+  tid_(tid),
   part_(part)
 {
   // Strip the part from the name
@@ -36,7 +36,11 @@ bool Minisymposium::comes_before(const Minisymposium& m) const {
 }
 
 bool Minisymposium::shares_theme(const Minisymposium& m) const {
-  return theme_ == m.theme_;
+  return tid_ == m.tid_;
+}
+
+unsigned Minisymposium::tid() const {
+  return tid_;
 }
 
 std::ostream& operator<<(std::ostream& os, const Minisymposium& mini) {

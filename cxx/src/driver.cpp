@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
         organizer = node.second["organizer"].as<std::string>();
       std::vector<std::string> speakers = node.second["speakers"].as<std::vector<std::string>>();
 
-      mini.add(Minisymposium(title, theme, organizer, speakers, part));
+      mini.add(title, theme, organizer, speakers, part);
     }
     mini.fill_complete();
 

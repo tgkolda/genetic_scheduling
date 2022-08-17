@@ -62,9 +62,12 @@ void Scheduler::initialize_schedules(unsigned nschedules) {
 
 void Scheduler::rate_schedules(std::vector<unsigned>& best_indices, unsigned eliteSize) {
   unsigned nmini = mini_.size();
+  unsigned nthemes = mini_.themes().size();
+  std::vector<unsigned> theme_penalties(nthemes);
   unsigned max_penalty = mini_.get_max_penalty();
+  unsigned max_theme_penalty = mini_.get_max_theme_penalty();
   for(unsigned sc=0; sc<current_schedules_.extent(0); sc++) {
-    unsigned penalty = 0;
+    double penalty = 0.0;
     ratings_[sc] = 0.0;
     // Compute the penalty related to multi-part minisymposia being out of order
     for(unsigned sl1=0; sl1<current_schedules_.extent(2); sl1++) {
@@ -98,7 +101,24 @@ void Scheduler::rate_schedules(std::vector<unsigned>& best_indices, unsigned eli
         }
       }
     }
-    ratings_[sc] = 1 - (double)penalty / max_penalty;
+    // Compute the penalty related to theme overlap
+    unsigned theme_penalty = 0;
+    for(unsigned sl=0; sl<current_schedules_.extent(2); sl++) {
+      theme_penalties.assign(nthemes, 0);
+      for(unsigned r=0; r<current_schedules_.extent(1); r++) {
+        unsigned mini_index = current_schedules_(sc,r,sl);
+        if(mini_index >= nmini) continue;
+        unsigned tid = mini_[mini_index].tid();
+        theme_penalties[tid]++;
+      }
+      for(auto p : theme_penalties) {
+        if(p > 1) {
+          theme_penalty += pow(p-1, 2);
+        }
+      }
+    }
+    penalty += (double)theme_penalty / max_theme_penalty;
+    ratings_[sc] = 1 - penalty / max_penalty;
   }
 
   // Find the indices of the most promising schedules

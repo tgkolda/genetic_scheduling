@@ -1,7 +1,17 @@
 #include "Minisymposia.hpp"
 
-void Minisymposia::add(const Minisymposium& mini) {
-  data_.push_back(mini);
+void Minisymposia::add(const std::string& title, 
+                        const std::string& theme, 
+                        const std::string& organizer, 
+                        const std::vector<std::string>& speakers,
+                        unsigned part) 
+{
+  // Add the theme to themes if it's not already there
+  unsigned tid = std::find (themes_.begin(), themes_.end(), theme) - themes_.begin();
+  if(tid >= themes_.size()) {
+    themes_.push_back(theme);
+  }
+  data_.push_back(Minisymposium(title, tid, organizer, speakers, part));
 }
 
 void Minisymposia::fill_complete() {
@@ -12,6 +22,11 @@ void Minisymposia::fill_complete() {
 
 unsigned Minisymposia::size() const {
   return data_.size();
+}
+
+const Minisymposium& Minisymposia::operator[](unsigned i) const {
+  assert(i < size());
+  return data_[i];
 }
 
 bool Minisymposia::overlaps_participants(unsigned m1, unsigned m2) const {
@@ -26,6 +41,14 @@ bool Minisymposia::breaks_ordering(unsigned m1, unsigned m2) const {
 
 unsigned Minisymposia::get_max_penalty() const {
   return max_penalty_;
+}
+
+unsigned Minisymposia::get_max_theme_penalty() const {
+  return max_theme_penalty_;
+}
+
+const std::vector<std::string>& Minisymposia::themes() const {
+  return themes_;
 }
 
 std::ostream& operator<<(std::ostream& os, const Minisymposia& mini) {
@@ -69,12 +92,21 @@ void Minisymposia::set_overlapping_themes() {
   size_t nmini = data_.size();
   Kokkos::resize(same_themes_, nmini, nmini);
 
+  size_t nthemes = themes_.size();
+  std::vector<unsigned> theme_penalties(nthemes);
   for(int i=0; i<nmini; i++) {
+    unsigned tid = data_[i].tid();
+    theme_penalties[tid]++;
     for(int j=i+1; j<nmini; j++) {
       if(data_[i].shares_theme(data_[j])) {
         same_themes_(i,j) = true;
         same_themes_(j,i) = true;
       }
+    }
+  }
+  for(auto p : theme_penalties) {
+    if(p > 1) {
+      max_theme_penalty_ += pow(p-1, 2);
     }
   }
 }
