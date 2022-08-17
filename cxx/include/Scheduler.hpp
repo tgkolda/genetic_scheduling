@@ -17,6 +17,9 @@ private:
   void breed_population(std::vector<unsigned>& best_indices, unsigned eliteSize);
   void breed(unsigned mom_index, unsigned dad_index, unsigned child_index);
   void mutate_population(double mutationRate);
+  unsigned nschedules() const;
+  unsigned nslots();
+  unsigned nrooms() const;
 
   std::vector<Room> rooms_;
   Minisymposia mini_;

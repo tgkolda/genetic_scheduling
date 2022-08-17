@@ -36,8 +36,8 @@ void Scheduler::run_genetic(unsigned popSize,
 void Scheduler::initialize_schedules(unsigned nschedules) {
   unsigned nrooms = rooms_.size();
   // Resize the array of schedules
-  Kokkos::resize(current_schedules_, nschedules, nrooms, ntimeslots_);
-  Kokkos::resize(next_schedules_, nschedules, nrooms, ntimeslots_);
+  Kokkos::resize(current_schedules_, nschedules, ntimeslots_, nrooms);
+  Kokkos::resize(next_schedules_, nschedules, ntimeslots_, nrooms);
   ratings_.resize(nschedules);
   weights_.resize(nschedules);
 
@@ -51,9 +51,9 @@ void Scheduler::initialize_schedules(unsigned nschedules) {
     std::shuffle(numbers.begin(), numbers.end(), rng_);
 
     size_t ind=0;
-    for(unsigned r=0; r<nrooms; r++) {
-      for(unsigned sl=0; sl<ntimeslots_; sl++) {
-        current_schedules_(sc,r,sl) = numbers[ind];
+    for(unsigned sl=0; sl<ntimeslots_; sl++) {
+      for(unsigned r=0; r<nrooms; r++) {
+        current_schedules_(sc, sl, r) = numbers[ind];
         ind++;
       }
     }
@@ -66,23 +66,23 @@ void Scheduler::rate_schedules(std::vector<unsigned>& best_indices, unsigned eli
   std::vector<unsigned> theme_penalties(nthemes);
   unsigned max_penalty = mini_.get_max_penalty();
   unsigned max_theme_penalty = mini_.get_max_theme_penalty();
-  for(unsigned sc=0; sc<current_schedules_.extent(0); sc++) {
+  for(unsigned sc=0; sc<nschedules(); sc++) {
     double penalty = 0.0;
     ratings_[sc] = 0.0;
     // Compute the penalty related to multi-part minisymposia being out of order
-    for(unsigned sl1=0; sl1<current_schedules_.extent(2); sl1++) {
-      for(unsigned r1=0; r1<current_schedules_.extent(1); r1++) {
-        if(current_schedules_(sc,r1,sl1) >= nmini) continue;
-        for(unsigned sl2=sl1; sl2<current_schedules_.extent(2); sl2++) {
-          for(unsigned r2=0; r2<current_schedules_.extent(1); r2++) {
-            if(current_schedules_(sc,r2,sl2) >= nmini) continue;
-            if(mini_.breaks_ordering(current_schedules_(sc,r1,sl1), current_schedules_(sc,r2,sl2))) {
+    for(unsigned sl1=0; sl1<nslots(); sl1++) {
+      for(unsigned r1=0; r1<nrooms(); r1++) {
+        if(current_schedules_(sc,sl1,r1) >= nmini) continue;
+        for(unsigned sl2=sl1; sl2<nslots(); sl2++) {
+          for(unsigned r2=0; r2<nrooms(); r2++) {
+            if(current_schedules_(sc,sl2,r2) >= nmini) continue;
+            if(mini_.breaks_ordering(current_schedules_(sc,sl1,r1), current_schedules_(sc,sl2,r2))) {
               // If we can swap the events to avoid an issue, do that
               if(sl1 == sl2) {
                 penalty++;
               }
               else {
-                std::swap(current_schedules_(sc,r1,sl1), current_schedules_(sc,r2,sl2));
+                std::swap(current_schedules_(sc,sl1,r1), current_schedules_(sc,sl2,r2));
               }
             }
           }
@@ -90,12 +90,12 @@ void Scheduler::rate_schedules(std::vector<unsigned>& best_indices, unsigned eli
       }
     }
     // Compute the penalty related to oversubscribed participants
-    for(unsigned sl=0; sl<current_schedules_.extent(2); sl++) {
-      for(unsigned r1=0; r1<current_schedules_.extent(1); r1++) {
-        if(current_schedules_(sc,r1,sl) >= nmini) continue;
-        for(unsigned r2=r1+1; r2<current_schedules_.extent(1); r2++) {
-          if(current_schedules_(sc,r2,sl) >= nmini) continue;
-          if(mini_.overlaps_participants(current_schedules_(sc,r1,sl), current_schedules_(sc,r2,sl))) {
+    for(unsigned sl=0; sl<nslots(); sl++) {
+      for(unsigned r1=0; r1<nrooms(); r1++) {
+        if(current_schedules_(sc,sl,r1) >= nmini) continue;
+        for(unsigned r2=r1+1; r2<nrooms(); r2++) {
+          if(current_schedules_(sc,sl,r2) >= nmini) continue;
+          if(mini_.overlaps_participants(current_schedules_(sc,sl,r1), current_schedules_(sc,sl,r2))) {
             penalty++;
           }
         }
@@ -103,10 +103,10 @@ void Scheduler::rate_schedules(std::vector<unsigned>& best_indices, unsigned eli
     }
     // Compute the penalty related to theme overlap
     unsigned theme_penalty = 0;
-    for(unsigned sl=0; sl<current_schedules_.extent(2); sl++) {
+    for(unsigned sl=0; sl<nslots(); sl++) {
       theme_penalties.assign(nthemes, 0);
-      for(unsigned r=0; r<current_schedules_.extent(1); r++) {
-        unsigned mini_index = current_schedules_(sc,r,sl);
+      for(unsigned r=0; r<nrooms(); r++) {
+        unsigned mini_index = current_schedules_(sc,sl,r);
         if(mini_index >= nmini) continue;
         unsigned tid = mini_[mini_index].tid();
         theme_penalties[tid]++;
@@ -146,7 +146,7 @@ void Scheduler::breed_population(std::vector<unsigned>& best_indices, unsigned e
 
   // Breed to obtain the rest
   std::discrete_distribution<unsigned> distribution(weights_.begin(), weights_.end());
-  for(unsigned i=eliteSize; i<current_schedules_.extent(0); i++) {
+  for(unsigned i=eliteSize; i<nschedules(); i++) {
     // Get the parents
     unsigned pid1 = distribution(rng_);
     unsigned pid2 = pid1;
@@ -210,22 +210,41 @@ void Scheduler::breed(unsigned mom_index, unsigned dad_index, unsigned child_ind
 
 void Scheduler::mutate_population(double mutationRate) {
   std::uniform_real_distribution<double> mutate_dist(0.0,1.0);
-  std::uniform_int_distribution<unsigned> room_dist(0,next_schedules_.extent(1));
-  std::uniform_int_distribution<int> slot_dist(0,next_schedules_.extent(2));
+  std::uniform_int_distribution<unsigned> room_dist(0,nrooms());
+  std::uniform_int_distribution<unsigned> slot_dist(0,nslots());
+  std::uniform_int_distribution<unsigned> coin_flip(0,2);
 
-  for(unsigned sc=0; sc<next_schedules_.extent(0); sc++) {
-    for(unsigned r=0; r<next_schedules_.extent(1); r++) {
-      for(unsigned sl=0; sl<next_schedules_.extent(2); sl++) {
+  for(unsigned sc=0; sc<nschedules(); sc++) {
+    for(unsigned sl=0; sl<nslots(); sl++) {
+      for(unsigned r=0; r<nrooms(); r++) {
         if(mutate_dist(rng_) < mutationRate) {
           // Swap the element with something else
           unsigned r2 = r, sl2 = sl;
-          while(r2 == r && sl2 == sl) {
-            r2 = room_dist(rng_);
-            sl2 = slot_dist(rng_);
+          if(coin_flip(rng_) == 0) {
+            while(sl2 == sl) {
+              sl2 = slot_dist(rng_);
+            }
           }
-          std::swap(next_schedules_(sc,r,sl), next_schedules_(sc,r2,sl2));
+          else {
+            while(r2 == r) {
+              r2 = room_dist(rng_);
+            }
+          }
+          std::swap(next_schedules_(sc,sl,r), next_schedules_(sc,sl2,r2));
         }
       }
     }
   }
+}
+
+unsigned Scheduler::nschedules() const {
+  return current_schedules_.extent(0);
+}
+
+unsigned Scheduler::nslots() {
+  return current_schedules_.extent(1);
+}
+
+unsigned Scheduler::nrooms() const {
+  return current_schedules_.extent(2);
 }
