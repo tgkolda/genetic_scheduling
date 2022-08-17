@@ -22,17 +22,31 @@ void Scheduler::run_genetic(unsigned popSize,
   initialize_schedules(popSize);
 
   for(unsigned g=0; g<generations; g++) {
+    std::cout << "generation " << g << ":\n";
+
     rate_schedules(best_indices, eliteSize);
     compute_weights();
     breed_population(best_indices, eliteSize);
     mutate_population(mutationRate);
+    validate_schedules(); // This is just for debugging
     std::swap(current_schedules_, next_schedules_);
-
-    std::cout << "generation " << g << ":\n";
-    for(int i=0; i<eliteSize; i++) {
-      std::cout << i << " " << best_indices[i] << " " << ratings_[best_indices[i]] << "\n";
-    }
+    print_best_schedule();
   }
+}
+
+void Scheduler::print_best_schedule() const {
+  // Find the best schedule
+  typedef Kokkos::MaxLoc<double,unsigned>::value_type maxloc_type;
+  maxloc_type maxloc;
+  Kokkos::parallel_reduce( "Finding best schedule", nschedules(), KOKKOS_CLASS_LAMBDA (unsigned i, maxloc_type& lmaxloc) {
+    if(ratings_[i] > lmaxloc.val) { 
+      lmaxloc.val = ratings_[i]; 
+      lmaxloc.loc = i; 
+    }
+  }, Kokkos::MaxLoc<double,unsigned>(maxloc));
+
+  std::cout << "The best schedule has score " << maxloc.val << "\n";
+//  print_schedule(maxloc.loc);
 }
 
 void Scheduler::initialize_schedules(unsigned nschedules) {
@@ -164,7 +178,7 @@ void Scheduler::breed_population(std::vector<unsigned>& best_indices, unsigned e
   Kokkos::parallel_for("Copy elites", eliteSize, KOKKOS_CLASS_LAMBDA (unsigned i) {
     unsigned index = best_indices[i];
     auto src = Kokkos::subview(current_schedules_, index, Kokkos::ALL(), Kokkos::ALL());
-    auto dst = Kokkos::subview(next_schedules_, index, Kokkos::ALL(), Kokkos::ALL());
+    auto dst = Kokkos::subview(next_schedules_, i, Kokkos::ALL(), Kokkos::ALL());
     Kokkos::deep_copy(dst, src);
   });
 
@@ -294,4 +308,30 @@ unsigned Scheduler::get_parent() const {
   }
   pool_.free_state(gen);
   return parent;
+}
+
+void Scheduler::print_schedule(unsigned sc) const {
+  unsigned nmini = mini_.size();
+  for(unsigned slot=0; slot<nslots(); slot++) {
+    std::cout << "Slot " << slot << ":\n";
+    for(unsigned room=0; room<nrooms(); room++) {
+      unsigned mid = current_schedules_(sc, slot, room);
+      if(mid < nmini) {
+        std::cout << mini_[mid].title() << " (" << mini_[mid].tid() << ")\n";
+      }
+    }
+  }
+}
+
+void Scheduler::validate_schedules() const {
+  Kokkos::parallel_for("validating", nschedules(), KOKKOS_CLASS_LAMBDA (unsigned sc) {
+    auto sched = Kokkos::subview(next_schedules_, sc, Kokkos::ALL(), Kokkos::ALL());
+    for(unsigned m=0; m < mini_.size(); m++) {
+      if(!genetic::contains(sched, m)) {
+        std::cout << "ERROR! Schedule " << sc << " does not contain minisymposium " << m << "\n";
+        break;
+      }
+    }
+  });
+  Kokkos::fence();
 }

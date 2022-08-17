@@ -43,6 +43,10 @@ unsigned Minisymposium::tid() const {
   return tid_;
 }
 
+const std::string& Minisymposium::title() const {
+  return title_;
+}
+
 std::ostream& operator<<(std::ostream& os, const Minisymposium& mini) {
   os << mini.title_;
   return os;

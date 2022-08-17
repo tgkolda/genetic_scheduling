@@ -18,6 +18,7 @@ public:
   bool comes_before(const Minisymposium& m) const;
   bool shares_theme(const Minisymposium& m) const;
   unsigned tid() const;
+  const std::string& title() const;
 
   friend std::ostream& operator<<(std::ostream& os, const Minisymposium& mini);
   

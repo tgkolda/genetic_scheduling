@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
 
     // Run the genetic algorithm
     Scheduler s(mini, rooms, 13);
-    s.run_genetic(100, 20, 0.01, 1000);
+    s.run_genetic(1000, 200, 0.01, 1000);
   }
   Kokkos::finalize();
   return 0;

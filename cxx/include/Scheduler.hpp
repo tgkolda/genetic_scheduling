@@ -11,6 +11,7 @@ class Scheduler {
 public:
   Scheduler(const Minisymposia& mini, const std::vector<Room>& rooms, unsigned ntimeslots);
   void run_genetic(unsigned popSize, unsigned eliteSize, double mutationRate, unsigned generations);
+  void print_best_schedule() const;
 private:
   void initialize_schedules(unsigned nschedules);
   void rate_schedules(std::vector<unsigned>& best_indices, unsigned eliteSize);
@@ -22,6 +23,8 @@ private:
   unsigned nslots() const;
   unsigned nrooms() const;
   unsigned get_parent() const;
+  void print_schedule(unsigned sc) const;
+  void validate_schedules() const;
 
   std::vector<Room> rooms_;
   Minisymposia mini_;
