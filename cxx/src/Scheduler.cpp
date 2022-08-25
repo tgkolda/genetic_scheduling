@@ -368,8 +368,9 @@ void Scheduler::sort_on_ratings() {
 
   for(unsigned i=0; i<n; i++) {
     for(unsigned j=0; j < n-i-1; j++) {
-      if(h_ratings[i] > h_ratings[j]) {
-        std::swap(best_indices_[i], best_indices_[j]);
+      if(h_ratings[j] < h_ratings[j+1]) {
+        std::swap(best_indices_[j], best_indices_[j+1]);
+        std::swap(h_ratings[j], h_ratings[j+1]);
       }
     }
   }
