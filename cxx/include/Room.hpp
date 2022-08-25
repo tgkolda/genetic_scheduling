@@ -5,6 +5,7 @@
 
 class Room {
 public:
+  Room() = default;
   Room(const std::string& name, unsigned capacity);
 private:
   std::string name_;

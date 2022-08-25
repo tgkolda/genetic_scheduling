@@ -12,27 +12,30 @@ public:
   Scheduler(const Minisymposia& mini, const std::vector<Room>& rooms, unsigned ntimeslots);
   void run_genetic(unsigned popSize, unsigned eliteSize, double mutationRate, unsigned generations);
   void print_best_schedule() const;
-private:
   void initialize_schedules(unsigned nschedules);
-  void rate_schedules(std::vector<unsigned>& best_indices, unsigned eliteSize);
+  void rate_schedules(unsigned eliteSize);
   void compute_weights();
-  void breed_population(std::vector<unsigned>& best_indices, unsigned eliteSize);
-  void breed(unsigned mom_index, unsigned dad_index, unsigned child_index) const;
+  void breed_population(unsigned eliteSize);
+  KOKKOS_FUNCTION void breed(unsigned mom_index, unsigned dad_index, unsigned child_index) const;
   void mutate_population(double mutationRate);
-  unsigned nschedules() const;
-  unsigned nslots() const;
-  unsigned nrooms() const;
-  unsigned get_parent() const;
+  KOKKOS_FUNCTION unsigned nschedules() const;
+  KOKKOS_FUNCTION unsigned nslots() const;
+  KOKKOS_FUNCTION unsigned nrooms() const;
+  KOKKOS_FUNCTION unsigned get_parent() const;
   void print_schedule(unsigned sc) const;
   void validate_schedules() const;
+  void sort_on_ratings();
 
-  std::vector<Room> rooms_;
+private:
+  Kokkos::View<Room*> rooms_;
   Minisymposia mini_;
   unsigned ntimeslots_;
   Kokkos::View<unsigned***> current_schedules_;
   Kokkos::View<unsigned***> next_schedules_;
   Kokkos::View<double*> ratings_;
   Kokkos::View<double*> weights_;
+  Kokkos::View<unsigned*> best_indices_;
+  Kokkos::View<unsigned**> theme_penalties_;
   std::default_random_engine rng_;
   Kokkos::Random_XorShift64_Pool<> pool_;
 };

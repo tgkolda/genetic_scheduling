@@ -11,31 +11,38 @@ void Minisymposia::add(const std::string& title,
   if(tid >= themes_.size()) {
     themes_.push_back(theme);
   }
-  data_.push_back(Minisymposium(title, tid, organizer, speakers, part));
+  temp_data_.push_back(Minisymposium(title, tid, organizer, speakers, part));
 }
 
 void Minisymposia::fill_complete() {
+  Kokkos::resize(data_, temp_data_.size());
+  for(int i=0; i<temp_data_.size(); i++) {
+    data_[i] = temp_data_[i];
+  }
+  temp_data_.clear();
+
   set_overlapping_participants();
   set_prerequisites();
   set_overlapping_themes();
 }
 
-unsigned Minisymposia::size() const {
+KOKKOS_FUNCTION unsigned Minisymposia::size() const {
   return data_.size();
 }
 
+KOKKOS_FUNCTION
 const Minisymposium& Minisymposia::operator[](unsigned i) const {
   assert(i < size());
   return data_[i];
 }
 
+KOKKOS_FUNCTION
 bool Minisymposia::overlaps_participants(unsigned m1, unsigned m2) const {
-  assert(m1 < size() && m2 < size());
   return same_participants_(m1, m2);
 }
 
+KOKKOS_FUNCTION
 bool Minisymposia::breaks_ordering(unsigned m1, unsigned m2) const {
-  assert(m1 < size() && m2 < size());
   return is_prereq_(m2, m1);
 }
 
@@ -49,13 +56,6 @@ unsigned Minisymposia::get_max_theme_penalty() const {
 
 const std::vector<std::string>& Minisymposia::themes() const {
   return themes_;
-}
-
-std::ostream& operator<<(std::ostream& os, const Minisymposia& mini) {
-  for(const auto& m : mini.data_) {
-    os << m << "\n";
-  }
-  return os;
 }
 
 void Minisymposia::set_overlapping_participants() {

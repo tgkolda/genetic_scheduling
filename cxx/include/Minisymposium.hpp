@@ -1,6 +1,7 @@
 #ifndef MINISYMPOSIUM_H
 #define MINISYMPOSIUM_H
 
+#include <Kokkos_Core.hpp>
 #include <ostream>
 #include <string>
 #include <unordered_set>
@@ -8,6 +9,7 @@
 
 class Minisymposium {
 public:
+  Minisymposium() = default;
   Minisymposium(const std::string& title, 
                 unsigned tid, 
                 const std::string& organizer, 
@@ -17,11 +19,9 @@ public:
   bool shares_participant(const Minisymposium& m) const;
   bool comes_before(const Minisymposium& m) const;
   bool shares_theme(const Minisymposium& m) const;
-  unsigned tid() const;
+  KOKKOS_FUNCTION unsigned tid() const;
   const std::string& title() const;
 
-  friend std::ostream& operator<<(std::ostream& os, const Minisymposium& mini);
-  
 private:
   std::string title_;
   unsigned tid_;

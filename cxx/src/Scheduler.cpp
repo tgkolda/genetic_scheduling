@@ -6,11 +6,13 @@ Scheduler::Scheduler(const Minisymposia& mini,
                      const std::vector<Room>& rooms, 
                      unsigned ntimeslots) :
   mini_(mini),
-  rooms_(rooms),
+  rooms_("rooms", rooms.size()),
   ntimeslots_(ntimeslots), 
   pool_(5374857)
 {
-  
+  for(int i=0; i<rooms.size(); i++) {
+    rooms_[i] = rooms[i];
+  }
 }
 
 void Scheduler::run_genetic(unsigned popSize, 
@@ -18,15 +20,14 @@ void Scheduler::run_genetic(unsigned popSize,
                             double mutationRate, 
                             unsigned generations)
 {
-  std::vector<unsigned> best_indices(popSize);
   initialize_schedules(popSize);
 
   for(unsigned g=0; g<generations; g++) {
     std::cout << "generation " << g << ":\n";
 
-    rate_schedules(best_indices, eliteSize);
+    rate_schedules(eliteSize);
     compute_weights();
-    breed_population(best_indices, eliteSize);
+    breed_population(eliteSize);
     mutate_population(mutationRate);
     validate_schedules(); // This is just for debugging
     std::swap(current_schedules_, next_schedules_);
@@ -51,11 +52,14 @@ void Scheduler::print_best_schedule() const {
 
 void Scheduler::initialize_schedules(unsigned nschedules) {
   unsigned nrooms = rooms_.size();
+  unsigned nthemes = mini_.themes().size();
   // Resize the array of schedules
   Kokkos::resize(current_schedules_, nschedules, ntimeslots_, nrooms);
   Kokkos::resize(next_schedules_, nschedules, ntimeslots_, nrooms);
   Kokkos::resize(ratings_, nschedules);
   Kokkos::resize(weights_, nschedules);
+  Kokkos::resize(best_indices_, nschedules);
+  Kokkos::resize(theme_penalties_, nschedules, nthemes);
 
   std::vector<unsigned> numbers(nrooms*ntimeslots_);
   for(size_t i=0; i<numbers.size(); i++) {
@@ -76,7 +80,7 @@ void Scheduler::initialize_schedules(unsigned nschedules) {
   }
 }
 
-void Scheduler::rate_schedules(std::vector<unsigned>& best_indices, unsigned eliteSize) {
+void Scheduler::rate_schedules(unsigned eliteSize) {
   unsigned nmini = mini_.size();
   unsigned nthemes = mini_.themes().size();
   unsigned max_penalty = mini_.get_max_penalty();
@@ -96,7 +100,10 @@ void Scheduler::rate_schedules(std::vector<unsigned>& best_indices, unsigned eli
                 penalty++;
               }
               else {
-                std::swap(current_schedules_(sc,sl1,r1), current_schedules_(sc,sl2,r2));
+                // swap the values
+                auto temp = current_schedules_(sc,sl1,r1);
+                current_schedules_(sc,sl1,r1) = current_schedules_(sc,sl2,r2);
+                current_schedules_(sc,sl2,r2) = current_schedules_(sc,sl1,r1);
               }
             }
           }
@@ -117,16 +124,19 @@ void Scheduler::rate_schedules(std::vector<unsigned>& best_indices, unsigned eli
     }
     // Compute the penalty related to theme overlap
     unsigned theme_penalty = 0;
-    std::vector<unsigned> theme_penalties(nthemes);
+    auto my_theme_penalties = Kokkos::subview(theme_penalties_, sc, Kokkos::ALL());
     for(unsigned sl=0; sl<nslots(); sl++) {
-      theme_penalties.assign(nthemes, 0);
+      for(unsigned tid=0; tid<nthemes; tid++) {
+        my_theme_penalties[tid] = 0;
+      }
       for(unsigned r=0; r<nrooms(); r++) {
         unsigned mini_index = current_schedules_(sc,sl,r);
         if(mini_index >= nmini) continue;
         unsigned tid = mini_[mini_index].tid();
-        theme_penalties[tid]++;
+        my_theme_penalties[tid]++;
       }
-      for(auto p : theme_penalties) {
+      for(unsigned tid=0; tid<nthemes; tid++) {
+        auto p = my_theme_penalties[tid];
         if(p > 1) {
           theme_penalty += pow(p-1, 2);
         }
@@ -139,10 +149,8 @@ void Scheduler::rate_schedules(std::vector<unsigned>& best_indices, unsigned eli
   // Block until all ratings are computed since the next step uses them
   Kokkos::fence();
 
-  // Find the indices of the most promising schedules
-  std::iota(best_indices.begin(), best_indices.end(), 0); // fill with 0,1,2,...
-  std::nth_element(best_indices.begin(), best_indices.begin()+eliteSize, best_indices.end(),
-                  [=](int i,int j) {return ratings_[i]>ratings_[j];});
+  // Sort the indices based on the ratings
+  sort_on_ratings();
 }
 
 void Scheduler::compute_weights() {
@@ -173,14 +181,14 @@ void Scheduler::compute_weights() {
   Kokkos::fence();
 }
 
-void Scheduler::breed_population(std::vector<unsigned>& best_indices, unsigned eliteSize) {
+void Scheduler::breed_population(unsigned eliteSize) {
   // Copy over the elite items to the new population
-  Kokkos::parallel_for("Copy elites", eliteSize, KOKKOS_CLASS_LAMBDA (unsigned i) {
-    unsigned index = best_indices[i];
+  for(unsigned i=0; i<eliteSize; i++) {
+    unsigned index = best_indices_[i];
     auto src = Kokkos::subview(current_schedules_, index, Kokkos::ALL(), Kokkos::ALL());
     auto dst = Kokkos::subview(next_schedules_, i, Kokkos::ALL(), Kokkos::ALL());
     Kokkos::deep_copy(dst, src);
-  });
+  }
 
   // Breed to obtain the rest
   Kokkos::parallel_for("Breeding", Kokkos::RangePolicy<>(eliteSize, nschedules()), KOKKOS_CLASS_LAMBDA (unsigned i) {
@@ -197,6 +205,7 @@ void Scheduler::breed_population(std::vector<unsigned>& best_indices, unsigned e
   Kokkos::fence();
 }
 
+KOKKOS_FUNCTION
 void Scheduler::breed(unsigned mom_index, unsigned dad_index, unsigned child_index) const {
   using genetic::contains;
 
@@ -214,16 +223,22 @@ void Scheduler::breed(unsigned mom_index, unsigned dad_index, unsigned child_ind
     end_index = gen.rand(nslots);
   }
   if(end_index < start_index) {
-    std::swap(start_index, end_index);
+    auto temp = start_index;
+    start_index = end_index;
+    end_index = temp;
   }
   pool_.free_state(gen);
 
   // Copy those timeslots to the child
-  std::pair<size_t, size_t> mom_indices(start_index, end_index);
-  std::pair<size_t, size_t> kid_indices(0, end_index-start_index);
+  Kokkos::pair<size_t, size_t> mom_indices(start_index, end_index);
+  Kokkos::pair<size_t, size_t> kid_indices(0, end_index-start_index);
   auto mom_genes = Kokkos::subview(mom, Kokkos::ALL(), mom_indices);
   auto child_genes = Kokkos::subview(child, Kokkos::ALL(), kid_indices);
-  Kokkos::deep_copy(child_genes, mom_genes);
+  for(unsigned i=0; i<mom_genes.extent(0); i++) {
+    for(unsigned j=0; j<mom_genes.extent(1); j++) {
+      child_genes(i, j) = mom_genes(i, j);
+    }
+  }
 
   // Fill in the gaps with dad's info
   kid_indices.first = end_index - start_index;
@@ -268,7 +283,9 @@ void Scheduler::mutate_population(double mutationRate) {
             }
           }
           pool_.free_state(gen);
-          std::swap(next_schedules_(sc,sl,r), next_schedules_(sc,sl2,r2));
+          auto temp = next_schedules_(sc,sl,r);
+          next_schedules_(sc,sl,r) = next_schedules_(sc,sl2,r2);
+          next_schedules_(sc,sl2,r2) = temp;
         }
         else {
           pool_.free_state(gen);
@@ -281,24 +298,28 @@ void Scheduler::mutate_population(double mutationRate) {
   Kokkos::fence();
 }
 
+KOKKOS_FUNCTION
 unsigned Scheduler::nschedules() const {
   return current_schedules_.extent(0);
 }
 
+KOKKOS_FUNCTION
 unsigned Scheduler::nslots() const {
   return current_schedules_.extent(1);
 }
 
+KOKKOS_FUNCTION
 unsigned Scheduler::nrooms() const {
   return current_schedules_.extent(2);
 }
 
+KOKKOS_FUNCTION
 unsigned Scheduler::get_parent() const {
   // Get a random number between 0 and 1
   auto gen = pool_.get_state();
   double r = gen.drand();
   double sum = 0.0;
-  unsigned parent = -1;
+  unsigned parent = unsigned(-1);
   for(unsigned sc=0; sc<nschedules(); sc++) {
     sum += weights_[sc];
     if(r < sum) {
@@ -328,10 +349,27 @@ void Scheduler::validate_schedules() const {
     auto sched = Kokkos::subview(next_schedules_, sc, Kokkos::ALL(), Kokkos::ALL());
     for(unsigned m=0; m < mini_.size(); m++) {
       if(!genetic::contains(sched, m)) {
-        std::cout << "ERROR! Schedule " << sc << " does not contain minisymposium " << m << "\n";
+        printf("ERROR! Schedule %i does not contain minisymposium %i\n", sc, m);
         break;
       }
     }
   });
   Kokkos::fence();
+}
+
+void Scheduler::sort_on_ratings() {
+  size_t n = best_indices_.extent(0);
+
+  // Find the indices of the most promising schedules
+  for(unsigned i=0; i<n; i++) {
+    best_indices_[i] = i;
+  }
+
+  for(unsigned i=0; i<n; i++) {
+    for(unsigned j=0; j < n-i-1; j++) {
+      if(ratings_[i] < ratings_[j]) {
+        std::swap(best_indices_[i], best_indices_[j]);
+      }
+    }
+  }
 }
