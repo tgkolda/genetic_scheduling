@@ -3,16 +3,14 @@
 #include "Kokkos_StdAlgorithms.hpp"
 
 Scheduler::Scheduler(const Minisymposia& mini, 
-                     const std::vector<Room>& rooms, 
+                     const Rooms& rooms, 
                      unsigned ntimeslots) :
   mini_(mini),
-  rooms_("rooms", rooms.size()),
+  rooms_(rooms),
   ntimeslots_(ntimeslots), 
   pool_(5374857)
 {
-  for(int i=0; i<rooms.size(); i++) {
-    rooms_[i] = rooms[i];
-  }
+  
 }
 
 void Scheduler::run_genetic(unsigned popSize, 
@@ -21,7 +19,6 @@ void Scheduler::run_genetic(unsigned popSize,
                             unsigned generations)
 {
   initialize_schedules(popSize);
-
   for(unsigned g=0; g<generations; g++) {
     std::cout << "generation " << g << ":\n";
 
@@ -29,7 +26,7 @@ void Scheduler::run_genetic(unsigned popSize,
     compute_weights();
     breed_population(eliteSize);
     mutate_population(mutationRate);
-    validate_schedules(); // This is just for debugging
+    validate_schedules(next_schedules_); // This is just for debugging
     std::swap(current_schedules_, next_schedules_);
     print_best_schedule();
   }
@@ -54,18 +51,19 @@ void Scheduler::initialize_schedules(unsigned nschedules) {
   unsigned nrooms = rooms_.size();
   unsigned nthemes = mini_.themes().size();
   // Resize the array of schedules
-  Kokkos::resize(current_schedules_, nschedules, ntimeslots_, nrooms);
-  Kokkos::resize(next_schedules_, nschedules, ntimeslots_, nrooms);
-  Kokkos::resize(ratings_, nschedules);
-  Kokkos::resize(weights_, nschedules);
-  Kokkos::resize(best_indices_, nschedules);
-  Kokkos::resize(theme_penalties_, nschedules, nthemes);
+  current_schedules_ = Kokkos::View<unsigned***>("current schedules", nschedules, ntimeslots_, nrooms);
+  next_schedules_ = Kokkos::View<unsigned***>("next schedules", nschedules, ntimeslots_, nrooms);
+  ratings_ = Kokkos::View<double*>("ratings", nschedules);
+  weights_ = Kokkos::View<double*>("weights", nschedules);
+  best_indices_ = Kokkos::View<unsigned*, Kokkos::HostSpace>("best indices", nschedules);
+  theme_penalties_ = Kokkos::View<unsigned**>("theme penalties", nschedules, nthemes);
 
   std::vector<unsigned> numbers(nrooms*ntimeslots_);
   for(size_t i=0; i<numbers.size(); i++) {
     numbers[i] = i;
   }
 
+  auto h_schedules = Kokkos::create_mirror_view(current_schedules_);
   for(size_t sc=0; sc<nschedules; sc++) {
     // Initialize the schedule with a randomly permuted set of numbers
     std::shuffle(numbers.begin(), numbers.end(), rng_);
@@ -73,11 +71,12 @@ void Scheduler::initialize_schedules(unsigned nschedules) {
     size_t ind=0;
     for(unsigned sl=0; sl<ntimeslots_; sl++) {
       for(unsigned r=0; r<nrooms; r++) {
-        current_schedules_(sc, sl, r) = numbers[ind];
+        h_schedules(sc, sl, r) = numbers[ind];
         ind++;
       }
     }
   }
+  Kokkos::deep_copy(current_schedules_, h_schedules);
 }
 
 void Scheduler::rate_schedules(unsigned eliteSize) {
@@ -103,7 +102,7 @@ void Scheduler::rate_schedules(unsigned eliteSize) {
                 // swap the values
                 auto temp = current_schedules_(sc,sl1,r1);
                 current_schedules_(sc,sl1,r1) = current_schedules_(sc,sl2,r2);
-                current_schedules_(sc,sl2,r2) = current_schedules_(sc,sl1,r1);
+                current_schedules_(sc,sl2,r2) = temp;
               }
             }
           }
@@ -155,9 +154,9 @@ void Scheduler::rate_schedules(unsigned eliteSize) {
 
 void Scheduler::compute_weights() {
   // Find the worst schedule's score
-  double worst_score = *Kokkos::Experimental::min_element(Kokkos::DefaultExecutionSpace(), ratings_);
+  auto worst_score = Kokkos::Experimental::min_element(Kokkos::DefaultExecutionSpace(), ratings_);
   Kokkos::parallel_for("compute weights", nschedules(), KOKKOS_CLASS_LAMBDA(int i) {
-    weights_[i] = ratings_[i] - worst_score;
+    weights_[i] = ratings_[i] - *worst_score;
   });
 
   // Block until all weights are computed since the next step uses them
@@ -344,9 +343,9 @@ void Scheduler::print_schedule(unsigned sc) const {
   }
 }
 
-void Scheduler::validate_schedules() const {
+void Scheduler::validate_schedules(Kokkos::View<unsigned***> schedules) const {
   Kokkos::parallel_for("validating", nschedules(), KOKKOS_CLASS_LAMBDA (unsigned sc) {
-    auto sched = Kokkos::subview(next_schedules_, sc, Kokkos::ALL(), Kokkos::ALL());
+    auto sched = Kokkos::subview(schedules, sc, Kokkos::ALL(), Kokkos::ALL());
     for(unsigned m=0; m < mini_.size(); m++) {
       if(!genetic::contains(sched, m)) {
         printf("ERROR! Schedule %i does not contain minisymposium %i\n", sc, m);
@@ -359,6 +358,8 @@ void Scheduler::validate_schedules() const {
 
 void Scheduler::sort_on_ratings() {
   size_t n = best_indices_.extent(0);
+  auto h_ratings = Kokkos::create_mirror_view(ratings_);
+  Kokkos::deep_copy(h_ratings, ratings_);
 
   // Find the indices of the most promising schedules
   for(unsigned i=0; i<n; i++) {
@@ -367,7 +368,7 @@ void Scheduler::sort_on_ratings() {
 
   for(unsigned i=0; i<n; i++) {
     for(unsigned j=0; j < n-i-1; j++) {
-      if(ratings_[i] < ratings_[j]) {
+      if(h_ratings[i] > h_ratings[j]) {
         std::swap(best_indices_[i], best_indices_[j]);
       }
     }

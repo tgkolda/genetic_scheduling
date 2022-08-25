@@ -1,39 +1,53 @@
+#include "yaml-cpp/yaml.h"
 #include "Minisymposia.hpp"
 
-void Minisymposia::add(const std::string& title, 
-                        const std::string& theme, 
-                        const std::string& organizer, 
-                        const std::vector<std::string>& speakers,
-                        unsigned part) 
-{
-  // Add the theme to themes if it's not already there
-  unsigned tid = std::find (themes_.begin(), themes_.end(), theme) - themes_.begin();
-  if(tid >= themes_.size()) {
-    themes_.push_back(theme);
-  }
-  temp_data_.push_back(Minisymposium(title, tid, organizer, speakers, part));
-}
+Minisymposia::Minisymposia(const std::string& filename) {
+  // Read the minisymposia from yaml on the host
+  YAML::Node nodes = YAML::LoadFile(filename);
 
-void Minisymposia::fill_complete() {
-  Kokkos::resize(data_, temp_data_.size());
-  for(int i=0; i<temp_data_.size(); i++) {
-    data_[i] = temp_data_[i];
+  unsigned n = nodes.size();
+  d_data_ = Kokkos::View<Minisymposium*>("minisymposia", n);
+  h_data_ = Kokkos::create_mirror_view(d_data_);
+
+  unsigned i=0;
+  for(auto node : nodes) {
+    std::string title = node.first.as<std::string>();
+    std::string theme = node.second["predicted_theme"].as<std::string>();
+    unsigned part = 1;
+    if(node.second["part"])
+      part = node.second["part"].as<unsigned>();
+    std::string organizer;
+    if(node.second["organizer"])
+      organizer = node.second["organizer"].as<std::string>();
+    std::vector<std::string> speakers = node.second["speakers"].as<std::vector<std::string>>();
+
+    // Add the theme to themes if it's not already there
+    unsigned tid = std::find (themes_.begin(), themes_.end(), theme) - themes_.begin();
+    if(tid >= themes_.size()) {
+      themes_.push_back(theme);
+    }
+
+    h_data_[i] = Minisymposium(title, tid, organizer, speakers, part);
+    i++;
   }
-  temp_data_.clear();
+  
+  // Copy the data to device
+  Kokkos::deep_copy(d_data_, h_data_);
 
   set_overlapping_participants();
   set_prerequisites();
   set_overlapping_themes();
+
 }
 
 KOKKOS_FUNCTION unsigned Minisymposia::size() const {
-  return data_.size();
+  return d_data_.extent(0);
 }
 
 KOKKOS_FUNCTION
 const Minisymposium& Minisymposia::operator[](unsigned i) const {
   assert(i < size());
-  return data_[i];
+  return d_data_[i];
 }
 
 KOKKOS_FUNCTION
@@ -59,54 +73,83 @@ const std::vector<std::string>& Minisymposia::themes() const {
 }
 
 void Minisymposia::set_overlapping_participants() {
-  size_t nmini = data_.size();
-  Kokkos::resize(same_participants_, nmini, nmini);
+  using Kokkos::parallel_reduce;
+  using Kokkos::DefaultHostExecutionSpace;
+  using Kokkos::RangePolicy;
 
-  for(int i=0; i<nmini; i++) {
-    for(int j=i+1; j<nmini; j++) {
-      if(data_[i].shares_participant(data_[j])) {
-        same_participants_(i,j) = true;
-        same_participants_(j,i) = true;
-        max_penalty_++;
+  size_t nmini = size();
+  same_participants_ = Kokkos::View<bool**>("overlapping participants", nmini, nmini);
+  auto h_same_participants = Kokkos::create_mirror_view(same_participants_);
+
+  unsigned overlap_penalty = 0;
+  RangePolicy<DefaultHostExecutionSpace> rp(DefaultHostExecutionSpace(), 0, nmini);
+  parallel_reduce("set overlapping participants", rp, [=] (unsigned i, unsigned& lpenalty ) {
+    for(int j=0; j<nmini; j++) {
+      if(i == j) continue;
+      if(h_data_[i].shares_participant(h_data_[j])) {
+        h_same_participants(i,j) = true;
+        lpenalty++;
       }
     }
-  }
+  }, overlap_penalty);
+  Kokkos::deep_copy(same_participants_, h_same_participants);
+  max_penalty_ += overlap_penalty;
 }
 
 void Minisymposia::set_prerequisites() {
-  size_t nmini = data_.size();
-  Kokkos::resize(is_prereq_, nmini, nmini);
+  using Kokkos::parallel_reduce;
+  using Kokkos::DefaultHostExecutionSpace;
+  using Kokkos::RangePolicy;
 
-  for(int i=0; i<nmini; i++) {
+  size_t nmini = size();
+  is_prereq_ = Kokkos::View<bool**>("prerequisites", nmini, nmini);
+  auto h_is_prereq = Kokkos::create_mirror_view(is_prereq_);
+
+  unsigned prereq_penalty = 0;
+  RangePolicy<DefaultHostExecutionSpace> rp(DefaultHostExecutionSpace(), 0, nmini);
+  parallel_reduce("set prerequisites", rp, [=] (unsigned i, unsigned& lpenalty ) {
     for(int j=0; j<nmini; j++) {
       if(i == j) continue;
-      if(data_[i].comes_before(data_[j])) {
-        is_prereq_(i,j) = true;
-        max_penalty_++;
+      if(h_data_[i].comes_before(h_data_[j])) {
+        h_is_prereq(i,j) = true;
+        lpenalty++;
       }
     }
-  }  
+  }, prereq_penalty);
+  Kokkos::deep_copy(is_prereq_, h_is_prereq);
+  max_penalty_ += prereq_penalty; 
 }
 
 void Minisymposia::set_overlapping_themes() {
-  size_t nmini = data_.size();
-  Kokkos::resize(same_themes_, nmini, nmini);
+  using Kokkos::parallel_for;
+  using Kokkos::parallel_reduce;
+  using Kokkos::DefaultHostExecutionSpace;
+  using Kokkos::RangePolicy;
+
+  size_t nmini = size();
+  same_themes_ = Kokkos::View<bool**>("overlapping themes", nmini, nmini);
+  auto h_same_themes = Kokkos::create_mirror_view(same_themes_);
 
   size_t nthemes = themes_.size();
-  std::vector<unsigned> theme_penalties(nthemes);
-  for(int i=0; i<nmini; i++) {
-    unsigned tid = data_[i].tid();
+  Kokkos::View<unsigned*, Kokkos::HostSpace, Kokkos::MemoryTraits<Kokkos::Atomic>> theme_penalties("theme penalties", nthemes);
+  RangePolicy<DefaultHostExecutionSpace> rp(DefaultHostExecutionSpace(), 0, nmini);
+  parallel_for("set overlapping themes", rp, [=] (unsigned i) {
+    unsigned tid = h_data_[i].tid();
     theme_penalties[tid]++;
-    for(int j=i+1; j<nmini; j++) {
-      if(data_[i].shares_theme(data_[j])) {
-        same_themes_(i,j) = true;
-        same_themes_(j,i) = true;
+    for(unsigned j=0; j<nmini; j++) {
+      if(i == j) continue;
+      if(h_data_[i].shares_theme(h_data_[j])) {
+        h_same_themes(i,j) = true;
       }
     }
-  }
-  for(auto p : theme_penalties) {
-    if(p > 1) {
-      max_theme_penalty_ += pow(p-1, 2);
+  });
+  Kokkos::deep_copy(same_themes_, h_same_themes);
+  
+  RangePolicy<DefaultHostExecutionSpace> rp2(DefaultHostExecutionSpace(), 0, nthemes);
+  parallel_reduce("compute theme penalty", rp2, [=] (unsigned i, unsigned& lpenalty) {
+    auto p = theme_penalties[i];
+    if(p > unsigned(1)) {
+      lpenalty += pow(p-unsigned(1), 2);
     }
-  }
+  }, max_theme_penalty_);
 }

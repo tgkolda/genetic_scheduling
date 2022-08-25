@@ -9,12 +9,12 @@
 
 class Minisymposia {
 public:
-  void add(const std::string& title, 
-           const std::string& theme, 
-           const std::string& organizer, 
-           const std::vector<std::string>& speakers,
-           unsigned part);
-  void fill_complete();
+  Minisymposia(const std::string& filename);
+  Minisymposia(const Minisymposia&) = default;
+  ~Minisymposia() = default;
+  Minisymposia& operator=(const Minisymposia&) = delete;
+  
+
   KOKKOS_FUNCTION unsigned size() const;
   KOKKOS_FUNCTION const Minisymposium& operator[](unsigned i) const;
 
@@ -23,16 +23,15 @@ public:
   unsigned get_max_penalty() const;
   unsigned get_max_theme_penalty() const;
   const std::vector<std::string>& themes() const;
-
-  friend std::ostream& operator<<(std::ostream& os, const Minisymposia& mini);
-private:
   void set_overlapping_participants();
   void set_prerequisites();
   void set_overlapping_themes();
 
-  std::vector<Minisymposium> temp_data_;
+  friend std::ostream& operator<<(std::ostream& os, const Minisymposia& mini);
+private:
   std::vector<std::string> themes_;
-  Kokkos::View<Minisymposium*> data_;
+  Kokkos::View<Minisymposium*> d_data_;
+  Kokkos::View<Minisymposium*>::HostMirror h_data_;
   Kokkos::View<bool**> same_participants_;
   Kokkos::View<bool**> is_prereq_;
   Kokkos::View<bool**> same_themes_;

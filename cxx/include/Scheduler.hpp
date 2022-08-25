@@ -2,14 +2,14 @@
 #define SCHEDULER_H
 
 #include "Minisymposia.hpp"
-#include "Room.hpp"
+#include "Rooms.hpp"
 #include "Kokkos_Random.hpp"
 #include <random>
 #include <vector>
 
 class Scheduler {
 public:
-  Scheduler(const Minisymposia& mini, const std::vector<Room>& rooms, unsigned ntimeslots);
+  Scheduler(const Minisymposia& mini, const Rooms& rooms, unsigned ntimeslots);
   void run_genetic(unsigned popSize, unsigned eliteSize, double mutationRate, unsigned generations);
   void print_best_schedule() const;
   void initialize_schedules(unsigned nschedules);
@@ -23,18 +23,18 @@ public:
   KOKKOS_FUNCTION unsigned nrooms() const;
   KOKKOS_FUNCTION unsigned get_parent() const;
   void print_schedule(unsigned sc) const;
-  void validate_schedules() const;
+  void validate_schedules(Kokkos::View<unsigned***> schedules) const;
   void sort_on_ratings();
 
 private:
-  Kokkos::View<Room*> rooms_;
+  Rooms rooms_;
   Minisymposia mini_;
   unsigned ntimeslots_;
   Kokkos::View<unsigned***> current_schedules_;
   Kokkos::View<unsigned***> next_schedules_;
   Kokkos::View<double*> ratings_;
   Kokkos::View<double*> weights_;
-  Kokkos::View<unsigned*> best_indices_;
+  Kokkos::View<unsigned*, Kokkos::HostSpace> best_indices_;
   Kokkos::View<unsigned**> theme_penalties_;
   std::default_random_engine rng_;
   Kokkos::Random_XorShift64_Pool<> pool_;
