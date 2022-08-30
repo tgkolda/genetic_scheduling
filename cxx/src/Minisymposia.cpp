@@ -153,3 +153,12 @@ void Minisymposia::set_overlapping_themes() {
     }
   }, max_theme_penalty_);
 }
+
+const std::string& Minisymposia::get_title(unsigned i) const {
+  return h_data_[i].title();
+}
+
+const std::string& Minisymposia::get_theme(unsigned i) const {
+  auto id = h_data_[i].tid();
+  return themes_[id];
+}

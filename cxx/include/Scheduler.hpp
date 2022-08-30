@@ -25,6 +25,7 @@ public:
   void print_schedule(unsigned sc) const;
   void validate_schedules(Kokkos::View<unsigned***> schedules) const;
   void sort_on_ratings();
+  void record(const std::string& filename) const;
 
 private:
   Rooms rooms_;

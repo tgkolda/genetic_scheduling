@@ -9,6 +9,7 @@ class Rooms {
 public:
   Rooms(const std::string& filename);
   unsigned size() const;
+  const std::string& name(unsigned i) const;
 private:
   Kokkos::View<Room*> d_data_;
   Kokkos::View<Room*>::HostMirror h_data_;

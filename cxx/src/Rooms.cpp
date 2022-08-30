@@ -19,3 +19,7 @@ Rooms::Rooms(const std::string& filename) {
 unsigned Rooms::size() const {
   return d_data_.size();
 }
+
+const std::string& Rooms::name(unsigned i) const {
+  return h_data_[i].name();
+}

@@ -6,3 +6,7 @@ Room::Room(const std::string& name, unsigned capacity) :
 {
   
 }
+
+const std::string& Room::name() const {
+  return name_;
+}

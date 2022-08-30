@@ -1,6 +1,7 @@
 #include "Scheduler.hpp"
 #include "Utility.hpp"
 #include "Kokkos_StdAlgorithms.hpp"
+#include <fstream>
 
 Scheduler::Scheduler(const Minisymposia& mini, 
                      const Rooms& rooms, 
@@ -23,12 +24,12 @@ void Scheduler::run_genetic(unsigned popSize,
     std::cout << "generation " << g << ":\n";
 
     rate_schedules(eliteSize);
+    print_best_schedule();
     compute_weights();
     breed_population(eliteSize);
     mutate_population(mutationRate);
-    validate_schedules(next_schedules_); // This is just for debugging
+    //validate_schedules(next_schedules_); // This is just for debugging
     std::swap(current_schedules_, next_schedules_);
-    print_best_schedule();
   }
 }
 
@@ -44,7 +45,7 @@ void Scheduler::print_best_schedule() const {
   }, Kokkos::MaxLoc<double,unsigned>(maxloc));
 
   std::cout << "The best schedule has score " << maxloc.val << "\n";
-//  print_schedule(maxloc.loc);
+  //print_schedule(maxloc.loc);
 }
 
 void Scheduler::initialize_schedules(unsigned nschedules) {
@@ -332,12 +333,14 @@ unsigned Scheduler::get_parent() const {
 
 void Scheduler::print_schedule(unsigned sc) const {
   unsigned nmini = mini_.size();
+  auto h_current_schedules = Kokkos::create_mirror_view(current_schedules_);
+  Kokkos::deep_copy(h_current_schedules, current_schedules_);
   for(unsigned slot=0; slot<nslots(); slot++) {
     std::cout << "Slot " << slot << ":\n";
     for(unsigned room=0; room<nrooms(); room++) {
-      unsigned mid = current_schedules_(sc, slot, room);
+      unsigned mid = h_current_schedules(sc, slot, room);
       if(mid < nmini) {
-        std::cout << mini_[mid].title() << " (" << mini_[mid].tid() << ")\n";
+        std::cout << mini_.get_title(mid) << " (" << mini_.get_theme(mid) << ")\n";
       }
     }
   }
@@ -373,5 +376,36 @@ void Scheduler::sort_on_ratings() {
         std::swap(h_ratings[j], h_ratings[j+1]);
       }
     }
+  }
+}
+
+void Scheduler::record(const std::string& filename) const {
+  // Find the best schedule
+  typedef Kokkos::MaxLoc<double,unsigned>::value_type maxloc_type;
+  maxloc_type maxloc;
+  Kokkos::parallel_reduce( "Finding best schedule", nschedules(), KOKKOS_CLASS_LAMBDA (unsigned i, maxloc_type& lmaxloc) {
+    if(ratings_[i] > lmaxloc.val) { 
+      lmaxloc.val = ratings_[i]; 
+      lmaxloc.loc = i; 
+    }
+  }, Kokkos::MaxLoc<double,unsigned>(maxloc));
+
+  unsigned nmini = mini_.size();
+  unsigned sc = maxloc.loc;
+  auto h_current_schedules = Kokkos::create_mirror_view(current_schedules_);
+  Kokkos::deep_copy(h_current_schedules, current_schedules_);
+
+  std::ofstream fout(filename);
+  fout << "# Conference schedule with score " << maxloc.val << "\n\n";
+
+  for(unsigned slot=0; slot<nslots(); slot++) {
+    fout << "|Slot " << slot << "|   |   |\n|---|---|---|\n";
+    for(unsigned room=0; room<nrooms(); room++) {
+      unsigned mid = h_current_schedules(sc, slot, room);
+      if(mid < nmini) {
+        fout << "|" << mini_.get_title(mid) << "|" << mini_.get_theme(mid) << "|" << rooms_.name(room) << "|\n";
+      }
+    }
+    fout << "\n";
   }
 }
