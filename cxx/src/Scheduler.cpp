@@ -85,7 +85,6 @@ void Scheduler::rate_schedules(unsigned eliteSize) {
   unsigned nmini = mini_.size();
   unsigned nthemes = mini_.themes().size();
   unsigned max_penalty = mini_.get_max_penalty();
-  unsigned max_theme_penalty = mini_.get_max_theme_penalty();
   Kokkos::parallel_for("rate schedules", nschedules(), KOKKOS_CLASS_LAMBDA(unsigned sc) {
     double penalty = 0.0;
     // Compute the penalty related to multi-part minisymposia being out of order
@@ -134,7 +133,7 @@ void Scheduler::rate_schedules(unsigned eliteSize) {
         }
       }
     }
-    penalty += (double)theme_penalty / max_theme_penalty;
+    penalty += mini_.map_theme_penalty(theme_penalty);
     ratings_[sc] = 1 - penalty / max_penalty;
   });
 
@@ -426,7 +425,7 @@ void Scheduler::record(const std::string& filename) const {
   fout << "# Conference schedule with score " << maxloc.val << "\n\n";
 
   for(unsigned slot=0; slot<nslots(); slot++) {
-    fout << "|Slot " << slot << "|   |   |\n|---|---|---|---|\n";
+    fout << "|Slot " << slot << "|   |   |   |\n|---|---|---|---|\n";
     for(unsigned room=0; room<nrooms(); room++) {
       unsigned mid = h_current_schedules(sc, slot, room);
       if(mid < nmini) {

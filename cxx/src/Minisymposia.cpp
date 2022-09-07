@@ -1,7 +1,7 @@
 #include "yaml-cpp/yaml.h"
 #include "Minisymposia.hpp"
 
-Minisymposia::Minisymposia(const std::string& filename) {
+Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigned nslots) {
   // Read the minisymposia from yaml on the host
   YAML::Node nodes = YAML::LoadFile(filename);
 
@@ -36,8 +36,7 @@ Minisymposia::Minisymposia(const std::string& filename) {
 
   set_overlapping_participants();
   set_prerequisites();
-  set_overlapping_themes();
-
+  set_overlapping_themes(nrooms, nslots);
 }
 
 KOKKOS_FUNCTION unsigned Minisymposia::size() const {
@@ -62,10 +61,6 @@ bool Minisymposia::breaks_ordering(unsigned m1, unsigned m2) const {
 
 unsigned Minisymposia::get_max_penalty() const {
   return max_penalty_;
-}
-
-unsigned Minisymposia::get_max_theme_penalty() const {
-  return max_theme_penalty_;
 }
 
 const std::vector<std::string>& Minisymposia::themes() const {
@@ -120,7 +115,12 @@ void Minisymposia::set_prerequisites() {
   max_penalty_ += prereq_penalty; 
 }
 
-void Minisymposia::set_overlapping_themes() {
+KOKKOS_FUNCTION
+double Minisymposia::map_theme_penalty(unsigned nproblems) const {
+  return (nproblems - min_theme_penalty_) / double(max_theme_penalty_ - min_theme_penalty_);
+}
+
+void Minisymposia::set_overlapping_themes(unsigned nrooms, unsigned nslots) {
   using Kokkos::parallel_for;
   using Kokkos::parallel_reduce;
   using Kokkos::DefaultHostExecutionSpace;
@@ -146,12 +146,17 @@ void Minisymposia::set_overlapping_themes() {
   Kokkos::deep_copy(same_themes_, h_same_themes);
   
   RangePolicy<DefaultHostExecutionSpace> rp2(DefaultHostExecutionSpace(), 0, nthemes);
-  parallel_reduce("compute theme penalty", rp2, [=] (unsigned i, unsigned& lpenalty) {
-    auto p = theme_penalties[i];
-    if(p > unsigned(1)) {
-      lpenalty += pow(p-unsigned(1), 2);
+  parallel_reduce("compute max theme penalty", rp2, [=] (unsigned i, unsigned& lpenalty) {
+    for(int p = theme_penalties[i]; p > 1; p -= nrooms) {
+      lpenalty += pow(min(p,nrooms)-1, 2);
     }
   }, max_theme_penalty_);
+
+  parallel_reduce("compute min theme penalty", rp2, [=] (unsigned i, unsigned& lpenalty) {
+    unsigned nperslot = theme_penalties[i] / nslots;
+    unsigned remainder = theme_penalties[i] % nslots;
+    lpenalty += remainder * pow(nperslot,2) + (nslots - remainder) * pow(nperslot-1,2);
+  }, min_theme_penalty_);
 }
 
 const std::string& Minisymposia::get_title(unsigned i) const {

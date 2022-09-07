@@ -9,7 +9,7 @@
 
 class Minisymposia {
 public:
-  Minisymposia(const std::string& filename);
+  Minisymposia(const std::string& filename, unsigned nrooms, unsigned nslots);
   Minisymposia(const Minisymposia&) = default;
   ~Minisymposia() = default;
   Minisymposia& operator=(const Minisymposia&) = delete;
@@ -21,11 +21,11 @@ public:
   KOKKOS_FUNCTION bool overlaps_participants(unsigned m1, unsigned m2) const;
   KOKKOS_FUNCTION bool breaks_ordering(unsigned m1, unsigned m2) const;
   unsigned get_max_penalty() const;
-  unsigned get_max_theme_penalty() const;
   const std::vector<std::string>& themes() const;
   void set_overlapping_participants();
   void set_prerequisites();
-  void set_overlapping_themes();
+  KOKKOS_FUNCTION double map_theme_penalty(unsigned nproblems) const;
+  void set_overlapping_themes(unsigned nrooms, unsigned nslots);
   const std::string& get_title(unsigned i) const;
   const std::string& get_theme(unsigned i) const;
   unsigned get_priority(unsigned i) const;
@@ -39,6 +39,7 @@ private:
   Kokkos::View<bool**> is_prereq_;
   Kokkos::View<bool**> same_themes_;
   unsigned max_penalty_{1};
+  unsigned min_theme_penalty_{0};
   unsigned max_theme_penalty_{0};
 };
 
