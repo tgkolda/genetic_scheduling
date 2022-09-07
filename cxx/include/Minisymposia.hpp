@@ -28,6 +28,7 @@ public:
   void set_overlapping_themes();
   const std::string& get_title(unsigned i) const;
   const std::string& get_theme(unsigned i) const;
+  unsigned get_priority(unsigned i) const;
 
   friend std::ostream& operator<<(std::ostream& os, const Minisymposia& mini);
 private:

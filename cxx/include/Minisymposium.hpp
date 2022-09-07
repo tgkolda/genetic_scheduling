@@ -19,12 +19,15 @@ public:
   bool shares_participant(const Minisymposium& m) const;
   bool comes_before(const Minisymposium& m) const;
   bool shares_theme(const Minisymposium& m) const;
+  KOKKOS_FUNCTION bool higher_priority(const Minisymposium& m) const;
   KOKKOS_FUNCTION unsigned tid() const;
+  unsigned priority() const;
   const std::string& title() const;
 
 private:
   std::string title_;
   unsigned tid_;
+  unsigned room_priority_;
   std::unordered_set<std::string> participants_;
   unsigned part_;
 };

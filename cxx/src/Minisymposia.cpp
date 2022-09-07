@@ -162,3 +162,7 @@ const std::string& Minisymposia::get_theme(unsigned i) const {
   auto id = h_data_[i].tid();
   return themes_[id];
 }
+
+unsigned Minisymposia::get_priority(unsigned i) const {
+  return h_data_[i].priority();
+}

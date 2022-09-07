@@ -14,6 +14,7 @@ public:
   void print_best_schedule() const;
   void initialize_schedules(unsigned nschedules);
   void rate_schedules(unsigned eliteSize);
+  void fix_schedules();
   void compute_weights();
   void breed_population(unsigned eliteSize);
   KOKKOS_FUNCTION void breed(unsigned mom_index, unsigned dad_index, unsigned child_index) const;

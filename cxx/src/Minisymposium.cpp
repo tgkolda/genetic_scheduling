@@ -21,6 +21,9 @@ Minisymposium::Minisymposium(const std::string& title,
     participants_.insert(organizer);
   for(const auto& speaker : speakers)
     participants_.insert(speaker);
+
+  // TODO This should come from the input rather than random numbers
+  room_priority_ = rand() % 50;
 }
 
 bool Minisymposium::shares_participant(const Minisymposium& m) const {
@@ -40,8 +43,17 @@ bool Minisymposium::shares_theme(const Minisymposium& m) const {
 }
 
 KOKKOS_FUNCTION
+bool Minisymposium::higher_priority(const Minisymposium& m) const {
+  return room_priority_ < m.room_priority_;
+}
+
+KOKKOS_FUNCTION
 unsigned Minisymposium::tid() const {
   return tid_;
+}
+
+unsigned Minisymposium::priority() const {
+  return room_priority_;
 }
 
 const std::string& Minisymposium::title() const {

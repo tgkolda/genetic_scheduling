@@ -23,6 +23,7 @@ void Scheduler::run_genetic(unsigned popSize,
   for(unsigned g=0; g<generations; g++) {
     std::cout << "generation " << g << ":\n";
 
+    fix_schedules();
     rate_schedules(eliteSize);
     print_best_schedule();
     compute_weights();
@@ -95,16 +96,7 @@ void Scheduler::rate_schedules(unsigned eliteSize) {
           for(unsigned r2=0; r2<nrooms(); r2++) {
             if(current_schedules_(sc,sl2,r2) >= nmini) continue;
             if(mini_.breaks_ordering(current_schedules_(sc,sl1,r1), current_schedules_(sc,sl2,r2))) {
-              // If we can swap the events to avoid an issue, do that
-              if(sl1 == sl2) {
-                penalty++;
-              }
-              else {
-                // swap the values
-                auto temp = current_schedules_(sc,sl1,r1);
-                current_schedules_(sc,sl1,r1) = current_schedules_(sc,sl2,r2);
-                current_schedules_(sc,sl2,r2) = temp;
-              }
+              penalty++;
             }
           }
         }
@@ -151,6 +143,46 @@ void Scheduler::rate_schedules(unsigned eliteSize) {
 
   // Sort the indices based on the ratings
   sort_on_ratings();
+}
+
+void Scheduler::fix_schedules() {
+  unsigned nmini = mini_.size();
+  Kokkos::parallel_for("fix schedules", nschedules(), KOKKOS_CLASS_LAMBDA(unsigned sc) {
+    // If we can put multi-part minisymposia in order, do that
+    for(unsigned sl1=0; sl1<nslots(); sl1++) {
+      for(unsigned r1=0; r1<nrooms(); r1++) {
+        if(current_schedules_(sc,sl1,r1) >= nmini) continue;
+        for(unsigned sl2=sl1+1; sl2<nslots(); sl2++) {
+          for(unsigned r2=0; r2<nrooms(); r2++) {
+            if(current_schedules_(sc,sl2,r2) >= nmini) continue;
+            if(mini_.breaks_ordering(current_schedules_(sc,sl1,r1), current_schedules_(sc,sl2,r2))) {
+              // swap the values
+              auto temp = current_schedules_(sc,sl1,r1);
+              current_schedules_(sc,sl1,r1) = current_schedules_(sc,sl2,r2);
+              current_schedules_(sc,sl2,r2) = temp;
+            }
+          }
+        }
+      }
+    }
+
+    // Sort the minisymposia in each slot based on the room priority
+    for(unsigned sl=0; sl<nslots(); sl++) {
+      for(unsigned i=1; i<nrooms(); i++) {
+        for(unsigned j=0; j<nrooms()-i; j++) {
+          auto m1 = current_schedules_(sc,sl,j);
+          auto m2 = current_schedules_(sc,sl,j+1);
+          if(m2 >= nmini) continue;
+          if(m1 >= nmini || mini_[m2].higher_priority(mini_[m1])) {
+              // swap the values
+              auto temp = current_schedules_(sc,sl,j);
+              current_schedules_(sc,sl,j) = current_schedules_(sc,sl,j+1);
+              current_schedules_(sc,sl,j+1) = temp;
+          }
+        }
+      }
+    }
+  });
 }
 
 void Scheduler::compute_weights() {
@@ -266,6 +298,8 @@ void Scheduler::breed(unsigned mom_index, unsigned dad_index, unsigned child_ind
 
 void Scheduler::mutate_population(double mutationRate) {
   Kokkos::parallel_for("Mutations", nschedules(), KOKKOS_CLASS_LAMBDA(unsigned sc) {
+    // Don't mutate the best schedule
+    if (sc == 0) return;
     for(unsigned sl=0; sl<nslots(); sl++) {
       for(unsigned r=0; r<nrooms(); r++) {
         auto gen = pool_.get_state();
@@ -392,11 +426,11 @@ void Scheduler::record(const std::string& filename) const {
   fout << "# Conference schedule with score " << maxloc.val << "\n\n";
 
   for(unsigned slot=0; slot<nslots(); slot++) {
-    fout << "|Slot " << slot << "|   |   |\n|---|---|---|\n";
+    fout << "|Slot " << slot << "|   |   |\n|---|---|---|---|\n";
     for(unsigned room=0; room<nrooms(); room++) {
       unsigned mid = h_current_schedules(sc, slot, room);
       if(mid < nmini) {
-        fout << "|" << mini_.get_title(mid) << "|" << mini_.get_theme(mid) << "|" << rooms_.name(room) << "|\n";
+        fout << "|" << mini_.get_title(mid) << "|" << mini_.get_theme(mid) << "|" << mini_.get_priority(mid) << "|" << rooms_.name(room) << "|\n";
       }
     }
     fout << "\n";
