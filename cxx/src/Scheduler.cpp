@@ -270,22 +270,15 @@ void Scheduler::mutate_population(double mutationRate) {
       for(unsigned r=0; r<nrooms(); r++) {
         auto gen = pool_.get_state();
         if(gen.drand() < mutationRate) {
-          // Swap the element with something else
-          unsigned r2 = r, sl2 = sl;
-          if(gen.rand(2) == 0) { // Flip a coin to see if we swap rooms or slots
-            while(sl2 == sl) {
-              sl2 = gen.rand(nslots());
-            }
-          }
-          else {
-            while(r2 == r) {
-              r2 = gen.rand(nrooms());
-            }
+          // Swap the element with another slot
+          unsigned sl2 = sl;
+          while(sl2 == sl) {
+            sl2 = gen.rand(nslots());
           }
           pool_.free_state(gen);
           auto temp = next_schedules_(sc,sl,r);
-          next_schedules_(sc,sl,r) = next_schedules_(sc,sl2,r2);
-          next_schedules_(sc,sl2,r2) = temp;
+          next_schedules_(sc,sl,r) = next_schedules_(sc,sl2,r);
+          next_schedules_(sc,sl2,r) = temp;
         }
         else {
           pool_.free_state(gen);
