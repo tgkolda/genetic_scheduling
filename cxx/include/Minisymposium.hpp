@@ -21,7 +21,7 @@ public:
   bool shares_theme(const Minisymposium& m) const;
   KOKKOS_FUNCTION bool higher_priority(const Minisymposium& m) const;
   KOKKOS_FUNCTION unsigned tid() const;
-  unsigned priority() const;
+  KOKKOS_FUNCTION unsigned priority() const;
   const std::string& title() const;
 
 private:

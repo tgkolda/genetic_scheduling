@@ -25,7 +25,9 @@ public:
   void set_overlapping_participants();
   void set_prerequisites();
   KOKKOS_FUNCTION double map_theme_penalty(unsigned nproblems) const;
+  KOKKOS_FUNCTION double map_priority_penalty(unsigned nproblems) const;
   void set_overlapping_themes(unsigned nrooms, unsigned nslots);
+  void set_priority_penalty_bounds(unsigned nslots);
   const std::string& get_title(unsigned i) const;
   const std::string& get_theme(unsigned i) const;
   unsigned get_priority(unsigned i) const;
@@ -41,6 +43,8 @@ private:
   unsigned max_penalty_{1};
   unsigned min_theme_penalty_{0};
   unsigned max_theme_penalty_{0};
+  unsigned min_priority_penalty_{0};
+  unsigned max_priority_penalty_{0};
 };
 
 #endif /* MINISYMPOSIA_H */

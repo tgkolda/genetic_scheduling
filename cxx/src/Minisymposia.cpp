@@ -37,6 +37,7 @@ Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigne
   set_overlapping_participants();
   set_prerequisites();
   set_overlapping_themes(nrooms, nslots);
+  set_priority_penalty_bounds(nslots);
 }
 
 KOKKOS_FUNCTION unsigned Minisymposia::size() const {
@@ -120,6 +121,11 @@ double Minisymposia::map_theme_penalty(unsigned nproblems) const {
   return (nproblems - min_theme_penalty_) / double(max_theme_penalty_ - min_theme_penalty_);
 }
 
+KOKKOS_FUNCTION
+double Minisymposia::map_priority_penalty(unsigned nproblems) const {
+  return (nproblems - min_priority_penalty_) / double(max_priority_penalty_ - min_priority_penalty_);
+}
+
 void Minisymposia::set_overlapping_themes(unsigned nrooms, unsigned nslots) {
   using Kokkos::parallel_for;
   using Kokkos::parallel_reduce;
@@ -132,31 +138,74 @@ void Minisymposia::set_overlapping_themes(unsigned nrooms, unsigned nslots) {
 
   size_t nthemes = themes_.size();
   Kokkos::View<unsigned*, Kokkos::HostSpace> theme_penalties("theme penalties", nthemes);
-  RangePolicy<DefaultHostExecutionSpace> rp(DefaultHostExecutionSpace(), 0, nmini);
-  parallel_for("set overlapping themes", rp, [=] (unsigned i) {
+  for(unsigned i=0; i<nmini; i++) {
     unsigned tid = h_data_[i].tid();
-    Kokkos::atomic_increment(&theme_penalties(tid));
+    theme_penalties[tid]++;
     for(unsigned j=0; j<nmini; j++) {
       if(i == j) continue;
       if(h_data_[i].shares_theme(h_data_[j])) {
         h_same_themes(i,j) = true;
       }
     }
-  });
+  }
   Kokkos::deep_copy(same_themes_, h_same_themes);
   
-  RangePolicy<DefaultHostExecutionSpace> rp2(DefaultHostExecutionSpace(), 0, nthemes);
-  parallel_reduce("compute max theme penalty", rp2, [=] (unsigned i, unsigned& lpenalty) {
+  for(unsigned i=0; i<nthemes; i++) {
     for(int p = theme_penalties[i]; p > 1; p -= nrooms) {
-      lpenalty += pow(Kokkos::min(unsigned(p),nrooms)-1, 2);
+      max_theme_penalty_ += pow(Kokkos::min(unsigned(p),nrooms)-1, 2);
     }
-  }, max_theme_penalty_);
+  }
 
-  parallel_reduce("compute min theme penalty", rp2, [=] (unsigned i, unsigned& lpenalty) {
+  for(unsigned i=0; i<nthemes; i++) {
     unsigned nperslot = theme_penalties[i] / nslots;
     unsigned remainder = theme_penalties[i] % nslots;
-    lpenalty += remainder * pow(nperslot,2) + (nslots - remainder) * pow(nperslot-1,2);
-  }, min_theme_penalty_);
+    if(nperslot > 0) {
+      min_theme_penalty_ += remainder * pow(nperslot,2) + (nslots - remainder) * pow(nperslot-1,2);
+    }
+  }
+
+  printf("Theme penalty bounds: %i %i\n", min_theme_penalty_, max_theme_penalty_);
+}
+
+void Minisymposia::set_priority_penalty_bounds(unsigned nslots) {
+  // Get the priorities
+  std::vector<unsigned> priority_list(size());
+  for(unsigned i=0; i<size(); i++) {
+    priority_list[i] = h_data_[i].priority();
+  }
+
+  // Sort the priorities
+  std::sort(priority_list.begin(), priority_list.end());
+
+  // Compute the best schedule penalty
+  unsigned slot=0;
+  unsigned room_index=0;
+  for(unsigned i=0; i<size(); i++) {
+    if(priority_list[i] < room_index) {
+      min_priority_penalty_ += pow(room_index - priority_list[i], 2);
+    }
+    slot++;
+    if(slot >= nslots) {
+      slot = 0;
+      room_index++;
+    }
+  }
+
+  // Compute the worst schedule penalty
+  slot=0;
+  room_index=0;
+  for(unsigned i=size(); i > 0; i--) {
+    if(priority_list[i] < room_index) {
+      max_priority_penalty_ += pow(room_index - priority_list[i-1], 2);
+    }
+    slot++;
+    if(slot >= nslots) {
+      slot = 0;
+      room_index++;
+    }
+  }
+
+  printf("Priority penalty bounds: %i %i\n", min_priority_penalty_, max_priority_penalty_);
 }
 
 const std::string& Minisymposia::get_title(unsigned i) const {

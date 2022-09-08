@@ -52,6 +52,7 @@ unsigned Minisymposium::tid() const {
   return tid_;
 }
 
+KOKKOS_FUNCTION
 unsigned Minisymposium::priority() const {
   return room_priority_;
 }

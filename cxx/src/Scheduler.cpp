@@ -133,7 +133,21 @@ void Scheduler::rate_schedules(unsigned eliteSize) {
         }
       }
     }
-    penalty += mini_.map_theme_penalty(theme_penalty);
+    // Compute the penalty related to priority
+    unsigned priority_penalty = 0;
+    for(unsigned sl=0; sl<nslots(); sl++) {
+      for(unsigned r=0; r<nrooms(); r++) {
+        unsigned mini_index = current_schedules_(sc,sl,r);
+        if(mini_index >= nmini) continue;
+        unsigned priority = mini_[mini_index].priority();
+        if(priority < r) {
+          priority_penalty += pow(r-priority, 2);
+        }
+      }
+    }
+    if(sc == 0) printf("Theme penalty: %i\nPriority penalty: %i\n", theme_penalty, priority_penalty);
+    penalty += mini_.map_theme_penalty(theme_penalty) / 2.0;
+    penalty += mini_.map_priority_penalty(priority_penalty) / 2.0;
     ratings_[sc] = 1 - penalty / max_penalty;
   });
 
