@@ -131,11 +131,11 @@ void Minisymposia::set_overlapping_themes(unsigned nrooms, unsigned nslots) {
   auto h_same_themes = Kokkos::create_mirror_view(same_themes_);
 
   size_t nthemes = themes_.size();
-  Kokkos::View<unsigned*, Kokkos::HostSpace, Kokkos::MemoryTraits<Kokkos::Atomic>> theme_penalties("theme penalties", nthemes);
+  Kokkos::View<unsigned*, Kokkos::HostSpace> theme_penalties("theme penalties", nthemes);
   RangePolicy<DefaultHostExecutionSpace> rp(DefaultHostExecutionSpace(), 0, nmini);
   parallel_for("set overlapping themes", rp, [=] (unsigned i) {
     unsigned tid = h_data_[i].tid();
-    theme_penalties[tid]++;
+    Kokkos::atomic_increment(&theme_penalties(tid));
     for(unsigned j=0; j<nmini; j++) {
       if(i == j) continue;
       if(h_data_[i].shares_theme(h_data_[j])) {
@@ -148,7 +148,7 @@ void Minisymposia::set_overlapping_themes(unsigned nrooms, unsigned nslots) {
   RangePolicy<DefaultHostExecutionSpace> rp2(DefaultHostExecutionSpace(), 0, nthemes);
   parallel_reduce("compute max theme penalty", rp2, [=] (unsigned i, unsigned& lpenalty) {
     for(int p = theme_penalties[i]; p > 1; p -= nrooms) {
-      lpenalty += pow(min(p,nrooms)-1, 2);
+      lpenalty += pow(Kokkos::min(unsigned(p),nrooms)-1, 2);
     }
   }, max_theme_penalty_);
 
