@@ -10,11 +10,11 @@ int main(int argc, char* argv[]) {
     Rooms rooms("../../data/rooms.yaml");
 
     // Read the minisymposia from yaml
-    Minisymposia mini("../../data/minisymposia_predicted_theme.yaml", rooms.size(), nslots);
+    Minisymposia mini("../../data/minisymposia_improved_themes.yaml", rooms.size(), nslots);
  
     // Run the genetic algorithm
     Scheduler s(mini, rooms, nslots);
-    s.run_genetic(1000, 200, 0.01, 1000);
+    s.run_genetic(10000, 2000, 0.01, 10000);
     s.record("schedule.md");
   }
   Kokkos::finalize();

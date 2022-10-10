@@ -27,6 +27,7 @@ public:
   KOKKOS_FUNCTION double map_theme_penalty(unsigned nproblems) const;
   KOKKOS_FUNCTION double map_priority_penalty(unsigned nproblems) const;
   void set_overlapping_themes(unsigned nrooms, unsigned nslots);
+  void set_priorities(unsigned nslots);
   void set_priority_penalty_bounds(unsigned nslots);
   const std::string& get_title(unsigned i) const;
   const std::string& get_theme(unsigned i) const;

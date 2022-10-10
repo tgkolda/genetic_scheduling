@@ -19,7 +19,7 @@ for key, value in mini_list.items():
         except StopIteration:
             print('Could not find author ' + speaker)
     if nspeakers > 0:
-        mini_list[key]['estimated popularity'] = pop / nspeakers
+        mini_list[key]['average citation count'] = pop / nspeakers
     
 # Saves the new yaml
 with open(r'//wsl.localhost/Ubuntu/home/amklinv/genetic_scheduling/data/minisymposia_predicted_popularity.yaml', 'w') as file:

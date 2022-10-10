@@ -8,7 +8,7 @@ A Posteriori Error Estimation for Various Adaptive Finite Element Methods:
     \ error estimation for a variety of finite element methods, including classical\
     \ FEM, least-squares FEM, virtual element method, and immersed finite element\
     \ method (a FEM with unfitted meshes)."
-  estimated popularity: 19375.75
+  average citation count: 19375.75
   organizer: Xu Zhang
   predicted_theme: 13 error precis comput arithmet cost
   speakers:
@@ -27,7 +27,7 @@ A Posteriori Error Estimation for Various Adaptive Finite Element Methods:
   speakers: []
 'AWM Workshop:  Data Science and Mathematics - Part I of II':
   abstract: Session description to follow.
-  estimated popularity: 24683.75
+  average citation count: 24683.75
   organizer: Deanna Needell
   part: 1
   predicted_theme: 19 data assimil model comput uncertainti
@@ -38,7 +38,7 @@ A Posteriori Error Estimation for Various Adaptive Finite Element Methods:
   - Anna Little
 'AWM Workshop:  Data Science and Mathematics - Part II of II':
   abstract: Session description to follow.
-  estimated popularity: 5213.5
+  average citation count: 5213.5
   organizer: Deanna Needell
   part: 2
   predicted_theme: 19 data assimil model comput uncertainti
@@ -61,7 +61,7 @@ Accelerating Electronic Structure Calculations with GPUs - Part I of II:
     algorithms, models, languages and implementations used today in a variety of codes,
     and will discuss how these developments are helping to push the computational
     limits in real applications.
-  estimated popularity: 13587.5
+  average citation count: 13587.5
   organizer: Jean-Luc Fattebert
   part: 1
   predicted_theme: 15 comput materi model electron numer
@@ -84,7 +84,7 @@ Accelerating Electronic Structure Calculations with GPUs - Part II of II:
     algorithms, models, languages and implementations used today in a variety of codes,
     and will discuss how these developments are helping to push the computational
     limits in real applications.
-  estimated popularity: 603.75
+  average citation count: 603.75
   organizer: Jean-Luc Fattebert
   part: 2
   predicted_theme: 15 comput materi model electron numer
@@ -99,7 +99,7 @@ Adjoints of Nonlinear Dynamics in CFD Applications:
     in nature, and overall computationally expensive. Subsequently, simulations of
     fluid motion demand state of the art solutions from fields such as numerical analysis,
     high performance computing, mathematical modeling, to just name a few.
-  estimated popularity: 7084.333333333333
+  average citation count: 7084.333333333333
   organizer: Oana Marin
   predicted_theme: 5 model comput transport physic scale
   speakers:
@@ -115,7 +115,7 @@ Advanced HPC Trends for Oil and Gas Applications - Part I of II:
     ratios from existing fields. In fact, these requirements translate into larger
     volumes of data to process and models of higher fidelity in terms of physical
     formulation and space and time resolutions.
-  estimated popularity: 158.75
+  average citation count: 158.75
   organizer: Rached Abdelkhalak
   part: 1
   predicted_theme: 5 model comput transport physic scale
@@ -133,7 +133,7 @@ Advanced HPC Trends for Oil and Gas Applications - Part II of II:
     ratios from existing fields. In fact, these requirements translate into larger
     volumes of data to process and models of higher fidelity in terms of physical
     formulation and space and time resolutions.
-  estimated popularity: 93.5
+  average citation count: 93.5
   organizer: Rached Abdelkhalak
   part: 2
   predicted_theme: 5 model comput transport physic scale
@@ -152,7 +152,7 @@ Advances In Nonlinearly Stable Methods:
     constructing high-order methods that mimic key stability properties of the governing
     nonlinear PDEs including entropy stability, dissipation of kinetic energy, and
     others.
-  estimated popularity: 3376.25
+  average citation count: 3376.25
   organizer: Nail Yamaleev
   predicted_theme: 9 numer comput equat wave thi
   speakers:
@@ -170,7 +170,7 @@ Advances and Applications in Numerical Methods for Interfacial Flows -  Part I o
     still remain. This minisymposium aims to bring together experts in this area to
     discuss new developments across different methods and identify new application
     areas.
-  estimated popularity: 33508.8
+  average citation count: 33508.8
   organizer: Pengtao Yue
   predicted_theme: 0 flow numer simul fluid scheme
   speakers:
@@ -189,7 +189,7 @@ Advances and Applications in Numerical Methods for Interfacial Flows - Part II o
     still remain. This minisymposium aims to bring together experts in this area to
     discuss new developments across different methods and identify new application
     areas.
-  estimated popularity: 6117.0
+  average citation count: 6117.0
   organizer: Pengtao Yue
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -204,7 +204,7 @@ Advances and Applications of Numerical Methods for Free Boundaries:
     dynamics. Numerical methods that seek to impose sharp boundary conditions will
     be emphasized as well as methods on adaptive grids and strategies for parallel
     environment.
-  estimated popularity: 2130.5
+  average citation count: 2130.5
   organizer: Frederic Gibou
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -219,7 +219,7 @@ Advances in Analyzing Floating-point Errors in Computational Science - Part I of
     half-precision arithmetic (fp16) is becoming increasingly attractive. These two
     trends raise questions about the validity and sharpness of traditional rounding
     error bounds.
-  estimated popularity: 1658.25
+  average citation count: 1658.25
   organizer: Pierre Blanchard
   part: 1
   predicted_theme: 13 error precis comput arithmet cost
@@ -235,7 +235,7 @@ Advances in Analyzing Floating-point Errors in Computational Science - Part II o
     half-precision arithmetic (fp16) is becoming increasingly attractive. These two
     trends raise questions about the validity and sharpness of traditional rounding
     error bounds.
-  estimated popularity: 4113.25
+  average citation count: 4113.25
   organizer: Pierre Blanchard
   part: 2
   predicted_theme: 13 error precis comput arithmet cost
@@ -255,7 +255,7 @@ Advances in Computational Methods for Data Assimilation - Part I of II:
     attract more and more attentions. In this minisymposium, we present recent research
     achievements in computational methods for data assimilation, and we explore both
     the forward simulations and the inverse inferences for the data assimilation problem.
-  estimated popularity: 16364.25
+  average citation count: 16364.25
   organizer: Feng Bao
   part: 1
   predicted_theme: 19 data assimil model comput uncertainti
@@ -275,7 +275,7 @@ Advances in Computational Methods for Data Assimilation - Part II of II:
     attract more and more attentions. In this minisymposium, we present recent research
     achievements in computational methods for data assimilation, and we explore both
     the forward simulations and the inverse inferences for the data assimilation problem.
-  estimated popularity: 1470.0
+  average citation count: 1470.0
   organizer: Feng Bao
   part: 2
   predicted_theme: 19 data assimil model comput uncertainti
@@ -298,7 +298,7 @@ Advances in Global Sensitivity Analysis with Applications to Complex Systems -  
     \ Areas of particular interest are problems with dependent inputs, problems with\
     \ vectorial or functional outputs, and applications of GSA in complex physical\
     \ systems."
-  estimated popularity: 6883.5
+  average citation count: 6883.5
   organizer: Alen Alexanderian
   predicted_theme: 7 model paramet comput bayesian data
   speakers:
@@ -319,7 +319,7 @@ Advances in Global Sensitivity Analysis with Applications to Complex Systems - P
     \ Areas of particular interest are problems with dependent inputs, problems with\
     \ vectorial or functional outputs, and applications of GSA in complex physical\
     \ systems."
-  estimated popularity: 2301.75
+  average citation count: 2301.75
   organizer: Alen Alexanderian
   part: 2
   predicted_theme: 7 model paramet comput bayesian data
@@ -335,7 +335,7 @@ Advances in Multi-method Time Discretizations of Evolutionary PDEs - Part I of I
     ingredient of the solution  process that determines the overall accuracy and stability
     of the  solution, the computational efficiency, and the data dependencies in a  parallel
     environment.
-  estimated popularity: 2291.0
+  average citation count: 2291.0
   organizer: Adrian Sandu
   part: 1
   predicted_theme: 12 parallel scalabl comput time equat
@@ -351,7 +351,7 @@ Advances in Multi-method Time Discretizations of Evolutionary PDEs - Part II of 
     ingredient of the solution  process that determines the overall accuracy and stability
     of the  solution, the computational efficiency, and the data dependencies in a  parallel
     environment.
-  estimated popularity: 39269.0
+  average citation count: 39269.0
   organizer: Emil M. Constantinescu
   part: 2
   predicted_theme: 12 parallel scalabl comput time equat
@@ -367,7 +367,7 @@ Advances in Multi-method Time Discretizations of Evolutionary PDEs - Part II of 
     and its applications are therefore an active area of research. This minisymposium
     reports on recent advances in phase retrieval ranging from algorithm advancement,
     experimental design, to application in high-energy x-ray science.
-  estimated popularity: 9639.25
+  average citation count: 9639.25
   organizer: Selin Aslan
   part: 1
   predicted_theme: 17 comput softwar scientif thi complex
@@ -383,7 +383,7 @@ Advances in Multi-method Time Discretizations of Evolutionary PDEs - Part II of 
     and its applications are therefore an active area of research. This minisymposium
     reports on recent advances in phase retrieval ranging from algorithm advancement,
     experimental design, to application in high-energy x-ray science.
-  estimated popularity: 466.25
+  average citation count: 466.25
   organizer: Selin Aslan
   part: 2
   predicted_theme: 17 comput softwar scientif thi complex
@@ -397,7 +397,7 @@ Advances in Quasi-Monte Carlo Methods - Part I of II:
     high dimensional integrals.  Recent advances in qMC include the development of
     open source software, applications to uncertainty quantification, and multivariate
     statistical inference.  This minisymposium highlights some of these advances.
-  estimated popularity: 7340.0
+  average citation count: 7340.0
   organizer: Fred J. Hickernell
   part: 1
   predicted_theme: 7 model paramet comput bayesian data
@@ -411,7 +411,7 @@ Advances in Quasi-Monte Carlo Methods - Part II of II:
     high dimensional integrals. Recent advances in qMC include the development of
     open source software, applications to uncertainty quantification, and multivariate
     statistical inference. This minisymposium highlights some of these advances.
-  estimated popularity: 3478.3333333333335
+  average citation count: 3478.3333333333335
   organizer: Fred J. Hickernell
   part: 2
   predicted_theme: 7 model paramet comput bayesian data
@@ -431,7 +431,7 @@ Advances in Rare Event Simulation for Complex Dynamical Systems - Part I of II:
     in fluid dynamics, aerospace systems, chemistry, atmospheric modeling, finance,
     and electrical systems. We will also explore common themes and challenges across
     these approaches.
-  estimated popularity: 1031.25
+  average citation count: 1031.25
   organizer: Benjamin J. Zhang
   part: 1
   predicted_theme: 3 model system dynam event stochast
@@ -452,7 +452,7 @@ Advances in Rare Event Simulation for Complex Dynamical Systems - Part II of II:
     in fluid dynamics, aerospace systems, chemistry, atmospheric modeling, finance,
     and electrical systems. We will also explore common themes and challenges across
     these approaches.
-  estimated popularity: 3150.25
+  average citation count: 3150.25
   organizer: Benjamin J. Zhang
   part: 2
   predicted_theme: 3 model system dynam event stochast
@@ -480,7 +480,7 @@ Advances in Scalable Iterative, Multigrid and Direct Sparse Linear Solvers:
     in the time to solution.  We have brought together experts in each of these areas
     who have pioneered new approaches to  improving the parallel scalability of sparse
     solvers.
-  estimated popularity: 7483.5
+  average citation count: 7483.5
   organizer: Katarzyna Swirydowicz
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -496,7 +496,7 @@ Advances in Unstructured Mesh Algorithms and their Applications - Part I of II:
     a few.  In addition, meshes have been used in interesting applications involving
     fluid-structure interaction, and many others. This minisymposium will feature
     presentations on some of these advancements in meshing algorithms and their applications.
-  estimated popularity: 731.0
+  average citation count: 731.0
   organizer: Mike Stees
   part: 1
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -513,7 +513,7 @@ Advances in Unstructured Mesh Algorithms and their Applications - Part II of II:
     a few.  In addition, meshes have been used in interesting applications involving
     fluid-structure interaction, and many others. This minisymposium will feature
     presentations on some of these advancements in meshing algorithms and their applications.
-  estimated popularity: 6816.25
+  average citation count: 6816.25
   organizer: Mike Stees
   part: 2
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -532,7 +532,7 @@ Algorithms and Software for Nonlinear Eigenvalue Problems - Part I of II:
     problems received a lot of attention from the numerical linear algebra community
     during the last decade, the majority of the work has been focused on polynomial
     eigenvalue problems.
-  estimated popularity: 1928.5
+  average citation count: 1928.5
   organizer: Roel Van Beeumen
   part: 1
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -551,7 +551,7 @@ Algorithms and Software for Nonlinear Eigenvalue Problems - Part II of II:
     problems received a lot of attention from the numerical linear algebra community
     during the last decade, the majority of the work has been focused on polynomial
     eigenvalue problems.
-  estimated popularity: 3029.0
+  average citation count: 3029.0
   organizer: Roel Van Beeumen
   part: 2
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -580,7 +580,7 @@ Application of Fractional Calculus in Material Science and Engineering - Part I 
     the research scholars who are working in the application of fractional calculus
     in material science and engineering to present their results and exchange ideas
     to propose future research in this field.
-  estimated popularity: 8745.0
+  average citation count: 8745.0
   organizer: Somayeh Mashayekhi
   part: 1
   predicted_theme: 14 fraction model nonloc calculu materi
@@ -610,7 +610,7 @@ Application of Fractional Calculus in Material Science and Engineering - Part II
     the research scholars who are working in the application of fractional calculus
     in material science and engineering to present their results and exchange ideas
     to propose future research in this field.
-  estimated popularity: 3004.0
+  average citation count: 3004.0
   organizer: Somayeh Mashayekhi
   part: 2
   predicted_theme: 14 fraction model nonloc calculu materi
@@ -628,7 +628,7 @@ Applications of Data Assimilation in Science, Engineering, and Industry - Part I
     in a context where no first principles model exists. This minisymposium aims to
     explore recent novel applications of methodology and algorithms for data assimilation
     and inference in Science, Engineering, and Industry.
-  estimated popularity: 2.75
+  average citation count: 2.75
   organizer: Amr El-Bakry
   part: 1
   predicted_theme: 19 data assimil model comput uncertainti
@@ -646,7 +646,7 @@ Applications of Data Assimilation in Science, Engineering, and Industry - Part I
     in a context where no first principles model exists. This minisymposium aims to
     explore recent novel applications of methodology and algorithms for data assimilation
     and inference in Science, Engineering, and Industry.
-  estimated popularity: 7195.5
+  average citation count: 7195.5
   organizer: Amr El-Bakry
   part: 2
   predicted_theme: 19 data assimil model comput uncertainti
@@ -671,7 +671,7 @@ Applications of Machine Learning in Fluid Mechanics:
     analysis, support vector machines, neural networks, and clustering, applied to
     a variety of problems in classifying and modeling vortex patterns in bio-inspired
     fluid flows.
-  estimated popularity: 2397.25
+  average citation count: 2397.25
   organizer: Jonathan H. Tu
   predicted_theme: 4 network eigenvalu structur comput spars
   speakers:
@@ -687,7 +687,7 @@ Applications of Tensor Decompositions:
     across areas spanning signal processing, cybersecurity, machine learning, and
     beyond. The talks will consider additional issues including algorithmic scalability,
     parallelism, and software stacks, among others.
-  estimated popularity: 9103.2
+  average citation count: 9103.2
   organizer: Richard Vuduc
   predicted_theme: 18 tensor data decomposit comput scientif
   speakers:
@@ -703,7 +703,7 @@ Applications of the AMReX Block Structured Adaptive Mesh Refinement Framework - 
     software framework for massively parallel block-structured adaptive mesh refinement
     (AMR) applications.  The core libraries include linear solvers, particle support,
     embedded boundary geometry representation, profiling tools, and hybrid parallelism.
-  estimated popularity: 0.0
+  average citation count: 0.0
   organizer: Andy J. Nonaka
   part: 1
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -719,7 +719,7 @@ Applications of the AMReX Block Structured Adaptive Mesh Refinement Framework - 
     software framework for massively parallel block-structured adaptive mesh refinement
     (AMR) applications.  The core libraries include linear solvers, particle support,
     embedded boundary geometry representation, profiling tools, and hybrid parallelism.
-  estimated popularity: 1669.75
+  average citation count: 1669.75
   organizer: Andy J. Nonaka
   part: 2
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -733,7 +733,7 @@ Asynchronous Iterative Methods:
     and boundary data exchange. In asynchronous iterative methods this dependency
     is relaxed and processing units are allowed to use whatever data is available
     at the beginning of a computation phase.
-  estimated popularity: 4521.75
+  average citation count: 4521.75
   organizer: Christian Glusa
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -750,7 +750,7 @@ Asynchronous Iterative Methods:
     \ will explore the state-of-the-art in this area, including the development of\
     \ frameworks for in-situ visualisation, data compression, feature identification,\
     \ and feature tracking."
-  estimated popularity: 2433.5
+  average citation count: 2433.5
   organizer: Marius K. Koch
   part: 1
   predicted_theme: 0 flow numer simul fluid scheme
@@ -768,7 +768,7 @@ Asynchronous Iterative Methods:
     \ will explore the state-of-the-art in this area, including the development of\
     \ frameworks for in-situ visualisation, data compression, feature identification,\
     \ and feature tracking."
-  estimated popularity: 1072.25
+  average citation count: 1072.25
   organizer: Marius K. Koch
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -784,7 +784,7 @@ Asynchronous Iterative Methods:
     elements of parallel algorithms and strategies for designing parallel algorithms.
     In addition to discussion of concepts, we present real-life problems and solutions,
     and the implications of future architectures on parallel algorithm design.
-  estimated popularity: 0.0
+  average citation count: 0.0
   organizer: Mary Ann E. Leung
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -799,7 +799,7 @@ Asynchronous Iterative Methods:
     funded participants present what they learned during the week and through the
     Guided Affinity Group activities.  All community members are welcome to attend.   Speakers:  Funded
     BE participants'
-  estimated popularity: 0.0
+  average citation count: 0.0
   organizer: Mary Ann E. Leung
   predicted_theme: 16 program cse comput scienc student
   speakers:
@@ -813,7 +813,7 @@ Asynchronous Iterative Methods:
     The massive computational power of leadership class computing and advances in
     machine learning provide exciting opportunities to overcome hurdles in drug discovery
     and development.
-  estimated popularity: 155.66666666666666
+  average citation count: 155.66666666666666
   organizer: Sally R. Ellingson
   predicted_theme: 11 learn data model machin comput
   speakers:
@@ -829,7 +829,7 @@ Asynchronous Iterative Methods:
     The massive computational power of leadership class computing and advances in
     machine learning provide exciting opportunities to overcome hurdles in drug discovery
     and development.
-  estimated popularity: 9397.25
+  average citation count: 9397.25
   organizer: Sally R. Ellingson
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -851,7 +851,7 @@ Asynchronous Iterative Methods:
     data indicates that there has been movement towards diversification in academics
     and employment.  Yet, the underrepresentation of women and minorities continues
     to be problematic, especially in CSE.
-  estimated popularity: 66.5
+  average citation count: 66.5
   organizer: Mary Ann E. Leung
   predicted_theme: 16 program cse comput scienc student
   speakers:
@@ -865,7 +865,7 @@ Asynchronous Iterative Methods:
     offers a dynamic program aimed at promoting diversity and inclusion through travel
     grants to SIAM CSE conferences and opportunities for the CSE community to learn
     about and support diversity and inclusion.
-  estimated popularity: 212.75
+  average citation count: 212.75
   organizer: Mary Ann E. Leung
   part: 1
   predicted_theme: 16 program cse comput scienc student
@@ -880,7 +880,7 @@ Asynchronous Iterative Methods:
     offers a dynamic program aimed at promoting diversity and inclusion through travel
     grants to SIAM CSE conferences and opportunities for the CSE community to learn
     about and support diversity and inclusion.
-  estimated popularity: 198.75
+  average citation count: 198.75
   organizer: Mary Ann E. Leung
   part: 2
   predicted_theme: 16 program cse comput scienc student
@@ -897,21 +897,21 @@ Asynchronous Iterative Methods:
     also have the opportunity to accelerate a small application, as well as learn
     about different optimizations. The workshop will offer content appropriate for
     beginners.
-  estimated popularity: 0.0
+  average citation count: 0.0
   organizer: Mary Ann E. Leung
   predicted_theme: 16 program cse comput scienc student
   speakers:
   - Mary Ann E. Leung
 'BE: Lightning Talks':
   abstract: Description not available.
-  estimated popularity: 0.0
+  average citation count: 0.0
   organizer: Mary Ann E. Leung
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
   - Mary Ann E. Leung
 "BE: Mentor Prot\xE9g\xE9 session CANCELLED":
   abstract: Description not available.
-  estimated popularity: 0.0
+  average citation count: 0.0
   organizer: Mary Ann E. Leung
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -952,7 +952,7 @@ Asynchronous Iterative Methods:
     offline analysis has become unfeasible as well. Thus, protecting HPC systems has
     become extremely challenging for the scientists given the typical issues related
     to Big Data and complex and heterogeneous nature of these infrastructures.
-  estimated popularity: 1989.75
+  average citation count: 1989.75
   organizer: Nitin Sukhija
   predicted_theme: 6 softwar scienc comput engin architectur
   speakers:
@@ -970,7 +970,7 @@ Asynchronous Iterative Methods:
     of what we do. During a technical conference, not many activities give conference
     participants a space to question the traditional boundaries between STEM and other
     more unexpected disciplines such as the arts.
-  estimated popularity: 0.0
+  average citation count: 0.0
   organizer: Mary Ann E. Leung
   predicted_theme: 16 program cse comput scienc student
   speakers:
@@ -984,7 +984,7 @@ Asynchronous Iterative Methods:
     \ BLAS for a batch of small independent problems, hence the name \u201CBatched\
     \ BLAS\u201D. Such interest is driven by numerous applications, including tensor\
     \ contractions, sparse solvers, astrophysics, quantum chemistry, and many others."
-  estimated popularity: 1748.5
+  average citation count: 1748.5
   organizer: Ahmad Abdelfattah
   part: 1
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -1002,7 +1002,7 @@ Asynchronous Iterative Methods:
     \ BLAS for a batch of small independent problems, hence the name \u201CBatched\
     \ BLAS\u201D. Such interest is driven by numerous applications, including tensor\
     \ contractions, sparse solvers, astrophysics, quantum chemistry, and many others."
-  estimated popularity: 1313.75
+  average citation count: 1313.75
   organizer: Ahmad Abdelfattah
   part: 2
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -1023,7 +1023,7 @@ Black-box Optimization for Autotuning:
     from the fields of black-box optimization and of of machine learning to target
     the autotuning needs.  Several application examples will be targeting linear algebra
     related topics.
-  estimated popularity: 5737.25
+  average citation count: 5737.25
   organizer: Wissam Sid-Lakhdar
   predicted_theme: 4 network eigenvalu structur comput spars
   speakers:
@@ -1039,7 +1039,7 @@ Boundary Integral Methods for Particulate Flows - Part I of II:
     geometries, close interactions, and multiple length and time scales. Integral
     equation methods offer a suitable and powerful framework able to address these
     challenges while providing high-order accuracy.
-  estimated popularity: 2002.25
+  average citation count: 2002.25
   organizer: Lukas Bystricky
   part: 1
   predicted_theme: 0 flow numer simul fluid scheme
@@ -1056,7 +1056,7 @@ Boundary Integral Methods for Particulate Flows - Part II of II:
     geometries, close interactions, and multiple length and time scales. Integral
     equation methods offer a suitable and powerful framework able to address these
     challenges while providing high-order accuracy.
-  estimated popularity: 39.333333333333336
+  average citation count: 39.333333333333336
   organizer: Lukas Bystricky
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -1077,7 +1077,7 @@ Bringing Algorithms and New Applications to Novel Architectures - Part I of II:
     grounds for applications, software frameworks, and our preconceptions on building
     both.  We consider a range from novel memory systems and FPGAs to neuromorphic
     and quantum systems.'
-  estimated popularity: 5555.0
+  average citation count: 5555.0
   organizer: Jason Riedy
   part: 1
   predicted_theme: 6 softwar scienc comput engin architectur
@@ -1099,7 +1099,7 @@ Bringing Algorithms and New Applications to Novel Architectures - Part II of II:
     grounds for applications, software frameworks, and our preconceptions on building
     both.  We consider a range from novel memory systems and FPGAs to neuromorphic
     and quantum systems.'
-  estimated popularity: 756.75
+  average citation count: 756.75
   organizer: Jason Riedy
   part: 2
   predicted_theme: 6 softwar scienc comput engin architectur
@@ -1115,7 +1115,7 @@ CSE Education and Workforce - Part I of II:
     Lab speakers will discuss perspectives on CSE workforce needs from various industry
     and government sectors. Each talk slot will include time for an active discussion
     with minisymposium attendees.
-  estimated popularity: 6207.25
+  average citation count: 6207.25
   organizer: Serkan Gugercin
   part: 1
   predicted_theme: 16 program cse comput scienc student
@@ -1131,7 +1131,7 @@ CSE Education and Workforce - Part II of II:
     Lab speakers will discuss perspectives on CSE workforce needs from various industry
     and government sectors. Each talk slot will include time for an active discussion
     with minisymposium attendees.
-  estimated popularity: 6592.75
+  average citation count: 6592.75
   organizer: Serkan Gugercin
   part: 2
   predicted_theme: 16 program cse comput scienc student
@@ -1155,7 +1155,7 @@ CSE Education and Workforce - Part II of II:
     methods for boundary integral equations, asymptotic analysis, applications to
     electromagnetic wave propagation or scattering in biological tissue or exotic
     metamaterials, fluid-structure or multiphase flow problems, and more.
-  estimated popularity: 1391.0
+  average citation count: 1391.0
   organizer: Camille Carvalho
   predicted_theme: 9 numer comput equat wave thi
   speakers:
@@ -1183,7 +1183,7 @@ Computational Advances and Challenges in Data-enabled Life Sciences:
     The overarching goal is to get the audience excited about the outstanding challenges
     in this domain and engage in transdisciplinary efforts toward scientific discovery
     and advancement.
-  estimated popularity: 9083.4
+  average citation count: 9083.4
   organizer: Bala Krishnamoorthy
   predicted_theme: 11 learn data model machin comput
   speakers:
@@ -1207,7 +1207,7 @@ Computational Advances for Large-scale Geophysical Data:
     or a cloud computing environment. This minisymposium will include studies using
     open source data and novel data sources (e.g. smartphone/MEMS accelerometers,
     fiber optics, wireless nodes) and we encourage the presentation of new applications.'
-  estimated popularity: 1322.6
+  average citation count: 1322.6
   organizer: Eileen R. Martin
   predicted_theme: 19 data assimil model comput uncertainti
   speakers:
@@ -1232,7 +1232,7 @@ Computational Challenges at the Frontiers of Numerical Relativity - Part I of II
     numerical relativity. This talks will be of broad interest and naturally combines
     expertise and knowledge that reaches beyond physics to computational and computer
     science.
-  estimated popularity: 4396.6
+  average citation count: 4396.6
   organizer: Hari Sundar
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -1258,7 +1258,7 @@ Computational Challenges at the Frontiers of Numerical Relativity - Part II of I
     numerical relativity. This talks will be of broad interest and naturally combines
     expertise and knowledge that reaches beyond physics to computational and computer
     science.
-  estimated popularity: 28882.0
+  average citation count: 28882.0
   organizer: Hari Sundar
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -1277,7 +1277,7 @@ Computational Challenges in the ECP Energy Applications:
     are supported by the Exascale Computing Project (17-SC-20-SC), a collaborative
     effort of two U.S. Department of Energy organizations (Office of Science and the
     National Nuclear Security Administration).
-  estimated popularity: 6654.75
+  average citation count: 6654.75
   organizer: Steven Hamilton
   predicted_theme: 2 comput exascal architectur highord perform
   speakers:
@@ -1292,7 +1292,7 @@ Computational Engineering (BGCE) Student Paper Prize - Part I of II:
     will be undergraduate and graduate students prior to receiving their PhD. Candidates
     are required to summarize their work in a short paper of at most 4 pages. The
     prize finalists will present their work in this minisymposium.
-  estimated popularity: 139.75
+  average citation count: 139.75
   organizer: Tobias Neckel
   part: 1
   predicted_theme: 16 program cse comput scienc student
@@ -1308,7 +1308,7 @@ Computational Engineering (BGCE) Student Paper Prize - Part II of II:
     will be undergraduate and graduate students prior to receiving their PhD. Candidates
     are required to summarize their work in a short paper of at most 4 pages. The
     prize finalists will present their work in this minisymposium.
-  estimated popularity: 841.25
+  average citation count: 841.25
   organizer: Tobias Neckel
   part: 2
   predicted_theme: 16 program cse comput scienc student
@@ -1331,7 +1331,7 @@ Computational Methods for Data Assimilation and Uncertainty Quantification - Par
     sensor placement. The focus of this minisymposium is on recent advances in computational
     methods for data assimilation, uncertainty quantification, sensor placement, and
     data acquisition.
-  estimated popularity: 2866.0
+  average citation count: 2866.0
   organizer: Ahmed Attia
   part: 1
   predicted_theme: 19 data assimil model comput uncertainti
@@ -1355,7 +1355,7 @@ Computational Methods for Data Assimilation and Uncertainty Quantification - Par
     sensor placement. The focus of this minisymposium is on recent advances in computational
     methods for data assimilation, uncertainty quantification, sensor placement, and
     data acquisition.
-  estimated popularity: 615.0
+  average citation count: 615.0
   organizer: Emil M. Constantinescu
   part: 2
   predicted_theme: 19 data assimil model comput uncertainti
@@ -1376,7 +1376,7 @@ Computational Methods for Kinetic Models of Plasma - Part I of II:
     advances in computational methods for the simulation of statistical mechanical
     models and the resulting transport phenomena. Our goal is to showcase a diverse
     array of application areas, models, and numerical techniques.
-  estimated popularity: 1424.0
+  average citation count: 1424.0
   organizer: James A. Rossmanith
   part: 1
   predicted_theme: 5 model comput transport physic scale
@@ -1398,7 +1398,7 @@ Computational Methods for Kinetic Models of Plasma - Part II of II:
     advances in computational methods for the simulation of statistical mechanical
     models and the resulting transport phenomena. Our goal is to showcase a diverse
     array of application areas, models, and numerical techniques.
-  estimated popularity: 9997.0
+  average citation count: 9997.0
   organizer: James A. Rossmanith
   part: 2
   predicted_theme: 5 model comput transport physic scale
@@ -1420,7 +1420,7 @@ Computational Methods for Linear Kinetic Transport Equations - Part I of II:
     advances in computational methods for the simulation of statistical mechanical
     models and the resulting transport phenomena. Our goal is to showcase a diverse
     array of application areas, models, and numerical techniques.
-  estimated popularity: 968.25
+  average citation count: 968.25
   organizer: Andrew J. Christlieb
   part: 1
   predicted_theme: 5 model comput transport physic scale
@@ -1442,7 +1442,7 @@ Computational Methods for Linear Kinetic Transport Equations - Part II of II:
     advances in computational methods for the simulation of statistical mechanical
     models and the resulting transport phenomena. Our goal is to showcase a diverse
     array of application areas, models, and numerical techniques.
-  estimated popularity: 4274.75
+  average citation count: 4274.75
   organizer: Andrew J. Christlieb
   part: 2
   predicted_theme: 5 model comput transport physic scale
@@ -1461,7 +1461,7 @@ Computational Scalability and Complex Geometry in Integral Equation Methods - Pa
     available in software form. This minisymposium seeks to bring together practitioners
     and researchers with the goal of encouraging exchange of ideas and discovering
     opportunities for collaboration in this direction.
-  estimated popularity: 1454.25
+  average citation count: 1454.25
   organizer: Andreas Kloeckner
   part: 1
   predicted_theme: 17 comput softwar scientif thi complex
@@ -1480,7 +1480,7 @@ Computational Scalability and Complex Geometry in Integral Equation Methods - Pa
     available in software form. This minisymposium seeks to bring together practitioners
     and researchers with the goal of encouraging exchange of ideas and discovering
     opportunities for collaboration in this direction.
-  estimated popularity: 688.0
+  average citation count: 688.0
   organizer: Andreas Kloeckner
   part: 2
   predicted_theme: 17 comput softwar scientif thi complex
@@ -1499,7 +1499,7 @@ Computational Strategies for High-dimensional Data Assimilation and Bayesian Inv
     for solving inference problems in this setting, with an emphasis on Markov chain
     Monte Carlo, importance sampling, and ensemble methods for high-dimensional posterior
     distributions.
-  estimated popularity: 6648.25
+  average citation count: 6648.25
   organizer: Matthias Morzfeld
   part: 1
   predicted_theme: 7 model paramet comput bayesian data
@@ -1518,7 +1518,7 @@ Computational Strategies for High-dimensional Data Assimilation and Bayesian Inv
     for solving inference problems in this setting, with an emphasis on Markov chain
     Monte Carlo, importance sampling, and ensemble methods for high-dimensional posterior
     distributions.
-  estimated popularity: 18207.25
+  average citation count: 18207.25
   organizer: Matthias Morzfeld
   part: 2
   predicted_theme: 7 model paramet comput bayesian data
@@ -1546,7 +1546,7 @@ Computational Tools and Precision Medicine:
     and function of large biomolecular complexes. The fourth talk will present knowledge
     gained by accelerating the prediction of the evaluation of large protein conformational
     ensembles that can lead to improved strategies for drug discovery.
-  estimated popularity: 3828.0
+  average citation count: 3828.0
   organizer: Sunita Chandrasekaran
   predicted_theme: 11 learn data model machin comput
   speakers:
@@ -1564,7 +1564,7 @@ Computational and Numerical Methods in Electronics - Part I of II:
     physical processes such as electronic transport at the discrete level. For example,
     important physical properties such as positivity and charge conservation need
     to be reflected in the numerics.'
-  estimated popularity: 756.5
+  average citation count: 756.5
   organizer: Karl Rupp
   part: 1
   predicted_theme: 15 comput materi model electron numer
@@ -1583,7 +1583,7 @@ Computational and Numerical Methods in Electronics - Part II of II:
     physical processes such as electronic transport at the discrete level. For example,
     important physical properties such as positivity and charge conservation need
     to be reflected in the numerics.'
-  estimated popularity: 4426.75
+  average citation count: 4426.75
   organizer: Karl Rupp
   part: 2
   predicted_theme: 15 comput materi model electron numer
@@ -1609,7 +1609,7 @@ Computationally Efficient Derivative-Free Local and Global Optimization:
     what was possible in the past. Finally, the discussion includes some real-world
     applications, including tuning of machine learning models and design of nanoparticle
     synthesis.
-  estimated popularity: 4222.75
+  average citation count: 4222.75
   organizer: Nikolaos Sahinidis
   predicted_theme: 1 optim design model mani data
   speakers:
@@ -1633,7 +1633,7 @@ Data Assimilation and Optimization in Physiologic Modeling - Part I of II:
     challenges by reviewing and discussing recent advances in developing efficient
     optimization/data assimilation approaches and quantifying associated uncertainties
     for inverse problems in biomedical applications.
-  estimated popularity: 6237.25
+  average citation count: 6237.25
   organizer: Shawn Shadden
   part: 1
   predicted_theme: 19 data assimil model comput uncertainti
@@ -1658,7 +1658,7 @@ Data Assimilation and Optimization in Physiologic Modeling - Part II of II:
     challenges by reviewing and discussing recent advances in developing efficient
     optimization/data assimilation approaches and quantifying associated uncertainties
     for inverse problems in biomedical applications.
-  estimated popularity: 16218.5
+  average citation count: 16218.5
   organizer: Jian-Xun Wang
   part: 2
   predicted_theme: 19 data assimil model comput uncertainti
@@ -1684,7 +1684,7 @@ Data Assimilation in Fluid Models:
     from a PDE and weighted least square interpolation is in development. Testing
     for this algorithm is being done on multiple PDEs, including the 1D Kuramoto-Sivashinsky
     equation and 2D shallow water equations.
-  estimated popularity: 3479.0
+  average citation count: 3479.0
   organizer: Jaime A. Lopez-Merizalde
   predicted_theme: 19 data assimil model comput uncertainti
   speakers:
@@ -1705,7 +1705,7 @@ Data Enabled Modeling and Discovery in Science and Engineering - Part I of II:
     researchers developing algorithms and learning approaches to overcome these challenging
     issues. In addition, the discussion will include a motivation of the need for
     scientific machine learning while highlighting some additional challenges.
-  estimated popularity: 351.5
+  average citation count: 351.5
   organizer: Eric C. Cyr
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -1727,7 +1727,7 @@ Data Enabled Modeling and Discovery in Science and Engineering - Part II of II:
     researchers developing algorithms and learning approaches to overcome these challenging
     issues. In addition, the discussion will include a motivation of the need for
     scientific machine learning while highlighting some additional challenges.
-  estimated popularity: 1568.5
+  average citation count: 1568.5
   organizer: Prasanna Balaprakash
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -1742,7 +1742,7 @@ Data Science and Analytics in Industry:
     speakers from different industries who will share their jobs in data science and
     analytics, the challenges the companies have and how applied mathematicians can
     make a difference, and how they got to their current positions.
-  estimated popularity: 1568.5
+  average citation count: 1568.5
   organizer: Malena Espanol
   predicted_theme: 9 numer comput equat wave thi
   speakers:
@@ -1761,7 +1761,7 @@ Data Science and Analytics in Industry:
     \ and improve ROMs: (1) methods that learn low-dimensional dynamical-system operators\
     \ from data (e.g., dynamic mode decomposition, operator inference), and (2) closure\
     \ and error-modeling techniques (e.g., Mori\u2013Zwanzig) for ROMs."
-  estimated popularity: 2614.5
+  average citation count: 2614.5
   organizer: Kevin T. Carlberg
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -1781,7 +1781,7 @@ Data Science and Analytics in Industry:
     \ and improve ROMs: (1) methods that learn low-dimensional dynamical-system operators\
     \ from data (e.g., dynamic mode decomposition, operator inference), and (2) closure\
     \ and error-modeling techniques (e.g., Mori\u2013Zwanzig) for ROMs."
-  estimated popularity: 1220.5
+  average citation count: 1220.5
   organizer: Kevin T. Carlberg
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -1803,7 +1803,7 @@ Data-driven Methods in Fluid Dynamics - Part I of II:
     operator-theoretic approaches, and control. In this minisymposium, experts will
     demonstrate achievements in the field, discuss open problems and challenges and
     inspire future directions.
-  estimated popularity: 5846.0
+  average citation count: 5846.0
   organizer: Kazuki Maeda
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -1826,7 +1826,7 @@ Data-driven Methods in Fluid Dynamics - Part II of II:
     operator-theoretic approaches, and control. In this minisymposium, experts will
     demonstrate achievements in the field, discuss open problems and challenges and
     inspire future directions.
-  estimated popularity: 907.25
+  average citation count: 907.25
   organizer: Eurika Kaiser
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -1854,7 +1854,7 @@ Data-driven and Mathematical Model Reductions for Combustion System Simulation a
     to enable design iterations. The rest of this session discusses such methods,
     their pitfalls when applied to combustion problems, and concepts to overcome these
     roadblocks.
-  estimated popularity: 14496.25
+  average citation count: 14496.25
   organizer: Nathan L. Mundis
   predicted_theme: 8 model reduct order comput reduc
   speakers:
@@ -1876,7 +1876,7 @@ Derivative-free and Global Optimization - Part I of II:
     methods that employ, among others, adaptive sampling methods, approximations of
     the objective functions, and the exploitation of any available problem structure
     to solve these difficult problems.
-  estimated popularity: 5153.5
+  average citation count: 5153.5
   organizer: Juliane Mueller
   part: 1
   predicted_theme: 1 optim design model mani data
@@ -1899,7 +1899,7 @@ Derivative-free and Global Optimization - Part II of II:
     methods that employ, among others, adaptive sampling methods, approximations of
     the objective functions, and the exploitation of any available problem structure
     to solve these difficult problems.
-  estimated popularity: 483.75
+  average citation count: 483.75
   organizer: Juliane Mueller
   part: 2
   predicted_theme: 1 optim design model mani data
@@ -1916,7 +1916,7 @@ Design and Usability of High-performance PDE Software Engines and Frameworks - P
     packages. We will discuss the requirements and expectations that users have of
     production-ready simulation software as well as the design decisions that go into
     the implementation of such software.
-  estimated popularity: 1412.5
+  average citation count: 1412.5
   organizer: Anne Reinarz
   part: 1
   predicted_theme: 17 comput softwar scientif thi complex
@@ -1933,7 +1933,7 @@ Design and Usability of High-performance PDE Software Engines and Frameworks - P
     packages. We will discuss the requirements and expectations that users have of
     production-ready simulation software as well as the design decisions that go into
     the implementation of such software.
-  estimated popularity: 3590.75
+  average citation count: 3590.75
   organizer: Anne Reinarz
   part: 2
   predicted_theme: 17 comput softwar scientif thi complex
@@ -1953,7 +1953,7 @@ Developments in Algebraic Multigrid for Nonsymmetric and Hyperbolic Problems:
     frameworks that provide sufficient conditions for convergence-in-norm of nonsymmetric
     AMG, a new nonsymmetric AMG solver based on approximate ideal restriction (AIR),
     and the application of new nonsymmetric AMG methods to nonlinear hyperbolic PDEs.
-  estimated popularity: 3289.25
+  average citation count: 3289.25
   organizer: Ben S. Southworth
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -1971,7 +1971,7 @@ Discovering and Exploiting Low-dimensional Structures in Computational Models - 
     spaces. This session focuses on recent advances in methodologies and approaches
     for discovering and exploiting low-dimensional structures in the input and output
     spaces of models.
-  estimated popularity: 4524.0
+  average citation count: 4524.0
   organizer: Steven A. Mattis
   part: 1
   predicted_theme: 7 model paramet comput bayesian data
@@ -1990,7 +1990,7 @@ Discovering and Exploiting Low-dimensional Structures in Computational Models - 
     spaces. This session focuses on recent advances in methodologies and approaches
     for discovering and exploiting low-dimensional structures in the input and output
     spaces of models.
-  estimated popularity: 1245.75
+  average citation count: 1245.75
   organizer: Steven A. Mattis
   part: 2
   predicted_theme: 7 model paramet comput bayesian data
@@ -2006,7 +2006,7 @@ Discovering and Exploiting Low-dimensional Structures in Computational Models - 
     graph analytics;  design, implementation and performance evaluation of scalable
     distributed-memory graph algorithms; and applications in bioinformatics. Featured
     graph kernels include community identification and graph traversals.'
-  estimated popularity: 3213.75
+  average citation count: 3213.75
   organizer: Assefaw Gebremedhin
   predicted_theme: 16 program cse comput scienc student
   speakers:
@@ -2025,7 +2025,7 @@ Divide and Conquer Strategies for Large-scale Eigenvalue Problems - Part I of II
     iterations. We bring together numerical analysts who study these techniques with
     different methodologies and also physicists who initiate an effort to assemble
     the different ideas to solve problems in real applications.
-  estimated popularity: 1969.0
+  average citation count: 1969.0
   organizer: Ruipeng Li
   part: 1
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -2045,7 +2045,7 @@ Divide and Conquer Strategies for Large-scale Eigenvalue Problems - Part II of I
     iterations. We bring together numerical analysts who study these techniques with
     different methodologies and also physicists who initiate an effort to assemble
     the different ideas to solve problems in real applications.
-  estimated popularity: 8244.25
+  average citation count: 8244.25
   organizer: Ruipeng Li
   part: 2
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -2070,7 +2070,7 @@ Divide and Conquer Strategies for Large-scale Eigenvalue Problems - Part II of I
     to biology and chemical reaction systems, numerical techniques such as singular
     perturbation methods, surrogate model methods, long time integration of nonlinear
     SDE, model reduction methods, etc..
-  estimated popularity: 23142.75
+  average citation count: 23142.75
   organizer: Huan Lei
   part: 1
   predicted_theme: 3 model system dynam event stochast
@@ -2095,7 +2095,7 @@ Divide and Conquer Strategies for Large-scale Eigenvalue Problems - Part II of I
     to biology and chemical reaction systems, numerical techniques such as singular
     perturbation methods, surrogate model methods, long time integration of nonlinear
     SDE, model reduction methods, etc..
-  estimated popularity: 1213.5
+  average citation count: 1213.5
   organizer: Huan Lei
   part: 2
   predicted_theme: 3 model system dynam event stochast
@@ -2115,7 +2115,7 @@ Efficient Computational Methods for Molecular Dynamics:
     in programming paradigms. Furthermore, there are application-driven challenges
     such as load balancing that need to be taken into account to efficiently exploit
     large-scale compute systems.'
-  estimated popularity: 4548.5
+  average citation count: 4548.5
   organizer: Philipp Neumann
   predicted_theme: 2 comput exascal architectur highord perform
   speakers:
@@ -2135,7 +2135,7 @@ Efficient Solvers for Coupled Multiphysics Problems - Part I of II:
     problems, both from a purely algebraic and a more physics-based viewpoint, with
     the objective of sharing experiences and new ideas arising from a wide spectrum
     of applications.
-  estimated popularity: 4751.5
+  average citation count: 4751.5
   organizer: Massimiliano Ferronato
   part: 1
   predicted_theme: 0 flow numer simul fluid scheme
@@ -2156,7 +2156,7 @@ Efficient Solvers for Coupled Multiphysics Problems - Part II of II:
     problems, both from a purely algebraic and a more physics-based viewpoint, with
     the objective of sharing experiences and new ideas arising from a wide spectrum
     of applications.
-  estimated popularity: 2240.75
+  average citation count: 2240.75
   organizer: Massimiliano Ferronato
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -2183,7 +2183,7 @@ Emerging Trends for Structure Preserving Model Order Reduction - Part I of II:
     and perspectives in the field of structure and property preserving (discretization
     and) MOR frameworks to deal with (large-scale) linear and non-linear dynamical
     systems.
-  estimated popularity: 88.5
+  average citation count: 88.5
   organizer: Harshit Bansal
   part: 1
   predicted_theme: 8 model reduct order comput reduc
@@ -2210,7 +2210,7 @@ Emerging Trends for Structure Preserving Model Order Reduction - Part II of II:
     and perspectives in the field of structure and property preserving (discretization
     and) MOR frameworks to deal with (large-scale) linear and non-linear dynamical
     systems.
-  estimated popularity: 1625.75
+  average citation count: 1625.75
   organizer: Harshit Bansal
   part: 2
   predicted_theme: 8 model reduct order comput reduc
@@ -2229,7 +2229,7 @@ Entropy-stable Formulations for Numerical Solution of Conservation Laws - Part I
     extensions to multi-species flows, and interaction with sub-grid-scale models
     are currently being explored. This minisymposium will address the related mathematical
     and numerical issues as well as applications in fluid dynamics.
-  estimated popularity: 9518.75
+  average citation count: 9518.75
   organizer: Scott Murman
   part: 1
   predicted_theme: 0 flow numer simul fluid scheme
@@ -2248,7 +2248,7 @@ Entropy-stable Formulations for Numerical Solution of Conservation Laws - Part I
     extensions to multi-species flows, and interaction with sub-grid-scale models
     are currently being explored. This minisymposium will address the related mathematical
     and numerical issues as well as applications in fluid dynamics.
-  estimated popularity: 2139.25
+  average citation count: 2139.25
   organizer: Scott Murman
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -2264,7 +2264,7 @@ Exascale Applications with High-Order Methods - Part I of II:
     high-order discretization algorithm, based on finite/spectral element approaches
     that will enable a wide range of important scientific applications to run efficiently
     on future architecture.
-  estimated popularity: 10351.75
+  average citation count: 10351.75
   organizer: MiSun Min
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2280,7 +2280,7 @@ Exascale Applications with High-Order Methods - Part II of II:
     high-order discretization algorithm, based on finite/spectral element approaches
     that will enable a wide range of important scientific applications to run efficiently
     on future architecture.
-  estimated popularity: 7669.75
+  average citation count: 7669.75
   organizer: MiSun Min
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2296,7 +2296,7 @@ Exascale Software for High-order Methods - Part I of II:
     and software of arbitrarily high order to impact the design of exascale architectures,
     system and application software for improved portability and performance of the
     high-order methods.
-  estimated popularity: 3850.25
+  average citation count: 3850.25
   organizer: Tzanio V. Kolev
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2312,7 +2312,7 @@ Exascale Software for High-order Methods - Part II of II:
     and software of arbitrarily high order to impact the design of exascale architectures,
     system and application software for improved portability and performance of the
     high-order methods.
-  estimated popularity: 3067.25
+  average citation count: 3067.25
   organizer: Tzanio V. Kolev
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2329,7 +2329,7 @@ Exciting Work by Early Career Underrepresented Minority Researchers:
     \ innovative perspectives on and approaches to scientific problems.  In this session,\
     \ three underrepresented minority researchers in the early career stage will discuss\
     \ the broad range of problems they investigate with applied mathematics and computation"
-  estimated popularity: 477.6666666666667
+  average citation count: 477.6666666666667
   organizer: Talea Mayo
   predicted_theme: 17 comput softwar scientif thi complex
   speakers:
@@ -2352,7 +2352,7 @@ Exploiting Model Hierarchies, Sparsity and Low-Rank Structure of Large-scale Bay
     intractable Bayesian inference problems. This minisymposium will bring together
     researchers working on the forefront of structure-exploiting methods intended
     to accelerate such large-scale Bayesian computation.
-  estimated popularity: 1239.75
+  average citation count: 1239.75
   organizer: Tiangang Cui
   part: 1
   predicted_theme: 7 model paramet comput bayesian data
@@ -2374,7 +2374,7 @@ FASTMath Tools and Technologies - Part I of II:
     the eight core areas of FASTMath: structured meshes, unstructured meshes, time
     integrators, linear solvers, eigensolvers, numerical optimization, data analytics,
     and uncertain quantification.'
-  estimated popularity: 2084.25
+  average citation count: 2084.25
   organizer: Esmond G. Ng
   part: 1
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -2396,7 +2396,7 @@ FASTMath Tools and Technologies - Part II of II:
     the eight core areas of FASTMath: structured meshes, unstructured meshes, time
     integrators, linear solvers, eigensolvers, numerical optimization, data analytics,
     and uncertain quantification.'
-  estimated popularity: 3509.5
+  average citation count: 3509.5
   organizer: Esmond G. Ng
   part: 2
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -2413,7 +2413,7 @@ Fast Algorithms for Integral Equations and Their Applications:
     their applications in various fields. At the same time, it will provide opportunities
     to promote interdisciplinary research collaboration between computational scientists
     and other fields.
-  estimated popularity: 18034.4
+  average citation count: 18034.4
   organizer: Min Hyung Cho
   predicted_theme: 9 numer comput equat wave thi
   speakers:
@@ -2431,7 +2431,7 @@ Fast Methods for High-Frequency Wave Propagation - Part I of II:
     solvers including directional methods, sweeping preconditioners, method of polarized
     traces, as well as reliable asymptotic methods such as geometrical optics, Gaussian
     beam methods, and Huygens sweeping methods.
-  estimated popularity: 7505.25
+  average citation count: 7505.25
   organizer: Leonardo Zepeda-Nunez
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -2449,7 +2449,7 @@ Fast Methods for High-Frequency Wave Propagation - Part II of II:
     solvers including directional methods, sweeping preconditioners, method of polarized
     traces, as well as reliable asymptotic methods such as geometrical optics, Gaussian
     beam methods, and Huygens sweeping methods.
-  estimated popularity: 12216.2
+  average citation count: 12216.2
   organizer: Leonardo Zepeda-Nunez
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -2466,7 +2466,7 @@ Fast Solvers for Inverse Problems with PDEs - Part I of II:
     include computational complexity, memory consumption, and a vast number unknowns
     as well as model and data uncertainties. We showcase state-of-the-art techniques
     in scientific computing to tackle these challenges.
-  estimated popularity: 1057.5
+  average citation count: 1057.5
   organizer: James L. Herring
   part: 1
   predicted_theme: 0 flow numer simul fluid scheme
@@ -2482,7 +2482,7 @@ Fast Solvers for Inverse Problems with PDEs - Part II of II:
     include computational complexity, memory consumption, and a vast number unknowns
     as well as model and data uncertainties. We showcase state-of-the-art techniques
     in scientific computing to tackle these challenges.
-  estimated popularity: 1363.0
+  average citation count: 1363.0
   organizer: James L. Herring
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -2501,7 +2501,7 @@ Fast and Accurate Integral Methods for Highly Oscillatory Phenomena - Part I of 
     fast algorithms and their implementation based on locally rank-structured matrices
     and non-oscillatory phase functions, with applications in various imaging science
     and computational electromagnetism.
-  estimated popularity: 4154.5
+  average citation count: 4154.5
   organizer: Haizhao Yang
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -2520,7 +2520,7 @@ Fast and Accurate Integral Methods for Highly Oscillatory Phenomena - Part II of
     fast algorithms and their implementation based on locally rank-structured matrices
     and non-oscillatory phase functions, with applications in various imaging science
     and computational electromagnetism.
-  estimated popularity: 33123.75
+  average citation count: 33123.75
   organizer: Haizhao Yang
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -2538,7 +2538,7 @@ Finite Element Methods on Unfitted Meshes - Part I of II:
     It is then extremely advantageous to employ meshes that do not necessarily fit
     the physical geometry. This minisymposium focuses on most recent techniques to
     design stable and robust FEMs that employ the unfitted meshes.
-  estimated popularity: 237.8
+  average citation count: 237.8
   organizer: Cuiyu He
   part: 1
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -2557,7 +2557,7 @@ Finite Element Methods on Unfitted Meshes - Part II of II:
     It is then extremely advantageous to employ meshes that do not necessarily fit
     the physical geometry. This minisymposium focuses on most recent techniques to
     design stable and robust FEMs that employ the unfitted meshes.
-  estimated popularity: 786.5
+  average citation count: 786.5
   organizer: Cuiyu He
   part: 2
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -2581,7 +2581,7 @@ Finite Element Methods on Unfitted Meshes - Part II of II:
     addition, we will also present two recently proposed new flat formats, namely
     multilevel BLR (MBLR) and lattice-H matrices, which aim at achieving an improved
     compromise between asymptotic complexity and parallel performance.
-  estimated popularity: 28.5
+  average citation count: 28.5
   organizer: Theo Mary
   predicted_theme: 4 network eigenvalu structur comput spars
   speakers:
@@ -2602,7 +2602,7 @@ Finite Element Methods on Unfitted Meshes - Part II of II:
     will use topological data analysis to improve predictions from ECG signals. The
     final talk will develop a new density-based clustering method in the context of
     image segmentation.
-  estimated popularity: 355.5
+  average citation count: 355.5
   organizer: Mario Banuelos
   predicted_theme: 11 learn data model machin comput
   speakers:
@@ -2622,7 +2622,7 @@ Graph and Combinatorial Algorithms for Enabling Exascale Applications - Part I o
     role in the chosen application areas; and (iii) software frameworks for efficient
     implementation of the algorithms on hierarchical distributed-memory architectures
     that are representative of potential exascale platforms.'
-  estimated popularity: 9366.75
+  average citation count: 9366.75
   organizer: Alex Pothen
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2643,7 +2643,7 @@ Graph and Combinatorial Algorithms for Enabling Exascale Applications - Part II 
     role in the chosen application areas; and (iii) software frameworks for efficient
     implementation of the algorithms on hierarchical distributed-memory architectures
     that are representative of potential exascale platforms.'
-  estimated popularity: 3861.5
+  average citation count: 3861.5
   organizer: Alex Pothen
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2659,7 +2659,7 @@ Guidance from Early Applications of Quantum Computers:
     the promise of dramatically higher computational performance, guidance from those
     early applications appears high value.  This minisymposium aims to identify and
     disseminate successful methods for using these early QCs.
-  estimated popularity: 1713.8
+  average citation count: 1713.8
   organizer: Jesse Berwald
   predicted_theme: 2 comput exascal architectur highord perform
   speakers:
@@ -2685,7 +2685,7 @@ Hardware-aware Algorithms and Numerics for Heterogeneous Supercomputers:
     linear solvers on GPUs, alternative techniques to global linear solvers, block-Implicit
     methods, the use of machine learning to solve linear and nonlinear systems of
     equations, asynchronous algorithms, high-order methods, and others.'
-  estimated popularity: 1661.5
+  average citation count: 1661.5
   organizer: Tony Saad
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -2708,7 +2708,7 @@ High Performance Sparse Matrix, Tensor, and Graph Kernels - Part I of II:
     \ algorithms, compilers, runtime systems, and computer architectures. We expect\
     \ this\_minisymposium will explore high-performance sparse algorithms and their\
     \ interactions among different kernels."
-  estimated popularity: 5236.25
+  average citation count: 5236.25
   organizer: Jiajia Li
   part: 1
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -2732,7 +2732,7 @@ High Performance Sparse Matrix, Tensor, and Graph Kernels - Part II of II:
     \ algorithms, compilers, runtime systems, and computer architectures. We expect\
     \ this\_minisymposium will explore high-performance sparse algorithms and their\
     \ interactions among different kernels."
-  estimated popularity: 1977.0
+  average citation count: 1977.0
   organizer: Xu Liu
   part: 2
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -2749,7 +2749,7 @@ High-order Accurate Numerical Methods for Fluid-structure Interaction Problems:
     aims to bring researchers together to discuss the state-of-the-art methods and
     algorithms for solving FSI problems, and to share the numerical challenges in
     the various application areas
-  estimated popularity: 626.0
+  average citation count: 626.0
   organizer: Longfei Li
   predicted_theme: 10 mesh simul numer pelelm lagrangian
   speakers:
@@ -2769,7 +2769,7 @@ High-order Discontinuous Galerkin and Finite Element Methods for CFD - Part I of
     Furthermore, the efficient implementation of such methods on modern, massively-parallel,
     memory-constrained architectures presents interesting and important new challenges,
     prompting the development of sophisticated solver technology and matrix-free operators.
-  estimated popularity: 18515.0
+  average citation count: 18515.0
   organizer: Will Pazner
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2790,7 +2790,7 @@ High-order Discontinuous Galerkin and Finite Element Methods for CFD - Part II o
     Furthermore, the efficient implementation of such methods on modern, massively-parallel,
     memory-constrained architectures presents interesting and important new challenges,
     prompting the development of sophisticated solver technology and matrix-free operators.
-  estimated popularity: 255.25
+  average citation count: 255.25
   organizer: Will Pazner
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2807,7 +2807,7 @@ High-order Discretizations and Quadrature for Integral Equation Methods - Part I
     improvement in the precision and complexity of devices which can be manufactured
     necessitating the development of new computationally-efficient high-precision
     numerical tools for complex geometries.
-  estimated popularity: 33839.25
+  average citation count: 33839.25
   organizer: Manas N. Rachh
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2824,7 +2824,7 @@ High-order Discretizations and Quadrature for Integral Equation Methods - Part I
     improvement in the precision and complexity of devices which can be manufactured
     necessitating the development of new computationally-efficient high-precision
     numerical tools for complex geometries.
-  estimated popularity: 769.5
+  average citation count: 769.5
   organizer: Manas N. Rachh
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2852,7 +2852,7 @@ High-order Finite Element Methods for Complex and Multiphysics Applications - Pa
     and computational issues  that are critical to developing approaches with these
     desired properties.   Applications will include aerodynamics, magnetohydrodynamics,
     plasma physics,  subsurface flows, geophysical flows, etc.'
-  estimated popularity: 938.25
+  average citation count: 938.25
   organizer: Sriramkrishnan Muralikrishnan
   part: 1
   predicted_theme: 0 flow numer simul fluid scheme
@@ -2880,7 +2880,7 @@ High-order Finite Element Methods for Complex and Multiphysics Applications - Pa
     and computational issues  that are critical to developing approaches with these
     desired properties.   Applications will include aerodynamics, magnetohydrodynamics,
     plasma physics,  subsurface flows, geophysical flows, etc.'
-  estimated popularity: 470.75
+  average citation count: 470.75
   organizer: Sriramkrishnan Muralikrishnan
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -2908,7 +2908,7 @@ High-order PDE Methods on CPU Architectures with Wide SIMD Units - Part I of II:
     patterns of  efficient high-order methods.  Additionally, the comparison of different
     numerical approaches (e.g. CG vs. DG)  will allow to identify best practices when
     leveraging Intel Xeon Phi and Intel Xeon Scalable systems at  scale.
-  estimated popularity: 1021.75
+  average citation count: 1021.75
   organizer: Alexander Heinecke
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2936,7 +2936,7 @@ High-order PDE Methods on CPU Architectures with Wide SIMD Units - Part II of II
     patterns of  efficient high-order methods.  Additionally, the comparison of different
     numerical approaches (e.g. CG vs. DG)  will allow to identify best practices when
     leveraging Intel Xeon Phi and Intel Xeon Scalable systems at  scale.
-  estimated popularity: 4214.25
+  average citation count: 4214.25
   organizer: Alexander Heinecke
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -2965,7 +2965,7 @@ High-order Solvers for Wave Problems - Part I of II:
     fast high-order integral-equation methods, and Galerkin difference approximations.  This
     minisymposium includes important recent contributions in the area and will help
     to disseminate and advance the field. rkup. >'
-  estimated popularity: 5315.75
+  average citation count: 5315.75
   organizer: Oscar P. Bruno
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -2994,7 +2994,7 @@ High-order Solvers for Wave Problems - Part II of II:
     fast high-order integral-equation methods, and Galerkin difference approximations.  This
     minisymposium includes important recent contributions in the area and will help
     to disseminate and advance the field. rkup. >'
-  estimated popularity: 678.5
+  average citation count: 678.5
   organizer: Oscar P. Bruno
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -3012,7 +3012,7 @@ High-performance Graph Algorithms:
     of the same name by bringing together researchers engaged in the development and
     application of high-performance parallel graph algorithms to discuss recent advances,
     challenges, and opportunities for collaboration.
-  estimated popularity: 354.5
+  average citation count: 354.5
   organizer: Cameron W. Smith
   predicted_theme: 16 program cse comput scienc student
   speakers:
@@ -3028,7 +3028,7 @@ Homogenization and Reduced Order Modelling for Wave Equations - Part I of II:
     variability itself leads to dispersive effects for longer waves. Speakers in this
     minisymposium will discuss a variety of techniques for treating these challenging
     problems.
-  estimated popularity: 967.75
+  average citation count: 967.75
   organizer: Thomas M. Hagstrom
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -3045,7 +3045,7 @@ Homogenization and Reduced Order Modelling for Wave Equations - Part II of II:
     variability itself leads to dispersive effects for longer waves. Speakers in this
     minisymposium will discuss a variety of techniques for treating these challenging
     problems.
-  estimated popularity: 1614.75
+  average citation count: 1614.75
   organizer: Thomas M. Hagstrom
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -3061,7 +3061,7 @@ Hybrid Parallelization for Modern Architectures - Part I of II:
     transition in computational architecture necessitates the development of hybrid  parallelization
     implementations of scientific and engineering software to efficiently and  flexibly
     utilize distributed and shared resources (processors and memory).
-  estimated popularity: 42058.0
+  average citation count: 42058.0
   organizer: Stephen L. Wood
   part: 1
   predicted_theme: 17 comput softwar scientif thi complex
@@ -3077,7 +3077,7 @@ Hybrid Parallelization for Modern Architectures - Part II of II:
     transition in computational architecture necessitates the development of hybrid  parallelization
     implementations of scientific and engineering software to efficiently and  flexibly
     utilize distributed and shared resources (processors and memory).
-  estimated popularity: 3252.0
+  average citation count: 3252.0
   organizer: Stephen L. Wood
   part: 2
   predicted_theme: 17 comput softwar scientif thi complex
@@ -3097,7 +3097,7 @@ Hybrid Parallelization for Modern Architectures - Part II of II:
     passive and active suspensions, and multi-phase fluids. Issues to be discussed
     will include the inclusion of thermal fluctuations in analytical and computational
     models, as well as applications in the physical sciences, biology, and engineering.
-  estimated popularity: 4969.5
+  average citation count: 4969.5
   organizer: Aleksandar Donev
   part: 1
   predicted_theme: 5 model comput transport physic scale
@@ -3117,7 +3117,7 @@ Hybrid Parallelization for Modern Architectures - Part II of II:
     passive and active suspensions, and multi-phase fluids. Issues to be discussed
     will include the inclusion of thermal fluctuations in analytical and computational
     models, as well as applications in the physical sciences, biology, and engineering.
-  estimated popularity: 2699.75
+  average citation count: 2699.75
   organizer: Aleksandar Donev
   part: 2
   predicted_theme: 5 model comput transport physic scale
@@ -3133,7 +3133,7 @@ Hybrid Parallelization for Modern Architectures - Part II of II:
     and academic will present recent advancements in eigenvalue  algorithms, numerical
     analysis and industrial strength high-performance software, and discuss emerging
     needs and challenges.
-  estimated popularity: 5497.5
+  average citation count: 5497.5
   organizer: Zhaojun Bai
   part: 1
   predicted_theme: 1 optim design model mani data
@@ -3148,7 +3148,7 @@ Hybrid Parallelization for Modern Architectures - Part II of II:
     structural analysis among many others. Speakers from industry and academic will
     present latest advancements in algorithms, numerical analysis and industrial strength
     high-performance software, and discuss emerging needs and challenges.
-  estimated popularity: 5202.25
+  average citation count: 5202.25
   organizer: Zhaojun Bai
   part: 2
   predicted_theme: 1 optim design model mani data
@@ -3167,7 +3167,7 @@ Integrated Mathematical and Computational Approaches to Interface Models and Dat
     and computational approaches as they help decipher the interplay of these networks
     providing a comprehensive quantitative knowledge of the underlying functional
     mechanisms.
-  estimated popularity: 100.25
+  average citation count: 100.25
   organizer: Jeyashree Krishnan
   predicted_theme: 4 network eigenvalu structur comput spars
   speakers:
@@ -3185,7 +3185,7 @@ Inverse Problems in Machine Learning - Part I of II:
     and inverse problems to discuss recent advances, challenges and strategies in
     each area, aiming to promote cross-pollination and exchange of ideas that lead
     to new directions of research in both communities.
-  estimated popularity: 12059.5
+  average citation count: 12059.5
   organizer: Bamdad Hosseini
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -3204,7 +3204,7 @@ Inverse Problems in Machine Learning - Part II of II:
     and inverse problems to discuss recent advances, challenges and strategies in
     each area, aiming to promote cross-pollination and exchange of ideas that lead
     to new directions of research in both communities.
-  estimated popularity: 3171.25
+  average citation count: 3171.25
   organizer: Bamdad Hosseini
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -3222,7 +3222,7 @@ Inverse Problems in Medical Imaging - Part I of II:
     reconstruction algorithms are needed for  robust and reliable imaging. This session
     presents results where new nonlinear  mathematical techniques are combined with
     machine learning to yield   results with unprecedented image quality.
-  estimated popularity: 472.5
+  average citation count: 472.5
   organizer: Melody Alsaker
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -3240,7 +3240,7 @@ Inverse Problems in Medical Imaging - Part II of II:
     reconstruction algorithms are needed for  robust and reliable imaging. This session
     presents results where new nonlinear  mathematical techniques are combined with
     machine learning to yield   results with unprecedented image quality.
-  estimated popularity: 2036.75
+  average citation count: 2036.75
   organizer: Melody Alsaker
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -3260,7 +3260,7 @@ Large-scale PDE-Constrained Optimization Algorithms and Applications:
     or integer-valued in nature. In this minisymposium, we will highlight ongoing
     research efforts in the efficient solution of such large-scale PDE-constrained
     optimization problems.
-  estimated popularity: 3791.0
+  average citation count: 3791.0
   organizer: Alp Dener
   predicted_theme: 1 optim design model mani data
   speakers:
@@ -3276,7 +3276,7 @@ Large-scale PDE-Constrained Optimization Algorithms and Applications:
     it a challenging system to model.  The coupling of  characteristic length scales
     --from micron to km-- requires algorithms capable  of bridging vast length scales,
     and resolving different coexisting physical  regimes.
-  estimated popularity: 2810.5
+  average citation count: 2810.5
   organizer: Johannes P. Blaschke
   predicted_theme: 0 flow numer simul fluid scheme
   speakers:
@@ -3296,7 +3296,7 @@ Latest Advances in Topology and Shape Optimization - Part I of II:
     optimization formulations and physical modeling. This minisymposium aims to bring
     together researchers whose works are intended to extend the possibilities in topology
     optimization towards larger problems and new physics.
-  estimated popularity: 1306.75
+  average citation count: 1306.75
   organizer: Miguel Salazar de Troya
   part: 1
   predicted_theme: 1 optim design model mani data
@@ -3317,7 +3317,7 @@ Latest Advances in Topology and Shape Optimization - Part II of II:
     optimization formulations and physical modeling. This minisymposium aims to bring
     together researchers whose works are intended to extend the possibilities in topology
     optimization towards larger problems and new physics.
-  estimated popularity: 1256.75
+  average citation count: 1256.75
   organizer: Miguel Salazar de Troya
   part: 2
   predicted_theme: 1 optim design model mani data
@@ -3335,7 +3335,7 @@ Latest Advances in Topology and Shape Optimization - Part II of II:
     creep. As of today, simulations of viscoplastic flows in 3D or realistically complex
     2D configurations remain largely infeasible. Thus, state-of-the-art viscoplastic
     solvers perform comparably to Newtonian solvers of the past century.
-  estimated popularity: 142.5
+  average citation count: 142.5
   organizer: Timm Treskatis
   predicted_theme: 0 flow numer simul fluid scheme
   speakers:
@@ -3362,7 +3362,7 @@ Low Mach Number AMR Combustion Simulations with PeleLM -  Part I of II:
     closed-chamber pressurization effects.  We also discuss further extensions to
     the PeleLM time stepping scheme to support high-order methods, and implementation
     strategies used in PeleLM for many-core and GPU-based large-scale computing platforms.
-  estimated popularity: 1500.0
+  average citation count: 1500.0
   organizer: Marcus Day
   predicted_theme: 10 mesh simul numer pelelm lagrangian
   speakers:
@@ -3389,7 +3389,7 @@ Low Mach Number AMR Combustion Simulations with PeleLM - Part II of II:
     closed-chamber pressurization effects.  We also discuss further extensions to
     the PeleLM time stepping scheme to support high-order methods, and implementation
     strategies used in PeleLM for many-core and GPU-based large-scale computing platforms.
-  estimated popularity: 2761.5
+  average citation count: 2761.5
   organizer: Marcus Day
   part: 2
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -3410,7 +3410,7 @@ Low Mach Number AMR Combustion Simulations with PeleLM - Part II of II:
     methods.   In this session, we bring together researchers working on specific
     applications that would benefit from such data-driven/ML approaches, as well as,  investigators
     working on fundamental new developments in emerging areas of machine learning.
-  estimated popularity: 7480.5
+  average citation count: 7480.5
   organizer: Ben J. Gross
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -3432,7 +3432,7 @@ Low Mach Number AMR Combustion Simulations with PeleLM - Part II of II:
     applications that would benefit from such   data-driven/ML approaches, as well
     as, investigators working on fundamental new developments in emerging areas   of
     machine learning.
-  estimated popularity: 1117.0
+  average citation count: 1117.0
   organizer: Ben J. Gross
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -3461,7 +3461,7 @@ Machine Learning Methods in Computational Fluid Dynamics - Part I of II:
     is of particular interest, but the minisymposium is also open to other topics,
     e.g. learning intelligent flow sensors, data compression and feature extraction,
     implementation examples etc.'
-  estimated popularity: 1122.75
+  average citation count: 1122.75
   organizer: Andrea D. Beck
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -3490,7 +3490,7 @@ Machine Learning Methods in Computational Fluid Dynamics - Part II of II:
     is of particular interest, but the minisymposium is also open to other topics,
     e.g. learning intelligent flow sensors, data compression and feature extraction,
     implementation examples etc.'
-  estimated popularity: 11129.25
+  average citation count: 11129.25
   organizer: Andrea D. Beck
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -3517,7 +3517,7 @@ Machine Learning Strategies for Computer Simulation of Physical Systems - Part I
     \ and physically-interpretable  collective variables and structural features of\
     \ the models as well as the incorporation of physical constraints and invariances\
     \ whenever these are available."
-  estimated popularity: 11477.25
+  average citation count: 11477.25
   organizer: Phaedon S. Koutsourelakis
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -3544,7 +3544,7 @@ Machine Learning Strategies for Computer Simulation of Physical Systems - Part I
     \ and physically-interpretable  collective variables and structural features of\
     \ the models as well as the incorporation of physical constraints and invariances\
     \ whenever these are available."
-  estimated popularity: 49815.25
+  average citation count: 49815.25
   organizer: Phaedon S. Koutsourelakis
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -3565,7 +3565,7 @@ Machine Learning for Inverse Problems and its Applications:
     those recent results to our inverse-problems community. We welcome researchers
     and students to participate in our minisymposium and join our discussions on these
     exciting new directions.
-  estimated popularity: 2504.25
+  average citation count: 2504.25
   organizer: Youzuo Lin
   predicted_theme: 11 learn data model machin comput
   speakers:
@@ -3588,7 +3588,7 @@ Mathematical Methods for Control and Optimization of Large-Scale Energy Networks
     model predictive control, model-order reduction, uncertainty quantification, and
     related topics on energy networks. The abstract setting allows for consideration
     of applications arising from both, gas and power networks.
-  estimated popularity: 715.0
+  average citation count: 715.0
   organizer: Manuel Baumann
   part: 1
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -3612,7 +3612,7 @@ Mathematical Methods for Control and Optimization of Large-scale Energy Networks
     model predictive control, model-order reduction, uncertainty quantification, and
     related topics on energy networks. The abstract setting allows for consideration
     of applications arising from both, gas and power networks.
-  estimated popularity: 3397.0
+  average citation count: 3397.0
   organizer: Manuel Baumann
   part: 2
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -3628,7 +3628,7 @@ Mathematics of Energy Materials - Part I of II:
     are a key component in most of such devices. This minisymposium deals with innovative
     approaches to modeling, simulations, and design of energy storage devices, including
     development of new porous materials.
-  estimated popularity: 2995.25
+  average citation count: 2995.25
   organizer: Ilenia Battiato
   part: 1
   predicted_theme: 15 comput materi model electron numer
@@ -3643,7 +3643,7 @@ Mathematics of Energy Materials - Part II of II:
     are a key component in most of such devices. This minisymposium deals with innovative
     approaches to modeling, simulations, and design of energy storage devices, including
     development of new porous materials.
-  estimated popularity: 4999.25
+  average citation count: 4999.25
   organizer: Ilenia Battiato
   part: 2
   predicted_theme: 15 comput materi model electron numer
@@ -3665,7 +3665,7 @@ Mathematics of Energy Materials - Part II of II:
     and conservation techniques will be discussed together with applications to partial
     differential equations (PDEs) on manifolds, biological and geophysical fluid flows,
     and non-linear elasticity.
-  estimated popularity: 1132.0
+  average citation count: 1132.0
   organizer: Grady B. Wright
   part: 1
   predicted_theme: 12 parallel scalabl comput time equat
@@ -3687,7 +3687,7 @@ Mathematics of Energy Materials - Part II of II:
     and conservation techniques will be discussed together with applications to partial
     differential equations (PDEs) on manifolds, biological and geophysical fluid flows,
     and non-linear elasticity.
-  estimated popularity: 665.75
+  average citation count: 665.75
   organizer: Grady B. Wright
   part: 2
   predicted_theme: 12 parallel scalabl comput time equat
@@ -3705,7 +3705,7 @@ Methods for Large-scale Risk-averse Optimization - Part I of II:
     petroleum engineering and structural design.  In particular, we target mathematical
     approaches for risk aversion and probabilistic computations with an emphasis on
     efficient numerical methods.
-  estimated popularity: 5746.75
+  average citation count: 5746.75
   organizer: Drew P. Kouri
   part: 1
   predicted_theme: 1 optim design model mani data
@@ -3723,7 +3723,7 @@ Methods for Large-scale Risk-averse Optimization - Part II of II:
     petroleum engineering and structural design.  In particular, we target mathematical
     approaches for risk aversion and probabilistic computations with an emphasis on
     efficient numerical methods.
-  estimated popularity: 848.5
+  average citation count: 848.5
   organizer: Drew P. Kouri
   part: 2
   predicted_theme: 1 optim design model mani data
@@ -3752,7 +3752,7 @@ Mitigating Communication Costs Using Variable Precision Computing Techniques - P
     \ precision and additional computations for reduced bandwidth. To this end, this\
     \ minisymposium will highlight recent algorithmic advances in variable precision\
     \ computing."
-  estimated popularity: 3314.75
+  average citation count: 3314.75
   organizer: Alyson Fox
   part: 1
   predicted_theme: 13 error precis comput arithmet cost
@@ -3781,7 +3781,7 @@ Mitigating Communication Costs Using Variable Precision Computing Techniques - P
     \ precision and additional computations for reduced bandwidth. To this end, this\
     \ minisymposium will highlight recent algorithmic advances in variable precision\
     \ computing."
-  estimated popularity: 36235.0
+  average citation count: 36235.0
   organizer: Alyson Fox
   part: 2
   predicted_theme: 13 error precis comput arithmet cost
@@ -3805,7 +3805,7 @@ Model Reduction and Reduced-order Modeling of Dynamical Systems - Part I of II:
     data. Ideally, both approaches  are used complementary, and we hope to bring together
     researchers  from both sides in order to exchange ideas for potential hybrid  methods
     using the best from both worlds!'
-  estimated popularity: 4274.75
+  average citation count: 4274.75
   organizer: Peter Benner
   part: 1
   predicted_theme: 8 model reduct order comput reduc
@@ -3829,7 +3829,7 @@ Model Reduction and Reduced-order Modeling of Dynamical Systems - Part II of II:
     data. Ideally, both approaches  are used complementary, and we hope to bring together
     researchers  from both sides in order to exchange ideas for potential hybrid  methods
     using the best from both worlds!'
-  estimated popularity: 3239.0
+  average citation count: 3239.0
   organizer: Peter Benner
   part: 2
   predicted_theme: 8 model reduct order comput reduc
@@ -3849,7 +3849,7 @@ Model Reduction for Problems with Strong Convection, Sharp Gradients, and Discon
     minisymposium highlights recent advances in model reduction methods that recover
     low-dimensionality in convection-dominated problems via transformations, adaptive
     bases, separation of transport, and other techniques.
-  estimated popularity: 2393.75
+  average citation count: 2393.75
   organizer: Maciej Balajewicz
   part: 1
   predicted_theme: 8 model reduct order comput reduc
@@ -3869,7 +3869,7 @@ Model Reduction for Problems with Strong Convection, Sharp Gradients, and Discon
     minisymposium highlights recent advances in model reduction methods that recover
     low-dimensionality in convection-dominated problems via transformations, adaptive
     bases, separation of transport, and other techniques.
-  estimated popularity: 361.75
+  average citation count: 361.75
   organizer: Maciej Balajewicz
   part: 2
   predicted_theme: 8 model reduct order comput reduc
@@ -3891,7 +3891,7 @@ Model Reduction, Adaptivity, and High Dimensionality in Uncertainty Quantificati
     will bring together leading researchers from the applied and computational mathematics
     and engineering community to discuss and collaborate on novel theoretical and
     computational advances, and to discuss future directions for research.
-  estimated popularity: 1873.4
+  average citation count: 1873.4
   organizer: Akil Narayan
   part: 1
   predicted_theme: 8 model reduct order comput reduc
@@ -3914,7 +3914,7 @@ Model Reduction, Adaptivity, and High Dimensionality in Uncertainty Quantificati
     will bring together leading researchers from the applied and computational mathematics
     and engineering community to discuss and collaborate on novel theoretical and
     computational advances, and to discuss future directions for research.
-  estimated popularity: 958.25
+  average citation count: 958.25
   organizer: John D. Jakeman
   part: 2
   predicted_theme: 8 model reduct order comput reduc
@@ -3943,7 +3943,7 @@ Modeling Resource Utilization and Contention in HPC System-Application Interacti
     utilization and contention; exploring data to determine and affirm model dependencies;
     and extracting insights from models to dynamically effect improved performance
     and operations.
-  estimated popularity: 6832.25
+  average citation count: 6832.25
   organizer: James Brandt
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -3972,7 +3972,7 @@ Modeling Resource Utilization and Contention in HPC System-application Interacti
     utilization and contention; exploring data to determine and affirm model dependencies;
     and extracting insights from models to dynamically effect improved performance
     and operations.
-  estimated popularity: 16630.0
+  average citation count: 16630.0
   organizer: James Brandt
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -3994,7 +3994,7 @@ Modeling, Analyzing and Computing of Fractional Partial Differential Equations -
     employing fractional derivatives is also a topic covered by this symposium. Moreover,
     the interplay between modeling, analysis and simulation of fractional systems
     is a topic of high interest to this event.
-  estimated popularity: 402.25
+  average citation count: 402.25
   organizer: Abdul Khaliq
   part: 1
   predicted_theme: 14 fraction model nonloc calculu materi
@@ -4015,7 +4015,7 @@ Modeling, Analyzing and Computing of Fractional Partial Differential Equations -
     employing fractional derivatives is also a topic covered by this symposium. Moreover,
     the interplay between modeling, analysis and simulation of fractional systems
     is a topic of high interest to this event.
-  estimated popularity: 9148.5
+  average citation count: 9148.5
   organizer: Abdul Khaliq
   part: 2
   predicted_theme: 14 fraction model nonloc calculu materi
@@ -4030,7 +4030,7 @@ Modeling, Analyzing and Computing of Fractional Partial Differential Equations -
     and also require efficient numerical methods for accurate solutions.  In this
     minisymposium, we present various topics in fractional modeling with PDEs using
     statistical and numerical tools.
-  estimated popularity: 10661.75
+  average citation count: 10661.75
   organizer: Zhongqiang Zhang
   part: 1
   predicted_theme: 14 fraction model nonloc calculu materi
@@ -4045,7 +4045,7 @@ Modeling, Analyzing and Computing of Fractional Partial Differential Equations -
     and also require efficient numerical methods for accurate solutions.  In this
     minisymposium, we present various topics in fractional modeling with PDEs using
     statistical and numerical tools.
-  estimated popularity: 42088.25
+  average citation count: 42088.25
   organizer: Hong Wang
   part: 2
   predicted_theme: 14 fraction model nonloc calculu materi
@@ -4066,7 +4066,7 @@ Models with Superior Reasons for Complex Big Data - Part I of II:
     record level, which demonstrate superior model  intelligence and hence inspires
     confidence and trust.  Enabling software tools and hardware architecture will
     be  highlighted along with key development principles.'
-  estimated popularity: 5558.333333333333
+  average citation count: 5558.333333333333
   organizer: Sou-Cheng T. Choi
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -4085,7 +4085,7 @@ Models with Superior Reasons for Complex Big Data - Part II of II:
     reasons at the data record level, which demonstrates  superior model intelligence
     and hence inspires confidence and  trust. Enabling software tools and hardware
     architecture will be  highlighted and emphasized along with key development principles.'
-  estimated popularity: 4443.25
+  average citation count: 4443.25
   organizer: Sou-Cheng T. Choi
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -4103,7 +4103,7 @@ Molecular and Electronic Structure Theory Meets Data Science - Part I of II:
     systems. We bring together experts on molecular and electronic structure theories,
     which include mathematicians, physicists and chemists working actively in the
     field.
-  estimated popularity: 11198.0
+  average citation count: 11198.0
   organizer: Chao Yang
   part: 1
   predicted_theme: 15 comput materi model electron numer
@@ -4121,7 +4121,7 @@ Molecular and Electronic Structure Theory Meets Data Science - Part II of II:
     systems. We bring together experts on molecular and electronic structure theories,
     which include mathematicians, physicists and chemists working actively in the
     field.
-  estimated popularity: 2519.75
+  average citation count: 2519.75
   organizer: Chao Yang
   part: 2
   predicted_theme: 15 comput materi model electron numer
@@ -4142,7 +4142,7 @@ Moment Methods in Kinetic Theory - Part I of II:
     energy, heat flux, stress tensor and other higher moments, is chosen to describe
     the flow properties. The resulting moment equations then describe the evolution
     of these moments.
-  estimated popularity: 1944.75
+  average citation count: 1944.75
   organizer: Julian Koellermeier
   part: 1
   predicted_theme: 5 model comput transport physic scale
@@ -4163,7 +4163,7 @@ Moment Methods in Kinetic Theory - Part II of II:
     energy, heat flux, stress tensor and other higher moments, is chosen to describe
     the flow properties. The resulting moment equations then describe the evolution
     of these moments.
-  estimated popularity: 5150.5
+  average citation count: 5150.5
   organizer: Julian Koellermeier
   part: 2
   predicted_theme: 5 model comput transport physic scale
@@ -4183,7 +4183,7 @@ Mori-Zwanzig Formulation, Implementation and Applications - Part I of II:
     reduced models. The minisymposium will address the related mathematical and numerical
     issues as well as applications to materials, fluid mechanics, soft matter, biology
     and uncertainty quantification.
-  estimated popularity: 3672.75
+  average citation count: 3672.75
   organizer: Xiantao Li
   part: 1
   predicted_theme: 12 parallel scalabl comput time equat
@@ -4203,7 +4203,7 @@ Mori-Zwanzig Formulation, Implementation and Applications - Part II of II:
     reduced models. The minisymposium will address the related mathematical and numerical
     issues as well as applications to materials, fluid mechanics, soft matter, biology
     and uncertainty quantification.
-  estimated popularity: 1936.0
+  average citation count: 1936.0
   organizer: Xiantao Li
   part: 2
   predicted_theme: 12 parallel scalabl comput time equat
@@ -4221,7 +4221,7 @@ Multi-scale Modeling and Computation of Complex and Active Fluids - Part I of II
     Added difficulties arise when such suspensions interact with boundaries of non-trivial
     shape. This minisymposium's goal is to explore recent advances, especially on
     the computational front, on this emerging and expanding topic.
-  estimated popularity: 358.25
+  average citation count: 358.25
   organizer: Enkeleida Lushi
   part: 1
   predicted_theme: 1 optim design model mani data
@@ -4239,7 +4239,7 @@ Multi-scale Modeling and Computation of Complex and Active Fluids - Part II of I
     Added difficulties arise when such suspensions interact with boundaries of non-trivial
     shape. This minisymposium's goal is to explore recent advances, especially on
     the computational front, on this emerging and expanding topic.
-  estimated popularity: 5612.333333333333
+  average citation count: 5612.333333333333
   organizer: Enkeleida Lushi
   part: 2
   predicted_theme: 1 optim design model mani data
@@ -4261,7 +4261,7 @@ Multigrid Solvers for Partially Structured Meshes and for Advanced Architectures
     of these algorithms for mixed architectures as it is an increasingly important
     aspect of high performance computing on recent architectures aiming at scalability
     at exascale.'
-  estimated popularity: 1987.5
+  average citation count: 1987.5
   organizer: Luc Berger-Vergiat
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -4279,7 +4279,7 @@ Multiphysics Simulation with MOOSE - Part I of II:
     and explicit finite element simulations, and makes extensive use of the finite
     element building blocks provided by the libMesh finite element library, the solvers
     and preconditioners of PETSc, and the parallel communication routines of MPI.
-  estimated popularity: 219.75
+  average citation count: 219.75
   organizer: John W. Peterson
   part: 1
   predicted_theme: 12 parallel scalabl comput time equat
@@ -4298,7 +4298,7 @@ Multiphysics Simulation with MOOSE - Part II of II:
     and explicit finite element simulations, and makes extensive use of the finite
     element building blocks provided by the libMesh finite element library, the solvers
     and preconditioners of PETSc, and the parallel communication routines of MPI.
-  estimated popularity: 866.5
+  average citation count: 866.5
   organizer: John W. Peterson
   part: 2
   predicted_theme: 12 parallel scalabl comput time equat
@@ -4321,7 +4321,7 @@ Multiphysics and Multiscale Problems in Computational Science and Engineering - 
     \ interaction, atomistic-to-continuum coupling problems, nonlocal-to-nonlocal/local\
     \ coupling problems, quantum  mechanics, micro-mechanics of materials, concurrent\
     \ coupling approaches, multiphysics/multiscale coupling methods."
-  estimated popularity: 3865.0
+  average citation count: 3865.0
   organizer: Xingjie Li
   part: 1
   predicted_theme: 6 softwar scienc comput engin architectur
@@ -4344,7 +4344,7 @@ Multiphysics and Multiscale Problems in Computational Science and Engineering - 
     \ interaction, atomistic-to-continuum coupling problems, nonlocal-to-nonlocal/local\
     \ coupling problems, quantum  mechanics, micro-mechanics of materials, concurrent\
     \ coupling approaches, multiphysics/multiscale coupling methods."
-  estimated popularity: 3378.75
+  average citation count: 3378.75
   organizer: Xingjie Li
   part: 2
   predicted_theme: 6 softwar scienc comput engin architectur
@@ -4366,7 +4366,7 @@ Multiphysics and Multiscale Problems in Computational Science and Engineering - 
     backgrounds attempt to conduct increasingly complex simulations and analyses.  This
     session brings together exemplars, promising techniques, and lessons learned in
     developing algorithms, software, and communities for computational multiphysics.
-  estimated popularity: 2786.75
+  average citation count: 2786.75
   organizer: Paul Bauman
   part: 1
   predicted_theme: 17 comput softwar scientif thi complex
@@ -4388,7 +4388,7 @@ Multiphysics and Multiscale Problems in Computational Science and Engineering - 
     backgrounds attempt to conduct increasingly complex simulations and analyses.  This
     session brings together exemplars, promising techniques, and lessons learned in
     developing algorithms, software, and communities for computational multiphysics.
-  estimated popularity: 367.5
+  average citation count: 367.5
   organizer: Paul Bauman
   part: 2
   predicted_theme: 17 comput softwar scientif thi complex
@@ -4407,7 +4407,7 @@ Multirate Time Stepping Methods:
     requirements. The talks in this minisymposium will describe recent novel developments
     in multirate time-stepping methods and demonstrate their benefits in practical
     applications.
-  estimated popularity: 3010.5
+  average citation count: 3010.5
   organizer: "Michael G\xFCnther"
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -4427,7 +4427,7 @@ Multiscale and Domain Decomposition Approaches for PDEs with Rough Coefficients 
     methods often rely on approximation subspaces that incorporate specialized knowledge
     of the partial differential equation. Similar ideas appear in the context of preconditioners
     (or linear solvers) based on domain decomposition to build enhanced coarse spaces.
-  estimated popularity: 1469.25
+  average citation count: 1469.25
   organizer: Ulrich Hetmaniuk
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -4448,7 +4448,7 @@ Multiscale and Domain Decomposition Approaches for PDEs with Rough Coefficients 
     methods often rely on approximation subspaces that incorporate specialized knowledge
     of the partial differential equation. Similar ideas appear in the context of preconditioners
     (or linear solvers) based on domain decomposition to build enhanced coarse spaces.
-  estimated popularity: 1005.5
+  average citation count: 1005.5
   organizer: Ulrich Hetmaniuk
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -4477,7 +4477,7 @@ Neutrino Transport Methods in Astrophysics - Part I of II:
     sustainable software. The goal of this minisymposium is to bring together researchers
     working on topics of relevance to neutrino transport modeling to discuss recent
     work and exchange ideas.
-  estimated popularity: 1014.8
+  average citation count: 1014.8
   organizer: Eirik Endeve
   part: 1
   predicted_theme: 3 model system dynam event stochast
@@ -4507,7 +4507,7 @@ Neutrino Transport Methods in Astrophysics - Part II of II:
     sustainable software. The goal of this minisymposium is to bring together researchers
     working on topics of relevance to neutrino transport modeling to discuss recent
     work and exchange ideas.
-  estimated popularity: 4074.0
+  average citation count: 4074.0
   organizer: Eirik Endeve
   part: 2
   predicted_theme: 3 model system dynam event stochast
@@ -4526,7 +4526,7 @@ New Challenges and Opportunities for Model Order Reduction - Part I of II:
     reduction methods that arise for instance when applying model order reduction
     to data assimilation, parameter estimation and large input-parameter spaces, incorporating
     ideas originally developed in data science, or large-scale optimization.
-  estimated popularity: 821.0
+  average citation count: 821.0
   organizer: Laura Iapichino
   part: 1
   predicted_theme: 8 model reduct order comput reduc
@@ -4545,7 +4545,7 @@ New Challenges and Opportunities for Model Order Reduction - Part II of II:
     reduction methods that arise for instance when applying model order reduction
     to data assimilation, parameter estimation and large input-parameter spaces, incorporating
     ideas originally developed in data science, or large-scale optimization.
-  estimated popularity: 1901.75
+  average citation count: 1901.75
   organizer: Laura Iapichino
   part: 2
   predicted_theme: 8 model reduct order comput reduc
@@ -4562,7 +4562,7 @@ New Challenges and Opportunities for Model Order Reduction - Part II of II:
     solving. The purpose of this minisymposium is to enable exchange of information
     between people working on alternative FFT algorithms such as sparse and non uniform
     FFTs, to those working on FFT implementations, in particular for parallel hardware.
-  estimated popularity: 983.75
+  average citation count: 983.75
   organizer: Daisuke Takahashi
   part: 1
   predicted_theme: 12 parallel scalabl comput time equat
@@ -4579,7 +4579,7 @@ New Challenges and Opportunities for Model Order Reduction - Part II of II:
     solving. The purpose of this minisymposium is to enable exchange of information
     between people working on alternative FFT algorithms such as sparse and non uniform
     FFTs, to those working on FFT implementations, in particular for parallel hardware.
-  estimated popularity: 105.75
+  average citation count: 105.75
   organizer: Daisuke Takahashi
   part: 2
   predicted_theme: 12 parallel scalabl comput time equat
@@ -4596,7 +4596,7 @@ Nonlinear Reduced Order Modeling of Realistic Engineering Fluid Flows:
     and numerical analysis.  Data-driven reduced order modeling of fluids plays an
     important role in those applications. Advantages of their model and potential
     future research directions will be discussed in the minisymposium.
-  estimated popularity: 61953.0
+  average citation count: 61953.0
   organizer: Xuping Xie
   predicted_theme: 8 model reduct order comput reduc
   speakers:
@@ -4620,7 +4620,7 @@ Nonlocal Models in Computational Science and Engineering - Part I of II:
     and time-stepping methods for nonlocal models, nonlocal boundary conditions, multiscale
     methods and multi-physics modeling with nonlocal models, nonlocal modeling of
     heterogeneous systems, engineering and scientific applications with nonlocal models.'
-  estimated popularity: 1442.25
+  average citation count: 1442.25
   organizer: Yue Yu
   part: 1
   predicted_theme: 14 fraction model nonloc calculu materi
@@ -4644,7 +4644,7 @@ Nonlocal Models in Computational Science and Engineering - Part II of II:
     and time-stepping methods for nonlocal models, nonlocal boundary conditions, multiscale
     methods and multi-physics modeling with nonlocal models, nonlocal modeling of
     heterogeneous systems, engineering and scientific applications with nonlocal models.'
-  estimated popularity: 1539.5
+  average citation count: 1539.5
   organizer: Yue Yu
   part: 2
   predicted_theme: 14 fraction model nonloc calculu materi
@@ -4662,7 +4662,7 @@ Novel Adaptation, Decomposition and Expansion Algorithms for a Class of Large Sc
     in unbounded and heterogeneous media.  We focus on recent developments in developing  efficient
     algorithms for such models using spatial decomposition, expansions, and  basis
     adaptation techniques.
-  estimated popularity: 515.5
+  average citation count: 515.5
   organizer: Mahadevan Ganesh
   predicted_theme: 9 numer comput equat wave thi
   speakers:
@@ -4690,7 +4690,7 @@ Novel Approaches for Design and Analysis of Chaotic Dynamical Systems - Part I o
     minimize their costs will be discussed in the talks as well as how they can enable
     gradient-based optimization, error estimation, and mesh adaptation for chaotic
     dynamical systems.
-  estimated popularity: 1193.5
+  average citation count: 1193.5
   organizer: Patrick J. Blonigan
   part: 1
   predicted_theme: 3 model system dynam event stochast
@@ -4719,7 +4719,7 @@ Novel Approaches for Design and Analysis of Chaotic Dynamical Systems - Part II 
     minimize their costs will be discussed in the talks as well as how they can enable
     gradient-based optimization, error estimation, and mesh adaptation for chaotic
     dynamical systems.
-  estimated popularity: 15391.5
+  average citation count: 15391.5
   organizer: Patrick J. Blonigan
   part: 2
   predicted_theme: 3 model system dynam event stochast
@@ -4740,7 +4740,7 @@ Novel Computational Algorithms for Future Computing Platforms - Part I of II:
     look beyond silicon-based chips (e.g., quantum computing, physical annealing,
     neuromorphics, etc.), with a continued emphasis on raw processing power and emerging
     concerns about energy efficiency.
-  estimated popularity: 9995.75
+  average citation count: 9995.75
   organizer: Dimitar Trenev
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -4761,7 +4761,7 @@ Novel Computational Algorithms for Future Computing Platforms - Part II of II:
     look beyond silicon-based chips (e.g., quantum computing, physical annealing,
     neuromorphics, etc.), with a continued emphasis on raw processing power and emerging
     concerns about energy efficiency.
-  estimated popularity: 1891.0
+  average citation count: 1891.0
   organizer: Dimitar Trenev
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -4782,7 +4782,7 @@ Numerical Linear Algebra for Machine Learning - Part I of II:
     \ structured matrices, tensor representations, tensor-trains, low-rank and sparse\
     \ representations, and numerical algorithms for large-scale eigenvalue and singular\
     \ value calculations."
-  estimated popularity: 3236.25
+  average citation count: 3236.25
   organizer: Leopold Cambier
   part: 1
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -4803,7 +4803,7 @@ Numerical Linear Algebra for Machine Learning - Part II of II:
     \ structured matrices, tensor representations, tensor-trains, low-rank and sparse\
     \ representations, and numerical algorithms for large-scale eigenvalue and singular\
     \ value calculations."
-  estimated popularity: 2679.25
+  average citation count: 2679.25
   organizer: Leopold Cambier
   part: 2
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -4832,7 +4832,7 @@ Numerical Methods and Regularization for Ill-posed and Ill-conditioned Problems:
     the large condition number. The aim of the methods and algorithms is to reduce
     the computational expense of the conventional methods so that large-scale computation
     for the ill-posed or ill-conditioned problems can be achieved.
-  estimated popularity: 103.5
+  average citation count: 103.5
   organizer: Long Lee
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -4851,7 +4851,7 @@ Numerical Methods for Biological Fluid Dynamics - Part I of II:
     recent developments in the field, including fluid-structure interaction and coarse-grained
     active matter models, and applications such as jellyfish swimming and intracellular
     motion.
-  estimated popularity: 5520.2
+  average citation count: 5520.2
   organizer: Thomas Fai
   part: 1
   predicted_theme: 0 flow numer simul fluid scheme
@@ -4872,7 +4872,7 @@ Numerical Methods for Biological Fluid Dynamics - Part II of II:
     recent developments in the field, including fluid-structure interaction and coarse-grained
     active matter models, and applications such as jellyfish swimming and intracellular
     motion.
-  estimated popularity: 1893.25
+  average citation count: 1893.25
   organizer: Thomas Fai
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -4889,7 +4889,7 @@ Numerical Methods for Earth System Modeling - Part I of II:
     \ state of the art methods in these areas applied to Earth system modeling. It\
     \ also focuses on real-world challenges and opportunities encountered while implementing\
     \ these schemes on current and upcoming computing systems."
-  estimated popularity: 500.75
+  average citation count: 500.75
   organizer: Christopher J. Vogl
   part: 1
   predicted_theme: 0 flow numer simul fluid scheme
@@ -4906,7 +4906,7 @@ Numerical Methods for Earth System Modeling - Part II of II:
     \ state of the art methods in these areas applied to Earth system modeling. It\
     \ also focuses on real-world challenges and opportunities encountered while implementing\
     \ these schemes on current and upcoming computing systems."
-  estimated popularity: 31067.0
+  average citation count: 31067.0
   organizer: Christopher J. Vogl
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -4923,7 +4923,7 @@ Numerical Methods for Multi-Material Fluid Flows - Part I of II:
     \ Methods,  Eulerian Methods, Mesh Generation Methods,  including Mesh Adaptation,\
     \  Interface Reconstruction Methods,  Data Transfer Between Meshes\u2014Remapping,\
     \  Advanced Discretization Methods, High-order Methods."
-  estimated popularity: 2692.8333333333335
+  average citation count: 2692.8333333333335
   organizer: Mikhail Shashkov
   part: 1
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -4943,7 +4943,7 @@ Numerical Methods for Multi-Material Fluid Flows - Part II of II:
     \ Methods,  Eulerian Methods, Mesh Generation Methods,  including Mesh Adaptation,\
     \  Interface Reconstruction Methods,  Data Transfer Between Meshes\u2014Remapping,\
     \  Advanced Discretization Methods, High-order Methods."
-  estimated popularity: 1683.5
+  average citation count: 1683.5
   organizer: Mikhail Shashkov
   part: 2
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -4958,7 +4958,7 @@ Numerical and Modeling Advances in Complex Systems:
     cases, the physical behavior is itself not well-understood. These talks present
     recent numerical and modeling advances in complex systems including porous media,
     contaminant transport, tumor modeling, and chaotic systems.
-  estimated popularity: 1558.75
+  average citation count: 1558.75
   organizer: Talea Mayo
   predicted_theme: 5 model comput transport physic scale
   speakers:
@@ -4982,7 +4982,7 @@ Optimal Experimental Design for Bayesian Inverse Problems:
     \ within the OED problem. This minisymposium explores advances in numerical methods\
     \ for OED in a Bayesian framework that are scalable with respect to the parameter\
     \ and data dimensions."
-  estimated popularity: 24135.5
+  average citation count: 24135.5
   organizer: Umberto Villa
   predicted_theme: 7 model paramet comput bayesian data
   speakers:
@@ -4999,7 +4999,7 @@ Optimal Experimental Design for Inverse Problems - Part I of II:
     models, the computational cost of model-based optimal experimental design (OED)
     can be prohibitively expensive in many applications of interest. This minisymposium
     explores advances in numerical methods for OED of Inverse Problems.
-  estimated popularity: 3456.5
+  average citation count: 3456.5
   organizer: Jayanth Jagalur Mohan
   part: 1
   predicted_theme: 1 optim design model mani data
@@ -5017,7 +5017,7 @@ Optimal Experimental Design for Inverse Problems - Part II of II:
     models, the computational cost of model-based optimal experimental design (OED)
     can be prohibitively expensive in many applications of interest. This minisymposium
     explores advances in numerical methods for OED of Inverse Problems.
-  estimated popularity: 71.75
+  average citation count: 71.75
   organizer: Jayanth Jagalur Mohan
   part: 2
   predicted_theme: 1 optim design model mani data
@@ -5039,7 +5039,7 @@ Optimization Under Uncertainty Using Multifidelity and Derivative-free Approache
     particularly challenging when the underlying models are complex and expensive
     to evaluate. Given limited sample sizes, another challenge is how to take the
     resulting noisy objective or constraint function estimates into account.
-  estimated popularity: 1987.0
+  average citation count: 1987.0
   organizer: Friedrich Menhorn
   predicted_theme: 7 model paramet comput bayesian data
   speakers:
@@ -5056,7 +5056,7 @@ Optimization with Coupled PDEs in Multiphysics Applications:
     discusses how to transfer coupled simulations to design and optimization tools.
     In particular, we discuss the setup of appropriate optimization methodologies
     making use of coupled adjoints.
-  estimated popularity: 16898.25
+  average citation count: 16898.25
   organizer: Nicolas R. Gauger
   predicted_theme: 1 optim design model mani data
   speakers:
@@ -5068,7 +5068,7 @@ Parallel Numerical Linear Algebra for Future Extreme-scale Systems:
   abstract: We describe recent developments in task-based  algorithms for the solution
     of both dense and sparse linear systems  and the solution of both symmetric and
     unsymmetric dense eigenproblems.
-  estimated popularity: 118.25
+  average citation count: 118.25
   organizer: Iain Duff
   predicted_theme: 4 network eigenvalu structur comput spars
   speakers:
@@ -5085,7 +5085,7 @@ Parallel-in-Time Integration Techniques - Part I of II:
     aspects of parallel-in-time integration. Research topics ranging from algorithm
     development and mathematical analysis to software implementation and exploitation
     of parallel-in-time integration techniques in realistic applications are discussed.
-  estimated popularity: 3044.75
+  average citation count: 3044.75
   organizer: Stephanie Friedhoff
   part: 1
   predicted_theme: 12 parallel scalabl comput time equat
@@ -5103,7 +5103,7 @@ Parallel-in-Time Integration Techniques - Part II of II:
     aspects of parallel-in-time integration. Research topics ranging from algorithm
     development and mathematical analysis to software implementation and exploitation
     of parallel-in-time integration techniques in realistic applications are discussed.
-  estimated popularity: 3336.0
+  average citation count: 3336.0
   organizer: Stephanie Friedhoff
   part: 2
   predicted_theme: 12 parallel scalabl comput time equat
@@ -5124,7 +5124,7 @@ Partitioned and Adaptive Methods for Initial Value Problems - Part I of II:
     requires careful treatment of the adaptivity or partitioning along with accuracy
     and stability.  This minisymposium brings together speakers working on the application
     and analysis of and partitioned methods for initial value problems.
-  estimated popularity: 566.75
+  average citation count: 566.75
   organizer: Andrew J. Steyer
   part: 1
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -5144,7 +5144,7 @@ Partitioned and Adaptive Methods for Initial Value Problems - Part II of II:
     requires careful treatment of the adaptivity or partitioning along with accuracy
     and stability.  This minisymposium brings together speakers working on the application
     and analysis of and partitioned methods for initial value problems.
-  estimated popularity: 150.25
+  average citation count: 150.25
   organizer: Andrew J. Steyer
   part: 2
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -5167,7 +5167,7 @@ Partitioned and Adaptive Methods for Initial Value Problems - Part II of II:
     range of architectures.  This  session brings together exemplars, promising techniques,
     and lessons  learned in developing robust performance-portable applications and  numerical
     libraries for computational science and engineering
-  estimated popularity: 3382.25
+  average citation count: 3382.25
   organizer: Jed Brown
   part: 1
   predicted_theme: 17 comput softwar scientif thi complex
@@ -5190,7 +5190,7 @@ Partitioned and Adaptive Methods for Initial Value Problems - Part II of II:
     range of architectures.  This  session brings together exemplars, promising techniques,
     and lessons  learned in developing robust performance-portable applications and  numerical
     libraries for computational science and engineering
-  estimated popularity: 991.3333333333334
+  average citation count: 991.3333333333334
   organizer: Jed Brown
   part: 2
   predicted_theme: 17 comput softwar scientif thi complex
@@ -5207,7 +5207,7 @@ Performance Portability of Scientific HPC Applications:
     \ tools is not only difficult for developers, but also presents increasingly difficult\
     \ problems to compilers. This minisymposium will address strategies that help\
     \ ease computational science problems for large codes today."
-  estimated popularity: 2109.5
+  average citation count: 2109.5
   organizer: Geoff Womeldorff
   predicted_theme: 17 comput softwar scientif thi complex
   speakers:
@@ -5226,7 +5226,7 @@ Performance Portability through Source-to-source Code Transformations:
     high performance across a range of systems. The evaluation of such systems, the
     level of abstraction and the developer participation in the process are also important
     topics to be discussed.
-  estimated popularity: 3188.5
+  average citation count: 3188.5
   organizer: William D. Gropp
   predicted_theme: 2 comput exascal architectur highord perform
   speakers:
@@ -5241,7 +5241,7 @@ Physics Motivated Problems in Machine Learning - Part I of II:
     unknown dynamics or efficient representations of dynamics in a reduced basis.  We
     will also investigate efforts to constrain learning algorithms to produce more
     physical and interpretable models.
-  estimated popularity: 19067.25
+  average citation count: 19067.25
   organizer: Samuel Rudy
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -5257,7 +5257,7 @@ Physics Motivated Problems in Machine Learning - Part II of II:
     unknown dynamics or efficient representations of dynamics in a reduced basis.  We
     will also investigate efforts to constrain learning algorithms to produce more
     physical and interpretable models.
-  estimated popularity: 5397.6
+  average citation count: 5397.6
   organizer: Samuel Rudy
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -5282,7 +5282,7 @@ Physics/Chemistry-aware Machine Learning - Part I of II:
     encode invariances and symmetries that govern the behavior of physical systems,
     with the undisputed ability of un/semi/supervised learning tools for extracting
     patterns, learning relationships and effecting dimensionality reductions.
-  estimated popularity: 7514.25
+  average citation count: 7514.25
   organizer: Nicholas Zabaras
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -5306,7 +5306,7 @@ Physics/Chemistry-aware Machine Learning - Part II of II:
     encode invariances and symmetries that govern the behavior of physical systems,
     with the undisputed ability of un/semi/supervised learning tools for extracting
     patterns, learning relationships and effecting dimensionality reductions.
-  estimated popularity: 5610.5
+  average citation count: 5610.5
   organizer: Nicholas Zabaras
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -5329,7 +5329,7 @@ Preconditioning for High-order Matrix-free PDE Operators - Part I of II:
     In this minisymposium, we consider approaches such as preconditioning a high-order
     method with a lower-order method, unassembled algebraic multigrid preconditioners,
     and related preconditioning methods.
-  estimated popularity: 4130.25
+  average citation count: 4130.25
   organizer: Andrew T. Barker
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -5352,7 +5352,7 @@ Preconditioning for High-order Matrix-free PDE Operators - Part II of II:
     In this minisymposium, we consider approaches such as preconditioning a high-order
     method with a lower-order method, unassembled algebraic multigrid preconditioners,
     and related preconditioning methods.
-  estimated popularity: 1651.0
+  average citation count: 1651.0
   organizer: Andrew T. Barker
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -5372,7 +5372,7 @@ Progress and Challenges in Extreme Scale Computing and Data - Part I of II:
     \ and libraries for next generation computing platforms. Furthermore, we discuss\
     \ efforts to better incorporate data science concerns as a principle component\
     \ of our scientific workflows."
-  estimated popularity: 2971.75
+  average citation count: 2971.75
   organizer: Serge G. Petiton
   part: 1
   predicted_theme: 17 comput softwar scientif thi complex
@@ -5392,7 +5392,7 @@ Progress and Challenges in Extreme Scale Computing and Data - Part II of II:
     \ and libraries for next generation computing platforms. Furthermore, we discuss\
     \ efforts to better incorporate data science concerns as a principle component\
     \ of our scientific workflows."
-  estimated popularity: 302.25
+  average citation count: 302.25
   organizer: Serge G. Petiton
   part: 2
   predicted_theme: 17 comput softwar scientif thi complex
@@ -5414,7 +5414,7 @@ Quantitative Image Analysis  - Part II of II:
     imaging and discuss the computational challenges involved with each approach.
     A special focus will be on how these challenges can inform other areas of computational
     science and engineering.
-  estimated popularity: 1728.0
+  average citation count: 1728.0
   organizer: Laramie Paxton
   part: 2
   predicted_theme: 17 comput softwar scientif thi complex
@@ -5436,7 +5436,7 @@ Quantitative Image Analysis - Part I of II:
     imaging and discuss the computational challenges involved with each approach.
     A special focus will be on how these challenges can inform other areas of computational
     science and engineering.
-  estimated popularity: 2831.0
+  average citation count: 2831.0
   organizer: Laramie Paxton
   part: 1
   predicted_theme: 17 comput softwar scientif thi complex
@@ -5460,7 +5460,7 @@ Quantum Computing for Computational Science Applications:
     computing. The speakers, coming from both academia and industry, will explain
     how scientific applications can benefit from quantum computing and will address
     the main issues in providing efficient quantum simulation algorithms.
-  estimated popularity: 674.0
+  average citation count: 674.0
   organizer: Marc Baboulin
   predicted_theme: 15 comput materi model electron numer
   speakers:
@@ -5480,7 +5480,7 @@ Rational Approximation and its Applications:
     fewer degrees of freedom. This minisymposium explores recent advances exploiting
     these algorithms and their impact on system identification, model reduction, and
     function approximation.
-  estimated popularity: 751.0
+  average citation count: 751.0
   organizer: Jeffrey M. Hokanson
   predicted_theme: 8 model reduct order comput reduc
   speakers:
@@ -5497,7 +5497,7 @@ Recent Advances in Accurate and Verified Numerical Computations:
     range of science and engineering. The main objective of the minisymposium is to
     discuss several recent topics on accurate and verified numerical computations
     and related numerical methods.
-  estimated popularity: 141.25
+  average citation count: 141.25
   organizer: Takeshi Ogita
   predicted_theme: 9 numer comput equat wave thi
   speakers:
@@ -5513,7 +5513,7 @@ Recent Advances in Computational Methods for High Dimensional Bayesian Inversion
     poses a big challenge computationally. The purpose of this minisymposium is to
     bring researchers from different fields to discuss the recent advances in computational
     methods for such problems.
-  estimated popularity: 11607.25
+  average citation count: 11607.25
   organizer: Qifeng Liao
   part: 1
   predicted_theme: 7 model paramet comput bayesian data
@@ -5530,7 +5530,7 @@ Recent Advances in Computational Methods for High Dimensional Bayesian Inversion
     poses a big challenge computationally. The purpose of this minisymposium is to
     bring researchers from different fields to discuss the recent advances in computational
     methods for such problems.
-  estimated popularity: 9265.8
+  average citation count: 9265.8
   organizer: Qifeng Liao
   part: 2
   predicted_theme: 7 model paramet comput bayesian data
@@ -5551,7 +5551,7 @@ Recent Advances in Discontinuous Galerkin Methods for Partial Differential Equat
     from different concentrations and application fields and find potential academic
     cooperators for future.  There will be 4 speakers to present their recent advances
     in this minisymposium.
-  estimated popularity: 19432.0
+  average citation count: 19432.0
   organizer: Ziyao Xu
   predicted_theme: 9 numer comput equat wave thi
   speakers:
@@ -5572,7 +5572,7 @@ Recent Advances in Error Estimation for Complex Problems - Part I of II:
     will feature recent advances in a posteriori error estimation for simulation and
     uncertainty quantification and the discretization choices necessary to meet constraints
     on accuracy.
-  estimated popularity: 5326.5
+  average citation count: 5326.5
   organizer: Jehanzeb H. Chaudhry
   part: 1
   predicted_theme: 13 error precis comput arithmet cost
@@ -5594,7 +5594,7 @@ Recent Advances in Error Estimation for Complex Problems - Part II of II:
     will feature recent advances in a posteriori error estimation for simulation and
     uncertainty quantification and the discretization choices necessary to meet constraints
     on accuracy.
-  estimated popularity: 1327.2
+  average citation count: 1327.2
   organizer: Jehanzeb H. Chaudhry
   part: 2
   predicted_theme: 13 error precis comput arithmet cost
@@ -5623,7 +5623,7 @@ Recent Advances in High Order Lagrangian/ALE Methods - Part I of II:
     in recent advances in high order methods, such as high order finite volume (WENO,
     ADER), discontinuous Galerkin, high order finite elements, residual distribution
     methods, as applied to Lagrangian or ALE description of the flow.
-  estimated popularity: 47613.25
+  average citation count: 47613.25
   organizer: Svetlana Tokareva
   part: 1
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -5651,7 +5651,7 @@ Recent Advances in High Order Lagrangian/ALE Methods - Part II of II:
     in recent advances in high order methods, such as high order finite volume (WENO,
     ADER), discontinuous Galerkin, high order finite elements, residual distribution
     methods, as applied to Lagrangian or ALE description of the flow.
-  estimated popularity: 21941.6
+  average citation count: 21941.6
   organizer: Svetlana Tokareva
   part: 2
   predicted_theme: 10 mesh simul numer pelelm lagrangian
@@ -5668,7 +5668,7 @@ Recent Advances in Machine Learning and Data-driven Methods for Physical Science
     the recent years. Among all methods, and data-driven approaches incorporating
     machine learning techniques prove themselves as indispensable algorithmic tools
     for real-world applications.
-  estimated popularity: 1668.2
+  average citation count: 1668.2
   organizer: Jing Li
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -5685,7 +5685,7 @@ Recent Advances in Machine Learning and Data-driven Methods for Physical Science
     the recent years. Among all methods, and data-driven approaches incorporating
     machine learning techniques prove themselves as indispensable algorithmic tools
     for real-world applications.
-  estimated popularity: 55462.75
+  average citation count: 55462.75
   organizer: Jing Li
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -5707,7 +5707,7 @@ Recent Advances in Model Reduction and Uncertainty Quantification - Part I of II
     this minisymposium will discuss work towards broader model order reduction and
     data-driven approaches that are necessary to support a wide range of physical,
     biological, and aerospace applications.
-  estimated popularity: 293.2
+  average citation count: 293.2
   organizer: Jiahua Jiang
   part: 1
   predicted_theme: 8 model reduct order comput reduc
@@ -5730,7 +5730,7 @@ Recent Advances in Model Reduction and Uncertainty Quantification - Part II of I
     this minisymposium will discuss work towards broader model order reduction and
     data-driven approaches that are necessary to support a wide range of physical,
     biological, and aerospace applications.
-  estimated popularity: 3782.25
+  average citation count: 3782.25
   organizer: Jiahua Jiang
   part: 2
   predicted_theme: 8 model reduct order comput reduc
@@ -5752,7 +5752,7 @@ Recent Advances in Modeling and Numerical Analysis for Electronic Structure Calc
     as graphene, boron nitride, etc. and which lack periodicity.  The first talk of
     the session will give an introduction to electronic structure computations and
     the other invited speakers will present their latest developments in the field.
-  estimated popularity: 96250.75
+  average citation count: 96250.75
   organizer: Paul Cazeaux
   part: 1
   predicted_theme: 15 comput materi model electron numer
@@ -5774,7 +5774,7 @@ Recent Advances in Modeling and Numerical Analysis for Electronic Structure Calc
     as graphene, boron nitride, etc. and which lack periodicity.  The first talk of
     the session will give an introduction to electronic structure computations and
     the other invited speakers will present their latest developments in the field.
-  estimated popularity: 3871.0
+  average citation count: 3871.0
   organizer: Paul Cazeaux
   part: 2
   predicted_theme: 15 comput materi model electron numer
@@ -5800,7 +5800,7 @@ Recent Advances in Models and Numerical Methods for Multiphase Problems - Part I
     \ share their recent advances in studying multiphase problems and relevant applications.\
     \ It serves as a platform for advancing modeling and numerical strategies in the\
     \ related field."
-  estimated popularity: 25956.75
+  average citation count: 25956.75
   organizer: Jia Zhao
   part: 1
   predicted_theme: 15 comput materi model electron numer
@@ -5826,7 +5826,7 @@ Recent Advances in Models and Numerical Methods for Multiphase Problems - Part I
     \ share their recent advances in studying multiphase problems and relevant applications.\
     \ It serves as a platform for advancing modeling and numerical strategies in the\
     \ related field."
-  estimated popularity: 48804.0
+  average citation count: 48804.0
   organizer: Jia Zhao
   part: 2
   predicted_theme: 15 comput materi model electron numer
@@ -5843,7 +5843,7 @@ Recent Advances in Multilevel Solvers - Part I of II:
     and engineering.  In this minisymposium, we bring together speakers focused on
     several  aspects of multilevel solvers, including developing algorithms for  coupled
     multiphysics problems, analysis of algorithms, and graph problems.
-  estimated popularity: 7606.2
+  average citation count: 7606.2
   organizer: James H. Adler
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -5861,7 +5861,7 @@ Recent Advances in Multilevel Solvers - Part II of II:
     and engineering.  In this minisymposium, we bring together speakers focused on
     several  aspects of multilevel solvers, including developing algorithms for  coupled
     multiphysics problems, analysis of algorithms, and graph problems.
-  estimated popularity: 7958.2
+  average citation count: 7958.2
   organizer: James H. Adler
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -5883,7 +5883,7 @@ Recent Advances in Multirate Time Integration for Multiphysics Problems:
     developments in multirate time integration; however a secondary goal is to bring
     together experts and young researchers working in this field, with practitioners
     who make use of such time integration techniques in science and engineering applications.
-  estimated popularity: 850.75
+  average citation count: 850.75
   organizer: Vu Thai Luan
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -5901,7 +5901,7 @@ Recent Advances in Numerical Methods for Multiphase Flow Problems - Part I of II
     expected to communicate the new idea, share their recent advances in the modeling,
     numerical Methods for, but not limited to, the phase field approach, as well as
     their applications in material science, fluid mechanics, etc.
-  estimated popularity: 7255.0
+  average citation count: 7255.0
   organizer: Xiaofeng Yang
   part: 1
   predicted_theme: 0 flow numer simul fluid scheme
@@ -5921,7 +5921,7 @@ Recent Advances in Numerical Methods for Multiphase Flow Problems - Part II of I
     expected to communicate the new idea, share their recent advances in the modeling,
     numerical Methods for, but not limited to, the phase field approach, as well as
     their applications in material science, fluid mechanics, etc.
-  estimated popularity: 5714.0
+  average citation count: 5714.0
   organizer: Xiaofeng Yang
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -5942,7 +5942,7 @@ Recent Advances in PDE-constrained Optimization under Uncertainty - Part I of II
     to incorporate this uncertainty in the optimization problem to make the optimal
     solution more robust and reliable. Indeed, recent years have witnessed rapid growth
     in research on PDE-constrained optimization under uncertainty.
-  estimated popularity: 27918.25
+  average citation count: 27918.25
   organizer: Peng Chen
   part: 1
   predicted_theme: 1 optim design model mani data
@@ -5963,7 +5963,7 @@ Recent Advances in PDE-constrained Optimization under Uncertainty- Part II of II
     to incorporate this uncertainty in the optimization problem to make the optimal
     solution more robust and reliable. Indeed, recent years have witnessed rapid growth
     in research on PDE-constrained optimization under uncertainty.
-  estimated popularity: 171.25
+  average citation count: 171.25
   organizer: Peng Chen
   predicted_theme: 1 optim design model mani data
   speakers:
@@ -5980,7 +5980,7 @@ Recent Development of Numerical Methods for Optics and Plasmonics - Part I of II
     now at the heart everyday technologies such as seismic imaging, underwater acoustics,
     and biomathematics; nevertheless some very important issues still remain open.
     This minisymposium is meant to be a platform to exchange ideas on these problems.
-  estimated popularity: 415.5
+  average citation count: 415.5
   organizer: YoungJoon Hong
   part: 1
   predicted_theme: 15 comput materi model electron numer
@@ -5998,7 +5998,7 @@ Recent Development of Numerical Methods for Optics and Plasmonics - Part II of I
     now at the heart everyday technologies such as seismic imaging, underwater acoustics,
     and biomathematics; nevertheless some very important issues still remain open.
     This mini symposium is meant to be a platform to exchange ideas on these problems.
-  estimated popularity: 5045.75
+  average citation count: 5045.75
   organizer: YoungJoon Hong
   part: 2
   predicted_theme: 15 comput materi model electron numer
@@ -6015,7 +6015,7 @@ Recent Developments in Model Order Reduction Methods - Part I of II:
     algorithms are developed in specific domains such as fluid control of quadratic
     systems, advection-dominated high-gradient structure systems, coupled flow-geomechanics
     problems, finite time Lyapunov exponents, and poroelastic media.
-  estimated popularity: 2958.4
+  average citation count: 2958.4
   organizer: Youngsoo Choi
   part: 1
   predicted_theme: 8 model reduct order comput reduc
@@ -6033,7 +6033,7 @@ Recent Developments in Model Order Reduction Methods - Part II of II:
     algorithms are developed in specific domains such as fluid control of quadratic
     systems, advection-dominated high-gradient structure systems, coupled flow-geomechanics
     problems, finite time Lyapunov exponents, and poroelastic media.
-  estimated popularity: 131.66666666666666
+  average citation count: 131.66666666666666
   organizer: Youngsoo Choi
   part: 2
   predicted_theme: 8 model reduct order comput reduc
@@ -6054,7 +6054,7 @@ Recent Developments in Numerical Methods for PDEs and their Applications - Part 
     weak Galerkin methods. A wide range of application fields will also be covered,
     such as MHD equations, Helmholtz equations, equations of poroelasticity, Alfeld
     splits and gradient flows.
-  estimated popularity: 1068.2
+  average citation count: 1068.2
   organizer: Chunmei Wang
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -6077,7 +6077,7 @@ Recent Developments in Numerical Methods for PDEs and their Applications - Part 
     weak Galerkin methods. A wide range of application fields will also be covered,
     such as MHD equations, Helmholtz equations, equations of poroelasticity, Alfeld
     splits and gradient flows.
-  estimated popularity: 8394.75
+  average citation count: 8394.75
   organizer: Chunmei Wang
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -6093,7 +6093,7 @@ Recent Developments in Theory and Implementation of Subspace Correction Methods:
     Navier-Stokes equations, Maxwell equations, and many others.  Despite this, reusable,
     robust, library interfaces that take advantage of these techniques are in short
     supply.
-  estimated popularity: 1111.25
+  average citation count: 1111.25
   organizer: Florian Wechsung
   predicted_theme: 9 numer comput equat wave thi
   speakers:
@@ -6110,7 +6110,7 @@ Recent Developments of Numerical Methods for Hyperbolic and Parabolic Equations 
     and physics, etc. This minisymposium is a good opportunity for people to discuss
     with researchers from different areas, and explore more applications and future
     research collaborations. We expect 8 speakers to present in this minisymposium.
-  estimated popularity: 90917.5
+  average citation count: 90917.5
   organizer: Yang Yang
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -6128,7 +6128,7 @@ Recent Developments of Numerical Methods for Hyperbolic and Parabolic Equations 
     and physics, etc. This minisymposium is a good opportunity for people to discuss
     with researchers from different areas, and explore more applications and future
     research collaborations. We expect 8 speakers to present in this minisymposium.
-  estimated popularity: 6074.25
+  average citation count: 6074.25
   organizer: Yang Yang
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -6143,7 +6143,7 @@ Recent Innovations in Restarting and Recycling Krylov Methods:
     Krylov subspace methods are simple in concept, they are often complicated in practice.  In
     this minisymposium we highlight several important problems and recent innovations.  We
     will focus mainly on the techniques of subspace recycling and polynomial preconditioning.
-  estimated popularity: 1126.5
+  average citation count: 1126.5
   organizer: Ronald Morgan
   predicted_theme: 4 network eigenvalu structur comput spars
   speakers:
@@ -6166,7 +6166,7 @@ Recent Progress in Coordinate-wise Descent Methods:
     \ risk minimization. Some asynchronous parallel block coordinate methods are used\
     \ to solve convex optimization problems with non-separable linear constraint.\
     \ CDMs are also used in image processing, signal processing and many more fields."
-  estimated popularity: 9185.0
+  average citation count: 9185.0
   organizer: Zhe Wang
   predicted_theme: 1 optim design model mani data
   speakers:
@@ -6181,7 +6181,7 @@ Recent Progresses in Data Analysis - Part I of II:
     and optimization. In this minisymposium we will try to present both the theoretical
     and practical developments recently made in those areas and provide an opportunity
     for researchers to have conversation on bridging those areas.
-  estimated popularity: 998.0
+  average citation count: 998.0
   organizer: Jae-Hun Jung
   part: 1
   predicted_theme: 1 optim design model mani data
@@ -6197,7 +6197,7 @@ Recent Progresses in Data Analysis - Part II of II:
     and optimization. In this minisymposium we will try to present both the theoretical
     and practical developments recently made in those areas and provide an opportunity
     for researchers to have conversation on bridging those areas.
-  estimated popularity: 2386.5
+  average citation count: 2386.5
   organizer: Jae-Hun Jung
   part: 2
   predicted_theme: 1 optim design model mani data
@@ -6216,7 +6216,7 @@ Reduced Order Modeling for Parametric CFD Problems - Part II of II:
     (e.g., reduced basis, proper orthogonal and generalized decomposition, empirical
     interpolation, hierarchical model reduction) play a crucial role as they aim to
     capture the most important features of the problem at hand without giving up accuracy.
-  estimated popularity: 4140.0
+  average citation count: 4140.0
   organizer: Annalisa Quaini
   part: 2
   predicted_theme: 8 model reduct order comput reduc
@@ -6235,7 +6235,7 @@ Reduced Order Modeling for Parametric CFD Problems-  Part I of II:
     (e.g., reduced basis, proper orthogonal and generalized decomposition, empirical
     interpolation, hierarchical model reduction) play a crucial role as they aim to
     capture the most important features of the problem at hand without giving up accuracy.
-  estimated popularity: 2851.75
+  average citation count: 2851.75
   organizer: Annalisa Quaini
   predicted_theme: 8 model reduct order comput reduc
   speakers:
@@ -6249,7 +6249,7 @@ Reduced Order Modeling for Parametric CFD Problems-  Part I of II:
     and applications to realistic engineering and geophysical flow problems will be
     covered in this minisymposium.  Both achievements and open problems in the reduced
     order modeling of fluid flows will be discussed.
-  estimated popularity: 1009.0
+  average citation count: 1009.0
   organizer: Traian Iliescu
   part: 1
   predicted_theme: 8 model reduct order comput reduc
@@ -6265,7 +6265,7 @@ Reduced Order Modeling for Parametric CFD Problems-  Part I of II:
     and applications to realistic engineering and geophysical flow problems will be
     covered in this minisymposium.  Both achievements and open problems in the reduced
     order modeling of fluid flows will be discussed.
-  estimated popularity: 555.6
+  average citation count: 555.6
   organizer: Traian Iliescu
   part: 2
   predicted_theme: 8 model reduct order comput reduc
@@ -6282,7 +6282,7 @@ Reproducibility in Network Algorithms - Part I of II:
     on the challenges in achieving reproducibility in network analysis in the context
     of (i) modeling networks from raw data and (ii) in analyzing the networks, particularly
     dynamic ones that change with time.
-  estimated popularity: 945.75
+  average citation count: 945.75
   organizer: Sanjukta Bhowmick
   part: 1
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -6298,7 +6298,7 @@ Reproducibility in Network Algorithms - Part II of II:
     on the challenges in achieving reproducibility in network analysis in the context
     of (i) modeling networks from raw data and (ii) in analyzing the networks, particularly
     dynamic ones that change with time.
-  estimated popularity: 1099.0
+  average citation count: 1099.0
   organizer: Sanjukta Bhowmick
   part: 2
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -6321,7 +6321,7 @@ Resilience for Large Scale CSE Applications - Part I of II:
     discuss the reliability issues of the large scale computing systems, application/algorithm
     based resilience and programming model support to enhance the reliability of application
     program executions.
-  estimated popularity: 889.75
+  average citation count: 889.75
   organizer: Keita Teranishi
   part: 1
   predicted_theme: 17 comput softwar scientif thi complex
@@ -6344,7 +6344,7 @@ Resilience for Large Scale CSE Applications - Part II of II:
     discuss the reliability issues of the large scale computing systems, application/algorithm
     based resilience and programming model support to enhance the reliability of application
     program executions.
-  estimated popularity: 3118.75
+  average citation count: 3118.75
   organizer: Keita Teranishi
   part: 2
   predicted_theme: 17 comput softwar scientif thi complex
@@ -6364,7 +6364,7 @@ Roundoff Error in High-Performance Implementations of CG/Lanczos-type Solvers - 
     careful about the effects on actual performance and accuracy.  This minisymposium
     brings together researchers to talk about different mathematically  equivalent
     CG/Lanczos implementations and their behavior in finite precision arithmetic.
-  estimated popularity: 5072.25
+  average citation count: 5072.25
   organizer: Erin Claire C. Carson
   part: 1
   predicted_theme: 13 error precis comput arithmet cost
@@ -6384,7 +6384,7 @@ Roundoff Error in High-Performance Implementations of CG/Lanczos-type Solvers - 
     careful about the effects on actual performance and accuracy.  This minisymposium
     brings together researchers to talk about different mathematically  equivalent
     CG/Lanczos implementations and their behavior in finite precision arithmetic.
-  estimated popularity: 424.0
+  average citation count: 424.0
   organizer: Anne Greenbaum
   part: 2
   predicted_theme: 13 error precis comput arithmet cost
@@ -6405,7 +6405,7 @@ SIMD Approaches for Achieving Performance and Portability on Emerging Computatio
     techniques such as operator overloading, discuss implications for performance
     and portability, and present applications of these ideas within several scientific
     computing contexts.
-  estimated popularity: 353.4
+  average citation count: 353.4
   organizer: Eric Phipps
   predicted_theme: 2 comput exascal architectur highord perform
   speakers:
@@ -6426,7 +6426,7 @@ SIMD Approaches for Achieving Performance and Portability on Emerging Computatio
     requirements on algorithm and application design at the largest scale, how low-
     and high-level simulation layers depend on each other, and how synergy can be
     maximized.
-  estimated popularity: 3164.0
+  average citation count: 3164.0
   organizer: Carsten Burstedde
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -6438,7 +6438,7 @@ SIMD Approaches for Achieving Performance and Portability on Emerging Computatio
   abstract: This minisymposium seeks to bring together experts in different optimization
     domains (PDEs, DAEs, stochastic, global, data/learning, mixed-integer) to discuss
     computational scalability issues as well as strategies and tools to overcome them.
-  estimated popularity: 317.0
+  average citation count: 317.0
   organizer: Victor M. Zavala
   part: 1
   predicted_theme: 12 parallel scalabl comput time equat
@@ -6456,7 +6456,7 @@ Scalable Parallel Multigrid Solvers - Part I of II:
     This session provides a variety of talks on state-of-the-art multigrid solvers
     and methods for improved scalability of parallel implementations with application
     that extend beyond the multigrid setting.
-  estimated popularity: 28756.75
+  average citation count: 28756.75
   organizer: Amanda Bienz
   part: 1
   predicted_theme: 12 parallel scalabl comput time equat
@@ -6474,7 +6474,7 @@ Scalable Parallel Multigrid Solvers - Part II of II:
     This session provides a variety of talks on state-of-the-art multigrid solvers
     and methods for improved scalability of parallel implementations with application
     that extend beyond the multigrid setting.
-  estimated popularity: 26477.5
+  average citation count: 26477.5
   organizer: Amanda Bienz
   part: 2
   predicted_theme: 12 parallel scalabl comput time equat
@@ -6496,7 +6496,7 @@ Scalable Solvers for the Helmholtz Problem - Part I of II:
     various methods will be  presented which are scalable when certain conditions
     are satisfied.  Typical applications of these solvers are medical imaging, seismics,  sonar
     etc.
-  estimated popularity: 319.25
+  average citation count: 319.25
   organizer: Kees Vuik
   part: 1
   predicted_theme: 12 parallel scalabl comput time equat
@@ -6518,7 +6518,7 @@ Scalable Solvers for the Helmholtz Problem - Part II of II:
     various methods will be  presented which are scalable when certain conditions
     are satisfied.  Typical applications of these solvers are medical imaging, seismics,  sonar
     etc.
-  estimated popularity: 554.0
+  average citation count: 554.0
   organizer: Kees Vuik
   part: 2
   predicted_theme: 12 parallel scalabl comput time equat
@@ -6544,7 +6544,7 @@ Scientific Data Visualization Platforms Facilitating New Paradigms:
     era of HPC and big data, university sponsored streaming and storage sites, such
     as institutional repositories may provide a critical link in moving this new technology
     forward and redefining approaches to scientific research.
-  estimated popularity: 6052.0
+  average citation count: 6052.0
   organizer: Margarete Jadamec
   predicted_theme: 11 learn data model machin comput
   speakers:
@@ -6567,7 +6567,7 @@ Scientific Machine Learning:
     \ inner-loop, and outer-loop SciML. This minisymposium will give a brief overview\
     \ of the workshop outcomes and present recent research related to these priority\
     \ research directions."
-  estimated popularity: 5319.2
+  average citation count: 5319.2
   organizer: Nathan Baker
   predicted_theme: 11 learn data model machin comput
   speakers:
@@ -6588,7 +6588,7 @@ Scientific Machine Learning:
     subsets of scientific software issues are of interest to various participants.
     The minisymposium will, therefore, be a snapshot of the current state of practices,
     concerns and solution strategies in the world of scientific software.
-  estimated popularity: 11624.5
+  average citation count: 11624.5
   organizer: Anshu Dubey
   part: 1
   predicted_theme: 17 comput softwar scientif thi complex
@@ -6609,7 +6609,7 @@ Scientific Machine Learning:
     subsets of scientific software issues are of interest to various participants.
     The minisymposium will, therefore, be a snapshot of the current state of practices,
     concerns and solution strategies in the world of scientific software.
-  estimated popularity: 1791.0
+  average citation count: 1791.0
   organizer: Anshu Dubey
   part: 2
   predicted_theme: 17 comput softwar scientif thi complex
@@ -6624,7 +6624,7 @@ Showcase of Research Supported by the DOE Computational Science Graduate Fellows
     and engineering fields.  In this minisymposium,  CSGF fellows and alumni present
     their latest research accomplishments.  The sessions will cover a wide range of
     computational science application areas.
-  estimated popularity: 6781.0
+  average citation count: 6781.0
   organizer: David I. Ketcheson
   part: 1
   predicted_theme: 16 program cse comput scienc student
@@ -6639,7 +6639,7 @@ Showcase of Research Supported by the DOE Computational Science Graduate Fellows
     and engineering fields.  In this minisymposium,  CSGF fellows and alumni present
     their latest research accomplishments.  The sessions will cover a wide range of
     computational science application areas.
-  estimated popularity: 2.0
+  average citation count: 2.0
   organizer: David I. Ketcheson
   part: 2
   predicted_theme: 16 program cse comput scienc student
@@ -6662,7 +6662,7 @@ Software Productivity and Sustainability for CSE and Data Science - Part I of II
     thereby helps software fulfill its critical role as a cornerstone of long-term
     CSE collaboration. Having a minisymposterium for these topics provides a natural
     gathering point during poster sessions for informal conversation.
-  estimated popularity: 2504.5
+  average citation count: 2504.5
   organizer: David E. Bernholdt
   part: 1
   predicted_theme: 6 softwar scienc comput engin architectur
@@ -6685,7 +6685,7 @@ Software Productivity and Sustainability for CSE and Data Science - Part II of I
     thereby helps software fulfill its critical role as a cornerstone of long-term
     CSE collaboration. Having a minisymposterium for these topics provides a natural
     gathering point during poster sessions for informal conversation.
-  estimated popularity: 8347.5
+  average citation count: 8347.5
   organizer: David E. Bernholdt
   part: 2
   predicted_theme: 6 softwar scienc comput engin architectur
@@ -6706,7 +6706,7 @@ Software Productivity and Sustainability for CSE and Data Science - Part II of I
     etc, in order to make the learning well-posed.  The presentations will cover analysis
     based on orthogonal polynomials, sampling, approximation theory, probability theory,
     as well as novel computational techniques.
-  estimated popularity: 1895.75
+  average citation count: 1895.75
   organizer: Giang Tran
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -6727,7 +6727,7 @@ Software Productivity and Sustainability for CSE and Data Science - Part II of I
     etc, in order to make the learning well-posed.  The presentations will cover analysis
     based on orthogonal polynomials, sampling, approximation theory, probability theory,
     as well as novel computational techniques.
-  estimated popularity: 7412.5
+  average citation count: 7412.5
   organizer: Giang Tran
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -6744,7 +6744,7 @@ Spectral Deferred Correction Methods for Temporal Integration:
     also the key component of the parallel in   time algorithm PFASST.  This minisymposium
     will highlight new ways in which SDC   methods are being leveraged to construct
     novel time   integration strategies for computationally challenging   applications.
-  estimated popularity: 2002.0
+  average citation count: 2002.0
   organizer: Michael Minion
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -6761,7 +6761,7 @@ Spectral Deferred Correction Methods for Temporal Integration:
     implementations of specific computations for those challenging architectures.
     For this, preliminary results suggest that the use of machine learning techniques
     is promising.
-  estimated popularity: 2126.75
+  average citation count: 2126.75
   organizer: Takahiro Katagiri
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -6779,7 +6779,7 @@ Spectral Deferred Correction Methods for Temporal Integration:
     implementations of specific computations for those challenging architectures.
     For this, preliminary results suggest that the use of machine learning techniques
     is promising.
-  estimated popularity: 2388.75
+  average citation count: 2388.75
   organizer: Takahiro Katagiri
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -6805,7 +6805,7 @@ State-of-the-art High-order Numerical Methods and Complex Fluid Simulations - Pa
     not limited to turbulence, multiphase flows, plasma, MHD flows, combustion etc.
     We aim to bridging the cutting-edge applied mathematics and the request of flow
     physics simulations.
-  estimated popularity: 1215.5
+  average citation count: 1215.5
   organizer: Lin Fu
   part: 2
   predicted_theme: 0 flow numer simul fluid scheme
@@ -6831,7 +6831,7 @@ State-of-the-art high-order Numerical Methods and Complex Fluid Simulations - Pa
     not limited to turbulence, multiphase flows, plasma, MHD flows, combustion etc.
     We aim to bridging the cutting-edge applied mathematics and the request of flow
     physics simulations.
-  estimated popularity: 9816.5
+  average citation count: 9816.5
   organizer: Lin Fu
   part: 1
   predicted_theme: 0 flow numer simul fluid scheme
@@ -6854,7 +6854,7 @@ Statistical Applications of Continuous and Discrete Transport - Part I of II:
     non-Gaussian distributions, or when only limited information or few samples are
     available. This minisymposium will explore new algorithms and methodologies for
     computing and employing transport in the context of statistics and machine learning.
-  estimated popularity: 18317.5
+  average citation count: 18317.5
   organizer: Ricardo Baptista
   part: 1
   predicted_theme: 5 model comput transport physic scale
@@ -6877,7 +6877,7 @@ Statistical Applications of Continuous and Discrete Transport - Part II of II:
     non-Gaussian distributions, or when only limited information or few samples are
     available. This minisymposium will explore new algorithms and methodologies for
     computing and employing transport in the context of statistics and machine learning.
-  estimated popularity: 2213.0
+  average citation count: 2213.0
   organizer: Ricardo Baptista
   part: 2
   predicted_theme: 5 model comput transport physic scale
@@ -6898,7 +6898,7 @@ Stochastic Modeling and Algorithms for Complex Physical Systems - Part I of II:
     minisymposium will bring together researchers from across the applied and computational
     mathematics communities to discuss recent advances, identify future direction,
     and promote new collaborations on stochastic methods.
-  estimated popularity: 6283.25
+  average citation count: 6283.25
   organizer: Miroslav Stoyanov
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -6919,7 +6919,7 @@ Stochastic Modeling and Algorithms for Complex Physical Systems - Part II of II:
     mini-symposium will bring together researchers from across the applied and computational
     mathematics communities to discuss recent advances, identify future direction,
     and promote new collaborations on stochastic methods.
-  estimated popularity: 718.5
+  average citation count: 718.5
   organizer: Miroslav Stoyanov
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -6943,7 +6943,7 @@ Structure Preserving Techniques for Hyperbolic Systems - Part I of II:
     solution. These three constraints are difficult  to achieve at the same time,
     but are essential to get robust and  accurate methods.  Invariant-domain preserving
     are important in any  application where being 'in bounds' is essential.
-  estimated popularity: 2149.0
+  average citation count: 2149.0
   organizer: Jean-Luc Guermond
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -6967,7 +6967,7 @@ Structure Preserving Techniques for Hyperbolic Systems - Part II of II:
     solution. These three constraints are difficult  to achieve at the same time,
     but are essential to get robust and  accurate methods.  Invariant-domain preserving
     are important in any  application where being 'in bounds' is essential.
-  estimated popularity: 6011.75
+  average citation count: 6011.75
   organizer: Jean-Luc Guermond
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -6989,7 +6989,7 @@ Structure-exploiting Techniques for Approximation, Inference and Control of Comp
     formats and spaces, algorithms for filtering and smoothing, sampling and exploration
     strategies for gathering "smart data", incorporation of symmetry-based priors,
     bounds and invariant preservation, information theoretic arguments, etc.
-  estimated popularity: 1766.25
+  average citation count: 1766.25
   organizer: Alex Gorodetsky
   part: 1
   predicted_theme: 19 data assimil model comput uncertainti
@@ -7011,7 +7011,7 @@ Structure-exploiting Techniques for Approximation, Inference and Control of Comp
     formats and spaces, algorithms for filtering and smoothing, sampling and exploration
     strategies for gathering "smart data", incorporation of symmetry-based priors,
     bounds and invariant preservation, information theoretic arguments, etc.
-  estimated popularity: 6361.25
+  average citation count: 6361.25
   organizer: Alex Gorodetsky
   part: 2
   predicted_theme: 19 data assimil model comput uncertainti
@@ -7035,7 +7035,7 @@ Structured Matrix Methods - Part I of II:
     ill conditioning, eigenvalue solution, and stability. Studies of structures, algorithm
     design, and accuracy control will be discussed. The minisymposium will include   experts
     working on a broad range of structured methods.
-  estimated popularity: 3218.25
+  average citation count: 3218.25
   organizer: Sabine Le Borne
   part: 1
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -7059,7 +7059,7 @@ Structured Matrix Methods - Part II of II:
     ill conditioning, eigenvalue solution, and stability. Studies of structures, algorithm
     design, and accuracy control will be discussed. The minisymposium will include   experts
     working on a broad range of structured methods.
-  estimated popularity: 2015.25
+  average citation count: 2015.25
   organizer: Sabine Le Borne
   part: 2
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -7069,7 +7069,7 @@ Structured Matrix Methods - Part II of II:
   - Daniel Kressner
   - James Vogel
 'Student Days:  Student Chapter Presentations - Part I of II':
-  estimated popularity: 505.0
+  average citation count: 505.0
   part: 1
   predicted_theme: 16 program cse comput scienc student
   speakers:
@@ -7080,7 +7080,7 @@ Structured Matrix Methods - Part II of II:
   - Ramin Goudarzi
   - Alex John Quijano
 'Student Days:  Student Chapter Presentations - Part II of II':
-  estimated popularity: 16346.0
+  average citation count: 16346.0
   part: 2
   predicted_theme: 16 program cse comput scienc student
   speakers:
@@ -7092,7 +7092,7 @@ Structured Matrix Methods - Part II of II:
   - Abhishek Choudhary
 'Student Days: Undergraduate Presentations':
   abstract: Talks presented by undergraduates.  Part of "Student Days".
-  estimated popularity: 189.0
+  average citation count: 189.0
   organizer: Katie Kavanagh
   predicted_theme: 16 program cse comput scienc student
   speakers:
@@ -7109,7 +7109,7 @@ Structured Matrix Methods - Part II of II:
     high-order methods that are provably conservative and stable. In particular, the
     interest is in recent advancements leading to improved efficiency, flexibility,
     and robustness. Topics that will be covered include:'
-  estimated popularity: 1946.0
+  average citation count: 1946.0
   organizer: David C. Del Rey Fernandez
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -7126,7 +7126,7 @@ Structured Matrix Methods - Part II of II:
     high-order methods that are provably conservative and stable. In particular, the
     interest is in recent advancements leading to improved efficiency, flexibility,
     and robustness. Topics that will be covered include:'
-  estimated popularity: 703.75
+  average citation count: 703.75
   organizer: David C. Del Rey Fernandez
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -7145,7 +7145,7 @@ Surrogate Modeling and Data Compression for Exascale Applications - Part I of II
     \ datasets.\_ Talks that address topics in data compression, dimension reduction,\
     \ in situ visualization, surrogate modeling, or contain applications targeting\
     \ exascale computing resources are encouraged."
-  estimated popularity: 211.0
+  average citation count: 211.0
   organizer: Matthew J. Reynolds
   part: 1
   predicted_theme: 2 comput exascal architectur highord perform
@@ -7164,7 +7164,7 @@ Surrogate Modeling and Data Compression for Exascale Applications - Part II of I
     \ datasets.\_ Talks that address topics in data compression, dimension reduction,\
     \ in situ visualization, surrogate modeling, or contain applications targeting\
     \ exascale computing resources are encouraged."
-  estimated popularity: 1740.75
+  average citation count: 1740.75
   organizer: Matthew J. Reynolds
   part: 2
   predicted_theme: 2 comput exascal architectur highord perform
@@ -7182,7 +7182,7 @@ Surrogate Modeling and Data Compression for Exascale Applications - Part II of I
     to adapt to various applications. In this mini-symposium, we propose to study
     a set of modern linear algebra solvers that exploits these expressive models to
     reach high performance, and or express new algorithms.
-  estimated popularity: 4487.25
+  average citation count: 4487.25
   organizer: Mathieu Faverge
   part: 1
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -7200,7 +7200,7 @@ Surrogate Modeling and Data Compression for Exascale Applications - Part II of I
     to adapt to various applications. In this minisymposium, we propose to study a
     set of modern linear algebra solvers that exploits these expressive models to
     reach high performance, and or express new algorithms.
-  estimated popularity: 1135.25
+  average citation count: 1135.25
   organizer: Mathieu Faverge
   part: 2
   predicted_theme: 4 network eigenvalu structur comput spars
@@ -7218,7 +7218,7 @@ Surrogate Modeling and Data Compression for Exascale Applications - Part II of I
     parallel programming paradigms. Numerous runtimes exist which propose different
     programming interfaces and features, this minisymposium presents recent advances
     and developments in some of the best known and used runtime systems.
-  estimated popularity: 3218.5
+  average citation count: 3218.5
   organizer: Alfredo Buttari
   part: 1
   predicted_theme: 16 program cse comput scienc student
@@ -7236,7 +7236,7 @@ Surrogate Modeling and Data Compression for Exascale Applications - Part II of I
     parallel programming paradigms. Numerous runtimes exist which propose different
     programming interfaces and features, this minisymposium presents recent advances
     and developments in some of the best known and used runtime systems.
-  estimated popularity: 5426.25
+  average citation count: 5426.25
   organizer: Alfredo Buttari
   part: 2
   predicted_theme: 16 program cse comput scienc student
@@ -7255,7 +7255,7 @@ Technology Transfer Using the Open-source Platform SU2:
     In this minisymposium we will present  innovative methods from different groups
     in industry and academia which are in the stage of being transferred from research
     to their application to practical problems.
-  estimated popularity: 4415.0
+  average citation count: 4415.0
   organizer: Tim Albring
   predicted_theme: 10 mesh simul numer pelelm lagrangian
   speakers:
@@ -7270,7 +7270,7 @@ Tensor Based Methods in Scientific Computing and Data Science - Part I of II:
     for large-scale problems. This minisymposium explores advances in numerical methods
     and applications involving tensor decompositions in scientific computing and data
     sciences.
-  estimated popularity: 14047.75
+  average citation count: 14047.75
   organizer: Arvind Saibaba
   part: 1
   predicted_theme: 18 tensor data decomposit comput scientif
@@ -7286,7 +7286,7 @@ Tensor Based Methods in Scientific Computing and Data Science - Part II of II:
     for large-scale problems. This minisymposium explores advances in numerical methods
     and applications involving tensor decompositions in scientific computing and data
     sciences.
-  estimated popularity: 675.5
+  average citation count: 675.5
   organizer: Arvind Saibaba
   part: 2
   predicted_theme: 18 tensor data decomposit comput scientif
@@ -7302,7 +7302,7 @@ Tensor Decomposition for High Performance Data Analytics - Part I of II:
     in large quantities of data. The talks in this minisymposium will explore state-of-the-art
     research into finding efficient and scalable solutions to decomposing tensors
     for data analysis on the latest processors and accelerators.
-  estimated popularity: 1710.75
+  average citation count: 1710.75
   organizer: Jee W. Choi
   part: 1
   predicted_theme: 18 tensor data decomposit comput scientif
@@ -7328,7 +7328,7 @@ Tensor-based Methods for Scientific and Engineering Computing:
     will bring in researchers working on numerical analysis, algorithm development
     and applications using tensor-based methods from different areas to leverage the
     enhancement of the tensor methods in scientific and engineering computing.
-  estimated popularity: 1694.5
+  average citation count: 1694.5
   organizer: Xiu Yang
   predicted_theme: 18 tensor data decomposit comput scientif
   speakers:
@@ -7356,7 +7356,7 @@ The Intersection of Graph Algorithms and Machine Learning:
     learning problems; provide tractability analysis in terms of complexity, time-to-solution,
     problem size, and quality of solution; discuss integration of graphs and machine
     learning approaches.'
-  estimated popularity: 3411.0
+  average citation count: 3411.0
   organizer: Antonino Tumeo
   predicted_theme: 11 learn data model machin comput
   speakers:
@@ -7369,7 +7369,7 @@ Theoretical and Computational Advancements in Ice-Sheet Modeling - Part I of II:
     the Earth's climate is a driving force for the development of  Earth System Models
     (ESMs). Such questions include, for instance,  assessment of climate sensitivity,
     and quantification of Sea Level Rise  (SLR).
-  estimated popularity: 570.25
+  average citation count: 570.25
   organizer: Luca Bertagna
   part: 1
   predicted_theme: 13 error precis comput arithmet cost
@@ -7383,7 +7383,7 @@ Theoretical and Computational Advancements in Ice-Sheet Modeling - Part II of II
     the Earth's climate is a driving force for the development of  Earth System Models
     (ESMs). Such questions include, for instance,  assessment of climate sensitivity,
     and quantification of Sea Level Rise  (SLR).
-  estimated popularity: 1362.0
+  average citation count: 1362.0
   organizer: Luca Bertagna
   part: 2
   predicted_theme: 13 error precis comput arithmet cost
@@ -7408,7 +7408,7 @@ Theoretical and Computational Aspects in Nonlocal and Material Science Modeling 
     on different applications in material science to present and discuss novel approaches
     related to theoretic nonlocal models and present approaches for their numerical
     solution.
-  estimated popularity: 5272.5
+  average citation count: 5272.5
   organizer: Marta D'Elia
   part: 1
   predicted_theme: 15 comput materi model electron numer
@@ -7433,7 +7433,7 @@ Theoretical and Computational Aspects in Nonlocal and Material Science Modeling 
     on different applications in material science to present and discuss novel approaches
     related to theoretic nonlocal models and present approaches for their numerical
     solution.
-  estimated popularity: 712.75
+  average citation count: 712.75
   organizer: Marta D'Elia
   part: 2
   predicted_theme: 15 comput materi model electron numer
@@ -7456,7 +7456,7 @@ Theory and Algorithms for Improved Performance of Machine Learning in Scientific
     data, with robust estimates of confidence in predictions on defined domains; and
     fast and scalable algorithms to fit the proposed models to data, with a theory
     that explains the convergence and success of these techniques.'
-  estimated popularity: 4656.75
+  average citation count: 4656.75
   organizer: Guannan Zhang
   part: 1
   predicted_theme: 11 learn data model machin comput
@@ -7479,7 +7479,7 @@ Theory and Algorithms for Improved Performance of Machine Learning in Scientific
     data, with robust estimates of confidence in predictions on defined domains; and
     fast and scalable algorithms to fit the proposed models to data, with a theory
     that explains the convergence and success of these techniques.'
-  estimated popularity: 1737.5
+  average citation count: 1737.5
   organizer: Guannan Zhang
   part: 2
   predicted_theme: 11 learn data model machin comput
@@ -7503,7 +7503,7 @@ Theory and Application of Surrogate Models for Bayesian Inverse Problems - Part 
     surrogate error analysis, and multifidelity surrogates, together with results
     from practical estimation problems. Surrogate models include Gaussian processes,
     sparse grids, reduced bases, (piecewise) polynomials, and low-rank tensors.
-  estimated popularity: 4120.75
+  average citation count: 4120.75
   organizer: Jonas Latz
   part: 1
   predicted_theme: 19 data assimil model comput uncertainti
@@ -7528,7 +7528,7 @@ Toward Software Ecosystems for Computational Science and Engineering:
     among complementary packages. This speakers in this minisymposium will discuss
     work toward broader software interoperability and scientific software ecosystems
     needed to support next-generation CSE.
-  estimated popularity: 2344.5
+  average citation count: 2344.5
   organizer: Lois Curfman McInnes
   predicted_theme: 6 softwar scienc comput engin architectur
   speakers:
@@ -7556,7 +7556,7 @@ Towards Digital Twins for Industrial Applications - Part I of II:
     \ Gartner\u2019s Top 10 Strategic Technology Trends for 2017. They are becoming\
     \ a business imperative, covering the entire lifecycle of an asset or process\
     \ and forming the foundation for connected products and services."
-  estimated popularity: 4047.25
+  average citation count: 4047.25
   organizer: Wil Schilders
   part: 1
   predicted_theme: 6 softwar scienc comput engin architectur
@@ -7585,7 +7585,7 @@ Towards Digital Twins for Industrial Applications - Part II of II:
     \ Gartner\u2019s Top 10 Strategic Technology Trends for 2017. They are becoming\
     \ a business imperative, covering the entire lifecycle of an asset or process\
     \ and forming the foundation for connected products and services."
-  estimated popularity: 1719.5
+  average citation count: 1719.5
   organizer: Wil Schilders
   part: 2
   predicted_theme: 6 softwar scienc comput engin architectur
@@ -7605,7 +7605,7 @@ Transmission Eigenvalue Spectrum for Electromagnetic and Elastic Scatterers:
     is to  highlight new developments and novel algorithm. It aims to bring together
     mathematicians and  scientists working on these methods to exchange ideas and
     share new results.
-  estimated popularity: 3959.0
+  average citation count: 3959.0
   organizer: Andreas Kleefeld
   predicted_theme: 4 network eigenvalu structur comput spars
   speakers:
@@ -7623,7 +7623,7 @@ Transmission Eigenvalue Spectrum for Electromagnetic and Elastic Scatterers:
     as these active fields continue to grow. In particular, these four tutorials will
     touch on aspects of data driven modeling, integrating data in computational models,
     and algorithmic methodologies.
-  estimated popularity: 2410.0
+  average citation count: 2410.0
   organizer: Joseph Lee Hart
   predicted_theme: 15 comput materi model electron numer
   speakers:
@@ -7639,7 +7639,7 @@ Transmission Eigenvalue Spectrum for Electromagnetic and Elastic Scatterers:
     \ as these active \felds continue to grow. In particular,  these four tutorials\
     \ will touch on aspects of data driven modeling, integrating data in computational\
     \  models, and algorithmic methodologies."
-  estimated popularity: 1509.0
+  average citation count: 1509.0
   organizer: Joseph Lee Hart
   part: 2
   predicted_theme: 15 comput materi model electron numer
@@ -7657,7 +7657,7 @@ Uncertainty Quantification and Data Assimilation - Part I of II:
     problems. This minisymposium invites speakers working at the forefront of data
     assimilation and uncertainty quantification to discuss recent challenges, innovations,
     and strategies in these areas.
-  estimated popularity: 19879.75
+  average citation count: 19879.75
   organizer: Krithika Manohar
   part: 1
   predicted_theme: 19 data assimil model comput uncertainti
@@ -7677,7 +7677,7 @@ Uncertainty Quantification and Data Assimilation - Part II of II:
     problems. This minisymposium invites speakers working at the forefront of data
     assimilation and uncertainty quantification to discuss recent challenges, innovations,
     and strategies in these areas.
-  estimated popularity: 16801.5
+  average citation count: 16801.5
   organizer: Krithika Manohar
   part: 2
   predicted_theme: 19 data assimil model comput uncertainti
@@ -7697,7 +7697,7 @@ Underwater Sensing and Signal Processing - Part I of II:
     \ and simultaneous processing of data from hundreds or thousands of sensors. \
     \ This minisymposium will identify current directions of research and methods\
     \ being developed to solve problems, including their advantages and shortcomings."
-  estimated popularity: 4942.0
+  average citation count: 4942.0
   organizer: Margaret Cheney
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -7717,7 +7717,7 @@ Underwater Sensing and Signal Processing - Part II of II:
     \ and simultaneous processing of data from hundreds or thousands of sensors. \
     \ This minisymposium will identify current directions of research and methods\
     \ being developed to solve problems, including their advantages and shortcomings."
-  estimated popularity: 17170.5
+  average citation count: 17170.5
   organizer: Margaret Cheney
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -7743,7 +7743,7 @@ Unfitted Discretization Methods - Part I of II:
     and cut cell integration techniques, adaptivity, etc., but also the use of these
     techniques in complex applications, e.g., additive manufacturing and bio applications,
     and software and implementation aspects.
-  estimated popularity: 2411.75
+  average citation count: 2411.75
   organizer: Guglielmo Scovazzi
   part: 1
   predicted_theme: 1 optim design model mani data
@@ -7769,7 +7769,7 @@ Unfitted Discretization Methods - Part II of II:
     and cut cell integration techniques, adaptivity, etc., but also the use of these
     techniques in complex applications, e.g., additive manufacturing and bio applications,
     and software and implementation aspects.
-  estimated popularity: 1013.0
+  average citation count: 1013.0
   organizer: Guglielmo Scovazzi
   part: 2
   predicted_theme: 1 optim design model mani data
@@ -7786,7 +7786,7 @@ Use of C++ in Computational Science Libraries and Applications - Part I of II:
     Additionally, practical aspects and  implementation methods will be shown to deal
     with a wide range of computational  science codes on many modern platforms in
     high performance manner.
-  estimated popularity: 7426.5
+  average citation count: 7426.5
   organizer: Piotr Luszczek
   part: 1
   predicted_theme: 9 numer comput equat wave thi
@@ -7806,7 +7806,7 @@ Use of C++ in Computational Science Libraries and Applications - Part II of II:
     impact of expresivity of the code.  The talks will also include interfacing to
     modern Fortran code and how the  integration between C++ and Fortran may be made
     easier or even completely  automated.
-  estimated popularity: 165966.0
+  average citation count: 165966.0
   organizer: Piotr Luszczek
   part: 2
   predicted_theme: 9 numer comput equat wave thi
@@ -7826,7 +7826,7 @@ Using Structure for Scalable Optimization:
     cost for structured optimization problems, evaluating the effectiveness of quick-and-dirty
     solutions on real-world problems, and improving the interpretability of favored
     heuristic approaches.'
-  estimated popularity: 12370.75
+  average citation count: 12370.75
   organizer: Yifan Sun
   predicted_theme: 1 optim design model mani data
   speakers:
@@ -7836,7 +7836,7 @@ Using Structure for Scalable Optimization:
   - Tom Goldstein
 WCD Workshop - Session 4 of 4 CANCELLED:
   abstract: Description to follow.
-  estimated popularity: 347.0
+  average citation count: 347.0
   organizer: Talea Mayo
   predicted_theme: 12 parallel scalabl comput time equat
   speakers:
@@ -7847,7 +7847,7 @@ Wave-based Imaging Meets Machine Learning:
     include learned prior knowledge via denoisers, auto-encoders, possibly in combination
     with unrolling of optimization schemes that are driven by local derivative information
     derived from a data objectives and physics-based forward models.
-  estimated popularity: 3410.75
+  average citation count: 3410.75
   organizer: Tristan Van Leeuwen
   predicted_theme: 4 network eigenvalu structur comput spars
   speakers:

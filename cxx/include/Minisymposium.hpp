@@ -14,6 +14,7 @@ public:
                 unsigned tid, 
                 const std::string& organizer, 
                 const std::vector<std::string>& speakers,
+                double average_citation_count,
                 unsigned part);
 
   bool shares_participant(const Minisymposium& m) const;
@@ -23,10 +24,14 @@ public:
   KOKKOS_FUNCTION unsigned tid() const;
   KOKKOS_FUNCTION unsigned priority() const;
   const std::string& title() const;
+  double average_citation_count() const;
+
+  void set_priority(unsigned priority);
 
 private:
   std::string title_;
   unsigned tid_;
+  double average_citation_count_;
   unsigned room_priority_;
   std::unordered_set<std::string> participants_;
   unsigned part_;

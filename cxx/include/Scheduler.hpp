@@ -13,7 +13,7 @@ public:
   void run_genetic(unsigned popSize, unsigned eliteSize, double mutationRate, unsigned generations);
   void print_best_schedule() const;
   void initialize_schedules(unsigned nschedules);
-  void rate_schedules(unsigned eliteSize);
+  double rate_schedules(unsigned eliteSize);
   void fix_schedules();
   void compute_weights();
   void breed_population(unsigned eliteSize);
@@ -25,7 +25,7 @@ public:
   KOKKOS_FUNCTION unsigned get_parent() const;
   void print_schedule(unsigned sc) const;
   void validate_schedules(Kokkos::View<unsigned***> schedules) const;
-  void sort_on_ratings();
+  double sort_on_ratings();
   void record(const std::string& filename) const;
 
 private:

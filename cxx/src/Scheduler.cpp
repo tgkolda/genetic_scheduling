@@ -20,17 +20,19 @@ void Scheduler::run_genetic(unsigned popSize,
                             unsigned generations)
 {
   initialize_schedules(popSize);
+  fix_schedules();
   for(unsigned g=0; g<generations; g++) {
     std::cout << "generation " << g << ":\n";
 
-    fix_schedules();
-    rate_schedules(eliteSize);
+    double best_rating = rate_schedules(eliteSize);
+    if(best_rating == 1.0) break;
     print_best_schedule();
     compute_weights();
     breed_population(eliteSize);
     mutate_population(mutationRate);
     //validate_schedules(next_schedules_); // This is just for debugging
     std::swap(current_schedules_, next_schedules_);
+    fix_schedules();
   }
 }
 
@@ -81,7 +83,7 @@ void Scheduler::initialize_schedules(unsigned nschedules) {
   Kokkos::deep_copy(current_schedules_, h_schedules);
 }
 
-void Scheduler::rate_schedules(unsigned eliteSize) {
+double Scheduler::rate_schedules(unsigned eliteSize) {
   unsigned nmini = mini_.size();
   unsigned nthemes = mini_.themes().size();
   unsigned max_penalty = mini_.get_max_penalty();
@@ -155,7 +157,7 @@ void Scheduler::rate_schedules(unsigned eliteSize) {
   Kokkos::fence();
 
   // Sort the indices based on the ratings
-  sort_on_ratings();
+  return sort_on_ratings();
 }
 
 void Scheduler::fix_schedules() {
@@ -399,7 +401,7 @@ void Scheduler::validate_schedules(Kokkos::View<unsigned***> schedules) const {
   Kokkos::fence();
 }
 
-void Scheduler::sort_on_ratings() {
+double Scheduler::sort_on_ratings() {
   size_t n = best_indices_.extent(0);
   auto h_ratings = Kokkos::create_mirror_view(ratings_);
   Kokkos::deep_copy(h_ratings, ratings_);
@@ -417,6 +419,8 @@ void Scheduler::sort_on_ratings() {
       }
     }
   }
+
+  return h_ratings[n-1];
 }
 
 void Scheduler::record(const std::string& filename) const {

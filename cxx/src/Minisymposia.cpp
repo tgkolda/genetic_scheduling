@@ -16,6 +16,9 @@ Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigne
     unsigned part = 1;
     if(node.second["part"])
       part = node.second["part"].as<unsigned>();
+    double citations = 0;
+    if(node.second["average citation count"])
+      citations = node.second["average citation count"].as<double>();
     std::string organizer;
     if(node.second["organizer"])
       organizer = node.second["organizer"].as<std::string>();
@@ -27,17 +30,22 @@ Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigne
       themes_.push_back(theme);
     }
 
-    h_data_[i] = Minisymposium(title, tid, organizer, speakers, part);
+    printf("%s has %lf citations\n", title.c_str(), citations);
+    h_data_[i] = Minisymposium(title, tid, organizer, speakers, citations, part);
     i++;
   }
-  
+
   // Copy the data to device
   Kokkos::deep_copy(d_data_, h_data_);
 
   set_overlapping_participants();
   set_prerequisites();
   set_overlapping_themes(nrooms, nslots);
+  set_priorities(nslots);
   set_priority_penalty_bounds(nslots);
+
+  // Copy the data to device
+  Kokkos::deep_copy(d_data_, h_data_);
 }
 
 KOKKOS_FUNCTION unsigned Minisymposia::size() const {
@@ -165,6 +173,37 @@ void Minisymposia::set_overlapping_themes(unsigned nrooms, unsigned nslots) {
   }
 
   printf("Theme penalty bounds: %i %i\n", min_theme_penalty_, max_theme_penalty_);
+}
+
+void Minisymposia::set_priorities(unsigned nslots) {
+  // Get the citations
+  std::vector<double> citation_list(size());
+  for(unsigned i=0; i<size(); i++) {
+    citation_list[i] = h_data_[i].average_citation_count();
+  }
+
+  // Sort the citations from most to least popular
+  std::sort(citation_list.begin(), citation_list.end(), std::greater<double>());
+
+  // Get the cutoffs
+  unsigned nrooms_needed = ceil(double(size())/nslots);
+  std::vector<double> cutoffs(nrooms_needed-1);
+  for(unsigned i=0; i<nrooms_needed; i++) {
+    cutoffs[i] = citation_list[(i+1)*nslots];
+  }
+
+  // Map all the priorities to the range [0, nrooms_needed)
+  // with 0 being highest priority
+  for(unsigned i=0; i<size(); i++) {
+    double citations = h_data_[i].average_citation_count();
+    unsigned j;
+    for(j=0; j<cutoffs.size(); j++) {
+      if(citations >= cutoffs[j]) {
+        break;
+      }
+    }
+    h_data_[i].set_priority(j);
+  }
 }
 
 void Minisymposia::set_priority_penalty_bounds(unsigned nslots) {

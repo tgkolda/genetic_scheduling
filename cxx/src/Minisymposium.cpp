@@ -5,10 +5,13 @@ Minisymposium::Minisymposium(const std::string& title,
                              unsigned tid, 
                              const std::string& organizer, 
                              const std::vector<std::string>& speakers,
+                             double average_citation_count,
                              unsigned part) :
   title_(title),
   tid_(tid),
+  average_citation_count_(average_citation_count),
   part_(part)
+
 {
   // Strip the part from the name
   size_t found = title.find(" - Part");
@@ -21,9 +24,6 @@ Minisymposium::Minisymposium(const std::string& title,
     participants_.insert(organizer);
   for(const auto& speaker : speakers)
     participants_.insert(speaker);
-
-  // TODO This should come from the input rather than random numbers
-  room_priority_ = rand() % 50;
 }
 
 bool Minisymposium::shares_participant(const Minisymposium& m) const {
@@ -59,4 +59,12 @@ unsigned Minisymposium::priority() const {
 
 const std::string& Minisymposium::title() const {
   return title_;
+}
+
+double Minisymposium::average_citation_count() const {
+  return average_citation_count_;
+}
+
+void Minisymposium::set_priority(unsigned priority) {
+  room_priority_ = priority;
 }
