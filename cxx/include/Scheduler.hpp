@@ -6,6 +6,7 @@
 #include "Kokkos_Random.hpp"
 #include <random>
 #include <vector>
+#include <QTableWidget>
 
 class Scheduler {
 public:
@@ -27,6 +28,7 @@ public:
   void validate_schedules(Kokkos::View<unsigned***> schedules) const;
   double sort_on_ratings();
   void record(const std::string& filename) const;
+  void populate(QTableWidget& table) const;
 
 private:
   Rooms rooms_;

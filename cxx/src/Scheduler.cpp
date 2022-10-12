@@ -453,3 +453,31 @@ void Scheduler::record(const std::string& filename) const {
     fout << "\n";
   }
 }
+
+void Scheduler::populate(QTableWidget& table) const {
+  // Find the best schedule
+  typedef Kokkos::MaxLoc<double,unsigned>::value_type maxloc_type;
+  maxloc_type maxloc;
+  Kokkos::parallel_reduce( "Finding best schedule", nschedules(), KOKKOS_CLASS_LAMBDA (unsigned i, maxloc_type& lmaxloc) {
+    if(ratings_[i] > lmaxloc.val) { 
+      lmaxloc.val = ratings_[i]; 
+      lmaxloc.loc = i; 
+    }
+  }, Kokkos::MaxLoc<double,unsigned>(maxloc));
+
+  // Copy the schedule to host
+  unsigned nmini = mini_.size();
+  unsigned sc = maxloc.loc;
+  auto h_current_schedules = Kokkos::create_mirror_view(current_schedules_);
+  Kokkos::deep_copy(h_current_schedules, current_schedules_);
+
+  // Populate schedule
+  for(unsigned room=0; room<nrooms(); room++) {
+    for(unsigned slot=0; slot<nslots(); slot++) {
+      unsigned mid = h_current_schedules(sc, slot, room);
+      if(mid < nmini) {
+        table.setItem(room, slot, new QTableWidgetItem(QObject::tr(mini_.get_title(mid).c_str())));
+      }
+    }
+  }
+}

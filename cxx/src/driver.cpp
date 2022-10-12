@@ -1,7 +1,6 @@
 #include "Scheduler.hpp"
 #include <iostream>
 #include <QApplication>
-#include <QStringList>
 #include <QTableWidget>
 
 int main(int argc, char* argv[]) {
@@ -29,8 +28,12 @@ int main(int argc, char* argv[]) {
     for(unsigned i=0; i<s.nrooms(); i++) {
       table.setVerticalHeaderItem(i, new QTableWidgetItem(QObject::tr(rooms.name(i).c_str())));
     }
-    table.show();
 
+    // Populate the schedule
+    s.populate(table);
+
+    // Display the table
+    table.show();
     ret_code = app.exec();
   }
   Kokkos::finalize();
