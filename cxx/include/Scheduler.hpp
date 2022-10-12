@@ -3,6 +3,7 @@
 
 #include "Minisymposia.hpp"
 #include "Rooms.hpp"
+#include "Schedule.hpp"
 #include "Kokkos_Random.hpp"
 #include <random>
 #include <vector>
@@ -28,7 +29,7 @@ public:
   void validate_schedules(Kokkos::View<unsigned***> schedules) const;
   double sort_on_ratings();
   void record(const std::string& filename) const;
-  void populate(QTableWidget& table) const;
+  void populate(Schedule& table) const;
 
 private:
   Rooms rooms_;

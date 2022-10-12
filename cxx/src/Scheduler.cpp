@@ -454,7 +454,7 @@ void Scheduler::record(const std::string& filename) const {
   }
 }
 
-void Scheduler::populate(QTableWidget& table) const {
+void Scheduler::populate(Schedule& table) const {
   // Find the best schedule
   typedef Kokkos::MaxLoc<double,unsigned>::value_type maxloc_type;
   maxloc_type maxloc;
@@ -475,9 +475,7 @@ void Scheduler::populate(QTableWidget& table) const {
   for(unsigned room=0; room<nrooms(); room++) {
     for(unsigned slot=0; slot<nslots(); slot++) {
       unsigned mid = h_current_schedules(sc, slot, room);
-      if(mid < nmini) {
-        table.setItem(room, slot, new QTableWidgetItem(QObject::tr(mini_.get_title(mid).c_str())));
-      }
+      table.setData(table.index(room, slot), QVariant(mid));
     }
   }
 }

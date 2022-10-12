@@ -1,7 +1,8 @@
+#include "Schedule.hpp"
 #include "Scheduler.hpp"
 #include <iostream>
 #include <QApplication>
-#include <QTableWidget>
+#include <QTableView>
 
 int main(int argc, char* argv[]) {
   int ret_code;
@@ -22,18 +23,15 @@ int main(int argc, char* argv[]) {
     s.record("schedule.md");
 
     // Create a table to display the schedule
-    QTableWidget table(s.nrooms(), s.nslots());
-
-    // Create header labels
-    for(unsigned i=0; i<s.nrooms(); i++) {
-      table.setVerticalHeaderItem(i, new QTableWidgetItem(QObject::tr(rooms.name(i).c_str())));
-    }
+    QTableView tableView;
+    Schedule sched(rooms.size(), nslots, &rooms, &mini);
+    tableView.setModel(&sched);
 
     // Populate the schedule
-    s.populate(table);
+    s.populate(sched);
 
     // Display the table
-    table.show();
+    tableView.show();
     ret_code = app.exec();
   }
   Kokkos::finalize();
