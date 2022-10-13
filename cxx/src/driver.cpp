@@ -26,6 +26,10 @@ int main(int argc, char* argv[]) {
     QTableView tableView;
     Schedule sched(rooms.size(), nslots, &rooms, &mini);
     tableView.setModel(&sched);
+    tableView.setSelectionMode(QAbstractItemView::SingleSelection);
+    tableView.setDragEnabled(true);
+    tableView.setDefaultDropAction(Qt::MoveAction);
+    tableView.setDragDropMode(QAbstractItemView::InternalMove);
 
     // Populate the schedule
     s.populate(sched);
