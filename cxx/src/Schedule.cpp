@@ -1,7 +1,9 @@
 #include "Schedule.hpp"
 
 #include <QDebug>
+#include <QFileDialog>
 #include <QMenuBar>
+#include <QMessageBox>
 #include <QMimeData>
 #include <QTableView>
 
@@ -123,10 +125,45 @@ bool Schedule::dropMimeData(const QMimeData *data, Qt::DropAction action,
   return true;
 }
 
-void Schedule::save() const {
+void Schedule::save() {
+  QString fileName = QFileDialog::getSaveFileName(&window_,
+    tr("Save Schedule"), "",
+    tr("Schedule (*.sched);;All Files (*)"));
 
+  if (!fileName.isEmpty()) {
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly)) {
+      QMessageBox::information(&window_, tr("Unable to open file"), file.errorString());
+      return;
+    }
+    QDataStream out(&file);
+    out.setVersion(QDataStream::Qt_4_5);
+    for(unsigned i=0; i<mini_indices_.extent(0); i++) {
+      for(unsigned j=0; j<mini_indices_.extent(1); j++) {
+        out << mini_indices_(i,j);
+      }
+    }
+  }
 }
 
 void Schedule::load() {
+  QString fileName = QFileDialog::getOpenFileName(&window_,
+    tr("Open Schedule"), "",
+    tr("Schedule (*.sched);;All Files (*)"));
+  if (!fileName.isEmpty()) {
+    QFile file(fileName);
 
+    if (!file.open(QIODevice::ReadOnly)) {
+      QMessageBox::information(&window_, tr("Unable to open file"), file.errorString());
+      return;
+    }
+
+    QDataStream in(&file);
+    in.setVersion(QDataStream::Qt_4_5);
+    for(unsigned i=0; i<mini_indices_.extent(0); i++) {
+      for(unsigned j=0; j<mini_indices_.extent(1); j++) {
+        in >> mini_indices_(i,j);
+      }
+    }
+  }
 }

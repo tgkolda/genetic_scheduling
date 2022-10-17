@@ -21,7 +21,7 @@ public:
   QMimeData* mimeData(const QModelIndexList &indices) const override;
   bool dropMimeData(const QMimeData *data, Qt::DropAction action, 
                     int row, int column, const QModelIndex &parent) override;
-  void save() const;
+  void save();
   void load();
 private:
   QMainWindow window_;
