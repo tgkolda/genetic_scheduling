@@ -1,12 +1,42 @@
 #include "Schedule.hpp"
 
-#include <QMimeData>
 #include <QDebug>
+#include <QMenuBar>
+#include <QMimeData>
+#include <QTableView>
 
 Schedule::Schedule(int nrows, int ncols, Rooms* rooms, Minisymposia* mini, QObject *parent) : 
   mini_indices_("indices", nrows, ncols), rooms_(rooms), mini_(mini), QAbstractTableModel(parent)
 {
+  // Create a table to display the schedule
+  auto tableView = new QTableView();
+  tableView->setModel(this);
+  tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+  tableView->setDragEnabled(true);
+  tableView->setDefaultDropAction(Qt::MoveAction);
+  tableView->setDragDropMode(QAbstractItemView::InternalMove);
 
+  // Create a window
+  window_.setCentralWidget(tableView);
+
+  // Create a save action
+  auto saveAct = new QAction(tr("&Save"), &window_);
+  saveAct->setShortcuts(QKeySequence::Save);
+  saveAct->setStatusTip(tr("Save the schedule to disk"));
+  window_.connect(saveAct, &QAction::triggered, this, &Schedule::save);
+
+  // Create a load action
+  auto loadAct = new QAction(tr("&Load"), &window_);
+  loadAct->setStatusTip(tr("Load a schedule from disk"));
+  window_.connect(loadAct, &QAction::triggered, this, &Schedule::load);
+
+  // Create a menu bar
+  auto fileMenu = window_.menuBar()->addMenu(tr("&File"));
+  fileMenu->addAction(saveAct);
+  fileMenu->addAction(loadAct);
+
+  // Display the window
+  window_.show();
 }
 
 Schedule::~Schedule() {
@@ -98,5 +128,5 @@ void Schedule::save() const {
 }
 
 void Schedule::load() {
-  
+
 }

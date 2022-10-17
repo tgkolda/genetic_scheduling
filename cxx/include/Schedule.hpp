@@ -4,6 +4,7 @@
 #include "Minisymposia.hpp"
 #include "Rooms.hpp"
 #include <QAbstractTableModel>
+#include <QMainWindow>
 
 class Schedule : public QAbstractTableModel
 {
@@ -23,6 +24,7 @@ public:
   void save() const;
   void load();
 private:
+  QMainWindow window_;
   Rooms* rooms_;
   Minisymposia* mini_;
   Kokkos::View<int**, Kokkos::HostSpace> mini_indices_;
