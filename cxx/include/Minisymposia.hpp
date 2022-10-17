@@ -17,6 +17,7 @@ public:
 
   KOKKOS_FUNCTION unsigned size() const;
   KOKKOS_FUNCTION const Minisymposium& operator[](unsigned i) const;
+  const Minisymposium& get(unsigned i) const;
 
   KOKKOS_FUNCTION bool overlaps_participants(unsigned m1, unsigned m2) const;
   KOKKOS_FUNCTION bool breaks_ordering(unsigned m1, unsigned m2) const;

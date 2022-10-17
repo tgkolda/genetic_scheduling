@@ -20,6 +20,8 @@ public:
   QMimeData* mimeData(const QModelIndexList &indices) const override;
   bool dropMimeData(const QMimeData *data, Qt::DropAction action, 
                     int row, int column, const QModelIndex &parent) override;
+  void save() const;
+  void load();
 private:
   Rooms* rooms_;
   Minisymposia* mini_;

@@ -92,3 +92,11 @@ bool Schedule::dropMimeData(const QMimeData *data, Qt::DropAction action,
             mini_indices_(current_index.row(), current_index.column()));
   return true;
 }
+
+void Schedule::save() const {
+
+}
+
+void Schedule::load() {
+  
+}

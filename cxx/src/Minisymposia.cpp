@@ -58,6 +58,11 @@ const Minisymposium& Minisymposia::operator[](unsigned i) const {
   return d_data_[i];
 }
 
+const Minisymposium& Minisymposia::get(unsigned i) const {
+  assert(i < size());
+  return h_data_[i];
+}
+
 KOKKOS_FUNCTION
 bool Minisymposia::overlaps_participants(unsigned m1, unsigned m2) const {
   return same_participants_(m1, m2);
