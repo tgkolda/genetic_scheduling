@@ -4,7 +4,10 @@
 #include "Minisymposia.hpp"
 #include "Rooms.hpp"
 #include <QAbstractTableModel>
+#include <QLineEdit>
 #include <QMainWindow>
+#include <QItemSelectionModel>
+#include <QTableView>
 
 class Schedule : public QAbstractTableModel
 {
@@ -23,8 +26,14 @@ public:
                     int row, int column, const QModelIndex &parent) override;
   void save();
   void load();
+  void computeScore();
+  void search();
 private:
   QMainWindow window_;
+  QItemSelectionModel *selectionModel_;
+  QTableView* tableView_;
+  QDialog* dialog_;
+  QLineEdit* searchTerm_;
   Rooms* rooms_;
   Minisymposia* mini_;
   Kokkos::View<int**, Kokkos::HostSpace> mini_indices_;

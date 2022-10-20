@@ -382,7 +382,7 @@ void Scheduler::print_schedule(unsigned sc) const {
     for(unsigned room=0; room<nrooms(); room++) {
       unsigned mid = h_current_schedules(sc, slot, room);
       if(mid < nmini) {
-        std::cout << mini_.get_title(mid) << " (" << mini_.get_theme(mid) << ")\n";
+        std::cout << mini_.get(mid).full_title() << " (" << mini_.get_theme(mid) << ")\n";
       }
     }
   }
@@ -447,7 +447,7 @@ void Scheduler::record(const std::string& filename) const {
     for(unsigned room=0; room<nrooms(); room++) {
       unsigned mid = h_current_schedules(sc, slot, room);
       if(mid < nmini) {
-        fout << "|" << mini_.get_title(mid) << "|" << mini_.get_theme(mid) << "|" << mini_.get_priority(mid) << "|" << rooms_.name(room) << "|\n";
+        fout << "|" << mini_.get(mid).full_title() << "|" << mini_.get_theme(mid) << "|" << mini_.get(mid).priority() << "|" << rooms_.name(room) << "|\n";
       }
     }
     fout << "\n";

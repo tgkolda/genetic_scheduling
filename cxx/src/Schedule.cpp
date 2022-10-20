@@ -2,24 +2,43 @@
 
 #include <QDebug>
 #include <QFileDialog>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QMimeData>
-#include <QTableView>
+#include <QPushButton>
 
 Schedule::Schedule(int nrows, int ncols, Rooms* rooms, Minisymposia* mini, QObject *parent) : 
   mini_indices_("indices", nrows, ncols), rooms_(rooms), mini_(mini), QAbstractTableModel(parent)
 {
   // Create a table to display the schedule
-  auto tableView = new QTableView();
-  tableView->setModel(this);
-  tableView->setSelectionMode(QAbstractItemView::SingleSelection);
-  tableView->setDragEnabled(true);
-  tableView->setDefaultDropAction(Qt::MoveAction);
-  tableView->setDragDropMode(QAbstractItemView::InternalMove);
+  tableView_ = new QTableView();
+  tableView_->setModel(this);
+  tableView_->setSelectionMode(QAbstractItemView::SingleSelection);
+  tableView_->setDragEnabled(true);
+  tableView_->setDefaultDropAction(Qt::MoveAction);
+  tableView_->setDragDropMode(QAbstractItemView::InternalMove);
+  selectionModel_ = tableView_->selectionModel();
 
   // Create a window
-  window_.setCentralWidget(tableView);
+  window_.setCentralWidget(tableView_);
+
+  // Create a search dialog
+  dialog_ = new QDialog(&window_);
+  dialog_->setWindowTitle(tr("Find a Minisymposium"));
+
+  auto findLabel = new QLabel(tr("Enter the name of a minisymposium:"));
+  searchTerm_ = new QLineEdit;
+  auto findButton = new QPushButton(tr("&Find"));
+  dialog_->connect(findButton, &QPushButton::clicked, this, &Schedule::search);
+
+  auto layout = new QHBoxLayout;
+  layout->addWidget(findLabel);
+  layout->addWidget(searchTerm_);
+  layout->addWidget(findButton);
+
+  dialog_->setLayout(layout);
 
   // Create a save action
   auto saveAct = new QAction(tr("&Save"), &window_);
@@ -32,10 +51,25 @@ Schedule::Schedule(int nrows, int ncols, Rooms* rooms, Minisymposia* mini, QObje
   loadAct->setStatusTip(tr("Load a schedule from disk"));
   window_.connect(loadAct, &QAction::triggered, this, &Schedule::load);
 
+  // Create a score action
+  auto scoreAct = new QAction(tr("&Compute Score"), &window_);
+  scoreAct->setStatusTip(tr("Compute the score of the current schedule"));
+  window_.connect(scoreAct, &QAction::triggered, this, &Schedule::computeScore);
+
+  // Create a find action
+  auto findAct = new QAction(tr("Find"), &window_);
+  findAct->setShortcuts(QKeySequence::Find);
+  findAct->setStatusTip(tr("Find a string within minisymposia titles"));
+  window_.connect(findAct, &QAction::triggered, dialog_, &QDialog::show);
+
   // Create a menu bar
   auto fileMenu = window_.menuBar()->addMenu(tr("&File"));
   fileMenu->addAction(saveAct);
   fileMenu->addAction(loadAct);
+  auto scoreMenu = window_.menuBar()->addMenu(tr("&Score"));
+  scoreMenu->addAction(scoreAct);
+  auto searchMenu = window_.menuBar()->addMenu(tr("&Search"));
+  searchMenu->addAction(findAct);
 
   // Display the window
   window_.show();
@@ -61,7 +95,7 @@ QVariant Schedule::data(const QModelIndex &index, int role) const {
   if(index.isValid() && role == Qt::DisplayRole) {
     unsigned id = mini_indices_(index.row(), index.column());
     if(id < mini_->size()) {
-      return QVariant(tr(mini_->get_title(id).c_str()));
+      return QVariant(tr(mini_->get(id).full_title().c_str()));
     }
   }
 
@@ -163,6 +197,61 @@ void Schedule::load() {
     for(unsigned i=0; i<mini_indices_.extent(0); i++) {
       for(unsigned j=0; j<mini_indices_.extent(1); j++) {
         in >> mini_indices_(i,j);
+      }
+    }
+  }
+}
+
+void Schedule::computeScore() {
+
+}
+
+void Schedule::search() {
+  QString text = searchTerm_->text();
+
+  if (text.isEmpty()) {
+    QMessageBox::information(dialog_, tr("Empty Field"),
+      tr("Please enter a name."));
+  } else {
+    // Get the currently selected indices
+    QModelIndex start_index;
+    if(selectionModel_->hasSelection()) {
+      start_index = selectionModel_->selectedIndexes().at(0);
+    }
+    else {
+      start_index = tableView_->indexAt(QPoint(0,0));
+    }
+    auto index = start_index;
+
+    while(true) {
+      // Move to next cell
+      if(index.siblingAtRow(index.row()+1).isValid()) {
+        index = index.siblingAtRow(index.row()+1);
+      }
+      else {
+        if(index.sibling(0, index.column()+1).isValid()) {
+          index = index.sibling(0, index.column()+1);
+        }
+        else {
+          index = index.sibling(0, 0);
+        }
+      }
+
+      // Check whether the search string is in this entry
+      unsigned id = mini_indices_(index.row(), index.column());
+      if(id < mini_->size()) {
+        bool found = tr(mini_->get(id).full_title().c_str()).contains(text, Qt::CaseInsensitive);
+        if(found) {
+          // Set the selection
+          selectionModel_->select(index, QItemSelectionModel::ClearAndSelect);
+          return;
+        }
+      }
+
+      // Looped all the way around and never found the item
+      if(index == start_index) {
+        QMessageBox::information(dialog_, tr("Not Found"), text + tr(" could not be found."));
+        return;
       }
     }
   }

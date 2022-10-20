@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
   QApplication app(argc, argv);
   Kokkos::initialize(argc, argv);
   {
-    const unsigned nslots = 13;
+    const unsigned nslots = 12;
 
     // Read the rooms from yaml
     Rooms rooms("../../data/rooms.yaml");
@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
  
     // Run the genetic algorithm
     Scheduler s(mini, rooms, nslots);
-    s.run_genetic(1000, 200, 0.01, 10);
+    s.run_genetic(10000, 2000, 0.01, 10000);
     s.record("schedule.md");
 
     // Create a table to display the schedule
