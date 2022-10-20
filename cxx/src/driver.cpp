@@ -22,10 +22,7 @@ int main(int argc, char* argv[]) {
     s.record("schedule.md");
 
     // Create a table to display the schedule
-    Schedule sched(rooms.size(), nslots, &rooms, &mini);
-
-    // Populate the schedule
-    s.populate(sched);
+    Schedule sched(s.get_best_schedule(), &rooms, &mini);
 
     ret_code = app.exec();
   }

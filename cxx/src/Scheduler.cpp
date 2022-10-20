@@ -24,13 +24,13 @@ void Scheduler::run_genetic(unsigned popSize,
   for(unsigned g=0; g<generations; g++) {
     std::cout << "generation " << g << ":\n";
 
-    double best_rating = rate_schedules(eliteSize);
+    double best_rating = rate_schedules();
     if(best_rating == 1.0) break;
     print_best_schedule();
     compute_weights();
     breed_population(eliteSize);
     mutate_population(mutationRate);
-    validate_schedules(next_schedules_); // This is just for debugging
+    //validate_schedules(next_schedules_); // This is just for debugging
     std::swap(current_schedules_, next_schedules_);
     fix_schedules();
   }
@@ -83,74 +83,17 @@ void Scheduler::initialize_schedules(unsigned nschedules) {
   Kokkos::deep_copy(current_schedules_, h_schedules);
 }
 
-double Scheduler::rate_schedules(unsigned eliteSize) {
-  unsigned nmini = mini_.size();
-  unsigned nthemes = mini_.themes().size();
-  unsigned max_penalty = mini_.get_max_penalty();
+double Scheduler::rate_schedules() {
   Kokkos::parallel_for("rate schedules", nschedules(), KOKKOS_CLASS_LAMBDA(unsigned sc) {
-    double penalty = 0.0;
-    // Compute the penalty related to multi-part minisymposia being out of order
-    for(unsigned sl1=0; sl1<nslots(); sl1++) {
-      for(unsigned r1=0; r1<nrooms(); r1++) {
-        if(current_schedules_(sc,sl1,r1) >= nmini) continue;
-        for(unsigned sl2=sl1; sl2<nslots(); sl2++) {
-          for(unsigned r2=0; r2<nrooms(); r2++) {
-            if(current_schedules_(sc,sl2,r2) >= nmini) continue;
-            if(mini_.breaks_ordering(current_schedules_(sc,sl1,r1), current_schedules_(sc,sl2,r2))) {
-              penalty++;
-            }
-          }
-        }
-      }
-    }
-    // Compute the penalty related to oversubscribed participants
-    for(unsigned sl=0; sl<nslots(); sl++) {
-      for(unsigned r1=0; r1<nrooms(); r1++) {
-        if(current_schedules_(sc,sl,r1) >= nmini) continue;
-        for(unsigned r2=r1+1; r2<nrooms(); r2++) {
-          if(current_schedules_(sc,sl,r2) >= nmini) continue;
-          if(mini_.overlaps_participants(current_schedules_(sc,sl,r1), current_schedules_(sc,sl,r2))) {
-            penalty++;
-          }
-        }
-      }
-    }
-    // Compute the penalty related to theme overlap
-    unsigned theme_penalty = 0;
+    auto schedule = Kokkos::subview(current_schedules_, sc, Kokkos::ALL(), Kokkos::ALL());
     auto my_theme_penalties = Kokkos::subview(theme_penalties_, sc, Kokkos::ALL());
-    for(unsigned sl=0; sl<nslots(); sl++) {
-      for(unsigned tid=0; tid<nthemes; tid++) {
-        my_theme_penalties[tid] = 0;
-      }
-      for(unsigned r=0; r<nrooms(); r++) {
-        unsigned mini_index = current_schedules_(sc,sl,r);
-        if(mini_index >= nmini) continue;
-        unsigned tid = mini_[mini_index].tid();
-        my_theme_penalties[tid]++;
-      }
-      for(unsigned tid=0; tid<nthemes; tid++) {
-        auto p = my_theme_penalties[tid];
-        if(p > 1) {
-          theme_penalty += pow(p-1, 2);
-        }
-      }
+    unsigned order_penalty, oversubscribed_penalty, theme_penalty, priority_penalty;
+    ratings_[sc] = mini_.rate_schedule(schedule, my_theme_penalties, order_penalty, 
+      oversubscribed_penalty, theme_penalty, priority_penalty);
+    if(sc == 0) {
+      printf("Order penalty: %i\nOversubscribed penalty: %i\nTheme penalty: %i\nPriority penalty: %i\n", 
+             order_penalty, oversubscribed_penalty, theme_penalty, priority_penalty);
     }
-    // Compute the penalty related to priority
-    unsigned priority_penalty = 0;
-    for(unsigned sl=0; sl<nslots(); sl++) {
-      for(unsigned r=0; r<nrooms(); r++) {
-        unsigned mini_index = current_schedules_(sc,sl,r);
-        if(mini_index >= nmini) continue;
-        unsigned priority = mini_[mini_index].priority();
-        if(priority < r) {
-          priority_penalty += pow(r-priority, 2);
-        }
-      }
-    }
-    if(sc == 0) printf("Theme penalty: %i\nPriority penalty: %i\n", theme_penalty, priority_penalty);
-    penalty += mini_.map_theme_penalty(theme_penalty) / 2.0;
-    penalty += mini_.map_priority_penalty(priority_penalty) / 2.0;
-    ratings_[sc] = 1 - penalty / max_penalty;
   });
 
   // Block until all ratings are computed since the next step uses them
@@ -431,7 +374,7 @@ void Scheduler::record(const std::string& filename) const {
   }
 }
 
-void Scheduler::populate(Schedule& table) const {
+Kokkos::View<unsigned**,Kokkos::LayoutStride> Scheduler::get_best_schedule() const {
   // Find the best schedule
   typedef Kokkos::MaxLoc<double,unsigned>::value_type maxloc_type;
   maxloc_type maxloc;
@@ -442,17 +385,5 @@ void Scheduler::populate(Schedule& table) const {
     }
   }, Kokkos::MaxLoc<double,unsigned>(maxloc));
 
-  // Copy the schedule to host
-  unsigned nmini = mini_.size();
-  unsigned sc = maxloc.loc;
-  auto h_current_schedules = Kokkos::create_mirror_view(current_schedules_);
-  Kokkos::deep_copy(h_current_schedules, current_schedules_);
-
-  // Populate schedule
-  for(unsigned room=0; room<nrooms(); room++) {
-    for(unsigned slot=0; slot<nslots(); slot++) {
-      unsigned mid = h_current_schedules(sc, slot, room);
-      table.setData(table.index(room, slot), QVariant(mid));
-    }
-  }
+  return Kokkos::subview(current_schedules_, maxloc.loc, Kokkos::ALL(), Kokkos::ALL());
 }

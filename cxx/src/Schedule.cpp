@@ -9,9 +9,14 @@
 #include <QMimeData>
 #include <QPushButton>
 
-Schedule::Schedule(int nrows, int ncols, Rooms* rooms, Minisymposia* mini, QObject *parent) : 
-  mini_indices_("indices", nrows, ncols), rooms_(rooms), mini_(mini), QAbstractTableModel(parent)
+Schedule::Schedule(Kokkos::View<unsigned**,Kokkos::LayoutStride> mini_indices, Rooms* rooms, Minisymposia* mini, QObject *parent) : 
+  d_mini_indices_("minisymposia indices", mini_indices.extent(0), mini_indices.extent(1)), 
+  rooms_(rooms), mini_(mini), QAbstractTableModel(parent)
 {
+  Kokkos::deep_copy(d_mini_indices_, mini_indices);
+  h_mini_indices_ = Kokkos::create_mirror_view(d_mini_indices_);
+  Kokkos::deep_copy(h_mini_indices_, d_mini_indices_);
+
   // Create a table to display the schedule
   tableView_ = new QTableView();
   tableView_->setModel(this);
@@ -82,18 +87,18 @@ Schedule::~Schedule() {
 int Schedule::rowCount(const QModelIndex &parent) const {
   if (parent.isValid())
     return 0;
-  return mini_indices_.extent(0);
+  return h_mini_indices_.extent(1);
 }
 
 int Schedule::columnCount(const QModelIndex &parent) const {
   if (parent.isValid())
     return 0;
-  return mini_indices_.extent(1);
+  return h_mini_indices_.extent(0);
 }
 
 QVariant Schedule::data(const QModelIndex &index, int role) const {
   if(index.isValid() && role == Qt::DisplayRole) {
-    unsigned id = mini_indices_(index.row(), index.column());
+    unsigned id = h_mini_indices_(index.column(), index.row());
     if(id < mini_->size()) {
       return QVariant(tr(mini_->get(id).full_title().c_str()));
     }
@@ -118,7 +123,7 @@ QVariant Schedule::headerData(int section, Qt::Orientation orientation, int role
 
 bool Schedule::setData(const QModelIndex &index, const QVariant &value, int role) {
   if(role==Qt::EditRole) {
-    mini_indices_(index.row(), index.column()) = value.toInt();
+    h_mini_indices_(index.column(), index.row()) = value.toInt();
     return true;
   }
   return false;
@@ -154,8 +159,8 @@ bool Schedule::dropMimeData(const QMimeData *data, Qt::DropAction action,
   const QModelIndex old_index=index(data->data("row").toInt(),
                                     data->data("col").toInt());
   const QModelIndex current_index=parent;
-  std::swap(mini_indices_(old_index.row(), old_index.column()),
-            mini_indices_(current_index.row(), current_index.column()));
+  std::swap(h_mini_indices_(old_index.column(), old_index.row()),
+            h_mini_indices_(current_index.column(), current_index.row()));
   return true;
 }
 
@@ -172,9 +177,9 @@ void Schedule::save() {
     }
     QDataStream out(&file);
     out.setVersion(QDataStream::Qt_4_5);
-    for(unsigned i=0; i<mini_indices_.extent(0); i++) {
-      for(unsigned j=0; j<mini_indices_.extent(1); j++) {
-        out << mini_indices_(i,j);
+    for(unsigned i=0; i<h_mini_indices_.extent(1); i++) {
+      for(unsigned j=0; j<h_mini_indices_.extent(0); j++) {
+        out << h_mini_indices_(j,i);
       }
     }
   }
@@ -194,16 +199,18 @@ void Schedule::load() {
 
     QDataStream in(&file);
     in.setVersion(QDataStream::Qt_4_5);
-    for(unsigned i=0; i<mini_indices_.extent(0); i++) {
-      for(unsigned j=0; j<mini_indices_.extent(1); j++) {
-        in >> mini_indices_(i,j);
+    for(unsigned i=0; i<h_mini_indices_.extent(1); i++) {
+      for(unsigned j=0; j<h_mini_indices_.extent(0); j++) {
+        in >> h_mini_indices_(j,i);
       }
     }
   }
 }
 
 void Schedule::computeScore() {
-
+  Kokkos::deep_copy(d_mini_indices_, h_mini_indices_);
+  auto msg = mini_->rate_schedule(d_mini_indices_);
+  QMessageBox::information(&window_, tr("Computed Score"), tr(msg.c_str()));
 }
 
 void Schedule::search() {
@@ -238,7 +245,7 @@ void Schedule::search() {
       }
 
       // Check whether the search string is in this entry
-      unsigned id = mini_indices_(index.row(), index.column());
+      unsigned id = h_mini_indices_(index.column(), index.row());
       if(id < mini_->size()) {
         bool found = tr(mini_->get(id).full_title().c_str()).contains(text, Qt::CaseInsensitive);
         if(found) {

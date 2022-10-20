@@ -31,8 +31,10 @@ Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigne
     }
 
     h_data_[i] = Minisymposium(title, tid, organizer, speakers, citations, part);
+    printf("Minisymposium %i is %s\n", i, title.c_str());
     i++;
   }
+  nthemes_ = themes_.size();
 
   // Copy the data to device
   Kokkos::deep_copy(d_data_, h_data_);

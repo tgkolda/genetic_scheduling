@@ -15,7 +15,7 @@ public:
   void run_genetic(unsigned popSize, unsigned eliteSize, double mutationRate, unsigned generations);
   void print_best_schedule() const;
   void initialize_schedules(unsigned nschedules);
-  double rate_schedules(unsigned eliteSize);
+  double rate_schedules();
   void fix_schedules();
   void compute_weights();
   void breed_population(unsigned eliteSize);
@@ -29,7 +29,7 @@ public:
   void validate_schedules(Kokkos::View<unsigned***> schedules) const;
   double sort_on_ratings();
   void record(const std::string& filename) const;
-  void populate(Schedule& table) const;
+  Kokkos::View<unsigned**,Kokkos::LayoutStride> get_best_schedule() const;
 
 private:
   Rooms rooms_;
