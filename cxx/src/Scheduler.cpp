@@ -30,7 +30,7 @@ void Scheduler::run_genetic(unsigned popSize,
     compute_weights();
     breed_population(eliteSize);
     mutate_population(mutationRate);
-    //validate_schedules(next_schedules_); // This is just for debugging
+    validate_schedules(next_schedules_); // This is just for debugging
     std::swap(current_schedules_, next_schedules_);
     fix_schedules();
   }
@@ -254,7 +254,7 @@ void Scheduler::breed_population(unsigned eliteSize) {
 
 KOKKOS_FUNCTION
 void Scheduler::breed(unsigned mom_index, unsigned dad_index, unsigned child_index) const {
-  using genetic::contains;
+  using genetic::find;
 
   auto mom = Kokkos::subview(current_schedules_, mom_index, Kokkos::ALL(), Kokkos::ALL());
   auto dad = Kokkos::subview(current_schedules_, dad_index, Kokkos::ALL(), Kokkos::ALL());
@@ -263,50 +263,27 @@ void Scheduler::breed(unsigned mom_index, unsigned dad_index, unsigned child_ind
   // Determine which timeslots are carried over from the mom
   unsigned nslots = current_schedules_.extent(2);
   auto gen = pool_.get_state();
-  unsigned start_index = gen.rand(nslots);
-  unsigned end_index = start_index;
-  while(end_index == start_index ||
-        std::abs((int)end_index - (int)start_index) == nslots) { // Make sure at least some are carried over, but not all
-    end_index = gen.rand(nslots);
-  }
-  if(end_index < start_index) {
-    auto temp = start_index;
-    start_index = end_index;
-    end_index = temp;
-  }
+  unsigned end_index = gen.rand(nslots);
   pool_.free_state(gen);
 
   // Copy those timeslots to the child
-  Kokkos::pair<size_t, size_t> mom_indices(start_index, end_index);
-  Kokkos::pair<size_t, size_t> kid_indices(0, end_index-start_index);
+  Kokkos::pair<size_t, size_t> mom_indices(0, end_index);
   auto mom_genes = Kokkos::subview(mom, Kokkos::ALL(), mom_indices);
-  auto child_genes = Kokkos::subview(child, Kokkos::ALL(), kid_indices);
   for(unsigned i=0; i<mom_genes.extent(0); i++) {
-    for(unsigned j=0; j<mom_genes.extent(1); j++) {
-      child_genes(i, j) = mom_genes(i, j);
+    for(unsigned j=0; j<end_index; j++) {
+      child(i, j) = mom(i, j);
     }
   }
 
   // Fill in the gaps with dad's info
-  kid_indices.first = end_index - start_index;
-  kid_indices.second = nslots;
-  child_genes = Kokkos::subview(child, Kokkos::ALL(), kid_indices);
-  unsigned dr=0, ds=0;
-  for(unsigned cr=0; cr<child_genes.extent(0); cr++) {
-    for(unsigned cs=0; cs<child_genes.extent(1); cs++) {
-      while(contains(mom_genes, dad(dr, ds))) {
-        ds++;
-        if(ds >= dad.extent(1)) {
-          ds = 0;
-          dr++;
-        }
+  for(unsigned r=0; r<child.extent(0); r++) {
+    for(unsigned c=end_index; c<child.extent(1); c++) {
+      // Determine whether the dad's value is already in child
+      Kokkos::pair<size_t, size_t> current_index(r,c), new_index;
+      while(find(mom_genes, dad(current_index.first, current_index.second), new_index)) {
+        current_index = new_index;
       }
-      child_genes(cr, cs) = dad(dr, ds);
-      ds++;
-      if(ds >= dad.extent(1)) {
-        ds = 0;
-        dr++;
-      }
+      child(r, c) = dad(current_index.first, current_index.second);
     }
   }
 }
