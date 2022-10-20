@@ -7,7 +7,7 @@ Minisymposium::Minisymposium(const std::string& title,
                              const std::vector<std::string>& speakers,
                              double average_citation_count,
                              unsigned part) :
-  title_(title),
+  title_with_part_(title),
   tid_(tid),
   average_citation_count_(average_citation_count),
   part_(part)
@@ -16,7 +16,10 @@ Minisymposium::Minisymposium(const std::string& title,
   // Strip the part from the name
   size_t found = title.find(" - Part");
   if(found != std::string::npos) {
-    title_ = title.substr(0, found);
+    title_without_part_ = title.substr(0, found);
+  }
+  else {
+    title_without_part_ = title;
   }
 
   // Add the participants
@@ -35,7 +38,7 @@ bool Minisymposium::shares_participant(const Minisymposium& m) const {
 }
 
 bool Minisymposium::comes_before(const Minisymposium& m) const {
-  return title_ == m.title_ && part_ < m.part_;
+  return title_without_part_ == m.title_without_part_ && part_ < m.part_;
 }
 
 bool Minisymposium::shares_theme(const Minisymposium& m) const {
@@ -57,8 +60,12 @@ unsigned Minisymposium::priority() const {
   return room_priority_;
 }
 
-const std::string& Minisymposium::title() const {
-  return title_;
+const std::string& Minisymposium::short_title() const {
+  return title_without_part_;
+}
+
+const std::string& Minisymposium::full_title() const {
+  return title_with_part_;
 }
 
 double Minisymposium::average_citation_count() const {

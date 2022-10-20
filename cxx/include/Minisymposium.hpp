@@ -23,13 +23,14 @@ public:
   KOKKOS_FUNCTION bool higher_priority(const Minisymposium& m) const;
   KOKKOS_FUNCTION unsigned tid() const;
   KOKKOS_FUNCTION unsigned priority() const;
-  const std::string& title() const;
+  const std::string& short_title() const;
+  const std::string& full_title() const;
   double average_citation_count() const;
 
   void set_priority(unsigned priority);
 
 private:
-  std::string title_;
+  std::string title_with_part_, title_without_part_;
   unsigned tid_;
   double average_citation_count_;
   unsigned room_priority_;
