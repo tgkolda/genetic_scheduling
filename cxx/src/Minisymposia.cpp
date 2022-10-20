@@ -30,7 +30,6 @@ Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigne
       themes_.push_back(theme);
     }
 
-    printf("%s has %lf citations\n", title.c_str(), citations);
     h_data_[i] = Minisymposium(title, tid, organizer, speakers, citations, part);
     i++;
   }
@@ -193,7 +192,7 @@ void Minisymposia::set_priorities(unsigned nslots) {
   // Get the cutoffs
   unsigned nrooms_needed = ceil(double(size())/nslots);
   std::vector<double> cutoffs(nrooms_needed-1);
-  for(unsigned i=0; i<nrooms_needed; i++) {
+  for(unsigned i=0; i<nrooms_needed-1; i++) {
     cutoffs[i] = citation_list[(i+1)*nslots];
   }
 
@@ -239,7 +238,7 @@ void Minisymposia::set_priority_penalty_bounds(unsigned nslots) {
   slot=0;
   room_index=0;
   for(unsigned i=size(); i > 0; i--) {
-    if(priority_list[i] < room_index) {
+    if(priority_list[i-1] < room_index) {
       max_priority_penalty_ += pow(room_index - priority_list[i-1], 2);
     }
     slot++;
@@ -252,15 +251,7 @@ void Minisymposia::set_priority_penalty_bounds(unsigned nslots) {
   printf("Priority penalty bounds: %i %i\n", min_priority_penalty_, max_priority_penalty_);
 }
 
-const std::string& Minisymposia::get_title(unsigned i) const {
-  return h_data_[i].title();
-}
-
 const std::string& Minisymposia::get_theme(unsigned i) const {
   auto id = h_data_[i].tid();
   return themes_[id];
-}
-
-unsigned Minisymposia::get_priority(unsigned i) const {
-  return h_data_[i].priority();
 }
