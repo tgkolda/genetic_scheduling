@@ -1,6 +1,35 @@
 #include "yaml-cpp/yaml.h"
 #include "Minisymposia.hpp"
 
+Minisymposia::Minisymposia(const std::string& filename) {
+  // Read the minisymposia from yaml on the host
+  YAML::Node nodes = YAML::LoadFile(filename);
+
+  unsigned n = nodes.size();
+  class_codes_ = Kokkos::View<unsigned*[3]>("classification codes", n);
+  auto h_codes = Kokkos::create_mirror_view(class_codes_);
+  d_data_ = Kokkos::View<Minisymposium*>("minisymposia", n);
+  h_data_ = Kokkos::create_mirror_view(d_data_);
+
+  unsigned i=0;
+  for(auto node : nodes) {
+    std::string title = node.first.as<std::string>();
+    std::vector<unsigned> codes = node.second["class codes"].as<std::vector<unsigned>>();
+    assert(codes.size() == 3);
+    for(unsigned j=0; j<3; j++) {
+      h_codes(i,j) = codes[j];
+    }
+
+    h_data_[i] = Minisymposium(title);
+    printf("Minisymposium %i is %s\n", i, title.c_str());
+    i++;
+  }
+
+  // Copy the data to device
+  Kokkos::deep_copy(d_data_, h_data_);
+  Kokkos::deep_copy(class_codes_, h_codes);
+}
+
 Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigned nslots) {
   // Read the minisymposia from yaml on the host
   YAML::Node nodes = YAML::LoadFile(filename);

@@ -33,6 +33,18 @@ bool find(ViewType view, ValType val, Kokkos::pair<size_t, size_t>& index) {
   return false;
 }
 
+template<class ViewType, class ValType>
+KOKKOS_FUNCTION
+bool find(ViewType view, ValType val, unsigned& index) {
+  for(unsigned i=0; i<view.extent(0); i++) {
+    if(view(i) == val) {
+      index = i;
+      return true;
+    }
+  }
+  return false;
+}
+
 } // namespace genetic
 
 #endif /* UTILITY_H */

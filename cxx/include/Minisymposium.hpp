@@ -10,6 +10,7 @@
 class Minisymposium {
 public:
   Minisymposium() = default;
+  Minisymposium(const std::string& title);
   Minisymposium(const std::string& title, 
                 unsigned tid, 
                 const std::string& organizer, 

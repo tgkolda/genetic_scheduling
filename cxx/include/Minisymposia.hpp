@@ -9,6 +9,7 @@
 
 class Minisymposia {
 public:
+  Minisymposia(const std::string& filename);
   Minisymposia(const std::string& filename, unsigned nrooms, unsigned nslots);
   Minisymposia(const Minisymposia&) = default;
   ~Minisymposia() = default;
@@ -43,6 +44,7 @@ public:
   friend std::ostream& operator<<(std::ostream& os, const Minisymposia& mini);
 private:
   std::vector<std::string> themes_;
+  Kokkos::View<unsigned*[3]> class_codes_;
   Kokkos::View<Minisymposium*> d_data_;
   Kokkos::View<Minisymposium*>::HostMirror h_data_;
   Kokkos::View<bool**> same_participants_;

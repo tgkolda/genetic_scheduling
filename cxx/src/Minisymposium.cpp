@@ -1,6 +1,9 @@
 #include "Minisymposium.hpp"
 #include <algorithm>
 
+Minisymposium::Minisymposium(const std::string& title) :
+  title_with_part_(title) { }
+
 Minisymposium::Minisymposium(const std::string& title, 
                              unsigned tid, 
                              const std::string& organizer, 
