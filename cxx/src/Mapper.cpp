@@ -28,7 +28,7 @@ void Mapper::record(const std::string& filename) const {
 void Mapper::make_initial_population(unsigned popSize) {
   unsigned nlectures = lectures_.size();
   unsigned nmini = minisymposia_.size();
-  unsigned ngenes = nmini + 5*(nlectures/5);
+  unsigned ngenes = nmini + 5*10; // Only allow 10 extra minisymposia
   current_mappings_ = Kokkos::View<unsigned**>("current mappings", popSize, ngenes);
   next_mappings_ = Kokkos::View<unsigned**>("next mappings", popSize, ngenes);
   ratings_ = Kokkos::View<double*>("ratings", popSize);

@@ -46,10 +46,13 @@ unsigned Mapper::count_full_minisymposia(ViewType mapping) const {
   unsigned nmini = minisymposia_.size();
   unsigned nlectures = lectures_.size();
   unsigned ngenes = mapping.extent(0);
-  unsigned nfull = 0;
+  unsigned score = 0;
   for(unsigned i=0; i<nmini; i++) {
     if(mapping(i) < nlectures) {
-      nfull++;
+      score += 25;
+    }
+    else {
+      score += 16;
     }
   }
   for(unsigned i=nmini; i+4<ngenes; i+=5) {
@@ -59,12 +62,10 @@ unsigned Mapper::count_full_minisymposia(ViewType mapping) const {
         nlectures_in_mini++;
       }
     }
-    if(nlectures_in_mini == 5) {
-      nfull++;
-    }
+    score += pow(nlectures_in_mini, 2);
   }
 
-  return nfull;
+  return score;
 }
 
 #endif /* MAPPER_H */
