@@ -32,3 +32,41 @@ Lectures::Lectures(const std::string& filename) {
 unsigned Lectures::size() const {
   return class_codes_.extent(0);
 }
+
+unsigned Lectures::topic_cohesion_score(unsigned first, unsigned second) const {
+  unsigned score = 0;
+
+  for(unsigned i=0; i<3; i++) {
+    for(unsigned j=0; j<3; j++) {
+      if(class_codes_(first,i) == class_codes_(second,j)) {
+        score++;
+      }
+    }
+  }
+
+  return pow(score,2);
+}
+
+KOKKOS_FUNCTION unsigned Lectures::topic_cohesion_score(const Minisymposia& mini, unsigned mid, unsigned lid) const {
+  unsigned score = 0;
+
+  for(unsigned i=0; i<3; i++) {
+    for(unsigned j=0; j<3; j++) {
+      if(class_codes_(lid,i) == mini.class_codes(mid,j)) {
+        score++;
+      }
+    }
+  }
+
+  return pow(score,2);  
+}
+
+const std::string& Lectures::title(unsigned index) const {
+  return titles_[index];
+}
+
+Kokkos::View<unsigned*[3]>::HostMirror Lectures::class_codes() const {
+  auto h_codes = Kokkos::create_mirror_view(class_codes_);
+  Kokkos::deep_copy(h_codes, class_codes_);
+  return h_codes;
+}

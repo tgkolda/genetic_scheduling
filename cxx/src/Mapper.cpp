@@ -1,5 +1,6 @@
 #include "Mapper.hpp"
 #include "Utility.hpp"
+#include <fstream>
 
 Mapper::Mapper(const Lectures& lectures, const Minisymposia& minisymposia) :
   lectures_(lectures), minisymposia_(minisymposia), pool_(5374857) { }
@@ -22,7 +23,65 @@ void Mapper::run_genetic(unsigned popSize, unsigned eliteSize,
 }
 
 void Mapper::record(const std::string& filename) const {
+  // Find the best mapping
+  unsigned popSize = current_mappings_.extent(0);
+  unsigned ngenes = current_mappings_.extent(1);
+  unsigned nlectures = lectures_.size();
+  typedef Kokkos::MaxLoc<double,unsigned>::value_type maxloc_type;
+  maxloc_type maxloc;
+  Kokkos::parallel_reduce( "Finding best mapping", popSize, KOKKOS_CLASS_LAMBDA (unsigned i, maxloc_type& lmaxloc) {
+    if(ratings_[i] > lmaxloc.val) { 
+      lmaxloc.val = ratings_[i]; 
+      lmaxloc.loc = i; 
+    }
+  }, Kokkos::MaxLoc<double,unsigned>(maxloc));
 
+  unsigned nmini = minisymposia_.size();
+  unsigned ind = maxloc.loc;
+  auto h_current_mappings = Kokkos::create_mirror_view(current_mappings_);
+  Kokkos::deep_copy(h_current_mappings, current_mappings_);
+
+  std::ofstream fout(filename);
+  fout << "# Minisymposia with score " << maxloc.val << "\n\n"
+       << "|Minisymposium|Lecture 1|Lecture 2|Lecture 3|Lecture 4|Lecture 5|\n"
+       << "|---|---|---|---|---|---|\n";
+
+  auto mini_codes = minisymposia_.class_codes();
+  auto lect_codes = lectures_.class_codes();
+  for(unsigned m=0; m<nmini; m++) {
+    fout << "|" << minisymposia_.get(m).full_title() << " " << mini_codes(m,0)
+         << " " << mini_codes(m,1) << " " << mini_codes(m,2);
+    auto talks = minisymposia_.get(m).talks();
+
+    unsigned i;
+    for(i=0; i<talks.size(); i++) {
+      fout << "|" << talks[i];
+    }
+    unsigned lid = h_current_mappings(ind,m);
+    if(lid < nlectures) {
+      fout << "|" << lectures_.title(lid) << " " << lect_codes(lid,0)
+           << " " << lect_codes(lid,1) << " " << lect_codes(lid,2);
+      i++;
+    }
+    for(;i<5; i++) {
+      fout << "| ";
+    }
+    fout << "|\n";
+  }
+  for(unsigned m=nmini, i=0; m<ngenes; m+=5, i++) {
+    fout << "|Contributed Lectures " << i+1;
+    for(unsigned j=0; j<5; j++) {
+      unsigned lid = h_current_mappings(ind,m+j);
+      if(lid < nlectures) {
+        fout << "|" << lectures_.title(lid) << " " << lect_codes(lid,0)
+             << " " << lect_codes(lid,1) << " " << lect_codes(lid,2);
+      }
+      else {
+        fout << "| ";
+      }
+    }
+    fout << "|\n";
+  }
 }
 
 void Mapper::make_initial_population(unsigned popSize) {
@@ -54,14 +113,17 @@ void Mapper::make_initial_population(unsigned popSize) {
 }
 
 void Mapper::rate_mappings() {
+  constexpr double fullness_weight = 2.0;
+  constexpr double cohesion_weight = 1.0;
   unsigned popSize = current_mappings_.extent(0);
   Kokkos::parallel_for("rate mappings", popSize, KOKKOS_CLASS_LAMBDA(unsigned m) {
     auto mapping = Kokkos::subview(current_mappings_, m, Kokkos::ALL());
     unsigned nfull = count_full_minisymposia(mapping);
+    double cohesion = topic_cohesion_score(mapping);
+    ratings_[m] = fullness_weight*nfull + cohesion_weight*cohesion;
     if(m == 0) {
-      printf("%i minisymposia are full\n", nfull);
+      printf("score: %lf\n", ratings_[0]);
     }
-    ratings_[m] = nfull;
   });
 
   // Block until all ratings are computed since the next step uses them

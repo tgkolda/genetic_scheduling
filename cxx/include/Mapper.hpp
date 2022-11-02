@@ -25,6 +25,10 @@ private:
   KOKKOS_INLINE_FUNCTION
   unsigned count_full_minisymposia(ViewType mapping) const;
 
+  template<class ViewType>
+  KOKKOS_INLINE_FUNCTION
+  double topic_cohesion_score(ViewType mapping) const;
+
   KOKKOS_FUNCTION unsigned get_parent() const;
   KOKKOS_FUNCTION void breed(unsigned mom_index, unsigned dad_index, unsigned child_index) const;
 
@@ -63,6 +67,33 @@ unsigned Mapper::count_full_minisymposia(ViewType mapping) const {
       }
     }
     score += pow(nlectures_in_mini, 2);
+  }
+
+  return score;
+}
+
+template<class ViewType>
+KOKKOS_INLINE_FUNCTION
+double Mapper::topic_cohesion_score(ViewType mapping) const {
+  unsigned nmini = minisymposia_.size();
+  unsigned nlectures = lectures_.size();
+  unsigned ngenes = mapping.extent(0);
+  double score = 0;
+  for(unsigned i=0; i<nmini; i++) {
+    if(mapping(i) < nlectures) {
+      score += lectures_.topic_cohesion_score(minisymposia_, i, mapping(i));
+    }
+  }
+  for(unsigned i=nmini; i+4<ngenes; i+=5) {
+    for(unsigned j=0; j<5; j++) {
+      if(mapping(i+j) >= nlectures) continue;
+      for(unsigned k=j+1; k<5; k++) {
+        if(mapping(i+k) < nlectures) {
+          // 12 is (5-1)!
+          score += lectures_.topic_cohesion_score(mapping(i+j), mapping(i+k)) / 12.0;
+        }
+      }
+    }
   }
 
   return score;

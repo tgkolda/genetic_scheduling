@@ -15,12 +15,13 @@ Minisymposia::Minisymposia(const std::string& filename) {
   for(auto node : nodes) {
     std::string title = node.first.as<std::string>();
     std::vector<unsigned> codes = node.second["class codes"].as<std::vector<unsigned>>();
+    std::vector<std::string> talks = node.second["talks"].as<std::vector<std::string>>();
     assert(codes.size() == 3);
     for(unsigned j=0; j<3; j++) {
       h_codes(i,j) = codes[j];
     }
 
-    h_data_[i] = Minisymposium(title);
+    h_data_[i] = Minisymposium(title, talks);
     printf("Minisymposium %i is %s\n", i, title.c_str());
     i++;
   }
@@ -285,4 +286,14 @@ void Minisymposia::set_priority_penalty_bounds(unsigned nslots) {
 const std::string& Minisymposia::get_theme(unsigned i) const {
   auto id = h_data_[i].tid();
   return themes_[id];
+}
+
+unsigned Minisymposia::class_codes(unsigned mid, unsigned cid) const {
+  return class_codes_(mid, cid);
+}
+
+Kokkos::View<unsigned*[3]>::HostMirror Minisymposia::class_codes() const {
+  auto h_class_codes = Kokkos::create_mirror_view(class_codes_);
+  Kokkos::deep_copy(h_class_codes, class_codes_);
+  return h_class_codes;
 }

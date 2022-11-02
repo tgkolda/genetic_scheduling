@@ -28,7 +28,7 @@ with open(r'//wsl.localhost/Ubuntu/home/amklinv/genetic_scheduling/data/SIAM-CSE
             minisymposia[title]["organizer"] = organizers
             minisymposia[title]["speakers"] = speakers
             minisymposia[title]["talks"] = talks
-            minisymposia[title]["class codes"] = codes
+            minisymposia[title]["class codes"] = list(map(int, codes))
             line_count += 1
     print(f'Processed {line_count} lines.')
 
@@ -50,7 +50,7 @@ with open(r'//wsl.localhost/Ubuntu/home/amklinv/genetic_scheduling/data/SIAM-CSE
 
             lectures[title] = {}
             lectures[title]["speaker"] = speaker
-            lectures[title]["class codes"] = codes
+            lectures[title]["class codes"] = list(map(int, codes))
             line_count += 1
     print(f'Processed {line_count} lines.')
 

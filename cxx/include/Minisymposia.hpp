@@ -32,6 +32,8 @@ public:
   void set_priorities(unsigned nslots);
   void set_priority_penalty_bounds(unsigned nslots);
   const std::string& get_theme(unsigned i) const;
+  KOKKOS_FUNCTION unsigned class_codes(unsigned mid, unsigned cid) const;
+  Kokkos::View<unsigned*[3]>::HostMirror class_codes() const;
 
   template<class ViewType1, class ViewType2>
   KOKKOS_INLINE_FUNCTION double rate_schedule(ViewType1 schedule, ViewType2 theme_penalties,

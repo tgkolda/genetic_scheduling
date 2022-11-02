@@ -10,7 +10,7 @@
 class Minisymposium {
 public:
   Minisymposium() = default;
-  Minisymposium(const std::string& title);
+  Minisymposium(const std::string& title, const std::vector<std::string>& talks);
   Minisymposium(const std::string& title, 
                 unsigned tid, 
                 const std::string& organizer, 
@@ -27,11 +27,13 @@ public:
   const std::string& short_title() const;
   const std::string& full_title() const;
   double average_citation_count() const;
+  const std::vector<std::string>& talks() const;
 
   void set_priority(unsigned priority);
 
 private:
   std::string title_with_part_, title_without_part_;
+  std::vector<std::string> talks_;
   unsigned tid_;
   double average_citation_count_;
   unsigned room_priority_;

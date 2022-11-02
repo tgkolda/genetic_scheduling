@@ -14,13 +14,13 @@ int main(int argc, char* argv[]) {
  
     // Run the genetic algorithm
     Mapper m(lectures, mini);
-    m.run_genetic(1000, 200, 0.01, 1000);
+    m.run_genetic(10000, 2000, 0.01, 1000);
     m.record("lecture_assignments.md");
 
     // Create a table to display the schedule
   //  Schedule sched(s.get_best_schedule(), &rooms, &mini);
 
-    ret_code = app.exec();
+    //ret_code = app.exec();
   }
   Kokkos::finalize();
   return ret_code;

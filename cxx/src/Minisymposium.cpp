@@ -1,8 +1,8 @@
 #include "Minisymposium.hpp"
 #include <algorithm>
 
-Minisymposium::Minisymposium(const std::string& title) :
-  title_with_part_(title) { }
+Minisymposium::Minisymposium(const std::string& title, const std::vector<std::string>& talks) :
+  title_with_part_(title), talks_(talks) { }
 
 Minisymposium::Minisymposium(const std::string& title, 
                              unsigned tid, 
@@ -77,4 +77,8 @@ double Minisymposium::average_citation_count() const {
 
 void Minisymposium::set_priority(unsigned priority) {
   room_priority_ = priority;
+}
+
+const std::vector<std::string>& Minisymposium::talks() const {
+  return talks_;
 }
