@@ -14,6 +14,10 @@ Scheduler::Scheduler(const Minisymposia& mini,
   
 }
 
+Scheduler::ViewType Scheduler::make_initial_population(unsigned nschedules) const {
+  return ViewType("schedules", nschedules, ntimeslots_, rooms_.size());
+}
+
 void Scheduler::run_genetic(unsigned popSize, 
                             unsigned eliteSize, 
                             double mutationRate, 
@@ -88,8 +92,8 @@ double Scheduler::rate_schedules() {
     auto schedule = Kokkos::subview(current_schedules_, sc, Kokkos::ALL(), Kokkos::ALL());
     auto my_theme_penalties = Kokkos::subview(theme_penalties_, sc, Kokkos::ALL());
     unsigned order_penalty, oversubscribed_penalty, theme_penalty, priority_penalty;
-    ratings_[sc] = mini_.rate_schedule(schedule, my_theme_penalties, order_penalty, 
-      oversubscribed_penalty, theme_penalty, priority_penalty);
+    ratings_[sc] = mini_.rate_schedule(schedule, order_penalty, oversubscribed_penalty, 
+                                       theme_penalty, priority_penalty);
     if(sc == 0) {
       printf("Order penalty: %i\nOversubscribed penalty: %i\nTheme penalty: %i\nPriority penalty: %i\n", 
              order_penalty, oversubscribed_penalty, theme_penalty, priority_penalty);
@@ -258,6 +262,10 @@ void Scheduler::mutate_population(double mutationRate) {
 
   // Block until the mutations are complete since the next step uses the results
   Kokkos::fence();
+}
+
+bool Scheduler::out_of_bounds(unsigned i) const {
+  return i >= mini_.size();
 }
 
 KOKKOS_FUNCTION

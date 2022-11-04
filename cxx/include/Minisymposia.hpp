@@ -35,10 +35,9 @@ public:
   KOKKOS_FUNCTION unsigned class_codes(unsigned mid, unsigned cid) const;
   Kokkos::View<unsigned*[3]>::HostMirror class_codes() const;
 
-  template<class ViewType1, class ViewType2>
-  KOKKOS_INLINE_FUNCTION double rate_schedule(ViewType1 schedule, ViewType2 theme_penalties,
-    unsigned& order_penalty, unsigned& oversubscribed_penalty, unsigned& theme_penalty,
-    unsigned& priority_penalty) const;
+  template<class ViewType>
+  KOKKOS_INLINE_FUNCTION double rate_schedule(ViewType schedule, unsigned& order_penalty, 
+    unsigned& oversubscribed_penalty, unsigned& theme_penalty, unsigned& priority_penalty) const;
   
   template<class ViewType>
   inline std::string rate_schedule(ViewType schedule) const;
@@ -60,11 +59,10 @@ private:
   unsigned max_priority_penalty_{0};
 };
 
-template<class ViewType1, class ViewType2>
+template<class ViewType>
 KOKKOS_INLINE_FUNCTION 
-double Minisymposia::rate_schedule(ViewType1 schedule, ViewType2 theme_penalties, 
-  unsigned& order_penalty, unsigned& oversubscribed_penalty, unsigned& theme_penalty, 
-  unsigned& priority_penalty) const
+double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty, 
+  unsigned& oversubscribed_penalty, unsigned& theme_penalty, unsigned& priority_penalty) const
 {
   unsigned nrooms = schedule.extent(1);
   unsigned nslots = schedule.extent(0);
@@ -103,19 +101,19 @@ double Minisymposia::rate_schedule(ViewType1 schedule, ViewType2 theme_penalties
   theme_penalty = 0;
   for(unsigned sl=0; sl<nslots; sl++) {
     for(unsigned tid=0; tid<nthemes_; tid++) {
-      theme_penalties[tid] = 0;
+//      theme_penalties[tid] = 0;
     }
     for(unsigned r=0; r<nrooms; r++) {
       unsigned mini_index = schedule(sl,r);
       if(mini_index >= nmini) continue;
       unsigned tid = d_data_[mini_index].tid();
-      theme_penalties[tid]++;
+//      theme_penalties[tid]++;
     }
     for(unsigned tid=0; tid<nthemes_; tid++) {
-      auto p = theme_penalties[tid];
-      if(p > 1) {
-        theme_penalty += pow(p-1, 2);
-      }
+//      auto p = theme_penalties[tid];
+//      if(p > 1) {
+//        theme_penalty += pow(p-1, 2);
+//      }
     }
   }
   // Compute the penalty related to priority
@@ -142,7 +140,7 @@ inline std::string Minisymposia::rate_schedule(ViewType schedule) const {
   Kokkos::View<unsigned*> d_penalties("penalties", 4);
   double score;
   Kokkos::parallel_reduce("computing score", 1, KOKKOS_CLASS_LAMBDA (unsigned i, double& lscore) {
-    lscore = rate_schedule(schedule, theme_penalties, d_penalties(0), d_penalties(1), 
+    lscore = rate_schedule(schedule, d_penalties(0), d_penalties(1), 
       d_penalties(2), d_penalties(3));
   }, score);
 

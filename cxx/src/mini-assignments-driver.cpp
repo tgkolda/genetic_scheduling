@@ -1,9 +1,10 @@
+#include "Genetic.hpp"
 #include "Mapper.hpp"
 #include <QApplication>
 
 int main(int argc, char* argv[]) {
   int ret_code;
-  QApplication app(argc, argv);
+  //QApplication app(argc, argv);
   Kokkos::initialize(argc, argv);
   {
     // Read the lectures from yaml
@@ -14,8 +15,9 @@ int main(int argc, char* argv[]) {
  
     // Run the genetic algorithm
     Mapper m(lectures, mini);
-    m.run_genetic(10000, 2000, 0.01, 1000);
-    m.record("lecture_assignments.md");
+    Genetic<Mapper> g(m);
+    auto best_schedule = g.run(10000, 2000, 0.01, 10);
+    m.record("lecture-assignments.md", best_schedule);
 
     // Create a table to display the schedule
   //  Schedule sched(s.get_best_schedule(), &rooms, &mini);

@@ -11,7 +11,16 @@
 
 class Scheduler {
 public:
+  typedef Kokkos::View<unsigned***> ViewType;
+
   Scheduler(const Minisymposia& mini, const Rooms& rooms, unsigned ntimeslots);
+  ViewType make_initial_population(unsigned nschedules) const;
+
+  template<class View2D>
+  KOKKOS_INLINE_FUNCTION double rate(View2D schedule) const;
+
+  KOKKOS_FUNCTION bool out_of_bounds(unsigned i) const;
+
   void run_genetic(unsigned popSize, unsigned eliteSize, double mutationRate, unsigned generations);
   void print_best_schedule() const;
   void initialize_schedules(unsigned nschedules);
@@ -44,5 +53,12 @@ private:
   std::default_random_engine rng_;
   Kokkos::Random_XorShift64_Pool<> pool_;
 };
+
+template<class View2D>
+double Scheduler::rate(View2D schedule) const {
+  unsigned order_penalty, oversubscribed_penalty, theme_penalty, priority_penalty;
+  return mini_.rate_schedule(schedule, order_penalty, 
+    oversubscribed_penalty, theme_penalty, priority_penalty);
+}
 
 #endif /* SCHEDULER_H */

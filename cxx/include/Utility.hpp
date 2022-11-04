@@ -45,6 +45,14 @@ bool find(ViewType view, ValType val, unsigned& index) {
   return false;
 }
 
+template<class Scalar>
+KOKKOS_FUNCTION
+void swap(Scalar& s1, Scalar& s2) {
+  auto temp = s1;
+  s1 = s2;
+  s2 = temp;
+}
+
 } // namespace genetic
 
 #endif /* UTILITY_H */
