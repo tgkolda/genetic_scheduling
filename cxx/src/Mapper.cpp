@@ -1,13 +1,13 @@
 #include "Mapper.hpp"
 #include "Utility.hpp"
 
-Mapper::Mapper(const Lectures& lectures, const Minisymposia& minisymposia) :
-  lectures_(lectures), minisymposia_(minisymposia) { }
+Mapper::Mapper(const Lectures& lectures, const Minisymposia& minisymposia, unsigned nExtraMini) :
+  lectures_(lectures), minisymposia_(minisymposia), nExtraMini_(nExtraMini) { }
 
 Mapper::ViewType Mapper::make_initial_population(unsigned popSize) {
   unsigned nlectures = lectures_.size();
   unsigned nmini = minisymposia_.size();
-  unsigned ngenes = nmini + 5*10; // Only allow 10 extra minisymposia
+  unsigned ngenes = nmini + 5*nExtraMini_;
   return Kokkos::View<unsigned**>("mappings", popSize, ngenes);
 }
 

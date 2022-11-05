@@ -11,7 +11,7 @@ class Mapper {
 public:
   typedef Kokkos::View<unsigned**> ViewType;
 
-  Mapper(const Lectures& lectures, const Minisymposia& minisymposia);
+  Mapper(const Lectures& lectures, const Minisymposia& minisymposia, unsigned nExtraMini=5);
   ViewType make_initial_population(unsigned popSize);
 
   template<class View1D>
@@ -35,12 +35,13 @@ private:
 
   Lectures lectures_;
   Minisymposia minisymposia_;
+  unsigned nExtraMini_;
 };
 
 template<class View1D>
 double Mapper::rate(View1D mapping) const {
-  constexpr double fullness_weight = 2.0;
-  constexpr double cohesion_weight = 1.0;
+  constexpr double fullness_weight = 1.0;
+  constexpr double cohesion_weight = 5.0;
 
   unsigned nfull = count_full_minisymposia(mapping);
   double cohesion = topic_cohesion_score(mapping);

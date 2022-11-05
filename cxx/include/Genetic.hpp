@@ -253,32 +253,41 @@ void Genetic<Runner>::breed(unsigned mom_index, unsigned dad_index, unsigned chi
   // Determine which genes are carried over from the mom
   unsigned ngenes = current_population_.extent(current_population_.rank-1);
   auto gen = pool_.get_state();
-  unsigned end_index = gen.rand(ngenes);
+  unsigned start_index = gen.rand(ngenes+1);
+  unsigned end_index = start_index;
+  while(end_index == start_index || Kokkos::abs((int)end_index - (int)start_index) >= ngenes) {
+    end_index = gen.rand(ngenes+1);
+  }
   pool_.free_state(gen);
+  if(end_index < start_index) {
+    genetic::swap(start_index, end_index);
+  }
 
   // Copy those timeslots to the child
   if constexpr(current_population_.rank == 2) {
-    for(unsigned i=0; i<end_index; i++) {
+    for(unsigned i=start_index; i<end_index; i++) {
       child(i) = mom(i);
     }
   }
   else {
     for(unsigned i=0; i<child.extent(0); i++) {
-      for(unsigned j=0; j<end_index; j++) {
+      for(unsigned j=start_index; j<end_index; j++) {
         child(i, j) = mom(i, j);
       }
     }
   }
 
   // Fill in the gaps with dad's info
-  Kokkos::pair<size_t, size_t> mom_indices(0, end_index);
+  Kokkos::pair<size_t, size_t> mom_indices(start_index, end_index);
   if constexpr(current_population_.rank == 2) {
     auto mom_genes = Kokkos::subview(mom, mom_indices);
-    for(unsigned i=end_index; i<child.extent(0); i++) {
+    for(unsigned i=0; i<child.extent(0); i++) {
+      // Skip the mom's indices
+      if (i >= start_index && i < end_index) continue;
       // Determine whether the dad's value is already in child
       unsigned current_index = i, new_index;
       while(find(mom_genes, dad(current_index), new_index)) {
-        current_index = new_index;
+        current_index = new_index + start_index;
       }
       child(i) = dad(current_index);
     }
@@ -286,11 +295,14 @@ void Genetic<Runner>::breed(unsigned mom_index, unsigned dad_index, unsigned chi
   else {
     auto mom_genes = Kokkos::subview(mom, Kokkos::ALL(), mom_indices);
     for(unsigned r=0; r<child.extent(0); r++) {
-      for(unsigned c=end_index; c<child.extent(1); c++) {
+      for(unsigned c=0; c<child.extent(1); c++) {
+        // Skip the mom's indices
+        if (c >= start_index && c < end_index) continue;
         // Determine whether the dad's value is already in child
         Kokkos::pair<size_t, size_t> current_index(r,c), new_index;
         while(find(mom_genes, dad(current_index.first, current_index.second), new_index)) {
-          current_index = new_index;
+          current_index.first = new_index.first;
+          current_index.second = new_index.second + start_index;
         }
         child(r, c) = dad(current_index.first, current_index.second);
       }
