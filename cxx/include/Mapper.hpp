@@ -39,6 +39,7 @@ private:
   Lectures lectures_;
   Minisymposia minisymposia_;
   unsigned nExtraMini_;
+  const unsigned nlect_per_mini_{5};
 };
 
 template<class View1D>
@@ -59,18 +60,22 @@ unsigned Mapper::count_full_minisymposia(View1D mapping) const {
   unsigned ngenes = mapping.extent(0);
   unsigned score = 0;
 
+  unsigned subs = 0;
   for(unsigned i=0; i<nmini; i++) {
-    if(mapping(i) < nlectures) {
-      score += 25;
+    unsigned nlect_in_mini = minisymposia_[i].size();
+    for(unsigned j=nlect_in_mini; j<nlect_per_mini_; j++) {
+      if(mapping(subs) < nlectures) {
+        nlect_in_mini++;
+      }
+      subs++;
     }
-    else {
-      score += 16;
-    }
+    score += pow(nlect_in_mini, 2);
   }
-  for(unsigned i=nmini; i+4<ngenes; i+=5) {
+
+  for(; subs+nlect_per_mini_-1<ngenes; subs+=nlect_per_mini_) {
     unsigned nlectures_in_mini = 0;
-    for(unsigned j=0; j<5; j++) {
-      if(mapping(i+j) < nlectures) {
+    for(unsigned j=0; j<nlect_per_mini_; j++) {
+      if(mapping(subs+j) < nlectures) {
         nlectures_in_mini++;
       }
     }
@@ -87,18 +92,22 @@ double Mapper::topic_cohesion_score(View1D mapping) const {
   unsigned ngenes = mapping.extent(0);
   double score = 0;
 
+  unsigned subs = 0;
   for(unsigned i=0; i<nmini; i++) {
-    if(mapping(i) < nlectures) {
-      score += lectures_.topic_cohesion_score(minisymposia_, i, mapping(i));
+    unsigned nlect_in_mini = minisymposia_[i].size();
+    for(unsigned j=nlect_in_mini; j<nlect_per_mini_; j++) {
+      if(mapping(subs) < nlectures) {
+        score += lectures_.topic_cohesion_score(minisymposia_, i, mapping(subs));
+      }
+      subs++;
     }
   }
-  for(unsigned i=nmini; i+4<ngenes; i+=5) {
-    for(unsigned j=0; j<5; j++) {
-      if(mapping(i+j) >= nlectures) continue;
-      for(unsigned k=j+1; k<5; k++) {
-        if(mapping(i+k) < nlectures) {
-          // 12 is (5-1)!
-          score += lectures_.topic_cohesion_score(mapping(i+j), mapping(i+k)) / 12.0;
+
+  for(; subs+nlect_per_mini_-1<ngenes; subs+=nlect_per_mini_) {
+    for(unsigned j=0; j<nlect_per_mini_; j++) {
+      for(unsigned k=j+1; k<nlect_per_mini_; k++) {
+        if(mapping(subs+j) < nlectures) {
+          score += lectures_.topic_cohesion_score(mapping(subs+j), mapping(subs+k));
         }
       }
     }
@@ -113,36 +122,46 @@ void Mapper::record(const std::string& filename, View1D mapping) const {
   unsigned ngenes = mapping.extent(0);
 
   std::ofstream fout(filename);
-  fout << "# Minisymposia\n\n"
-       << "|Minisymposium|Lecture 1|Lecture 2|Lecture 3|Lecture 4|Lecture 5|\n"
-       << "|---|---|---|---|---|---|\n";
+  fout << "# Minisymposia\n\n|Minisymposium|";
+
+  for(unsigned i=0; i<nlect_per_mini_; i++) {
+    fout << "Lecture " << i+1 << "|";
+  }
+  fout << "\n|---|";
+  for(unsigned i=0; i<nlect_per_mini_; i++) {
+    fout << "---|";
+  }
+  fout << "\n";
 
   auto mini_codes = minisymposia_.class_codes();
   auto lect_codes = lectures_.class_codes();
-  for(unsigned m=0; m<nmini; m++) {
-    fout << "|" << minisymposia_.get(m).full_title() << " " << mini_codes(m,0)
-         << " " << mini_codes(m,1) << " " << mini_codes(m,2);
-    auto talks = minisymposia_.get(m).talks();
-
-    unsigned i;
-    for(i=0; i<talks.size(); i++) {
-      fout << "|" << talks[i];
+  unsigned subs = 0;
+  for(unsigned i=0; i<nmini; i++) {
+    unsigned nlect_in_mini = minisymposia_.get(i).size();
+    fout << "|" << minisymposia_.get(i).full_title() << " " << mini_codes(i,0)
+         << " " << mini_codes(i,1) << " " << mini_codes(i,2);
+    auto talks = minisymposia_.get(i).talks();
+    for(unsigned j=0; j<talks.size(); j++) {
+      fout << "|" << talks[j];
     }
-    unsigned lid = mapping(m);
-    if(lid < nlectures) {
-      fout << "|" << lectures_.title(lid) << " " << lect_codes(lid,0)
-           << " " << lect_codes(lid,1) << " " << lect_codes(lid,2);
-      i++;
-    }
-    for(;i<5; i++) {
-      fout << "| ";
+    for(unsigned j=talks.size(); j<nlect_per_mini_; j++) {
+      unsigned lid = mapping(subs);
+      if(lid < nlectures) {
+        fout << "|" << lectures_.title(lid) << " " << lect_codes(lid,0)
+             << " " << lect_codes(lid,1) << " " << lect_codes(lid,2);
+      }
+      else {
+        fout << "| ";
+      }
+      subs++;
     }
     fout << "|\n";
   }
-  for(unsigned m=nmini, i=0; m<ngenes; m+=5, i++) {
+
+  for(unsigned i=0; subs+nlect_per_mini_-1<ngenes; subs+=nlect_per_mini_, i++) {
     fout << "|Contributed Lectures " << i+1;
-    for(unsigned j=0; j<5; j++) {
-      unsigned lid = mapping(m+j);
+    for(unsigned j=0; j<nlect_per_mini_; j++) {
+      unsigned lid = mapping(subs+j);
       if(lid < nlectures) {
         fout << "|" << lectures_.title(lid) << " " << lect_codes(lid,0)
              << " " << lect_codes(lid,1) << " " << lect_codes(lid,2);
@@ -170,45 +189,89 @@ void Mapper::greedy(View1D solution) const {
   auto lecture_codes = lectures_.class_codes();
   auto mini_codes = minisymposia_.class_codes();
 
-  auto ntopics_in_common = [](unsigned lid, unsigned mid, 
-                              Kokkos::View<Theme*[3]>::HostMirror lecture_codes,
-                              Kokkos::View<Theme*[3]>::HostMirror mini_codes) {
-    unsigned result = 0;
-    for(unsigned i=0; i<3; i++) {
-      for(unsigned j=0; j<3; j++) {
-        if(lecture_codes(lid, i) == mini_codes(mid, j)) {
-          result++;
-        }
-      }
-    }
-    return result;
-  };
-
-  // For each minisymposium, try to find a lecture that matches all themes
-  for(unsigned ndesired=3; ndesired > 0; ndesired--) {
+  // Try to match everything, then take what you can get
+  for(unsigned goal=3*IDENTICAL; goal > 0; goal--) {
+    unsigned subs = 0;
+    // For each minisymposium, try to find a lecture that matches the themes
     for(unsigned i=0; i<nmini; i++) {
-      if(solution[i] < nlectures) continue;
-      for(unsigned j=0; j<unused_indices.size(); j++) {
-        unsigned lid = unused_indices[j];
-        if(ntopics_in_common(lid, i, lecture_codes, mini_codes) == ndesired) {
-          solution[i] = lid;
-          unused_indices.erase(unused_indices.begin()+j);
-          break;
+      unsigned nlect_in_mini = minisymposia_.get(i).size();
+      for(unsigned j=nlect_in_mini; j<nlect_per_mini_; j++) {
+        if(solution[subs] >= nlectures) {
+          for(unsigned k=0; k<unused_indices.size(); k++) {
+            unsigned lid = unused_indices[k];
+            if(compute_topic_score(lid, i, lecture_codes, mini_codes) == goal) {
+              solution[subs] = lid;
+              unused_indices.erase(unused_indices.begin()+k);
+              break;
+            }
+          }
+        }
+        subs++;
+      }
+    }
+
+    // For the contributed lecture presentations, try to find a lecture that matches the themes
+    for(; subs+nlect_per_mini_-1<ngenes; subs+=nlect_per_mini_) {
+      // If this CP is empty, look for two lectures with the same theme
+      if(solution[subs] >= nlectures) {
+        bool found = false;
+        for(unsigned i=0; !found && i<unused_indices.size(); i++) {
+          unsigned lid1 = unused_indices[i];
+          for(unsigned j=i+1; j<unused_indices.size(); j++) {
+            unsigned lid2 = unused_indices[j];
+            if(compute_topic_score(lid1, lid2, lecture_codes) == goal) {
+              solution[subs] = lid1;
+              solution[subs+1] = lid2;
+              unused_indices.erase(unused_indices.begin()+j);
+              unused_indices.erase(unused_indices.begin()+i);
+              found = true;
+              break;
+            }
+          }
+        }
+      }
+
+      // If this CP is not empty, look for another lecture with the same theme
+      if(solution[subs] < nlectures) {
+        for(unsigned i=2; i<nlect_per_mini_; i++) {
+          if(solution[subs+i] < nlectures) continue;
+          double best_score = 0;
+          unsigned best_index = 0;
+          for(unsigned j=0; j < unused_indices.size(); j++) {
+            unsigned lid = unused_indices[j];
+            double common = 0;
+            for(unsigned k=0; k<i; k++) {
+              common += compute_topic_score(solution[subs+k], lid, lecture_codes);
+            }
+            common /= i;
+            if(common > best_score) {
+              best_score = common;
+              best_index = j;
+            }
+          }
+          if(best_score >= goal) {
+            solution[subs+i] = unused_indices[best_index];
+            unused_indices.erase(unused_indices.begin()+best_index);
+          }
+          else {
+            break;
+          }
         }
       }
     }
   }
 
-  // Put the remaining lectures in "contributed lectures"
-  for(unsigned i=0; i<unused_indices.size(); i++) {
-    solution[nmini+i] = unused_indices[i];
-  }
-
-  // Fill in the rest with empty space
-  for(unsigned i=0, empty_val=nlectures; i<ngenes; i++) {
-    if(solution[i] == ngenes) {
-      solution[i] = empty_val;
-      empty_val++;
+  // Fill in the rest
+  for(unsigned i=ngenes, empty_val=nlectures; i > 0; i--) {
+    if(solution[i-1] == ngenes) {
+      if(unused_indices.size() > 0) {
+        solution[i-1] = unused_indices[0];
+        unused_indices.erase(unused_indices.begin());
+      }
+      else {
+        solution[i-1] = empty_val;
+        empty_val++;
+      }
     }
   }
 

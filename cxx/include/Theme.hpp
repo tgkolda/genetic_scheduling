@@ -32,4 +32,11 @@ private:
 
 std::ostream& operator<<(std::ostream& os, const Theme& theme);
 
+unsigned compute_topic_score(unsigned lid, unsigned mid, 
+  Kokkos::View<Theme*[3]>::HostMirror lecture_codes,
+  Kokkos::View<Theme*[3]>::HostMirror mini_codes);
+
+unsigned compute_topic_score(unsigned lid1, unsigned lid2, 
+  Kokkos::View<Theme*[3]>::HostMirror lecture_codes);
+
 #endif /* THEME_H */

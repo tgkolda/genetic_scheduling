@@ -2,7 +2,7 @@
 #include <algorithm>
 
 Minisymposium::Minisymposium(const std::string& title, const std::vector<std::string>& talks) :
-  title_with_part_(title), talks_(talks) { }
+  title_with_part_(title), talks_(talks), size_(talks.size()) { }
 
 Minisymposium::Minisymposium(const std::string& title, 
                              unsigned tid, 
@@ -13,8 +13,8 @@ Minisymposium::Minisymposium(const std::string& title,
   title_with_part_(title),
   tid_(tid),
   average_citation_count_(average_citation_count),
-  part_(part)
-
+  part_(part),
+  size_(speakers.size())
 {
   // Strip the part from the name
   size_t found = title.find(" - Part");
@@ -81,4 +81,8 @@ void Minisymposium::set_priority(unsigned priority) {
 
 const std::vector<std::string>& Minisymposium::talks() const {
   return talks_;
+}
+
+unsigned Minisymposium::size() const {
+  return size_;
 }

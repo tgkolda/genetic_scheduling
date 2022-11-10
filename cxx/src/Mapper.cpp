@@ -5,9 +5,16 @@ Mapper::Mapper(const Lectures& lectures, const Minisymposia& minisymposia, unsig
   lectures_(lectures), minisymposia_(minisymposia), nExtraMini_(nExtraMini) { }
 
 Mapper::ViewType Mapper::make_initial_population(unsigned popSize) {
-  unsigned nlectures = lectures_.size();
+  // Count the number of lectures in each minisymposium
   unsigned nmini = minisymposia_.size();
-  unsigned ngenes = nmini + 5*nExtraMini_;
+  unsigned nextra_lect_in_mini = 0;
+  for(unsigned i=0; i<nmini; i++) {
+    unsigned nlect_in_mini = minisymposia_.get(i).size();
+    nextra_lect_in_mini += nlect_per_mini_ - nlect_in_mini;
+  }
+
+  unsigned nlectures = lectures_.size();
+  unsigned ngenes = nextra_lect_in_mini + nlect_per_mini_*nExtraMini_;
   return Kokkos::View<unsigned**>("mappings", popSize, ngenes);
 }
 

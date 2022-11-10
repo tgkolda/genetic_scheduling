@@ -30,6 +30,7 @@ public:
   const std::vector<std::string>& talks() const;
 
   void set_priority(unsigned priority);
+  KOKKOS_FUNCTION unsigned size() const;
 
 private:
   std::string title_with_part_, title_without_part_;
@@ -39,6 +40,7 @@ private:
   unsigned room_priority_;
   std::unordered_set<std::string> participants_;
   unsigned part_;
+  unsigned size_;
 };
 
 #endif /* MINISYMPOSIUM_H */

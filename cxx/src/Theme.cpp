@@ -57,3 +57,28 @@ std::ostream& operator<<(std::ostream& os, const Theme& theme) {
   os << theme.name();
   return os;
 }
+
+unsigned compute_topic_score(unsigned lid, unsigned mid, 
+  Kokkos::View<Theme*[3]>::HostMirror lecture_codes,
+  Kokkos::View<Theme*[3]>::HostMirror mini_codes) 
+{
+  unsigned result = 0;
+  for(unsigned i=0; i<3; i++) {
+    for(unsigned j=0; j<3; j++) {
+      result += lecture_codes(lid,i).compare(mini_codes(mid, j));
+    }
+  }
+  return result;
+}
+
+unsigned compute_topic_score(unsigned lid1, unsigned lid2, 
+  Kokkos::View<Theme*[3]>::HostMirror lecture_codes)
+{
+  unsigned result = 0;
+  for(unsigned i=0; i<3; i++) {
+    for(unsigned j=0; j<3; j++) {
+      result += lecture_codes(lid1,i).compare(lecture_codes(lid2, j));
+    }
+  }
+  return result;
+}

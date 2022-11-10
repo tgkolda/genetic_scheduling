@@ -7,6 +7,9 @@ int main(int argc, char* argv[]) {
   //QApplication app(argc, argv);
   Kokkos::initialize(argc, argv);
   {
+    // Read the themes from yaml
+    Theme::read("../../data/SIAM-CSE23/codes.yaml");
+
     // Read the lectures from yaml
     Lectures lectures("../../data/SIAM-CSE23/lectures.yaml");
 
@@ -16,7 +19,7 @@ int main(int argc, char* argv[]) {
     // Run the genetic algorithm
     Mapper m(lectures, mini);
     Genetic<Mapper> g(m);
-    auto best_schedule = g.run(10000, 2000, 0.01, 10000);
+    auto best_schedule = g.run(10000, 2000, 0.01, 100);
     m.record("lecture-assignments.md", best_schedule);
 
     // Create a table to display the schedule
