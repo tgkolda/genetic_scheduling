@@ -190,23 +190,32 @@ void Mapper::greedy(View1D solution) const {
   auto mini_codes = minisymposia_.class_codes();
 
   // Try to match everything, then take what you can get
-  for(unsigned goal=3*IDENTICAL; goal > 0; goal--) {
+  while(!unused_indices.empty()) {
+    double best_score = 0;
+    unsigned best_index = 0;
+    unsigned best_index2 = 0;
+    unsigned best_subs = 0;
     unsigned subs = 0;
     // For each minisymposium, try to find a lecture that matches the themes
     for(unsigned i=0; i<nmini; i++) {
       unsigned nlect_in_mini = minisymposia_.get(i).size();
-      for(unsigned j=nlect_in_mini; j<nlect_per_mini_; j++) {
+      for(unsigned j=nlect_in_mini; j<nlect_per_mini_; j++, subs++) {
         if(solution[subs] >= nlectures) {
           for(unsigned k=0; k<unused_indices.size(); k++) {
             unsigned lid = unused_indices[k];
-            if(compute_topic_score(lid, i, lecture_codes, mini_codes) == goal) {
-              solution[subs] = lid;
-              unused_indices.erase(unused_indices.begin()+k);
-              break;
+            double score = compute_topic_score(lid, i, lecture_codes, mini_codes);
+            score += 1 - nlect_in_mini / nlect_per_mini_;
+            if(score > best_score) {
+              best_score = score;
+              best_index = k;
+              best_index2 = k;
+              best_subs = subs;
             }
           }
         }
-        subs++;
+        else {
+          nlect_in_mini++;
+        }
       }
     }
 
@@ -219,59 +228,61 @@ void Mapper::greedy(View1D solution) const {
           unsigned lid1 = unused_indices[i];
           for(unsigned j=i+1; j<unused_indices.size(); j++) {
             unsigned lid2 = unused_indices[j];
-            if(compute_topic_score(lid1, lid2, lecture_codes) == goal) {
-              solution[subs] = lid1;
-              solution[subs+1] = lid2;
-              unused_indices.erase(unused_indices.begin()+j);
-              unused_indices.erase(unused_indices.begin()+i);
-              found = true;
-              break;
+            double score = compute_topic_score(lid1, lid2, lecture_codes);
+            if(score > best_score) {
+              best_score = score;
+              best_index = i;
+              best_index2 = j;
+              best_subs = subs;
             }
           }
         }
       }
-
       // If this CP is not empty, look for another lecture with the same theme
-      if(solution[subs] < nlectures) {
+      else {
+        unsigned nlect_in_mini = 2;
         for(unsigned i=2; i<nlect_per_mini_; i++) {
-          if(solution[subs+i] < nlectures) continue;
-          double best_score = 0;
-          unsigned best_index = 0;
+          if(solution[subs+i] < nlectures) {
+            nlect_in_mini++;
+            continue;
+          }
           for(unsigned j=0; j < unused_indices.size(); j++) {
             unsigned lid = unused_indices[j];
-            double common = 0;
+            double score = 0;
             for(unsigned k=0; k<i; k++) {
-              common += compute_topic_score(solution[subs+k], lid, lecture_codes);
+              score += compute_topic_score(solution[subs+k], lid, lecture_codes);
             }
-            common /= i;
-            if(common > best_score) {
-              best_score = common;
+            score /= i;
+            score += 1 - nlect_in_mini / nlect_per_mini_;
+            if(score > best_score) {
+              best_score = score;
               best_index = j;
+              best_index2 = j;
+              best_subs = subs+i;
             }
-          }
-          if(best_score >= goal) {
-            solution[subs+i] = unused_indices[best_index];
-            unused_indices.erase(unused_indices.begin()+best_index);
-          }
-          else {
-            break;
           }
         }
       }
     }
+
+    // Assign the best option
+    if(best_index == best_index2) {
+      solution[best_subs] = unused_indices[best_index];
+      unused_indices.erase(unused_indices.begin()+best_index);
+    }
+    else {
+      solution[best_subs] = unused_indices[best_index];
+      solution[best_subs+1] = unused_indices[best_index2];
+      unused_indices.erase(unused_indices.begin()+best_index2);
+      unused_indices.erase(unused_indices.begin()+best_index);
+    }
   }
 
   // Fill in the rest
-  for(unsigned i=ngenes, empty_val=nlectures; i > 0; i--) {
-    if(solution[i-1] == ngenes) {
-      if(unused_indices.size() > 0) {
-        solution[i-1] = unused_indices[0];
-        unused_indices.erase(unused_indices.begin());
-      }
-      else {
-        solution[i-1] = empty_val;
-        empty_val++;
-      }
+  for(unsigned i=0, empty_val=nlectures; i < ngenes; i++) {
+    if(solution[i] == ngenes) {
+      solution[i] = empty_val;
+      empty_val++;
     }
   }
 
