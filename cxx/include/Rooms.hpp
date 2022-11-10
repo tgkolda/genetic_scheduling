@@ -8,7 +8,7 @@
 class Rooms {
 public:
   Rooms(const std::string& filename);
-  unsigned size() const;
+  KOKKOS_FUNCTION unsigned size() const;
   const std::string& name(unsigned i) const;
 private:
   Kokkos::View<Room*> d_data_;

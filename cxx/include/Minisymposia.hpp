@@ -2,6 +2,7 @@
 #define MINISYMPOSIA_H
 
 #include "Minisymposium.hpp"
+#include "Theme.hpp"
 #include <Kokkos_Core.hpp>
 #include <ostream>
 #include <set>
@@ -15,7 +16,6 @@ public:
   ~Minisymposia() = default;
   Minisymposia& operator=(const Minisymposia&) = delete;
   
-
   KOKKOS_FUNCTION unsigned size() const;
   KOKKOS_FUNCTION const Minisymposium& operator[](unsigned i) const;
   const Minisymposium& get(unsigned i) const;
@@ -23,17 +23,14 @@ public:
   KOKKOS_FUNCTION bool overlaps_participants(unsigned m1, unsigned m2) const;
   KOKKOS_FUNCTION bool breaks_ordering(unsigned m1, unsigned m2) const;
   unsigned get_max_penalty() const;
-  const std::vector<std::string>& themes() const;
   void set_overlapping_participants();
   void set_prerequisites();
   KOKKOS_FUNCTION double map_theme_penalty(unsigned nproblems) const;
   KOKKOS_FUNCTION double map_priority_penalty(unsigned nproblems) const;
-  void set_overlapping_themes(unsigned nrooms, unsigned nslots);
   void set_priorities(unsigned nslots);
   void set_priority_penalty_bounds(unsigned nslots);
-  const std::string& get_theme(unsigned i) const;
-  KOKKOS_FUNCTION unsigned class_codes(unsigned mid, unsigned cid) const;
-  Kokkos::View<unsigned*[3]>::HostMirror class_codes() const;
+  KOKKOS_FUNCTION const Theme& class_codes(unsigned mid, unsigned cid) const;
+  Kokkos::View<Theme*[3]>::HostMirror class_codes() const;
 
   template<class ViewType>
   KOKKOS_INLINE_FUNCTION double rate_schedule(ViewType schedule, unsigned& order_penalty, 
@@ -44,14 +41,11 @@ public:
 
   friend std::ostream& operator<<(std::ostream& os, const Minisymposia& mini);
 private:
-  std::vector<std::string> themes_;
-  Kokkos::View<unsigned*[3]> class_codes_;
+  Kokkos::View<Theme*[3]> class_codes_;
   Kokkos::View<Minisymposium*> d_data_;
   Kokkos::View<Minisymposium*>::HostMirror h_data_;
   Kokkos::View<bool**> same_participants_;
   Kokkos::View<bool**> is_prereq_;
-  Kokkos::View<bool**> same_themes_;
-  unsigned nthemes_;
   unsigned max_penalty_{1};
   unsigned min_theme_penalty_{0};
   unsigned max_theme_penalty_{0};
@@ -98,24 +92,9 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
     }
   }
   // Compute the penalty related to theme overlap
+  // TODO
   theme_penalty = 0;
-  for(unsigned sl=0; sl<nslots; sl++) {
-    for(unsigned tid=0; tid<nthemes_; tid++) {
-//      theme_penalties[tid] = 0;
-    }
-    for(unsigned r=0; r<nrooms; r++) {
-      unsigned mini_index = schedule(sl,r);
-      if(mini_index >= nmini) continue;
-      unsigned tid = d_data_[mini_index].tid();
-//      theme_penalties[tid]++;
-    }
-    for(unsigned tid=0; tid<nthemes_; tid++) {
-//      auto p = theme_penalties[tid];
-//      if(p > 1) {
-//        theme_penalty += pow(p-1, 2);
-//      }
-    }
-  }
+
   // Compute the penalty related to priority
   priority_penalty = 0;
   for(unsigned sl=0; sl<nslots; sl++) {
@@ -136,7 +115,6 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
 
 template<class ViewType>
 inline std::string Minisymposia::rate_schedule(ViewType schedule) const {
-  Kokkos::View<unsigned*> theme_penalties("theme penalties", nthemes_);
   Kokkos::View<unsigned*> d_penalties("penalties", 4);
   double score;
   Kokkos::parallel_reduce("computing score", 1, KOKKOS_CLASS_LAMBDA (unsigned i, double& lscore) {

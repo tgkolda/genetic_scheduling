@@ -1,0 +1,113 @@
+100: Linear Algebra
+101: determinants, permanents, other matrix functions
+102: eigenvalues, singular values, spectra
+103: matrix pencils
+104: factorization of matrices
+105: matrix equations and inequalities
+106: multilinear algebra
+200: Real and Complex Analysis
+201: special functions
+202: approximations, expansions
+203: asymptotics, perturbation
+204: harmonic analysis
+205: integral, function equations
+300: Ordinary Differential Equations
+301: stability
+302: asymptotic theory
+303: functional differential; differential difference systems
+304: equations and systems with delay
+305: differential algebraic systems
+306: stochastic ODEs
+400: Partial Differential Equations
+401: PDEs of elliptic or close to elliptic type
+402: parabolic equations
+403: hyperbolic equations
+404: PDEs of special type (e.g. mixed, composite)
+405: reaction diffusion systems
+406: conservation laws, symmetry
+407: inverse problems, ill-posed problems
+408: stochastic PDEs
+500: Discrete Mathematics
+501: graph theory, matroids
+502: combinatorics
+503: ordered sets
+504: discrete algorithms
+505: randomness and computation
+506: cryptography
+600: Numerical Analysis and Methods
+601: approximation, interpolation
+602: numerical linear algebra
+603: numerical methods for integral equations
+604: numerical methods for ODEs
+605: numerical methods for PDEs
+606: numerical optimization
+607: numerical methods for stochastic equations
+608: adaptive methods, multigrid
+609: discretization and meshing
+700: Computational Science
+701: applications of large-scale computation
+702: tools and environments
+703: large-scale data management
+704: libraries
+705: message-passing
+706: parallel I/O
+707: parallelizing compilers
+708: object-oriented computing
+709: cluster computing
+710: wide-area computing
+711: scalable algorithms
+712: fault-tolerant methods
+713: latency-tolerant methods
+800: Computer Science
+801: software and languages
+802: data mining and knowledge discovery
+803: theory of computing and algorithms
+804: machine learning, artificial intelligence
+805: computer graphics
+806: symbolic computing
+900: Probability; Stochastic Processes
+901: combinatorial probability
+902: geometric probability, stochastic geometry, random sets
+903: stochastic processes and analysis
+904: markov chain monte carlo methods
+905: bayesian networks
+906: inference
+907: design of experiments
+908: data analysis
+1000: Statistics
+1100: Control and Systems Theory
+1101: controlability, observability, and system's structure
+1102: stability
+1103: stochastic and risk sensitive material
+1104: optimal control
+1105: control and identification of distributed parameter systems
+1106: adaptive control
+1107: cooperative control
+1108: robust control
+1200: Optimization and Operations Research
+1300: Information, Communication, Signals
+1400: Applied and Computational Geometry
+1500: Imaging Science
+1600: Classical Mechanics of Particles and Solids
+1700: Fluids
+1800: Quantum Physics and Statistical Mechanics
+1900: Geophysical Science
+2000: Atmospheric & Oceanographic Science
+2100: Chemistry
+2200: Life Sciences
+2300: Environmental Science
+2400: Economics and Finance
+2500: Social Science
+2600: Functional Analysis and Operator Theory
+2700: Management Science
+2800: Education in the Mathematical or Computational Sciences
+2900: Astronomy, Cosmology and Planetary Science
+3000: Simulation and Modeling
+3100: Materials Science
+3200: Electromagnetics
+4000: Applications of Mathematics and Computation in Industry
+4300: Dynamical Systems
+4400: Nonlinear Waves and Coherent Structures
+4800: Data Mining, Information Retrieval, and Applications
+4900: Algebraic Geometry
+5000: Uncertainty Quantification

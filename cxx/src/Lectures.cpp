@@ -8,7 +8,7 @@ Lectures::Lectures(const std::string& filename) {
   unsigned n = nodes.size();
   titles_.resize(n);
   speakers_.resize(n);
-  class_codes_ = Kokkos::View<unsigned*[3]>("classification codes", n);
+  class_codes_ = Kokkos::View<Theme*[3]>("classification codes", n);
   auto h_codes = Kokkos::create_mirror_view(class_codes_);
 
   unsigned i=0;
@@ -65,7 +65,7 @@ const std::string& Lectures::title(unsigned index) const {
   return titles_[index];
 }
 
-Kokkos::View<unsigned*[3]>::HostMirror Lectures::class_codes() const {
+Kokkos::View<Theme*[3]>::HostMirror Lectures::class_codes() const {
   auto h_codes = Kokkos::create_mirror_view(class_codes_);
   Kokkos::deep_copy(h_codes, class_codes_);
   return h_codes;

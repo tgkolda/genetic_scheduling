@@ -111,8 +111,14 @@ void Genetic<Runner>::make_initial_population(unsigned popSize) {
   // Get a host mirror of the device data
   auto h_current_population = Kokkos::create_mirror_view(current_population_);
 
+  // Get a greedy solution
+  if constexpr(current_population_.rank == 2) {
+    auto greed = Kokkos::subview(h_current_population, 0, Kokkos::ALL());
+    runner_.greedy(greed);
+  }
+
   // Populate the host mirror
-  for(unsigned i=0; i<popSize; i++) {
+  for(unsigned i=1; i<popSize; i++) {
     // Randomly permute the integers
     std::shuffle(ints.begin(), ints.end(), rng_);
 

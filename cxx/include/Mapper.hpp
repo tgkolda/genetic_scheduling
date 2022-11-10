@@ -20,6 +20,9 @@ public:
   KOKKOS_FUNCTION bool out_of_bounds(unsigned i) const;
 
   template<class View1D>
+  inline void greedy(View1D solution) const;
+
+  template<class View1D>
   inline void record(const std::string& filename, View1D mapping) const;
   void smush();
 private:
@@ -149,6 +152,68 @@ void Mapper::record(const std::string& filename, View1D mapping) const {
       }
     }
     fout << "|\n";
+  }
+}
+
+template<class View1D>
+void Mapper::greedy(View1D solution) const {
+  unsigned nlectures = lectures_.size();
+  unsigned nmini = minisymposia_.size();
+  unsigned ngenes = solution.extent(0);
+  std::vector<unsigned> unused_indices(nlectures);
+  std::iota(unused_indices.begin(), unused_indices.end(), 0);
+
+  for(unsigned i=0; i<ngenes; i++) {
+    solution[i] = ngenes;
+  }
+
+  auto lecture_codes = lectures_.class_codes();
+  auto mini_codes = minisymposia_.class_codes();
+
+  auto ntopics_in_common = [](unsigned lid, unsigned mid, 
+                              Kokkos::View<Theme*[3]>::HostMirror lecture_codes,
+                              Kokkos::View<Theme*[3]>::HostMirror mini_codes) {
+    unsigned result = 0;
+    for(unsigned i=0; i<3; i++) {
+      for(unsigned j=0; j<3; j++) {
+        if(lecture_codes(lid, i) == mini_codes(mid, j)) {
+          result++;
+        }
+      }
+    }
+    return result;
+  };
+
+  // For each minisymposium, try to find a lecture that matches all themes
+  for(unsigned ndesired=3; ndesired > 0; ndesired--) {
+    for(unsigned i=0; i<nmini; i++) {
+      if(solution[i] < nlectures) continue;
+      for(unsigned j=0; j<unused_indices.size(); j++) {
+        unsigned lid = unused_indices[j];
+        if(ntopics_in_common(lid, i, lecture_codes, mini_codes) == ndesired) {
+          solution[i] = lid;
+          unused_indices.erase(unused_indices.begin()+j);
+          break;
+        }
+      }
+    }
+  }
+
+  // Put the remaining lectures in "contributed lectures"
+  for(unsigned i=0; i<unused_indices.size(); i++) {
+    solution[nmini+i] = unused_indices[i];
+  }
+
+  // Fill in the rest with empty space
+  for(unsigned i=0, empty_val=nlectures; i<ngenes; i++) {
+    if(solution[i] == ngenes) {
+      solution[i] = empty_val;
+      empty_val++;
+    }
+  }
+
+  for(unsigned i=0; i<ngenes; i++) {
+      printf("%i: %i\n", i, solution[i]);
   }
 }
 

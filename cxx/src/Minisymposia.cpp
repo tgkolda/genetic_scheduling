@@ -6,7 +6,7 @@ Minisymposia::Minisymposia(const std::string& filename) {
   YAML::Node nodes = YAML::LoadFile(filename);
 
   unsigned n = nodes.size();
-  class_codes_ = Kokkos::View<unsigned*[3]>("classification codes", n);
+  class_codes_ = Kokkos::View<Theme*[3]>("classification codes", n);
   auto h_codes = Kokkos::create_mirror_view(class_codes_);
   d_data_ = Kokkos::View<Minisymposium*>("minisymposia", n);
   h_data_ = Kokkos::create_mirror_view(d_data_);
@@ -22,7 +22,8 @@ Minisymposia::Minisymposia(const std::string& filename) {
     }
 
     h_data_[i] = Minisymposium(title, talks);
-    printf("Minisymposium %i is %s\n", i, title.c_str());
+    std::cout << "Minisymposium " << i << " is " << title << " and its themes are "
+              << h_codes(i,0) << ", " << h_codes(i,1) << ", " << h_codes(i,2) << "\n";
     i++;
   }
 
@@ -31,52 +32,13 @@ Minisymposia::Minisymposia(const std::string& filename) {
   Kokkos::deep_copy(class_codes_, h_codes);
 }
 
-Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigned nslots) {
-  // Read the minisymposia from yaml on the host
-  YAML::Node nodes = YAML::LoadFile(filename);
-
-  unsigned n = nodes.size();
-  d_data_ = Kokkos::View<Minisymposium*>("minisymposia", n);
-  h_data_ = Kokkos::create_mirror_view(d_data_);
-
-  unsigned i=0;
-  for(auto node : nodes) {
-    std::string title = node.first.as<std::string>();
-    std::string theme = node.second["predicted_theme"].as<std::string>();
-    unsigned part = 1;
-    if(node.second["part"])
-      part = node.second["part"].as<unsigned>();
-    double citations = 0;
-    if(node.second["average citation count"])
-      citations = node.second["average citation count"].as<double>();
-    std::string organizer;
-    if(node.second["organizer"])
-      organizer = node.second["organizer"].as<std::string>();
-    std::vector<std::string> speakers = node.second["speakers"].as<std::vector<std::string>>();
-
-    // Add the theme to themes if it's not already there
-    unsigned tid = std::find (themes_.begin(), themes_.end(), theme) - themes_.begin();
-    if(tid >= themes_.size()) {
-      themes_.push_back(theme);
-    }
-
-    h_data_[i] = Minisymposium(title, tid, organizer, speakers, citations, part);
-    printf("Minisymposium %i is %s\n", i, title.c_str());
-    i++;
-  }
-  nthemes_ = themes_.size();
-
-  // Copy the data to device
-  Kokkos::deep_copy(d_data_, h_data_);
-
+Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigned nslots) :
+  Minisymposia(filename)
+{
   set_overlapping_participants();
   set_prerequisites();
-  set_overlapping_themes(nrooms, nslots);
   set_priorities(nslots);
   set_priority_penalty_bounds(nslots);
-
-  // Copy the data to device
-  Kokkos::deep_copy(d_data_, h_data_);
 }
 
 KOKKOS_FUNCTION unsigned Minisymposia::size() const {
@@ -106,10 +68,6 @@ bool Minisymposia::breaks_ordering(unsigned m1, unsigned m2) const {
 
 unsigned Minisymposia::get_max_penalty() const {
   return max_penalty_;
-}
-
-const std::vector<std::string>& Minisymposia::themes() const {
-  return themes_;
 }
 
 void Minisymposia::set_overlapping_participants() {
@@ -168,47 +126,6 @@ double Minisymposia::map_theme_penalty(unsigned nproblems) const {
 KOKKOS_FUNCTION
 double Minisymposia::map_priority_penalty(unsigned nproblems) const {
   return (nproblems - min_priority_penalty_) / double(max_priority_penalty_ - min_priority_penalty_);
-}
-
-void Minisymposia::set_overlapping_themes(unsigned nrooms, unsigned nslots) {
-  using Kokkos::parallel_for;
-  using Kokkos::parallel_reduce;
-  using Kokkos::DefaultHostExecutionSpace;
-  using Kokkos::RangePolicy;
-
-  size_t nmini = size();
-  same_themes_ = Kokkos::View<bool**>("overlapping themes", nmini, nmini);
-  auto h_same_themes = Kokkos::create_mirror_view(same_themes_);
-
-  size_t nthemes = themes_.size();
-  Kokkos::View<unsigned*, Kokkos::HostSpace> theme_penalties("theme penalties", nthemes);
-  for(unsigned i=0; i<nmini; i++) {
-    unsigned tid = h_data_[i].tid();
-    theme_penalties[tid]++;
-    for(unsigned j=0; j<nmini; j++) {
-      if(i == j) continue;
-      if(h_data_[i].shares_theme(h_data_[j])) {
-        h_same_themes(i,j) = true;
-      }
-    }
-  }
-  Kokkos::deep_copy(same_themes_, h_same_themes);
-  
-  for(unsigned i=0; i<nthemes; i++) {
-    for(int p = theme_penalties[i]; p > 1; p -= nrooms) {
-      max_theme_penalty_ += pow(Kokkos::min(unsigned(p),nrooms)-1, 2);
-    }
-  }
-
-  for(unsigned i=0; i<nthemes; i++) {
-    unsigned nperslot = theme_penalties[i] / nslots;
-    unsigned remainder = theme_penalties[i] % nslots;
-    if(nperslot > 0) {
-      min_theme_penalty_ += remainder * pow(nperslot,2) + (nslots - remainder) * pow(nperslot-1,2);
-    }
-  }
-
-  printf("Theme penalty bounds: %i %i\n", min_theme_penalty_, max_theme_penalty_);
 }
 
 void Minisymposia::set_priorities(unsigned nslots) {
@@ -283,16 +200,11 @@ void Minisymposia::set_priority_penalty_bounds(unsigned nslots) {
   printf("Priority penalty bounds: %i %i\n", min_priority_penalty_, max_priority_penalty_);
 }
 
-const std::string& Minisymposia::get_theme(unsigned i) const {
-  auto id = h_data_[i].tid();
-  return themes_[id];
-}
-
-unsigned Minisymposia::class_codes(unsigned mid, unsigned cid) const {
+const Theme& Minisymposia::class_codes(unsigned mid, unsigned cid) const {
   return class_codes_(mid, cid);
 }
 
-Kokkos::View<unsigned*[3]>::HostMirror Minisymposia::class_codes() const {
+Kokkos::View<Theme*[3]>::HostMirror Minisymposia::class_codes() const {
   auto h_class_codes = Kokkos::create_mirror_view(class_codes_);
   Kokkos::deep_copy(h_class_codes, class_codes_);
   return h_class_codes;
