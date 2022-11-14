@@ -85,9 +85,16 @@
 1107: cooperative control
 1108: robust control
 1200: Optimization and Operations Research
+1203: stochastic programming
+1205: nonlinear optimization
+1206: nonsmooth optimization
+1207: applications in operations research
+1208: optimal design and optimal control
 1300: Information, Communication, Signals
 1400: Applied and Computational Geometry
+1401: computational geometry and topology
 1500: Imaging Science
+1502: image reconstruction and restoration
 1600: Classical Mechanics of Particles and Solids
 1700: Fluids
 1800: Quantum Physics and Statistical Mechanics
@@ -101,13 +108,24 @@
 2600: Functional Analysis and Operator Theory
 2700: Management Science
 2800: Education in the Mathematical or Computational Sciences
+2802: education in the computational sciences
 2900: Astronomy, Cosmology and Planetary Science
 3000: Simulation and Modeling
+3001: models of coupled multiscale phenomena
+3002: reduced order models
+3004: quantification of uncertainty
+3005: verification, validation and sensitivity analysis
+3006: tools and methodology for simulation
 3100: Materials Science
 3200: Electromagnetics
 4000: Applications of Mathematics and Computation in Industry
 4300: Dynamical Systems
+4302: geometric methods, symmetries
+4303: infinite dimensional dynamics
+4306: nonlinear dynamics
+4308: dynamics on networks
 4400: Nonlinear Waves and Coherent Structures
 4800: Data Mining, Information Retrieval, and Applications
 4900: Algebraic Geometry
 5000: Uncertainty Quantification
+9902: professional development
