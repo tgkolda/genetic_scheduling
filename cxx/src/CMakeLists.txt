@@ -6,6 +6,7 @@ add_library(scheduler Lectures.cpp
                       Rooms.cpp
                       Schedule.cpp
                       Scheduler.cpp
+                      Speaker.cpp
                       Theme.cpp)
 target_link_libraries(scheduler ${YAML_CPP_LIBRARIES} Kokkos::kokkos Qt5::Widgets)
 
