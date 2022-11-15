@@ -14,17 +14,15 @@ bool Theme::operator==(const Theme& theme) const {
 }
 
 const std::string& Theme::name() const {
-  try {
-    return theme_map_.at(id_);
-  }
-  catch (std::exception& e) {
+  // unordered_map.contains is a C++20 feature
+  if(theme_map_.find(id_) == theme_map_.end()) {
     // If the number ends in 99, do something special
     if(id_ % 100 == 99) {
       return theme_map_[stem()];
     }
     theme_map_[id_] = "UNKNOWN THEME: " + std::to_string(id_);
-    return theme_map_[id_];
   }
+  return theme_map_[id_];
 }
 
 unsigned Theme::stem() const {

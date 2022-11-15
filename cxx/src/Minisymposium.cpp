@@ -1,19 +1,12 @@
 #include "Minisymposium.hpp"
 #include <algorithm>
 
-Minisymposium::Minisymposium(const std::string& title, const std::vector<std::string>& talks) :
-  title_with_part_(title), talks_(talks), size_(talks.size()) { }
-
 Minisymposium::Minisymposium(const std::string& title, 
-                             unsigned tid, 
-                             const std::string& organizer, 
-                             const std::vector<std::string>& speakers,
-                             double average_citation_count,
-                             unsigned part) :
+                             const std::vector<std::string>& talks,
+                             const std::vector<Speaker>& organizers, 
+                             const std::vector<Speaker>& speakers) :
   title_with_part_(title),
-  tid_(tid),
-  average_citation_count_(average_citation_count),
-  part_(part),
+  talks_(talks),
   size_(speakers.size())
 {
   // Strip the part from the name
@@ -26,36 +19,35 @@ Minisymposium::Minisymposium(const std::string& title,
   }
 
   // Add the participants
-  if(!organizer.empty())
-    participants_.insert(organizer);
   for(const auto& speaker : speakers)
-    participants_.insert(speaker);
+    participants_.push_back(speaker);
+  for(const auto& organizer : organizers) {
+    participants_.push_back(organizer);
+  }
+
+  // This needs to be sorted for set_intersection
+  std::sort(participants_.begin(), participants_.end());
+
+  // Remove duplicates
+  auto it = std::unique (participants_.begin(), participants_.end());
+  participants_.resize( std::distance(participants_.begin(),it) );
 }
 
 bool Minisymposium::shares_participant(const Minisymposium& m) const {
-  std::vector<std::string> intersection(participants_.size());
+  std::vector<Speaker> intersection(participants_.size());
   auto it = std::set_intersection(participants_.begin(), participants_.end(),
                                   m.participants_.begin(), m.participants_.end(),
                                   intersection.begin());
-  return it != intersection.begin();
+  for(auto i=intersection.begin(); i != it; i++) {
+    if(i->name() != "Presenters to be Announced") {
+      return true;
+    }
+  }
+  return false;
 }
 
 bool Minisymposium::comes_before(const Minisymposium& m) const {
   return title_without_part_ == m.title_without_part_ && part_ < m.part_;
-}
-
-bool Minisymposium::shares_theme(const Minisymposium& m) const {
-  return tid_ == m.tid_;
-}
-
-KOKKOS_FUNCTION
-bool Minisymposium::higher_priority(const Minisymposium& m) const {
-  return room_priority_ < m.room_priority_;
-}
-
-KOKKOS_FUNCTION
-unsigned Minisymposium::tid() const {
-  return tid_;
 }
 
 KOKKOS_FUNCTION
@@ -71,8 +63,8 @@ const std::string& Minisymposium::full_title() const {
   return title_with_part_;
 }
 
-double Minisymposium::average_citation_count() const {
-  return average_citation_count_;
+double Minisymposium::total_citation_count() const {
+  return total_citation_count_;
 }
 
 void Minisymposium::set_priority(unsigned priority) {

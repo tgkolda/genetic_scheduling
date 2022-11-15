@@ -16,14 +16,34 @@ Minisymposia::Minisymposia(const std::string& filename) {
     std::string title = node.first.as<std::string>();
     std::vector<unsigned> codes = node.second["class codes"].as<std::vector<unsigned>>();
     std::vector<std::string> talks = node.second["talks"].as<std::vector<std::string>>();
+    std::vector<std::string> organizer_names;
+    if(node.second["organizers"])
+      organizer_names = node.second["organizers"].as<std::vector<std::string>>();
+    std::vector<std::string> speaker_names;
+    if(node.second["speakers"])
+      speaker_names = node.second["speakers"].as<std::vector<std::string>>();
     assert(codes.size() == 3);
     for(unsigned j=0; j<3; j++) {
       h_codes(i,j) = codes[j];
     }
 
-    h_data_[i] = Minisymposium(title, talks);
+    std::vector<Speaker> organizers(organizer_names.size());
+    for(unsigned j=0; j<organizer_names.size(); j++) {
+      organizers[j] = Speaker(organizer_names[j]);
+    }
+    std::vector<Speaker> speakers(speaker_names.size());
+    for(unsigned j=0; j<speaker_names.size(); j++) {
+      speakers[j] = Speaker(speaker_names[j]);
+    }
+
+    h_data_[i] = Minisymposium(title, talks, organizers, speakers);
     std::cout << "Minisymposium " << i << " is " << title << " and its themes are "
-              << h_codes(i,0) << ", " << h_codes(i,1) << ", " << h_codes(i,2) << "\n";
+              << h_codes(i,0) << ", " << h_codes(i,1) << ", " << h_codes(i,2) << " and its speakers are";
+    for(unsigned j=0; j<speaker_names.size(); j++) {
+      std::cout << " " << speaker_names[j];
+    }
+    std::cout << "\n";
+
     i++;
   }
 
@@ -92,6 +112,7 @@ void Minisymposia::set_overlapping_participants() {
   }, overlap_penalty);
   Kokkos::deep_copy(same_participants_, h_same_participants);
   max_penalty_ += overlap_penalty;
+  printf("set_overlapping_participants max_penalty: %i\n", max_penalty_);
 }
 
 void Minisymposia::set_prerequisites() {
@@ -116,6 +137,7 @@ void Minisymposia::set_prerequisites() {
   }, prereq_penalty);
   Kokkos::deep_copy(is_prereq_, h_is_prereq);
   max_penalty_ += prereq_penalty; 
+  printf("set_prerequisites max_penalty: %i\n", max_penalty_);
 }
 
 KOKKOS_FUNCTION
@@ -132,7 +154,7 @@ void Minisymposia::set_priorities(unsigned nslots) {
   // Get the citations
   std::vector<double> citation_list(size());
   for(unsigned i=0; i<size(); i++) {
-    citation_list[i] = h_data_[i].average_citation_count();
+    citation_list[i] = h_data_[i].total_citation_count();
   }
 
   // Sort the citations from most to least popular
@@ -148,7 +170,7 @@ void Minisymposia::set_priorities(unsigned nslots) {
   // Map all the priorities to the range [0, nrooms_needed)
   // with 0 being highest priority
   for(unsigned i=0; i<size(); i++) {
-    double citations = h_data_[i].average_citation_count();
+    double citations = h_data_[i].total_citation_count();
     unsigned j;
     for(j=0; j<cutoffs.size(); j++) {
       if(citations >= cutoffs[j]) {
