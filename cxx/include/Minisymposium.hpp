@@ -39,6 +39,7 @@ private:
   std::vector<Speaker> participants_;
   unsigned part_;
   unsigned size_;
+  static std::unordered_map<std::string, unsigned> roman_numeral_map_;
 };
 
 #endif /* MINISYMPOSIUM_H */

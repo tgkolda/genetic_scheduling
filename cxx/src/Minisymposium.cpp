@@ -1,6 +1,19 @@
 #include "Minisymposium.hpp"
 #include <algorithm>
 
+std::unordered_map<std::string, unsigned> Minisymposium::roman_numeral_map_ = {
+  {"I", 1},
+  {"II", 2},
+  {"III", 3},
+  {"IV", 4},
+  {"V", 5},
+  {"VI", 6},
+  {"VII", 7},
+  {"VIII", 8},
+  {"IX", 9},
+  {"X", 10}
+};
+
 Minisymposium::Minisymposium(const std::string& title, 
                              const std::vector<std::string>& talks,
                              const std::vector<Speaker>& organizers, 
@@ -10,13 +23,26 @@ Minisymposium::Minisymposium(const std::string& title,
   size_(speakers.size())
 {
   // Strip the part from the name
-  size_t found = title.find(" - Part");
+  size_t found = title.find(" - Part ");
   if(found != std::string::npos) {
     title_without_part_ = title.substr(0, found);
+    size_t end_pos = title.find(" of ", found);
+    size_t start_pos = found+8;
+    size_t nchars = end_pos-start_pos;
+    std::string part = title.substr(start_pos, nchars);
+    part_ = roman_numeral_map_.at(part);
   }
   else {
     title_without_part_ = title;
   }
+
+  // Compute the total citation count
+  total_citation_count_ = 0;
+  for(const auto& speaker: speakers) {
+    total_citation_count_ += speaker.citations();
+  }
+
+  printf("%s: %lf\n", title.c_str(), total_citation_count_);
 
   // Add the participants
   for(const auto& speaker : speakers)
