@@ -112,13 +112,15 @@ void Genetic<Runner>::make_initial_population(unsigned popSize) {
   auto h_current_population = Kokkos::create_mirror_view(current_population_);
 
   // Get a greedy solution
+  unsigned i=0;
   if constexpr(current_population_.rank == 2) {
+    i++;
     auto greed = Kokkos::subview(h_current_population, 0, Kokkos::ALL());
     runner_.greedy(greed);
   }
 
   // Populate the host mirror
-  for(unsigned i=1; i<popSize; i++) {
+  for(; i<popSize; i++) {
     // Randomly permute the integers
     std::shuffle(ints.begin(), ints.end(), rng_);
 
@@ -132,7 +134,7 @@ void Genetic<Runner>::make_initial_population(unsigned popSize) {
       unsigned val = 0;
       for(unsigned j=0; j<current_population_.extent(1); j++) {
         for(unsigned k=0; k<current_population_.extent(2); k++) {
-          h_current_population(i,j,k) = val;
+          h_current_population(i,j,k) = ints[val];
           val++;
         }
       }
@@ -182,7 +184,6 @@ void Genetic<Runner>::compute_weights() {
   // Normalize the weights
   Kokkos::parallel_for("Normalize weights", popSize, KOKKOS_CLASS_LAMBDA (unsigned i) {
     weights_[i] /= weight_sum;
-//    printf("%i %lf %lf %i\n", i, weights_[i], ratings_[i], permutation_[i]);
   });
 
   // Block until the weights are normalized since the next step uses them
@@ -203,13 +204,11 @@ void Genetic<Runner>::breed_population(unsigned eliteSize) {
       while(pid2 == pid1) { // Make sure the parents are different
         pid2 = get_parent();
       }
-//      printf("breeding current_population(%i) and (%i) to obtain next_population(%i)\n", pid1, pid2, i);
       breed(pid1, pid2, i);
     }
     // Copy over the elite items to the new population
     else {
       unsigned elite_index = permutation_(i);
-//      printf("copying current_population(%i) with rating %lf to next_population(%i)\n", elite_index, ratings_(i), i);
       for(unsigned j=0; j<current_population_.extent(1); j++) {
         if constexpr(current_population_.rank == 2) {
           next_population_(i,j) = current_population_(elite_index, j);
