@@ -37,13 +37,6 @@ Minisymposia::Minisymposia(const std::string& filename) {
     }
 
     h_data_[i] = Minisymposium(title, talks, organizers, speakers);
-    std::cout << "Minisymposium " << i << " is " << title << " and its themes are "
-              << h_codes(i,0) << ", " << h_codes(i,1) << ", " << h_codes(i,2) << " and its speakers are";
-    for(unsigned j=0; j<speaker_names.size(); j++) {
-      std::cout << " " << speaker_names[j];
-    }
-    std::cout << "\n";
-
     i++;
   }
 
@@ -57,6 +50,7 @@ Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigne
 {
   set_overlapping_participants();
   set_prerequisites();
+  set_overlapping_themes(nrooms, nslots);
   set_priorities(nslots);
   set_priority_penalty_bounds(nslots);
 }
@@ -141,13 +135,40 @@ void Minisymposia::set_prerequisites() {
 }
 
 KOKKOS_FUNCTION
-double Minisymposia::map_theme_penalty(unsigned nproblems) const {
-  return (nproblems - min_theme_penalty_) / double(max_theme_penalty_ - min_theme_penalty_);
-}
-
-KOKKOS_FUNCTION
 double Minisymposia::map_priority_penalty(unsigned nproblems) const {
   return (nproblems - min_priority_penalty_) / double(max_priority_penalty_ - min_priority_penalty_);
+}
+
+void Minisymposia::set_overlapping_themes(unsigned nrooms, unsigned nslots) {
+  using Kokkos::parallel_for;
+  using Kokkos::parallel_reduce;
+  using Kokkos::DefaultHostExecutionSpace;
+  using Kokkos::RangePolicy;
+
+  size_t nmini = size();
+  theme_penalties_ = Kokkos::View<double**>("theme penalties", nmini, nmini);
+  auto h_theme_penalties = Kokkos::create_mirror_view(theme_penalties_);
+  auto h_class_codes = Kokkos::create_mirror_view(class_codes_);
+  Kokkos::deep_copy(h_class_codes, class_codes_);
+
+  double total = 0;
+  for(unsigned i=0; i<nmini; i++) {
+    for(unsigned j=0; j<nmini; j++) {
+      if(i == j) continue;
+      h_theme_penalties(i,j) = compute_topic_score(i, j, h_class_codes);
+      total += 2*h_theme_penalties(i,j);
+    }
+  }
+
+  // Scale the penalties so the theme penalty will always be in the range [0,0.5]
+  for(unsigned i=0; i<nmini; i++) {
+    for(unsigned j=0; j<nmini; j++) {
+      if(i == j) continue;
+      h_theme_penalties(i,j) /= total;
+    }
+  }
+
+  Kokkos::deep_copy(theme_penalties_, h_theme_penalties);
 }
 
 void Minisymposia::set_priorities(unsigned nslots) {
@@ -179,6 +200,7 @@ void Minisymposia::set_priorities(unsigned nslots) {
     }
     h_data_[i].set_priority(j);
   }
+  Kokkos::deep_copy(d_data_, h_data_);
 }
 
 void Minisymposia::set_priority_penalty_bounds(unsigned nslots) {
