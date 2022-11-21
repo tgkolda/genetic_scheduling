@@ -5,13 +5,16 @@
 
 int main(int argc, char* argv[]) {
   int ret_code;
-  QApplication app(argc, argv);
+//  QApplication app(argc, argv);
   Kokkos::initialize(argc, argv);
   {
     const unsigned nslots = 12;
 
     // Read the themes from yaml
     Theme::read("../../data/SIAM-CSE23/codes.yaml");
+
+    // Read the citations from yaml
+    Speaker::read("../../data/SIAM-CSE23/citations.yaml");
 
     // Read the rooms from yaml
     Rooms rooms("../../data/SIAM-CSE23/rooms.yaml");
@@ -22,8 +25,8 @@ int main(int argc, char* argv[]) {
     // Run the genetic algorithm
     Scheduler s(mini, rooms, nslots);
     Genetic<Scheduler> g(s);
-//    g.run(10000, 2000, 0.01, 10000);
-//    s.record("schedule.md");
+    auto best_schedule = g.run(10000, 2000, 0.01, 1000);
+    s.record("schedule.md", best_schedule);
 
     // Create a table to display the schedule
 //    Schedule sched(s.get_best_schedule(), &rooms, &mini);
