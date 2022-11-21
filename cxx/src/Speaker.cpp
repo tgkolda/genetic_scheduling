@@ -25,9 +25,9 @@ const std::string& Speaker::name() const {
 
 unsigned Speaker::citations() const {
   // unordered_map.contains is a C++20 feature
-//  if(citation_map_.find(name_) != citation_map_.end()) {
-//    return citation_map_[name_];
-//  }
+  if(citation_map_.find(name_) != citation_map_.end()) {
+    return citation_map_[name_];
+  }
   return 0;
 }
 
@@ -38,6 +38,6 @@ void Speaker::read(const std::string& filename) {
   for(auto node : nodes) {
     std::string name = node.first.as<std::string>();
     unsigned citations = node.second.as<unsigned>();
-//    citation_map_[name] = citations;
+    citation_map_[name] = citations;
   }
 }
