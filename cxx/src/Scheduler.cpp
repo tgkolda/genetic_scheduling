@@ -72,36 +72,3 @@ KOKKOS_FUNCTION
 unsigned Scheduler::nrooms() const {
   return rooms_.size();
 }
-
-void Scheduler::record(const std::string& filename) const {
-/*
-  // Find the best schedule
-  typedef Kokkos::MaxLoc<double,unsigned>::value_type maxloc_type;
-  maxloc_type maxloc;
-  Kokkos::parallel_reduce( "Finding best schedule", nschedules(), KOKKOS_CLASS_LAMBDA (unsigned i, maxloc_type& lmaxloc) {
-    if(ratings_[i] > lmaxloc.val) { 
-      lmaxloc.val = ratings_[i]; 
-      lmaxloc.loc = i; 
-    }
-  }, Kokkos::MaxLoc<double,unsigned>(maxloc));
-
-  unsigned nmini = mini_.size();
-  unsigned sc = maxloc.loc;
-  auto h_current_schedules = Kokkos::create_mirror_view(current_schedules_);
-  Kokkos::deep_copy(h_current_schedules, current_schedules_);
-
-  std::ofstream fout(filename);
-  fout << "# Conference schedule with score " << maxloc.val << "\n\n";
-
-  for(unsigned slot=0; slot<nslots(); slot++) {
-    fout << "|Slot " << slot << "|   |   |   |\n|---|---|---|---|\n";
-    for(unsigned room=0; room<nrooms(); room++) {
-      unsigned mid = h_current_schedules(sc, slot, room);
-      if(mid < nmini) {
-        fout << "|" << mini_.get(mid).full_title() << "|" << mini_.get_theme(mid) << "|" << mini_.get(mid).priority() << "|" << rooms_.name(room) << "|\n";
-      }
-    }
-    fout << "\n";
-  }
-*/
-}
