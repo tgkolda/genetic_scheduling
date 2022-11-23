@@ -27,6 +27,7 @@ with open(r'//wsl.localhost/Ubuntu/home/amklinv/genetic_scheduling/data/SIAM-CSE
             line_count += 1
         else:
             codes = row[0:3]
+            session_no = row[3]
             title = row[4]
             organizers = row[5].split(',')
             sessions = row[6:11]
@@ -41,6 +42,7 @@ with open(r'//wsl.localhost/Ubuntu/home/amklinv/genetic_scheduling/data/SIAM-CSE
                 talks.append(words[2])
 
             minisymposia[title] = {}
+            minisymposia[title]["session number"] = int(session_no)
             minisymposia[title]["organizers"] = []
             for organizer in organizers:
                 organizer = organizer.strip()
@@ -75,9 +77,11 @@ with open(r'//wsl.localhost/Ubuntu/home/amklinv/genetic_scheduling/data/SIAM-CSE
             title = row[8]
             speaker = row[6] + ' ' + row[5]
             codes = row[1:4]
+            id = row[4]
 
             lectures[title] = {}
             lectures[title]["speaker"] = speaker
+            lectures[title]["id"] = int(id)
             lectures[title]["class codes"] = list(map(int, codes))
             line_count += 1
 

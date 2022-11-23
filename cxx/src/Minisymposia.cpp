@@ -14,6 +14,7 @@ Minisymposia::Minisymposia(const std::string& filename) {
   unsigned i=0;
   for(auto node : nodes) {
     std::string title = node.first.as<std::string>();
+    unsigned id = node.second["session number"].as<unsigned>();
     std::vector<unsigned> codes = node.second["class codes"].as<std::vector<unsigned>>();
     std::vector<std::string> talks = node.second["talks"].as<std::vector<std::string>>();
     std::vector<std::string> organizer_names;
@@ -36,7 +37,7 @@ Minisymposia::Minisymposia(const std::string& filename) {
       speakers[j] = Speaker(speaker_names[j]);
     }
 
-    h_data_[i] = Minisymposium(title, talks, organizers, speakers);
+    h_data_[i] = Minisymposium(id, title, talks, organizers, speakers);
     i++;
   }
 

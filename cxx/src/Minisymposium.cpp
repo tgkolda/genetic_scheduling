@@ -14,10 +14,12 @@ std::unordered_map<std::string, unsigned> Minisymposium::roman_numeral_map_ = {
   {"X", 10}
 };
 
-Minisymposium::Minisymposium(const std::string& title, 
+Minisymposium::Minisymposium(unsigned id,
+                             const std::string& title, 
                              const std::vector<std::string>& talks,
                              const std::vector<Speaker>& organizers, 
                              const std::vector<Speaker>& speakers) :
+  id_(id),
   title_with_part_(title),
   talks_(talks),
   size_(speakers.size())
@@ -87,6 +89,10 @@ const std::string& Minisymposium::short_title() const {
 
 const std::string& Minisymposium::full_title() const {
   return title_with_part_;
+}
+
+unsigned Minisymposium::id() const {
+  return id_;
 }
 
 double Minisymposium::total_citation_count() const {

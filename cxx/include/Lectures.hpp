@@ -11,8 +11,10 @@ public:
   KOKKOS_FUNCTION unsigned topic_cohesion_score(unsigned first, unsigned second) const;
   KOKKOS_FUNCTION unsigned topic_cohesion_score(const Minisymposia& mini, unsigned mid, unsigned lid) const;
   const std::string& title(unsigned index) const;
+  unsigned id(unsigned index) const;
   Kokkos::View<Theme*[3]>::HostMirror class_codes() const;
 private:
+  std::vector<unsigned> ids_;
   std::vector<std::string> titles_;
   std::vector<std::string> speakers_;
   Kokkos::View<Theme*[3]> class_codes_;

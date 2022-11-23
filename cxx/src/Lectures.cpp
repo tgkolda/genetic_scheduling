@@ -8,12 +8,14 @@ Lectures::Lectures(const std::string& filename) {
   unsigned n = nodes.size();
   titles_.resize(n);
   speakers_.resize(n);
+  ids_.resize(n);
   class_codes_ = Kokkos::View<Theme*[3]>("classification codes", n);
   auto h_codes = Kokkos::create_mirror_view(class_codes_);
 
   unsigned i=0;
   for(auto node : nodes) {
     titles_[i] = node.first.as<std::string>();
+    ids_[i] = node.second["id"].as<unsigned>();
     speakers_[i] = node.second["speaker"].as<std::string>();
     std::vector<unsigned> codes = node.second["class codes"].as<std::vector<unsigned>>();
     assert(codes.size() == 3);
@@ -63,6 +65,10 @@ KOKKOS_FUNCTION unsigned Lectures::topic_cohesion_score(const Minisymposia& mini
 
 const std::string& Lectures::title(unsigned index) const {
   return titles_[index];
+}
+
+unsigned Lectures::id(unsigned index) const {
+  return ids_[index];
 }
 
 Kokkos::View<Theme*[3]>::HostMirror Lectures::class_codes() const {

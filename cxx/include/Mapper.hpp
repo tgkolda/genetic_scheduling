@@ -138,8 +138,8 @@ void Mapper::record(const std::string& filename, View1D mapping) const {
   unsigned subs = 0;
   for(unsigned i=0; i<nmini; i++) {
     unsigned nlect_in_mini = minisymposia_.get(i).size();
-    fout << "|" << minisymposia_.get(i).full_title() << " " << mini_codes(i,0)
-         << " " << mini_codes(i,1) << " " << mini_codes(i,2);
+    fout << "|" << minisymposia_.get(i).id() << " " << minisymposia_.get(i).full_title() 
+         << " " << mini_codes(i,0) << " " << mini_codes(i,1) << " " << mini_codes(i,2);
     auto talks = minisymposia_.get(i).talks();
     for(unsigned j=0; j<talks.size(); j++) {
       fout << "|" << talks[j];
@@ -147,7 +147,7 @@ void Mapper::record(const std::string& filename, View1D mapping) const {
     for(unsigned j=talks.size(); j<nlect_per_mini_; j++) {
       unsigned lid = mapping(subs);
       if(lid < nlectures) {
-        fout << "|" << lectures_.title(lid) << " " << lect_codes(lid,0)
+        fout << "|" << lectures_.id(lid) << " " << lectures_.title(lid) << " " << lect_codes(lid,0)
              << " " << lect_codes(lid,1) << " " << lect_codes(lid,2);
       }
       else {
@@ -163,7 +163,7 @@ void Mapper::record(const std::string& filename, View1D mapping) const {
     for(unsigned j=0; j<nlect_per_mini_; j++) {
       unsigned lid = mapping(subs+j);
       if(lid < nlectures) {
-        fout << "|" << lectures_.title(lid) << " " << lect_codes(lid,0)
+        fout << "|" << lectures_.id(lid) << " " << lectures_.title(lid) << " " << lect_codes(lid,0)
              << " " << lect_codes(lid,1) << " " << lect_codes(lid,2);
       }
       else {

@@ -11,7 +11,8 @@
 class Minisymposium {
 public:
   Minisymposium() = default;
-  Minisymposium(const std::string& title,
+  Minisymposium(unsigned id,
+                const std::string& title,
                 const std::vector<std::string>& talks, 
                 const std::vector<Speaker>& organizers, 
                 const std::vector<Speaker>& speakers);
@@ -24,6 +25,7 @@ public:
   KOKKOS_FUNCTION unsigned priority() const;
   const std::string& short_title() const;
   const std::string& full_title() const;
+  unsigned id() const;
   double total_citation_count() const;
   const std::vector<std::string>& talks() const;
 
@@ -33,7 +35,7 @@ public:
 private:
   std::string title_with_part_, title_without_part_;
   std::vector<std::string> talks_;
-  unsigned tid_;
+  unsigned id_;
   double total_citation_count_;
   unsigned room_priority_;
   std::vector<Speaker> participants_;
