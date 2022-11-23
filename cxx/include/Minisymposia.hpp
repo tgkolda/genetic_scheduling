@@ -27,6 +27,7 @@ public:
   void set_room_penalties(const Rooms& rooms);
   void set_overlapping_participants();
   void set_prerequisites();
+  void set_valid_timeslots(unsigned nslots);
   KOKKOS_FUNCTION double map_priority_penalty(unsigned nproblems) const;
   void set_priorities(unsigned nslots);
   void set_priority_penalty_bounds(unsigned nslots);
@@ -49,6 +50,7 @@ private:
   Kokkos::View<bool**> same_participants_;
   Kokkos::View<bool**> is_prereq_;
   Kokkos::View<double**> theme_penalties_;
+  Kokkos::View<bool**> valid_timeslots_;
   unsigned max_penalty_{1};
   unsigned min_priority_penalty_{0};
   unsigned max_priority_penalty_{0};
@@ -104,6 +106,18 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
     }
   }
 
+  // Compute the penalty related to scheduling speakers at a time they're not available
+  unsigned timeslot_penalty = 0;
+  for(unsigned sl=0; sl<nslots; sl++) {
+    for(unsigned r=0; r<nrooms; r++) {
+      unsigned mini_index = schedule(sl,r);
+      if(mini_index >= nmini) continue;
+      if(!valid_timeslots_(mini_index, sl)) {
+        timeslot_penalty++;
+      }
+    }
+  }
+
   // Compute the penalty related to priority and room requests
   priority_penalty = 0;
   unsigned room_penalty = 0;
@@ -127,7 +141,7 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
       }
     }
   }
-  double penalty = order_penalty + oversubscribed_penalty + theme_penalty + room_penalty;
+  double penalty = order_penalty + oversubscribed_penalty + theme_penalty + room_penalty + timeslot_penalty;
   penalty += map_priority_penalty(priority_penalty) / 2.0;
   return 1 - penalty / max_penalty_;
 }

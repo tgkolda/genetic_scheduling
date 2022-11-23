@@ -16,7 +16,8 @@ public:
                 const std::vector<std::string>& talks, 
                 const std::vector<Speaker>& organizers, 
                 const std::vector<Speaker>& speakers,
-                const std::string& room);
+                const std::string& room,
+                const std::vector<unsigned>& valid_timeslots);
   Minisymposium(const Minisymposium&) = default;
   ~Minisymposium() = default;
   Minisymposium& operator=(const Minisymposium&) = default;
@@ -36,9 +37,12 @@ public:
   void set_room_id(unsigned id);
   KOKKOS_FUNCTION unsigned size() const;
 
+  bool is_valid_timeslot(unsigned timeslot) const;
+
 private:
   std::string title_with_part_, title_without_part_, room_;
   std::vector<std::string> talks_;
+  std::vector<unsigned> valid_timeslots_;
   unsigned id_;
   double total_citation_count_;
   unsigned room_priority_;

@@ -27,6 +27,10 @@ Minisymposia::Minisymposia(const std::string& filename) {
     if(node.second["room"]) {
       room = node.second["room"].as<std::string>();
     }
+    std::vector<unsigned> valid_timeslots;
+    if(node.second["timeslots"]) {
+      valid_timeslots = node.second["timeslots"].as<std::vector<unsigned>>();
+    }
     assert(codes.size() == 3);
     for(unsigned j=0; j<3; j++) {
       h_codes(i,j) = codes[j];
@@ -41,7 +45,7 @@ Minisymposia::Minisymposia(const std::string& filename) {
       speakers[j] = Speaker(speaker_names[j]);
     }
 
-    h_data_[i] = Minisymposium(id, title, talks, organizers, speakers, room);
+    h_data_[i] = Minisymposium(id, title, talks, organizers, speakers, room, valid_timeslots);
     i++;
   }
 
@@ -58,6 +62,7 @@ Minisymposia::Minisymposia(const std::string& filename, const Rooms& rooms, unsi
   set_room_penalties(rooms);
   set_overlapping_participants();
   set_prerequisites();
+  set_valid_timeslots(nslots);
   set_overlapping_themes(nrooms, nslots);
   set_priorities(nslots);
   set_priority_penalty_bounds(nslots);
@@ -156,6 +161,26 @@ void Minisymposia::set_prerequisites() {
   Kokkos::deep_copy(is_prereq_, h_is_prereq);
   max_penalty_ += prereq_penalty; 
   printf("set_prerequisites max_penalty: %i\n", max_penalty_);
+}
+
+void Minisymposia::set_valid_timeslots(unsigned nslots) {
+  size_t nmini = size();
+  valid_timeslots_ = Kokkos::View<bool**>("valid timeslots", nmini, nslots);
+  auto h_valid_timeslots_ = Kokkos::create_mirror_view(valid_timeslots_);
+  for(unsigned i=0; i<nmini; i++) {
+    bool increase_penalty = false;
+    for(unsigned j=0; j<nslots; j++) {
+      h_valid_timeslots_(i,j) = h_data_(i).is_valid_timeslot(j);
+      if(!h_valid_timeslots_(i,j)) {
+        increase_penalty = true;
+      }
+    }
+    if(increase_penalty) {
+      max_penalty_++;
+    }
+  }
+  Kokkos::deep_copy(valid_timeslots_, h_valid_timeslots_);
+  printf("set_valid_timeslots max_penalty: %i\n", max_penalty_);
 }
 
 KOKKOS_FUNCTION

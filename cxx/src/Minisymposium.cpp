@@ -19,11 +19,13 @@ Minisymposium::Minisymposium(unsigned id,
                              const std::vector<std::string>& talks,
                              const std::vector<Speaker>& organizers, 
                              const std::vector<Speaker>& speakers,
-                             const std::string& room) :
+                             const std::string& room,
+                             const std::vector<unsigned>& valid_timeslots) :
   id_(id),
   title_with_part_(title),
   talks_(talks),
   room_(room),
+  valid_timeslots_(valid_timeslots),
   size_(speakers.size())
 {
   // Strip the part from the name
@@ -123,4 +125,13 @@ const std::vector<std::string>& Minisymposium::talks() const {
 
 unsigned Minisymposium::size() const {
   return size_;
+}
+
+bool Minisymposium::is_valid_timeslot(unsigned timeslot) const {
+  if(valid_timeslots_.size() == 0 ||
+     std::find(valid_timeslots_.begin(), valid_timeslots_.end(), timeslot) != valid_timeslots_.end()) 
+  {
+    return true;
+  }
+  return false;
 }
