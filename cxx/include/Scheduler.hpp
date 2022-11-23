@@ -19,10 +19,10 @@ public:
   ViewType make_initial_population(unsigned nschedules) const;
 
   template<class View2D>
-  KOKKOS_INLINE_FUNCTION double rate(View2D schedule) const;
+  KOKKOS_INLINE_FUNCTION double rate(View2D schedule, bool verbose=false) const;
 
   template<class View2D>
-  KOKKOS_INLINE_FUNCTION void fix_order(View2D schedule) const;
+  KOKKOS_INLINE_FUNCTION void fix_order(View2D schedule, bool verbose=false) const;
 
   template<class View2D>
   inline void record(const std::string& filename, View2D schedule) const;
@@ -39,8 +39,8 @@ private:
 };
 
 template<class View2D>
-double Scheduler::rate(View2D schedule) const {
-  fix_order(schedule);
+double Scheduler::rate(View2D schedule, bool verbose) const {
+  fix_order(schedule, verbose);
 
   unsigned order_penalty, oversubscribed_penalty, priority_penalty;
   double theme_penalty;
@@ -50,7 +50,7 @@ double Scheduler::rate(View2D schedule) const {
 }
 
 template<class View2D>
-void Scheduler::fix_order(View2D schedule) const {
+void Scheduler::fix_order(View2D schedule, bool verbose) const {
   unsigned nmini = mini_.size();
 
   // If we can put multi-part minisymposia in order, do that
@@ -70,15 +70,50 @@ void Scheduler::fix_order(View2D schedule) const {
   }
 
   // Sort the minisymposia in each slot based on the room priority
+  // Assign minisymposia to the correct rooms if possible
   for(unsigned sl=0; sl<nslots(); sl++) {
-    for(unsigned i=1; i<nrooms(); i++) {
-      for(unsigned j=0; j<nrooms()-i; j++) {
-        auto m1 = schedule(sl,j);
-        auto m2 = schedule(sl,j+1);
+    for(unsigned i=0; i<nrooms(); i++) {
+      auto m1 = schedule(sl,i);
+      unsigned min_index = i;
+      unsigned min_value = unsigned(-1);
+      if(m1 < nmini) {
+        if(mini_[m1].room_id() == i) {
+          if(verbose) {
+            printf("Minisymposium %i is already in the correct room\n", m1);
+          }
+          continue;
+        }
+        min_value = mini_[m1].priority();
+      }
+      for(unsigned j=i+1; j<nrooms(); j++) {
+        auto m2 = schedule(sl,j);
         if(m2 >= nmini) continue;
-        if(m1 >= nmini || mini_[m2].priority() < mini_[m1].priority()) {
-          // swap the values
-          genetic::swap(schedule(sl, j), schedule(sl, j+1));
+        // If this item is supposed to be in room i, put it there
+        if(mini_[m2].room_id() == i) {
+          if(verbose) {
+            printf("assigning %i at position %i to room %i as requested\n", m2, j, i);
+          }
+          min_index = j;
+          min_value = 0;
+          break;
+        }
+        if(mini_[m2].priority() < min_value) {
+          min_index = j;
+          min_value = mini_[m2].priority();
+        }
+      }
+      if(min_index != i) {
+        genetic::swap(schedule(sl,i), schedule(sl, min_index));
+      }
+      if(verbose) {
+        auto mid = schedule(sl,i);
+        if(mid < nmini) {
+          unsigned priority = mini_[mid].priority();
+          unsigned rid = mini_[mid].room_id();
+          printf("schedule(%i,%i) = %i with priority %i and room id %i\n", sl, i, mid, priority, rid);
+        }
+        else {
+          printf("schedule(%i,%i) = %i\n", sl, i, mid);
         }
       }
     }

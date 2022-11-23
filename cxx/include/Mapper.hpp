@@ -15,7 +15,7 @@ public:
   ViewType make_initial_population(unsigned popSize);
 
   template<class View1D>
-  KOKKOS_INLINE_FUNCTION double rate(View1D mapping) const;
+  KOKKOS_INLINE_FUNCTION double rate(View1D mapping, bool verbose=false) const;
 
   KOKKOS_FUNCTION bool out_of_bounds(unsigned i) const;
 
@@ -43,7 +43,7 @@ private:
 };
 
 template<class View1D>
-double Mapper::rate(View1D mapping) const {
+double Mapper::rate(View1D mapping, bool verbose) const {
   constexpr double fullness_weight = 1.0;
   constexpr double cohesion_weight = 5.0;
 

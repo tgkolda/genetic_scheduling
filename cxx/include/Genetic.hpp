@@ -149,8 +149,10 @@ template<class Runner>
 void Genetic<Runner>::rate_population() {
   unsigned popSize = current_population_.extent(0);
   Kokkos::parallel_for("rate population", popSize, KOKKOS_CLASS_LAMBDA(int i) {
+//    bool verbose = i == 0 ? true : false; 
+    bool verbose = false;
     auto member = get_population_member(i);
-    ratings_(i) = runner_.rate(member);
+    ratings_(i) = runner_.rate(member, verbose);
   });
 
   // Block until the GPU work is complete
