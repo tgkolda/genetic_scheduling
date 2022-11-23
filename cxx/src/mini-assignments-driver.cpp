@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
     Minisymposia mini("../../data/SIAM-CSE23/minisymposia.yaml");
  
     // Run the genetic algorithm
-    Mapper m(lectures, mini);
+    Mapper m(lectures, mini, 0);
     Genetic<Mapper> g(m);
     auto best_schedule = g.run(10000, 2000, 0.01, 100);
     m.record("lecture-assignments.md", best_schedule);

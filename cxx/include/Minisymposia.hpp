@@ -2,6 +2,7 @@
 #define MINISYMPOSIA_H
 
 #include "Minisymposium.hpp"
+#include "Rooms.hpp"
 #include "Theme.hpp"
 #include <Kokkos_Core.hpp>
 #include <ostream>
@@ -11,7 +12,7 @@
 class Minisymposia {
 public:
   Minisymposia(const std::string& filename);
-  Minisymposia(const std::string& filename, unsigned nrooms, unsigned nslots);
+  Minisymposia(const std::string& filename, const Rooms& rooms, unsigned nslots);
   Minisymposia(const Minisymposia&) = default;
   ~Minisymposia() = default;
   Minisymposia& operator=(const Minisymposia&) = delete;
@@ -23,6 +24,7 @@ public:
   KOKKOS_FUNCTION bool overlaps_participants(unsigned m1, unsigned m2) const;
   KOKKOS_FUNCTION bool breaks_ordering(unsigned m1, unsigned m2) const;
   unsigned get_max_penalty() const;
+  void set_room_penalties(const Rooms& rooms);
   void set_overlapping_participants();
   void set_prerequisites();
   KOKKOS_FUNCTION double map_priority_penalty(unsigned nproblems) const;
@@ -102,19 +104,30 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
     }
   }
 
-  // Compute the penalty related to priority
+  // Compute the penalty related to priority and room requests
   priority_penalty = 0;
+  unsigned room_penalty = 0;
   for(unsigned sl=0; sl<nslots; sl++) {
     for(unsigned r=0; r<nrooms; r++) {
       unsigned mini_index = schedule(sl,r);
       if(mini_index >= nmini) continue;
-      unsigned priority = d_data_[mini_index].priority();
-      if(priority < r) {
-        priority_penalty += pow(r-priority, 2);
+      unsigned room_id = d_data_[mini_index].room_id();
+      // This is a minisymposium with a room request
+      if(room_id < nrooms) {
+        if(room_id != r) {
+          room_penalty++;
+        }
+      }
+      // There is no room request
+      else {
+        unsigned priority = d_data_[mini_index].priority();
+        if(priority < r) {
+          priority_penalty += pow(r-priority, 2);
+        }
       }
     }
   }
-  double penalty = order_penalty + oversubscribed_penalty + theme_penalty;
+  double penalty = order_penalty + oversubscribed_penalty + theme_penalty + room_penalty;
   penalty += map_priority_penalty(priority_penalty) / 2.0;
   return 1 - penalty / max_penalty_;
 }

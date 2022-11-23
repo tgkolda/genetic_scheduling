@@ -20,12 +20,12 @@ int main(int argc, char* argv[]) {
     Rooms rooms("../../data/SIAM-CSE23/rooms.yaml");
 
     // Read the minisymposia from yaml
-    Minisymposia mini("../../data/SIAM-CSE23/minisymposia.yaml", rooms.size(), nslots);
+    Minisymposia mini("../../data/SIAM-CSE23/minisymposia.yaml", rooms, nslots);
  
     // Run the genetic algorithm
     Scheduler s(mini, rooms, nslots);
     Genetic<Scheduler> g(s);
-    auto best_schedule = g.run(10000, 2000, 0.01, 1000);
+    auto best_schedule = g.run(10000, 2000, 0.01, 100);
     s.record("schedule.md", best_schedule);
 
     // Create a table to display the schedule

@@ -23,6 +23,10 @@ Minisymposia::Minisymposia(const std::string& filename) {
     std::vector<std::string> speaker_names;
     if(node.second["speakers"])
       speaker_names = node.second["speakers"].as<std::vector<std::string>>();
+    std::string room;
+    if(node.second["room"]) {
+      room = node.second["room"].as<std::string>();
+    }
     assert(codes.size() == 3);
     for(unsigned j=0; j<3; j++) {
       h_codes(i,j) = codes[j];
@@ -37,7 +41,7 @@ Minisymposia::Minisymposia(const std::string& filename) {
       speakers[j] = Speaker(speaker_names[j]);
     }
 
-    h_data_[i] = Minisymposium(id, title, talks, organizers, speakers);
+    h_data_[i] = Minisymposium(id, title, talks, organizers, speakers, room);
     i++;
   }
 
@@ -46,9 +50,12 @@ Minisymposia::Minisymposia(const std::string& filename) {
   Kokkos::deep_copy(class_codes_, h_codes);
 }
 
-Minisymposia::Minisymposia(const std::string& filename, unsigned nrooms, unsigned nslots) :
+Minisymposia::Minisymposia(const std::string& filename, const Rooms& rooms, unsigned nslots) :
   Minisymposia(filename)
 {
+  unsigned nrooms = rooms.size();
+
+  set_room_penalties(rooms);
   set_overlapping_participants();
   set_prerequisites();
   set_overlapping_themes(nrooms, nslots);
@@ -83,6 +90,22 @@ bool Minisymposia::breaks_ordering(unsigned m1, unsigned m2) const {
 
 unsigned Minisymposia::get_max_penalty() const {
   return max_penalty_;
+}
+
+void Minisymposia::set_room_penalties(const Rooms& rooms) {
+  unsigned nrooms = rooms.size();
+  for(unsigned i=0; i<h_data_.extent(0); i++) {
+    unsigned id = rooms.get_id(h_data_(i).room());
+    h_data_(i).set_room_id(id);
+    if(id != nrooms) {
+      max_penalty_++;
+    }
+  }
+
+  // Copy the data to device
+  Kokkos::deep_copy(d_data_, h_data_);
+
+  printf("set_room_penalties max_penalty: %i\n", max_penalty_);
 }
 
 void Minisymposia::set_overlapping_participants() {

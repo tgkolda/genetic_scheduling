@@ -18,10 +18,12 @@ Minisymposium::Minisymposium(unsigned id,
                              const std::string& title, 
                              const std::vector<std::string>& talks,
                              const std::vector<Speaker>& organizers, 
-                             const std::vector<Speaker>& speakers) :
+                             const std::vector<Speaker>& speakers,
+                             const std::string& room) :
   id_(id),
   title_with_part_(title),
   talks_(talks),
+  room_(room),
   size_(speakers.size())
 {
   // Strip the part from the name
@@ -91,8 +93,16 @@ const std::string& Minisymposium::full_title() const {
   return title_with_part_;
 }
 
+const std::string& Minisymposium::room() const {
+  return room_;
+}
+
 unsigned Minisymposium::id() const {
   return id_;
+}
+
+unsigned Minisymposium::room_id() const {
+  return room_id_;
 }
 
 double Minisymposium::total_citation_count() const {
@@ -101,6 +111,10 @@ double Minisymposium::total_citation_count() const {
 
 void Minisymposium::set_priority(unsigned priority) {
   room_priority_ = priority;
+}
+
+void Minisymposium::set_room_id(unsigned id) {
+  room_id_ = id;
 }
 
 const std::vector<std::string>& Minisymposium::talks() const {

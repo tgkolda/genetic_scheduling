@@ -10,9 +10,10 @@ public:
   Rooms(const std::string& filename);
   KOKKOS_FUNCTION unsigned size() const;
   const std::string& name(unsigned i) const;
+  unsigned get_id(const std::string& name) const;
 private:
-  Kokkos::View<Room*> d_data_;
-  Kokkos::View<Room*>::HostMirror h_data_;
+  std::vector<Room> data_;
+  unsigned size_;
 };
 
 #endif /* ROOMS_H */

@@ -8,6 +8,7 @@ public:
   Room() = default;
   Room(const std::string& name, unsigned capacity);
   const std::string& name() const;
+  bool operator==(const std::string& name) const;
 private:
   std::string name_;
   unsigned capacity_;
