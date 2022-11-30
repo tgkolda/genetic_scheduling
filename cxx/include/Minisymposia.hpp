@@ -57,7 +57,8 @@ private:
   Kokkos::View<bool**> valid_timeslots_;
   Rooms rooms_;
   Timeslots timeslots_;
-  unsigned max_penalty_{1};
+  unsigned nprereqs_;
+  unsigned max_penalty_{3};
   unsigned min_priority_penalty_{0};
   unsigned max_priority_penalty_{0};
 };
@@ -85,6 +86,22 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
       }
     }
   }
+  // Compute the penalty related to multi-part minisymposia being too far away from each other
+  double gumband_penalty = nprereqs_;
+  for(unsigned sl=0; sl<nslots-1; sl++) {
+    for(unsigned r1=0; r1<nrooms; r1++) {
+      unsigned m1 = schedule(sl,r1);
+      if(m1 >= nmini) continue;
+      for(unsigned r2=0; r2<nrooms; r2++) {
+        unsigned m2 = schedule(sl+1,r2);
+        if(m2 >= nmini) continue;
+        if(is_prereq_(m1, m2)) {
+          gumband_penalty--;
+        }
+      }
+    }
+  }
+  gumband_penalty /= nprereqs_;
   // Compute the penalty related to oversubscribed participants
   oversubscribed_penalty = 0;
   for(unsigned sl=0; sl<nslots; sl++) {
@@ -147,8 +164,8 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
       }
     }
   }
-  double penalty = order_penalty + oversubscribed_penalty + theme_penalty + room_penalty + timeslot_penalty;
-  penalty += map_priority_penalty(priority_penalty) / 2.0;
+  double penalty = order_penalty + oversubscribed_penalty + room_penalty + timeslot_penalty;
+  penalty += theme_penalty + gumband_penalty + map_priority_penalty(priority_penalty);
   return 1 - penalty / max_penalty_;
 }
 

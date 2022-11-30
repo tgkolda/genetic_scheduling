@@ -151,7 +151,7 @@ void Minisymposia::set_prerequisites() {
   is_prereq_ = Kokkos::View<bool**>("prerequisites", nmini, nmini);
   auto h_is_prereq = Kokkos::create_mirror_view(is_prereq_);
 
-  unsigned prereq_penalty = 0;
+  nprereqs_ = 0;
   RangePolicy<DefaultHostExecutionSpace> rp(DefaultHostExecutionSpace(), 0, nmini);
   parallel_reduce("set prerequisites", rp, [=] (unsigned i, unsigned& lpenalty ) {
     for(int j=0; j<nmini; j++) {
@@ -161,9 +161,9 @@ void Minisymposia::set_prerequisites() {
         lpenalty++;
       }
     }
-  }, prereq_penalty);
+  }, nprereqs_);
   Kokkos::deep_copy(is_prereq_, h_is_prereq);
-  max_penalty_ += prereq_penalty; 
+  max_penalty_ += nprereqs_; 
   printf("set_prerequisites max_penalty: %i\n", max_penalty_);
 }
 
