@@ -7,7 +7,8 @@ add_library(scheduler Lectures.cpp
                       Schedule.cpp
                       Scheduler.cpp
                       Speaker.cpp
-                      Theme.cpp)
+                      Theme.cpp
+                      Timeslots.cpp)
 target_link_libraries(scheduler ${YAML_CPP_LIBRARIES} Kokkos::kokkos Qt5::Widgets)
 
 add_executable(mini-assignments mini-assignments-driver.cpp)

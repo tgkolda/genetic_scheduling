@@ -4,6 +4,7 @@
 #include "Minisymposium.hpp"
 #include "Rooms.hpp"
 #include "Theme.hpp"
+#include "Timeslots.hpp"
 #include <Kokkos_Core.hpp>
 #include <ostream>
 #include <set>
@@ -12,7 +13,7 @@
 class Minisymposia {
 public:
   Minisymposia(const std::string& filename);
-  Minisymposia(const std::string& filename, const Rooms& rooms, unsigned nslots);
+  Minisymposia(const std::string& filename, const Rooms& rooms, const Timeslots& slots);
   Minisymposia(const Minisymposia&) = default;
   ~Minisymposia() = default;
   Minisymposia& operator=(const Minisymposia&) = delete;
@@ -27,13 +28,16 @@ public:
   void set_room_penalties(const Rooms& rooms);
   void set_overlapping_participants();
   void set_prerequisites();
-  void set_valid_timeslots(unsigned nslots);
+  void set_valid_timeslots(const Timeslots& slots);
   KOKKOS_FUNCTION double map_priority_penalty(unsigned nproblems) const;
   void set_priorities(unsigned nslots);
   void set_priority_penalty_bounds(unsigned nslots);
   void set_overlapping_themes(unsigned nrooms, unsigned nslots);
   KOKKOS_FUNCTION const Theme& class_codes(unsigned mid, unsigned cid) const;
   Kokkos::View<Theme*[3]>::HostMirror class_codes() const;
+
+  KOKKOS_FUNCTION const Timeslots& timeslots() const;
+  KOKKOS_FUNCTION const Rooms& rooms() const;
 
   template<class ViewType>
   KOKKOS_INLINE_FUNCTION double rate_schedule(ViewType schedule, unsigned& order_penalty, 
@@ -51,6 +55,8 @@ private:
   Kokkos::View<bool**> is_prereq_;
   Kokkos::View<double**> theme_penalties_;
   Kokkos::View<bool**> valid_timeslots_;
+  Rooms rooms_;
+  Timeslots timeslots_;
   unsigned max_penalty_{1};
   unsigned min_priority_penalty_{0};
   unsigned max_priority_penalty_{0};

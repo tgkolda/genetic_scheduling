@@ -26,7 +26,7 @@ Minisymposium::Minisymposium(unsigned id,
   talks_(talks),
   room_(room),
   valid_timeslots_(valid_timeslots),
-  size_(speakers.size())
+  size_(talks.size())
 {
   // Strip the part from the name
   size_t found = title.find(" - Part ");

@@ -19,8 +19,8 @@ int main(int argc, char* argv[]) {
     // Run the genetic algorithm
     Mapper m(lectures, mini, 0);
     Genetic<Mapper> g(m);
-    auto best_schedule = g.run(10000, 2000, 0.01, 100);
-    m.record("lecture-assignments.md", best_schedule);
+    auto best_schedule = g.run(1000, 200, 0.01, 100);
+    m.record("lecture-assignments", best_schedule);
 
     // Create a table to display the schedule
   //  Schedule sched(s.get_best_schedule(), &rooms, &mini);

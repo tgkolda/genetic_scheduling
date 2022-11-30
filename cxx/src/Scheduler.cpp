@@ -3,18 +3,14 @@
 #include "Kokkos_StdAlgorithms.hpp"
 #include <fstream>
 
-Scheduler::Scheduler(const Minisymposia& mini, 
-                     const Rooms& rooms, 
-                     unsigned ntimeslots) :
-  mini_(mini),
-  rooms_(rooms),
-  ntimeslots_(ntimeslots)
+Scheduler::Scheduler(const Minisymposia& mini) :
+  mini_(mini)
 {
   
 }
 
 Scheduler::ViewType Scheduler::make_initial_population(unsigned nschedules) const {
-  return ViewType("schedules", nschedules, ntimeslots_, rooms_.size());
+  return ViewType("schedules", nschedules, nslots(), nrooms());
 }
 
 bool Scheduler::out_of_bounds(unsigned i) const {
@@ -23,10 +19,10 @@ bool Scheduler::out_of_bounds(unsigned i) const {
 
 KOKKOS_FUNCTION
 unsigned Scheduler::nslots() const {
-  return ntimeslots_;
+  return mini_.timeslots().size();
 }
 
 KOKKOS_FUNCTION
 unsigned Scheduler::nrooms() const {
-  return rooms_.size();
+  return mini_.rooms().size();
 }

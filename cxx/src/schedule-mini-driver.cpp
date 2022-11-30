@@ -8,8 +8,6 @@ int main(int argc, char* argv[]) {
 //  QApplication app(argc, argv);
   Kokkos::initialize(argc, argv);
   {
-    const unsigned nslots = 12;
-
     // Read the themes from yaml
     Theme::read("../../data/SIAM-CSE23/codes.yaml");
 
@@ -19,13 +17,16 @@ int main(int argc, char* argv[]) {
     // Read the rooms from yaml
     Rooms rooms("../../data/SIAM-CSE23/rooms.yaml");
 
+    // Read the timeslots from yaml
+    Timeslots tslots("../../data/SIAM-CSE23/timeslots.yaml");
+
     // Read the minisymposia from yaml
-    Minisymposia mini("../../data/SIAM-CSE23/minisymposia.yaml", rooms, nslots);
+    Minisymposia mini("../../data/SIAM-CSE23/minisymposia.yaml", rooms, tslots);
  
     // Run the genetic algorithm
-    Scheduler s(mini, rooms, nslots);
+    Scheduler s(mini);
     Genetic<Scheduler> g(s);
-    auto best_schedule = g.run(1000, 200, 0.01, 1000);
+    auto best_schedule = g.run(10000, 2000, 0.01, 1000);
     s.record("schedule.md", best_schedule);
 
     // Create a table to display the schedule

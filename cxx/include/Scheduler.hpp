@@ -15,7 +15,7 @@ class Scheduler {
 public:
   typedef Kokkos::View<unsigned***> ViewType;
 
-  Scheduler(const Minisymposia& mini, const Rooms& rooms, unsigned ntimeslots);
+  Scheduler(const Minisymposia& mini);
   ViewType make_initial_population(unsigned nschedules) const;
 
   template<class View2D>
@@ -33,9 +33,7 @@ public:
   void record(const std::string& filename) const;
 
 private:
-  Rooms rooms_;
   Minisymposia mini_;
-  unsigned ntimeslots_;
 };
 
 template<class View2D>
@@ -129,13 +127,13 @@ void Scheduler::record(const std::string& filename, View2D schedule) const {
   fout << "# Conference schedule\n\n";
 
   for(unsigned slot=0; slot<nslots(); slot++) {
-    fout << "|Slot " << slot << "|   |   |   |\n|---|---|---|---|\n";
+    fout << "|Slot " << slot+1 << "|   |   |   |\n|---|---|---|---|\n";
     for(unsigned room=0; room<nrooms(); room++) {
       unsigned mid = schedule(slot, room);
       if(mid < nmini) {
         fout << "|" << mini_.get(mid).full_title() << "|" << class_codes(mid,0) << " " 
              << class_codes(mid, 1) << " " << class_codes(mid, 2) << "|" << mini_.get(mid).priority() 
-             << "|" << rooms_.name(room) << "|\n";
+             << "|" << mini_.get(mid).size() << " " << mini_.rooms().name(room) << "|\n";
       }
     }
     fout << "\n";

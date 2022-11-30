@@ -7,7 +7,9 @@
 
 class Rooms {
 public:
+  Rooms() = default;
   Rooms(const std::string& filename);
+  
   KOKKOS_FUNCTION unsigned size() const;
   const std::string& name(unsigned i) const;
   unsigned get_id(const std::string& name) const;

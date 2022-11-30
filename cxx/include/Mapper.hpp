@@ -11,7 +11,7 @@ class Mapper {
 public:
   typedef Kokkos::View<unsigned**> ViewType;
 
-  Mapper(const Lectures& lectures, const Minisymposia& minisymposia, unsigned nExtraMini=5);
+  Mapper(const Lectures& lectures, const Minisymposia& minisymposia, unsigned nExtraMini=0);
   ViewType make_initial_population(unsigned popSize);
 
   template<class View1D>
@@ -121,8 +121,11 @@ void Mapper::record(const std::string& filename, View1D mapping) const {
   unsigned nlectures = lectures_.size();
   unsigned ngenes = mapping.extent(0);
 
-  std::ofstream fout(filename);
+  std::ofstream fout(filename + ".md");
   fout << "# Minisymposia\n\n|Minisymposium|";
+
+  std::ofstream fout2(filename + ".csv");
+  fout2 << "Minisymposium ID,Contributed Lecture ID\n";
 
   for(unsigned i=0; i<nlect_per_mini_; i++) {
     fout << "Lecture " << i+1 << "|";
@@ -149,6 +152,7 @@ void Mapper::record(const std::string& filename, View1D mapping) const {
       if(lid < nlectures) {
         fout << "|" << lectures_.id(lid) << " " << lectures_.title(lid) << " " << lect_codes(lid,0)
              << " " << lect_codes(lid,1) << " " << lect_codes(lid,2);
+        fout2 << minisymposia_.get(i).id() << "," << lectures_.id(lid) << "\n";
       }
       else {
         fout << "| ";
@@ -165,6 +169,7 @@ void Mapper::record(const std::string& filename, View1D mapping) const {
       if(lid < nlectures) {
         fout << "|" << lectures_.id(lid) << " " << lectures_.title(lid) << " " << lect_codes(lid,0)
              << " " << lect_codes(lid,1) << " " << lect_codes(lid,2);
+        fout2 << "Contributed Lecture " << i+1 << "," << lectures_.id(lid) << "\n";
       }
       else {
         fout << "| ";
