@@ -227,32 +227,29 @@ void Minisymposia::set_overlapping_themes(unsigned nrooms, unsigned nslots) {
 
 void Minisymposia::set_priorities(unsigned nslots) {
   // Get the citations
-  std::vector<double> citation_list(size());
+  std::vector<std::pair<unsigned,unsigned>> citation_list(size());
   for(unsigned i=0; i<size(); i++) {
-    citation_list[i] = h_data_[i].total_citation_count();
+    std::string title = h_data_[i].short_title();
+    unsigned citations = 0;
+    for(unsigned j=0; j<size(); j++) {
+      if(h_data_[j].short_title() == title) {
+        citations += h_data_[j].max_citation_count();
+      }
+    }
+    citation_list[i] = std::make_pair(citations,i);
+//    std::cout << title << " has " << citation_list[i].first << " citations\n";
   }
 
   // Sort the citations from most to least popular
-  std::sort(citation_list.begin(), citation_list.end(), std::greater<double>());
-
-  // Get the cutoffs
-  unsigned nrooms_needed = ceil(double(size())/nslots);
-  std::vector<double> cutoffs(nrooms_needed-1);
-  for(unsigned i=0; i<nrooms_needed-1; i++) {
-    cutoffs[i] = citation_list[(i+1)*nslots];
-  }
+  std::sort(citation_list.begin(), citation_list.end(), std::greater<std::pair<unsigned,unsigned>>());
 
   // Map all the priorities to the range [0, nrooms_needed)
   // with 0 being highest priority
   for(unsigned i=0; i<size(); i++) {
-    double citations = h_data_[i].total_citation_count();
-    unsigned j;
-    for(j=0; j<cutoffs.size(); j++) {
-      if(citations >= cutoffs[j]) {
-        break;
-      }
+    for(unsigned j=0; j<nslots && i*nslots+j<size(); j++) {
+      unsigned index = citation_list[i*nslots+j].second;
+      h_data_[index].set_priority(i);
     }
-    h_data_[i].set_priority(j);
   }
   Kokkos::deep_copy(d_data_, h_data_);
 }

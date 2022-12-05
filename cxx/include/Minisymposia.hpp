@@ -58,7 +58,7 @@ private:
   Rooms rooms_;
   Timeslots timeslots_;
   unsigned nprereqs_;
-  unsigned max_penalty_{3};
+  unsigned max_penalty_{4};
   unsigned min_priority_penalty_{0};
   unsigned max_priority_penalty_{0};
 };
@@ -87,7 +87,7 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
     }
   }
   // Compute the penalty related to multi-part minisymposia being too far away from each other
-  double gumband_penalty = nprereqs_;
+  double gumband_penalty = 2*nprereqs_;
   for(unsigned sl=0; sl<nslots-1; sl++) {
     for(unsigned r1=0; r1<nrooms; r1++) {
       unsigned m1 = schedule(sl,r1);
@@ -96,6 +96,20 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
         unsigned m2 = schedule(sl+1,r2);
         if(m2 >= nmini) continue;
         if(is_prereq_(m1, m2)) {
+          gumband_penalty--;
+        }
+      }
+    }
+  }
+  // Compute the penalty related to multi-part minisymposia being in different rooms
+  for(unsigned sl1=0; sl1<nslots; sl1++) {
+    for(unsigned r=0; r<nrooms; r++) {
+      unsigned m1 = schedule(sl1, r);
+      if(m1 >= nmini) continue;
+      for(unsigned sl2=0; sl2<nslots; sl2++) {
+        unsigned m2 = schedule(sl2, r);
+        if(m2 >= nmini) continue;
+        if(is_prereq_(m1,m2)) {
           gumband_penalty--;
         }
       }

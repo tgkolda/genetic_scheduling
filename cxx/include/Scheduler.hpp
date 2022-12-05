@@ -51,22 +51,6 @@ template<class View2D>
 void Scheduler::fix_order(View2D schedule, bool verbose) const {
   unsigned nmini = mini_.size();
 
-  // If we can put multi-part minisymposia in order, do that
-  for(unsigned sl1=0; sl1<nslots(); sl1++) {
-    for(unsigned r1=0; r1<nrooms(); r1++) {
-      if(schedule(sl1,r1) >= nmini) continue;
-      for(unsigned sl2=sl1+1; sl2<nslots(); sl2++) {
-        for(unsigned r2=0; r2<nrooms(); r2++) {
-          if(schedule(sl2,r2) >= nmini) continue;
-          if(mini_.breaks_ordering(schedule(sl1,r1), schedule(sl2,r2))) {
-            // swap the values
-            genetic::swap(schedule(sl1, r1), schedule(sl2, r2));
-          }
-        }
-      }
-    }
-  }
-
   // Sort the minisymposia in each slot based on the room priority
   // Assign minisymposia to the correct rooms if possible
   for(unsigned sl=0; sl<nslots(); sl++) {
@@ -116,6 +100,42 @@ void Scheduler::fix_order(View2D schedule, bool verbose) const {
       }
     }
   }
+
+  // If we can gumband multi-part minisymposia together, do that
+  for(unsigned sl1=0; sl1<nslots(); sl1++) {
+    for(unsigned r1=0; r1<nrooms(); r1++) {
+      unsigned m1 = schedule(sl1,r1);
+      if(m1 >= nmini) continue;
+      if(!mini_[m1].is_multipart()) continue;
+      for(unsigned sl2=sl1+1; sl2<nslots(); sl2++) {
+        for(unsigned r2=0; r2<nrooms(); r2++) {
+          unsigned m2 = schedule(sl2,r2);
+          if(m2 >= nmini) continue;
+          if(!mini_[m2].is_multipart()) continue;
+          if(mini_.breaks_ordering(m2, m1) || mini_.breaks_ordering(m1, m2)) {
+            // swap the second minisymposium with whatever comes after the first
+            genetic::swap(schedule(sl2, r2), schedule(sl1+1, r1));
+          }
+        }
+      }
+    }
+  }
+
+  // If we can put multi-part minisymposia in order, do that
+  for(unsigned sl1=0; sl1<nslots(); sl1++) {
+    for(unsigned r1=0; r1<nrooms(); r1++) {
+      if(schedule(sl1,r1) >= nmini) continue;
+      for(unsigned sl2=sl1+1; sl2<nslots(); sl2++) {
+        for(unsigned r2=0; r2<nrooms(); r2++) {
+          if(schedule(sl2,r2) >= nmini) continue;
+          if(mini_.breaks_ordering(schedule(sl1,r1), schedule(sl2,r2))) {
+            // swap the values
+            genetic::swap(schedule(sl1, r1), schedule(sl2, r2));
+          }
+        }
+      }
+    }
+  }
 }
 
 template<class View2D>
@@ -131,12 +151,17 @@ void Scheduler::record(const std::string& filename, View2D schedule) const {
     for(unsigned room=0; room<nrooms(); room++) {
       unsigned mid = schedule(slot, room);
       if(mid < nmini) {
-        fout << "|" << mini_.get(mid).full_title() << "|" << class_codes(mid,0) << " " 
+        fout << "|" << mini_.get(mid).id() << " " << mini_.get(mid).full_title() << "|" << class_codes(mid,0) << " " 
              << class_codes(mid, 1) << " " << class_codes(mid, 2) << "|" << mini_.get(mid).priority() 
-             << "|" << mini_.get(mid).size() << " " << mini_.rooms().name(room) << "|\n";
+             << "|" << mini_.rooms().name(room) << "|\n";
       }
     }
     fout << "\n";
+  }
+
+  fout << "\n|ID|Title|Priority (lower is better)|\n";
+  for(unsigned i=0; i<nmini; i++) {
+    fout << "|" << mini_.get(i).id() << "|" << mini_.get(i).full_title() << "|" << mini_.get(i).priority() << "|\n";
   }
 }
 
