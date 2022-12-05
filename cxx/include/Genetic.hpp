@@ -20,6 +20,7 @@ public:
   void mutate_population(double mutationRate);
 private:
   void sort();
+  auto get_best_member();
   KOKKOS_INLINE_FUNCTION auto get_population_member(unsigned i, bool current=true) const;
   void make_initial_population(unsigned popSize);
   KOKKOS_INLINE_FUNCTION unsigned get_parent() const;
@@ -51,6 +52,11 @@ auto Genetic<Runner>::run(unsigned popSize, unsigned eliteSize, double mutationR
 
     rate_population();
     sort();
+
+    if(g % 100 == 0) {
+      runner_.record("iteration" + std::to_string(g) + ".md", get_best_member());
+    }
+
     compute_weights();
     breed_population(eliteSize);
     mutate_population(mutationRate);
@@ -61,16 +67,7 @@ auto Genetic<Runner>::run(unsigned popSize, unsigned eliteSize, double mutationR
   rate_population();
   sort();
 
-  unsigned best_pop_subscript;
-  Kokkos::deep_copy(best_pop_subscript, Kokkos::subview(permutation_, popSize-1));
-  auto h_population = Kokkos::create_mirror_view(current_population_);
-  Kokkos::deep_copy(h_population, current_population_);
-  if constexpr(h_population.rank == 2) {
-    return Kokkos::subview(h_population, best_pop_subscript, Kokkos::ALL());
-  }
-  else {
-    return Kokkos::subview(h_population, best_pop_subscript, Kokkos::ALL(), Kokkos::ALL());
-  }
+  return get_best_member();
 }
 
 template<class Runner>
@@ -388,7 +385,22 @@ void Genetic<Runner>:: sort() {
   bin_sort.create_permute_vector();
   bin_sort.sort(ratings_);
   permutation_ = bin_sort.get_permute_vector();
-  printf("%lf\n", max);
+  printf("%.17g\n", max);
+}
+
+template<class Runner>
+auto Genetic<Runner>::get_best_member() {
+  unsigned best_pop_subscript;
+  unsigned popSize = permutation_.extent(0);
+  Kokkos::deep_copy(best_pop_subscript, Kokkos::subview(permutation_, popSize-1));
+  auto h_population = Kokkos::create_mirror_view(current_population_);
+  Kokkos::deep_copy(h_population, current_population_);
+  if constexpr(h_population.rank == 2) {
+    return Kokkos::subview(h_population, best_pop_subscript, Kokkos::ALL());
+  }
+  else {
+    return Kokkos::subview(h_population, best_pop_subscript, Kokkos::ALL(), Kokkos::ALL());
+  }
 }
 
 #endif /* GENETIC_H */
