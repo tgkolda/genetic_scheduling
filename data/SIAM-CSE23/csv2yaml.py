@@ -35,7 +35,11 @@ with open(r'//wsl.localhost/Ubuntu/home/amklinv/genetic_scheduling/data/SIAM-CSE
             speakers = []
             talks = []
             for session in sessions:
-                if session == '':
+                if session == '' or session == 'NONE':
+                    continue
+                if session == 'TBD':
+                    speakers.append('TBD')
+                    talks.append('TBD')
                     continue
                 words = session.split(' - ')
                 speakers.append(words[0])
