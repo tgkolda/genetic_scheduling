@@ -37,15 +37,23 @@ Minisymposium::Minisymposium(unsigned id,
     size_t nchars = end_pos-start_pos;
     std::string part = title.substr(start_pos, nchars);
     part_ = roman_numeral_map_.at(part);
+    is_multipart_ = true;
   }
   else {
     title_without_part_ = title;
+    is_multipart_ = false;
   }
 
   // Compute the total citation count
   total_citation_count_ = 0;
   for(const auto& speaker: speakers) {
     total_citation_count_ += speaker.citations();
+  }
+
+  // Compute the max citation count
+  max_citation_count_ = 0;
+  for(const auto& speaker: speakers) {
+    max_citation_count_ = std::max(max_citation_count_, speaker.citations());
   }
 
   printf("%s: %lf\n", title.c_str(), total_citation_count_);
@@ -71,7 +79,7 @@ bool Minisymposium::shares_participant(const Minisymposium& m) const {
                                   m.participants_.begin(), m.participants_.end(),
                                   intersection.begin());
   for(auto i=intersection.begin(); i != it; i++) {
-    if(i->name() != "Presenters to be Announced") {
+    if(i->name() != "Presenters to be Announced" && i->name() != "TBD" ) {
       return true;
     }
   }
@@ -107,7 +115,11 @@ unsigned Minisymposium::room_id() const {
   return room_id_;
 }
 
-double Minisymposium::total_citation_count() const {
+unsigned Minisymposium::total_citation_count() const {
+  return total_citation_count_;
+}
+
+unsigned Minisymposium::max_citation_count() const {
   return total_citation_count_;
 }
 
@@ -125,6 +137,10 @@ const std::vector<std::string>& Minisymposium::talks() const {
 
 unsigned Minisymposium::size() const {
   return size_;
+}
+
+bool Minisymposium::is_multipart() const {
+  return is_multipart_;
 }
 
 bool Minisymposium::is_valid_timeslot(unsigned timeslot) const {
