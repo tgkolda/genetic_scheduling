@@ -17,6 +17,8 @@ public:
   Minisymposia(const Minisymposia&) = default;
   ~Minisymposia() = default;
   Minisymposia& operator=(const Minisymposia&) = delete;
+
+  unsigned find(unsigned mid) const;
   
   KOKKOS_FUNCTION unsigned size() const;
   KOKKOS_FUNCTION const Minisymposium& operator[](unsigned i) const;
@@ -40,8 +42,10 @@ public:
   KOKKOS_FUNCTION const Rooms& rooms() const;
 
   template<class ViewType>
-  KOKKOS_INLINE_FUNCTION double rate_schedule(ViewType schedule, unsigned& order_penalty, 
-    unsigned& oversubscribed_penalty, double& theme_penalty, unsigned& priority_penalty) const;
+  KOKKOS_INLINE_FUNCTION double rate_schedule(ViewType schedule, 
+    unsigned& order_penalty, unsigned& gumband_time_penalty, unsigned& gumband_room_penalty,
+    unsigned& oversubscribed_penalty, double& theme_penalty, unsigned& timeslot_penalty,
+    unsigned& room_penalty, unsigned& priority_penalty) const;
   
   template<class ViewType>
   inline std::string rate_schedule(ViewType schedule) const;
@@ -65,8 +69,10 @@ private:
 
 template<class ViewType>
 KOKKOS_INLINE_FUNCTION 
-double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty, 
-  unsigned& oversubscribed_penalty, double& theme_penalty, unsigned& priority_penalty) const
+double Minisymposia::rate_schedule(ViewType schedule, 
+    unsigned& order_penalty, unsigned& gumband_time_penalty, unsigned& gumband_room_penalty,
+    unsigned& oversubscribed_penalty, double& theme_penalty, unsigned& timeslot_penalty,
+    unsigned& room_penalty, unsigned& priority_penalty) const
 {
   unsigned nrooms = schedule.extent(1);
   unsigned nslots = schedule.extent(0);
@@ -87,7 +93,7 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
     }
   }
   // Compute the penalty related to multi-part minisymposia being too far away from each other
-  double gumband_penalty = 2*nprereqs_;
+  gumband_time_penalty = nprereqs_;
   for(unsigned sl=0; sl<nslots-1; sl++) {
     for(unsigned r1=0; r1<nrooms; r1++) {
       unsigned m1 = schedule(sl,r1);
@@ -96,12 +102,13 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
         unsigned m2 = schedule(sl+1,r2);
         if(m2 >= nmini) continue;
         if(is_prereq_(m1, m2)) {
-          gumband_penalty--;
+          gumband_time_penalty--;
         }
       }
     }
   }
   // Compute the penalty related to multi-part minisymposia being in different rooms
+  gumband_room_penalty = nprereqs_;
   for(unsigned sl1=0; sl1<nslots; sl1++) {
     for(unsigned r=0; r<nrooms; r++) {
       unsigned m1 = schedule(sl1, r);
@@ -110,12 +117,11 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
         unsigned m2 = schedule(sl2, r);
         if(m2 >= nmini) continue;
         if(is_prereq_(m1,m2)) {
-          gumband_penalty--;
+          gumband_room_penalty--;
         }
       }
     }
   }
-  gumband_penalty /= nprereqs_;
   // Compute the penalty related to oversubscribed participants
   oversubscribed_penalty = 0;
   for(unsigned sl=0; sl<nslots; sl++) {
@@ -124,6 +130,8 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
       for(unsigned r2=r1+1; r2<nrooms; r2++) {
         if(schedule(sl,r2) >= nmini) continue;
         if(overlaps_participants(schedule(sl,r1), schedule(sl,r2))) {
+          printf("%i and %i share a participant in timeslot %i\n", 
+                 d_data_(schedule(sl,r1)).id(), d_data_(schedule(sl,r2)).id(), sl+1);
           oversubscribed_penalty++;
         }
       }
@@ -144,20 +152,21 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
   }
 
   // Compute the penalty related to scheduling speakers at a time they're not available
-  unsigned timeslot_penalty = 0;
+  timeslot_penalty = 0;
   for(unsigned sl=0; sl<nslots; sl++) {
     for(unsigned r=0; r<nrooms; r++) {
       unsigned mini_index = schedule(sl,r);
       if(mini_index >= nmini) continue;
       if(!valid_timeslots_(mini_index, sl)) {
+        printf("%i is in invalid timeslot %i\n", d_data_(mini_index).id(), sl+1);
         timeslot_penalty++;
       }
     }
   }
 
   // Compute the penalty related to priority and room requests
+  room_penalty = 0;
   priority_penalty = 0;
-  unsigned room_penalty = 0;
   for(unsigned sl=0; sl<nslots; sl++) {
     for(unsigned r=0; r<nrooms; r++) {
       unsigned mini_index = schedule(sl,r);
@@ -166,6 +175,7 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
       // This is a minisymposium with a room request
       if(room_id < nrooms) {
         if(room_id != r) {
+          printf("%i is in invalid room %i\n", d_data_(mini_index).id(), r);
           room_penalty++;
         }
       }
@@ -179,18 +189,18 @@ double Minisymposia::rate_schedule(ViewType schedule, unsigned& order_penalty,
     }
   }
   double penalty = order_penalty + oversubscribed_penalty + room_penalty + timeslot_penalty;
-  penalty += theme_penalty + gumband_penalty + map_priority_penalty(priority_penalty);
+  penalty += theme_penalty + (gumband_time_penalty + gumband_room_penalty)/nprereqs_ + map_priority_penalty(priority_penalty);
   return 1 - penalty / max_penalty_;
 }
 
 template<class ViewType>
 inline std::string Minisymposia::rate_schedule(ViewType schedule) const {
-  Kokkos::View<unsigned*> d_penalties("penalties", 3);
+  Kokkos::View<unsigned*> d_penalties("penalties", 7);
   Kokkos::View<double*> d_penalty("penalty", 1);
   double score;
   Kokkos::parallel_reduce("computing score", 1, KOKKOS_CLASS_LAMBDA (unsigned i, double& lscore) {
-    lscore = rate_schedule(schedule, d_penalties(0), d_penalties(1), 
-      d_penalty(0), d_penalties(2));
+    lscore = rate_schedule(schedule, d_penalties(0), d_penalties(1), d_penalties(2),
+      d_penalties(3), d_penalty(0), d_penalties(4), d_penalties(5), d_penalties(6));
   }, score);
 
   // Copy penalties back to device
@@ -201,9 +211,15 @@ inline std::string Minisymposia::rate_schedule(ViewType schedule) const {
 
   std::ostringstream oss;
 
-  oss << "This schedule has score " << score << "\nThe order penalty is " << h_penalties(0)
-      << "\nThe oversubscribed penalty is " << h_penalties(1) << "\nThe theme penalty is "
-      << h_penalty(0) << "\nThe priority penalty is " << h_penalties(2) 
+  oss << "This schedule has score " << score 
+      << "\nThe penalty for multipart minisymposia being out of order is " << h_penalties(0)
+      << "\nThe penalty for multipart minisymposia not being in consecutive timeslots is " << h_penalties(1)
+      << "\nThe penalty for multipart minisymposia not being in the same room is " << h_penalties(2)
+      << "\nThe penalty for putting the same participant in two rooms at once is " << h_penalties(3)
+      << "\nThe penalty for putting too many minisymposia with the same themes in the same timeslot is " << h_penalty(0) 
+      << "\nThe penalty for putting a speaker in a timeslot they're not available is " << h_penalties(4)
+      << "\nThe penalty for putting a minisymposium in a room other than what they requested is " << h_penalties(5)
+      << "\nThe penalty for giving a minisymposium too small a room based on estimated popularity is " << h_penalties(2) 
       << " in [ " << min_priority_penalty_ << ", " << max_priority_penalty_ << "]";
   return oss.str();
 }

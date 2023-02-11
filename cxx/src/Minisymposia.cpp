@@ -14,6 +14,7 @@ Minisymposia::Minisymposia(const std::string& filename) {
   unsigned i=0;
   for(auto node : nodes) {
     std::string title = node.first.as<std::string>();
+    std::cout << "Parsing " << title << std::endl;
     unsigned id = node.second["session number"].as<unsigned>();
     std::vector<unsigned> codes = node.second["class codes"].as<std::vector<unsigned>>();
     std::vector<std::string> talks = node.second["talks"].as<std::vector<std::string>>();
@@ -311,4 +312,11 @@ const Timeslots& Minisymposia::timeslots() const {
 
 const Rooms& Minisymposia::rooms() const {
   return rooms_;
+}
+
+unsigned Minisymposia::find(unsigned mid) const {
+  for(unsigned i=0; i<size(); i++) {
+    if(h_data_(i).id() == mid) return i;
+  }
+  return size();
 }

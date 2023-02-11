@@ -40,10 +40,12 @@ template<class View2D>
 double Scheduler::rate(View2D schedule, bool verbose) const {
   fix_order(schedule, verbose);
 
-  unsigned order_penalty, oversubscribed_penalty, priority_penalty;
+  unsigned order_penalty, gumband_time_penalty, gumband_room_penalty, oversubscribed_penalty;
   double theme_penalty;
-  double result = mini_.rate_schedule(schedule, order_penalty, oversubscribed_penalty, 
-                                      theme_penalty, priority_penalty);
+  unsigned timeslot_penalty, room_penalty, priority_penalty;
+  double result = mini_.rate_schedule(schedule, order_penalty, gumband_time_penalty, gumband_room_penalty,
+                                      oversubscribed_penalty, theme_penalty, timeslot_penalty, room_penalty, 
+                                      priority_penalty);
   return result;
 }
 

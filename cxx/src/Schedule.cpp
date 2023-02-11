@@ -9,13 +9,13 @@
 #include <QMimeData>
 #include <QPushButton>
 
-Schedule::Schedule(Kokkos::View<unsigned**,Kokkos::LayoutStride> mini_indices, Rooms* rooms, Minisymposia* mini, QObject *parent) : 
+Schedule::Schedule(Kokkos::View<unsigned**,Kokkos::LayoutStride>::HostMirror mini_indices, const Minisymposia& mini, QObject *parent) : 
   d_mini_indices_("minisymposia indices", mini_indices.extent(0), mini_indices.extent(1)), 
-  rooms_(rooms), mini_(mini), QAbstractTableModel(parent)
+  mini_(mini), QAbstractTableModel(parent)
 {
-  Kokkos::deep_copy(d_mini_indices_, mini_indices);
   h_mini_indices_ = Kokkos::create_mirror_view(d_mini_indices_);
-  Kokkos::deep_copy(h_mini_indices_, d_mini_indices_);
+  Kokkos::deep_copy(h_mini_indices_, mini_indices);
+  Kokkos::deep_copy(d_mini_indices_, h_mini_indices_);
 
   // Create a table to display the schedule
   tableView_ = new QTableView();
@@ -99,8 +99,11 @@ int Schedule::columnCount(const QModelIndex &parent) const {
 QVariant Schedule::data(const QModelIndex &index, int role) const {
   if(index.isValid() && role == Qt::DisplayRole) {
     unsigned id = h_mini_indices_(index.column(), index.row());
-    if(id < mini_->size()) {
-      return QVariant(tr(mini_->get(id).full_title().c_str()));
+    if(id < mini_.size()) {
+      const std::string& title = mini_.get(id).full_title();
+      unsigned mid = mini_.get(id).id();
+      std::string str = std::to_string(mid) + ": " + title;
+      return QVariant(tr(str.c_str()));
     }
   }
 
@@ -115,7 +118,7 @@ QVariant Schedule::headerData(int section, Qt::Orientation orientation, int role
     }
     else {
       // Return the name of the room
-      return QVariant(tr(rooms_->name(section).c_str()));
+      return QVariant(tr(mini_.rooms().name(section).c_str()));
     }
   }
   return QVariant();
@@ -167,7 +170,7 @@ bool Schedule::dropMimeData(const QMimeData *data, Qt::DropAction action,
 void Schedule::save() {
   QString fileName = QFileDialog::getSaveFileName(&window_,
     tr("Save Schedule"), "",
-    tr("Schedule (*.sched);;All Files (*)"));
+    tr("Markdown (*.md);;All Files (*)"));
 
   if (!fileName.isEmpty()) {
     QFile file(fileName);
@@ -175,20 +178,33 @@ void Schedule::save() {
       QMessageBox::information(&window_, tr("Unable to open file"), file.errorString());
       return;
     }
-    QDataStream out(&file);
-    out.setVersion(QDataStream::Qt_4_5);
-    for(unsigned i=0; i<h_mini_indices_.extent(1); i++) {
-      for(unsigned j=0; j<h_mini_indices_.extent(0); j++) {
-        out << h_mini_indices_(j,i);
+    QTextStream out(&file);
+
+    unsigned nmini = mini_.size();
+    unsigned nrooms = mini_.rooms().size();
+    unsigned nslots = mini_.timeslots().size();
+    auto class_codes = mini_.class_codes();
+    std::string output = "# Conference schedule\n\n";
+    for(unsigned slot=0; slot<nslots; slot++) {
+      output +=  "|Slot " + std::to_string(slot+1) + "|   |   |   |\n|---|---|---|---|\n";
+      for(unsigned room=0; room<nrooms; room++) {
+        unsigned mid = h_mini_indices_(slot, room);
+        if(mid < nmini) {
+          output += "|" + std::to_string(mini_.get(mid).id()) + " " + mini_.get(mid).full_title();
+          output += "|" + class_codes(mid,0).name() + " " + class_codes(mid, 1).name() + " " + class_codes(mid, 2).name();
+          output += "|" + std::to_string(mini_.get(mid).priority()) + "|" + mini_.rooms().name(room) + "|\n";
+        }
       }
+      output += "\n";
     }
+    out << tr(output.c_str());
   }
 }
 
 void Schedule::load() {
   QString fileName = QFileDialog::getOpenFileName(&window_,
     tr("Open Schedule"), "",
-    tr("Schedule (*.sched);;All Files (*)"));
+    tr("Markdown (*.md);;All Files (*)"));
   if (!fileName.isEmpty()) {
     QFile file(fileName);
 
@@ -197,11 +213,50 @@ void Schedule::load() {
       return;
     }
 
-    QDataStream in(&file);
-    in.setVersion(QDataStream::Qt_4_5);
-    for(unsigned i=0; i<h_mini_indices_.extent(1); i++) {
-      for(unsigned j=0; j<h_mini_indices_.extent(0); j++) {
-        in >> h_mini_indices_(j,i);
+    // Initialize all entries to -1
+    for(unsigned i=0; i<h_mini_indices_.extent(0); i++) {
+      for(unsigned j=0; j<h_mini_indices_.extent(1); j++) {
+        h_mini_indices_(i,j) = unsigned(-1);
+      }
+    }
+
+    QTextStream in(&file);
+    in.readLine(); in.readLine();
+    for(unsigned ts=0; ts<h_mini_indices_.extent(0); ts++) {
+      in.readLine(); in.readLine();
+      for(unsigned j=0; j<h_mini_indices_.extent(1); j++) {
+        unsigned mid;
+        char c;
+        in >> c;
+        if(c != '|') break;
+
+        // Find the minisymposium to which this refers
+        in >> mid;
+        unsigned index = mini_.find(mid);
+
+        for(unsigned numBars=0; numBars < 3;) {
+          in >> c;
+          if(c == '|') numBars++;
+        }
+
+        // Find the room to which this refers
+        QString qroom = in.readLine();
+        std::string room = qroom.toStdString();
+        room.pop_back();
+        unsigned room_index = mini_.rooms().get_id(room);
+
+        h_mini_indices_(ts, room_index) = index;
+      }
+    }
+
+    // Populate the empty slots
+    unsigned nmini = mini_.size();
+    for(unsigned i=0, ind=nmini; i<h_mini_indices_.extent(0); i++) {
+      for(unsigned j=0; j<h_mini_indices_.extent(1); j++) {
+        if(h_mini_indices_(i,j) == unsigned(-1)) {
+          h_mini_indices_(i,j) = ind;
+          ind++;
+        }
       }
     }
   }
@@ -209,7 +264,7 @@ void Schedule::load() {
 
 void Schedule::computeScore() {
   Kokkos::deep_copy(d_mini_indices_, h_mini_indices_);
-  auto msg = mini_->rate_schedule(d_mini_indices_);
+  auto msg = mini_.rate_schedule(d_mini_indices_);
   QMessageBox::information(&window_, tr("Computed Score"), tr(msg.c_str()));
 }
 
@@ -246,8 +301,9 @@ void Schedule::search() {
 
       // Check whether the search string is in this entry
       unsigned id = h_mini_indices_(index.column(), index.row());
-      if(id < mini_->size()) {
-        bool found = tr(mini_->get(id).full_title().c_str()).contains(text, Qt::CaseInsensitive);
+      if(id < mini_.size()) {
+        std::string search_text = std::to_string(mini_.get(id).id()) + ": " + mini_.get(id).full_title();
+        bool found = tr(search_text.c_str()).contains(text, Qt::CaseInsensitive);
         if(found) {
           // Set the selection
           selectionModel_->select(index, QItemSelectionModel::ClearAndSelect);

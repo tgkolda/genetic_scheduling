@@ -28,7 +28,7 @@ public:
   const std::string& short_title() const;
   const std::string& full_title() const;
   const std::string& room() const;
-  unsigned id() const;
+  KOKKOS_FUNCTION unsigned id() const;
   KOKKOS_FUNCTION unsigned room_id() const;
   unsigned total_citation_count() const;
   unsigned max_citation_count() const;

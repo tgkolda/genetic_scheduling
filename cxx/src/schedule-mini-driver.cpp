@@ -5,7 +5,7 @@
 
 int main(int argc, char* argv[]) {
   int ret_code;
-//  QApplication app(argc, argv);
+  QApplication app(argc, argv);
   Kokkos::initialize(argc, argv);
   {
     // Read the themes from yaml
@@ -26,13 +26,13 @@ int main(int argc, char* argv[]) {
     // Run the genetic algorithm
     Scheduler s(mini);
     Genetic<Scheduler> g(s);
-    auto best_schedule = g.run(10000, 2000, 0.01, 1000);
+    auto best_schedule = g.run(10000, 2000, 0.01, 10);
     s.record("schedule.md", best_schedule);
 
     // Create a table to display the schedule
-//    Schedule sched(s.get_best_schedule(), &rooms, &mini);
+    Schedule sched(best_schedule, mini);
 
-//    ret_code = app.exec();
+    ret_code = app.exec();
   }
   Kokkos::finalize();
   return ret_code;

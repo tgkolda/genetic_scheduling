@@ -12,7 +12,7 @@
 class Schedule : public QAbstractTableModel
 {
 public:
-  Schedule(Kokkos::View<unsigned**,Kokkos::LayoutStride> mini_indices, Rooms* rooms, Minisymposia* mini, QObject *parent = nullptr);
+  Schedule(Kokkos::View<unsigned**,Kokkos::LayoutStride>::HostMirror mini_indices, const Minisymposia& mini, QObject *parent = nullptr);
   ~Schedule();
   int rowCount(const QModelIndex &parent = QModelIndex()) const override;
   int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -34,8 +34,7 @@ private:
   QTableView* tableView_;
   QDialog* dialog_;
   QLineEdit* searchTerm_;
-  Rooms* rooms_;
-  Minisymposia* mini_;
+  Minisymposia mini_;
   Kokkos::View<unsigned**> d_mini_indices_;
   Kokkos::View<unsigned**>::HostMirror h_mini_indices_;
 };
