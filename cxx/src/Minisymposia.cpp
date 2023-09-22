@@ -139,7 +139,7 @@ void Minisymposia::set_overlapping_participants() {
     }
   }, overlap_penalty);
   Kokkos::deep_copy(same_participants_, h_same_participants);
-  max_penalty_ += overlap_penalty;
+  max_penalty_ += overlap_penalty/2;
   printf("set_overlapping_participants max_penalty: %i\n", max_penalty_);
 }
 
@@ -304,6 +304,10 @@ Kokkos::View<Theme*[3]>::HostMirror Minisymposia::class_codes() const {
   auto h_class_codes = Kokkos::create_mirror_view(class_codes_);
   Kokkos::deep_copy(h_class_codes, class_codes_);
   return h_class_codes;
+}
+
+KOKKOS_FUNCTION bool Minisymposia::is_valid_timeslot(unsigned mid, unsigned sid) const {
+  return valid_timeslots_(mid, sid);
 }
 
 const Timeslots& Minisymposia::timeslots() const {
