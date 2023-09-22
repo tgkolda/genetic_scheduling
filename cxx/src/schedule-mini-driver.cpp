@@ -26,7 +26,10 @@ int main(int argc, char* argv[]) {
     // Run the genetic algorithm
     Scheduler s(mini);
     Genetic<Scheduler> g(s);
-    auto best_schedule = g.run(10000, 2000, 0.01, 10);
+    Kokkos::Timer timer;
+    timer.reset();
+    auto best_schedule = g.run(10000, 2000, 0.01, 1'000'000'000);
+    printf("Runtime: %lf seconds\n", timer.seconds());
     s.record("schedule.md", best_schedule);
 
     // Create a table to display the schedule
