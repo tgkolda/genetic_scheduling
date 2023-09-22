@@ -38,14 +38,25 @@ private:
 
 template<class View2D>
 double Scheduler::rate(View2D schedule, bool verbose) const {
-  fix_order(schedule, verbose);
+  fix_order(schedule, false);
 
   unsigned order_penalty, gumband_time_penalty, gumband_room_penalty, oversubscribed_penalty;
   double theme_penalty;
   unsigned timeslot_penalty, room_penalty, priority_penalty;
   double result = mini_.rate_schedule(schedule, order_penalty, gumband_time_penalty, gumband_room_penalty,
                                       oversubscribed_penalty, theme_penalty, timeslot_penalty, room_penalty, 
-                                      priority_penalty);
+                                      priority_penalty, false);
+  if(verbose) {
+    printf("%i,%i,%i,%i,%e,%e,%e,%e,", 
+    oversubscribed_penalty, 
+    room_penalty, 
+    timeslot_penalty, 
+    order_penalty,
+    mini_.map_priority_penalty(priority_penalty),
+    theme_penalty,
+    gumband_time_penalty/(double)mini_.get_nprereqs(), 
+    gumband_room_penalty/(double)mini_.get_nprereqs());
+  }
   return result;
 }
 
@@ -63,7 +74,7 @@ void Scheduler::fix_order(View2D schedule, bool verbose) const {
       if(m1 < nmini) {
         if(mini_[m1].room_id() == i) {
           if(verbose) {
-            printf("Minisymposium %i is already in the correct room\n", m1);
+//            printf("Minisymposium %i is already in the correct room\n", m1);
           }
           continue;
         }
@@ -94,10 +105,10 @@ void Scheduler::fix_order(View2D schedule, bool verbose) const {
         if(mid < nmini) {
           unsigned priority = mini_[mid].priority();
           unsigned rid = mini_[mid].room_id();
-          printf("schedule(%i,%i) = %i with priority %i and room id %i\n", sl, i, mid, priority, rid);
+//          printf("schedule(%i,%i) = %i with priority %i and room id %i\n", sl, i, mid, priority, rid);
         }
         else {
-          printf("schedule(%i,%i) = %i\n", sl, i, mid);
+//          printf("schedule(%i,%i) = %i\n", sl, i, mid);
         }
       }
     }
@@ -113,7 +124,16 @@ void Scheduler::fix_order(View2D schedule, bool verbose) const {
         for(unsigned r2=0; r2<nrooms(); r2++) {
           unsigned m2 = schedule(sl2,r2);
           if(m2 >= nmini) continue;
+          // Ignore minisymposia that don't have multiple parts
+          // They can't have this problem
           if(!mini_[m2].is_multipart()) continue;
+          
+          // If the slot after the first is not valid for the second minisymposium,
+          // don't even think about gumbanding it (and vice versa)
+          if(!mini_.is_valid_timeslot(m2, sl1+1)) continue;
+          unsigned ms1p1 = schedule(sl1+1, r1);
+          if(ms1p1 < nmini && !mini_.is_valid_timeslot(ms1p1, sl2)) continue;
+
           if(mini_.breaks_ordering(m2, m1) || mini_.breaks_ordering(m1, m2)) {
             // swap the second minisymposium with whatever comes after the first
             genetic::swap(schedule(sl2, r2), schedule(sl1+1, r1));
@@ -131,6 +151,10 @@ void Scheduler::fix_order(View2D schedule, bool verbose) const {
         for(unsigned r2=0; r2<nrooms(); r2++) {
           if(schedule(sl2,r2) >= nmini) continue;
           if(mini_.breaks_ordering(schedule(sl1,r1), schedule(sl2,r2))) {
+            if(verbose) {
+              printf("swapping s(%i,%i)=%i and s(%i,%i)=%i as requested\n", 
+                     sl1, r1, schedule(sl1, r1), sl2, r2, schedule(sl2, r2));
+            }
             // swap the values
             genetic::swap(schedule(sl1, r1), schedule(sl2, r2));
           }
