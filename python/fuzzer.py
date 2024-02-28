@@ -27,10 +27,28 @@ for i in range(n):
     name1 = names[i]
     for j in range(i+1, n):
         name2 = names[j]
+
+        # This score will be high for simple misspellings
+        # For example,
+        # Sri Hari Krishna Narayanan and
+        # Sri Hari Krishn Narayanan
+        # score a 98% similarity
+        # Bart Van Bloemen Waanders and
+        # Bart van Bloeme Waanders
+        # score a 94% similarity
         ratio = fuzz.ratio(name1, name2)
-        if ratio > 80:
+
+        # This score accounts for middle names/initials
+        # For example,
+        # Patrick Farrell and
+        # Patrick E. Farrell
+        # score a 100% similarity
+        tsratio = fuzz.token_set_ratio(name1, name2)
+
+        best_ratio = max(ratio, tsratio)
+        if best_ratio > 80:
             name_pairs.append(f'{name1}\n{name2}')
-            scores.append(ratio)
+            scores.append(best_ratio)
 
 npscores = np.array(scores)
 perm = np.argsort(npscores)
