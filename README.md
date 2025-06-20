@@ -28,3 +28,7 @@ The C++ executables use the CMake build system and have the following dependenci
 * Qt
 * Kokkos
 * yaml-cpp
+
+## SIAM News Article
+
+[Automating Conference Scheduling with Genetic Algorithms at CSE23 and Beyond](https://www.siam.org/publications/siam-news/articles/automating-conference-scheduling-with-genetic-algorithms-at-cse23-and-beyond/)
